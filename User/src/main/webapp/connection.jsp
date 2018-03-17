@@ -7,7 +7,7 @@
 <title>connection</title>
 </head>
 <body>
-<%-- 	<%@ page import="org.springframework.web.context.WebApplicationContext"%> --%>
+	<%@ page import="org.springframework.web.context.WebApplicationContext"%>
 	<%@ page import="java.sql.*"%>
 	<%@ page import="javax.sql.*"%>
 	<%@ page import="javax.naming.*"%>

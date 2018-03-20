@@ -8,6 +8,21 @@ use istockagedb;
 
 -- CREATE
 -- Admin
+create table category (
+    ca_id                   int auto_increment not null,
+    ca_name                 nvarchar(20) not null,
+    primary key (ca_id)
+);
+
+create table code (
+    co_id                   int auto_increment not null,
+    co_ca_id                int not null,
+    co_name                 nvarchar(20) not null,
+    co_no                   tinyint,
+    primary key (co_id),
+    foreign key (co_ca_id) references category (ca_id)
+);
+
 create table broker_head (
     bh_id                   int auto_increment not null,
     bh_name                 nvarchar(20) not null,
@@ -58,6 +73,7 @@ create table stock (
     st_ac_id                int not null,
     st_name                 nvarchar(10) not null,
     st_no                   varchar(10) not null,
+    st_type_code            tinyint,
     st_buy_time             datetime,
     st_buy_price            float,
     st_buy_share            int,

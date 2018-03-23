@@ -18,8 +18,8 @@ create table path_category (
 create table admin_path (
     ap_id                   int auto_increment not null,
     ap_pc_id                int not null,
-    ap_path                 varchar(50) not null,
     ap_name                 nvarchar(20) not null,
+    ap_path                 varchar(50) not null,
     primary key (ap_id),
     foreign key (ap_pc_id) references path_category (pc_id)
 );
@@ -27,8 +27,8 @@ create table admin_path (
 create table user_path (
     up_id                   int auto_increment not null,
     up_pc_id                int not null,
-    up_path                 varchar(50) not null,
     up_name                 nvarchar(20) not null,
+    up_path                 varchar(50) not null,
     primary key (up_id),
     foreign key (up_pc_id) references path_category (pc_id)
 );

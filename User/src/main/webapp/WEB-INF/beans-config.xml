@@ -24,7 +24,8 @@
 		</property>
 		<property name="annotatedClasses">
 			<list>
-				<value>com.istockage.model.entity.MemberEntity</value>
+				<value>com.istockage.model.entity.PathCategoryEntity</value>
+				<value>com.istockage.model.entity.UserPathEntity</value>
 			</list>
 		</property>
 	</bean>

@@ -24,7 +24,13 @@
 		</property>
 		<property name="annotatedClasses">
 			<list>
+				<value>com.istockage.model.entity.AccountEntity</value>
+				<value>com.istockage.model.entity.BrokerBranchEntity</value>
+				<value>com.istockage.model.entity.BrokerHeadEntity</value>
+				<value>com.istockage.model.entity.MemberEntity</value>
+				<value>com.istockage.model.entity.MemberLogEntity</value>
 				<value>com.istockage.model.entity.PathCategoryEntity</value>
+				<value>com.istockage.model.entity.StockEntity</value>
 				<value>com.istockage.model.entity.UserPathEntity</value>
 			</list>
 		</property>

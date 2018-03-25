@@ -42,8 +42,8 @@ create table code_category (
 create table code (
     co_id                   int auto_increment not null,
     co_cc_id                int not null,
-    co_name                 nvarchar(20) not null,
     co_no                   tinyint,
+    co_name                 nvarchar(20) not null,
     primary key (co_id),
     foreign key (co_cc_id) references code_category (cc_id)
 );
@@ -51,8 +51,8 @@ create table code (
 -- Admin
 create table broker_head (
     bh_id                   int auto_increment not null,
-    bh_name                 nvarchar(20) not null,
     bh_no                   char(4) not null,
+    bh_name                 nvarchar(20) not null,
     bh_update_time          datetime not null,
     primary key (bh_id)
 );
@@ -60,8 +60,8 @@ create table broker_head (
 create table broker_branch (
     bb_id                   int auto_increment not null,
     bb_bh_id                int not null,
-    bb_name                 nvarchar(10) not null,
     bb_no                   char(4) not null,
+    bb_name                 nvarchar(10) not null,
     bb_update_time          datetime not null,
     primary key (bb_id),
     foreign key (bb_bh_id) references broker_head (bh_id)

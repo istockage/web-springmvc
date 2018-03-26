@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.istockage.common.constant.ControllerConstant;
 import com.istockage.model.entity.MemberEntity;
 
 /**
@@ -22,7 +23,7 @@ import com.istockage.model.entity.MemberEntity;
  * @author 詹晟
  */
 @Controller
-public class MemberController {
+public class MemberController implements ControllerConstant {
 
 	/**
 	 * 註冊 - init
@@ -35,9 +36,21 @@ public class MemberController {
 	public String signUpView(Model model) {
 
 		// 新增 form-backing object
-		model.addAttribute("memberEntity", new MemberEntity());
+		model.addAttribute(MEMBER_ENTITY, new MemberEntity());
 
-		return "member/sign-up";
+		return MEMBER_SIGN_UP_VIEW;
+	}
+
+	/**
+	 * 註冊 - submit
+	 * 
+	 * @param memberEntity
+	 *            MemberEntity --> form-backing object
+	 */
+	@RequestMapping(value = "/member/sign-up.do", method = RequestMethod.POST)
+	public String signUpAction(MemberEntity memberEntity) {
+
+		return "";
 	}
 
 }

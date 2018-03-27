@@ -7,6 +7,8 @@ public interface PathConstant {
 	// view
 	public static final String INDEX_VIEW = "index";
 
+	public static final String MEMBER_SIGN_IN_VIEW = "secure/sign-in";
+
 	public static final String MEMBER_SIGN_UP_VIEW = "member/sign-up";
 
 }

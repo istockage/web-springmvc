@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/2/27
+ * Modified: 2018/3/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,6 +33,41 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao memberDao;
 
 	/**
+	 * 登入
+	 * 
+	 * @param me_email
+	 *            String --> 會員信箱
+	 * @param me_password
+	 *            String --> 會員密碼(原碼)
+	 * @return null / null / MemberEntity
+	 */
+	@Override
+	@Transactional
+	public MemberEntity signIn(String me_email, String me_password) {
+
+		MemberEntity memberEntity = memberDao.selectByMe_email(me_email);
+
+		if (memberEntity == null) {
+
+			// 信箱錯誤
+			return null;
+		} else {
+
+			String me_salt = memberEntity.getMe_salt();
+
+			if (!PasswordUtil.getHashedPassword(me_password, me_salt).equals(memberEntity.getMe_password())) {
+
+				// 密碼錯誤
+				return null;
+			} else {
+
+				// 信箱及密碼正確
+				return memberEntity;
+			}
+		}
+	}
+
+	/**
 	 * 註冊
 	 * 
 	 * @param memberEntity
@@ -43,10 +78,10 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	public MemberEntity signUp(MemberEntity memberEntity) {
 
-		String ad_salt = PasswordUtil.getSalt();
+		String me_salt = PasswordUtil.getSalt();
 
-		memberEntity.setMe_password(PasswordUtil.getHashedPassword(memberEntity.getMe_password(), ad_salt));
-		memberEntity.setMe_salt(ad_salt);
+		memberEntity.setMe_password(PasswordUtil.getHashedPassword(memberEntity.getMe_password(), me_salt));
+		memberEntity.setMe_salt(me_salt);
 		memberEntity.setMe_signup_time(new java.util.Date());
 		memberEntity.setMe_signin_number(0);
 		memberEntity.setMe_update_pwd_time(new java.util.Date());

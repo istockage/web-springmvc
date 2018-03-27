@@ -3,12 +3,16 @@
  * File: MemberDaoImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/2/27
+ * Modified: 2018/3/27
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -29,6 +33,26 @@ public class MemberDaoImpl implements MemberDao {
 	 */
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
+
+	/**
+	 * 會員信箱搜尋
+	 * 
+	 * @param me_email
+	 *            String --> 會員信箱
+	 * @return null / MemberEntity
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public MemberEntity selectByMe_email(String me_email) {
+
+		DetachedCriteria criteria = DetachedCriteria.forClass(MemberEntity.class);
+
+		criteria.add(Restrictions.eq("me_email", me_email));
+
+		List<MemberEntity> list = (List<MemberEntity>) hibernateTemplate.findByCriteria(criteria);
+
+		return list.isEmpty() ? null : list.get(0);
+	}
 
 	/**
 	 * 新增會員

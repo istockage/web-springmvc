@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/2/27
+ * Modified: 2018/3/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.istockage.common.constant.ControllerConstant;
 import com.istockage.model.entity.MemberEntity;
@@ -32,6 +33,52 @@ public class MemberController implements ControllerConstant {
 	 */
 	@Autowired
 	private MemberService memberService;
+
+	/**
+	 * 登入 - init
+	 * 
+	 * @return /WEB-INF/view/secure/sign-in.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
+	public String signInView() {
+
+		return MEMBER_SIGN_IN_VIEW;
+	}
+
+	/**
+	 * 登入 - submit
+	 * 
+	 * @param me_email
+	 *            String --> 會員信箱
+	 * @param me_password
+	 *            String --> 會員密碼(原碼)
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/view/index.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
+	public String signInAction(@RequestParam String me_email, @RequestParam String me_password, Model model) {
+
+		MemberEntity user = memberService.signIn(me_email, me_password);
+
+		if (user == null) {
+
+			// 取得參數，並回填表單
+			model.addAttribute(MEMBER_EMAIL, me_email);
+			model.addAttribute(MEMBER_PASSWORD, me_password);
+
+			return MEMBER_SIGN_IN_VIEW;
+		} else {
+
+			// 更新登入資訊
+			user.setMe_signin_number(user.getMe_signin_number() + 1);
+
+			// 放入 Session
+			model.addAttribute(USER, user);
+
+			return REDIRECT + INDEX_VIEW;
+		}
+	}
 
 	/**
 	 * 註冊 - init
@@ -54,6 +101,7 @@ public class MemberController implements ControllerConstant {
 	 * 
 	 * @param memberEntity
 	 *            MemberEntity --> form-backing object
+	 * @return /WEB-INF/view/index.jsp
 	 */
 	@RequestMapping(value = "/member/sign-up.do", method = RequestMethod.POST)
 	public String signUpAction(MemberEntity memberEntity) {

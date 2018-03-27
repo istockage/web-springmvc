@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/3/27
+ * Modified: 2018/3/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -83,7 +83,6 @@ public class MemberServiceImpl implements MemberService {
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(memberEntity.getMe_password(), me_salt));
 		memberEntity.setMe_salt(me_salt);
 		memberEntity.setMe_signup_time(new java.util.Date());
-		memberEntity.setMe_signin_number(0);
 		memberEntity.setMe_update_pwd_time(new java.util.Date());
 		memberEntity.setMe_update_info_time(new java.util.Date());
 

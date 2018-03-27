@@ -3,11 +3,13 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/3/27
+ * Modified: 2018/3/28
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.controller;
+
+import static com.istockage.common.constant.ModelAttributeConstant.USER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.istockage.common.constant.ControllerConstant;
 import com.istockage.model.entity.MemberEntity;
@@ -26,6 +29,7 @@ import com.istockage.model.service.MemberService;
  * @author 詹晟
  */
 @Controller
+@SessionAttributes(USER)
 public class MemberController implements ControllerConstant {
 
 	/**
@@ -69,9 +73,6 @@ public class MemberController implements ControllerConstant {
 
 			return MEMBER_SIGN_IN_VIEW;
 		} else {
-
-			// 更新登入資訊
-			user.setMe_signin_number(user.getMe_signin_number() + 1);
 
 			// 放入 Session
 			model.addAttribute(USER, user);

@@ -3,7 +3,7 @@
  * File: MemberEntity.java
  * Author: 詹晟
  * Created: 2018/3/24
- * Modified: 2018/3/25
+ * Modified: 2018/3/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -35,7 +35,6 @@ public class MemberEntity {
 	private String me_lastname;
 	private String me_firstname;
 	private Date me_signup_time;
-	private Integer me_signin_number;
 	private Date me_update_info_time;
 	private Date me_update_pwd_time;
 
@@ -93,14 +92,6 @@ public class MemberEntity {
 
 	public void setMe_signup_time(Date me_signup_time) {
 		this.me_signup_time = me_signup_time;
-	}
-
-	public Integer getMe_signin_number() {
-		return me_signin_number;
-	}
-
-	public void setMe_signin_number(Integer me_signin_number) {
-		this.me_signin_number = me_signin_number;
 	}
 
 	public Date getMe_update_info_time() {

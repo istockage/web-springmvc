@@ -76,7 +76,6 @@ create table member (
     me_lastname             nvarchar(20),
     me_firstname            nvarchar(20),
     me_signup_time          datetime not null,
-    me_signin_number        int not null,
     me_update_info_time     datetime not null,
     me_update_pwd_time      datetime not null,
     primary key (me_id)

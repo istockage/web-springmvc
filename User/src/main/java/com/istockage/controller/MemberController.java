@@ -3,12 +3,13 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/2/26
+ * Modified: 2018/2/27
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.istockage.common.constant.ControllerConstant;
 import com.istockage.model.entity.MemberEntity;
+import com.istockage.model.service.MemberService;
 
 /**
  * member controller
@@ -24,6 +26,12 @@ import com.istockage.model.entity.MemberEntity;
  */
 @Controller
 public class MemberController implements ControllerConstant {
+
+	/**
+	 * 注入 MemberService
+	 */
+	@Autowired
+	private MemberService memberService;
 
 	/**
 	 * 註冊 - init
@@ -50,7 +58,9 @@ public class MemberController implements ControllerConstant {
 	@RequestMapping(value = "/member/sign-up.do", method = RequestMethod.POST)
 	public String signUpAction(MemberEntity memberEntity) {
 
-		return "";
+		memberService.signUp(memberEntity);
+
+		return REDIRECT + INDEX_VIEW;
 	}
 
 }

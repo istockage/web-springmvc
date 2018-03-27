@@ -15,7 +15,6 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- 訪問靜態資源 -->
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/images/**" location="/images/" />
 	<mvc:resources mapping="/js/**" location="/js/" />

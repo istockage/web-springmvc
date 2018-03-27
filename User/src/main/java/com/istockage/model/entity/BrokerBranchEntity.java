@@ -3,7 +3,7 @@
  * File: BrokerBranchEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/2/25
+ * Modified: 2018/3/25
  * Version: 1.0
  * Since: JDK 1.8
  */

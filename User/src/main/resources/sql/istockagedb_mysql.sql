@@ -126,3 +126,17 @@ create table stock (
     primary key (st_id),
     foreign key (st_ac_id) references account (ac_id)
 );
+
+-- INSERT
+-- System
+-- path_category
+insert into path_category (pc_name, pc_extension) values ('view', '');
+insert into path_category (pc_name, pc_extension) values ('action', 'do');
+insert into path_category (pc_name, pc_extension) values ('ajax', 'ajax');
+
+-- User
+-- user_path
+insert into user_path (up_pc_id, up_name, up_path) values (1, '會員註冊', 'member/sign-up');
+insert into user_path (up_pc_id, up_name, up_path) values (2, '會員註冊', 'member/sign-up.do');
+insert into user_path (up_pc_id, up_name, up_path) values (1, '會員登入', 'secure/sign-in');
+insert into user_path (up_pc_id, up_name, up_path) values (2, '會員登入', 'secure/sign-in.do');

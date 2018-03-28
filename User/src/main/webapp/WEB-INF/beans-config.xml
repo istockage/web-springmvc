@@ -44,8 +44,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
+	<context:component-scan base-package="com.istockage.interceptor" />
 	<context:component-scan base-package="com.istockage.model" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>

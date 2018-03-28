@@ -3,7 +3,7 @@
  * File: ActionInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/3/28
+ * Modified: 2018/3/29
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,7 +46,7 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 	@Override
 	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
@@ -55,9 +55,6 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		MemberEntity session_MemberEntity = (MemberEntity) request.getSession().getAttribute(USER);
 		MemberEntity model_MemberEntity = (MemberEntity) modelAndView.getModel().get(USER);
-		
-		System.out.println(session_MemberEntity.getMe_id());
-		System.out.println(model_MemberEntity.getMe_id());
 
 		if (session_MemberEntity == null && model_MemberEntity == null) {
 			return;

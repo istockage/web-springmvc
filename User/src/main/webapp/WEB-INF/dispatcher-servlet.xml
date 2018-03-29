@@ -42,6 +42,14 @@
 			<mvc:mapping path="/**/*.do" />
 			<bean class="com.istockage.interceptor.ActionInterceptor" />
 		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/member/sign-up" />
+			<mvc:mapping path="/member/sign-up.do" />
+			<mvc:mapping path="/secure/**" />
+			<mvc:exclude-mapping path="/secure/sign-out.do" />
+			<bean class="com.istockage.interceptor.SignInInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<mvc:resources mapping="/css/**" location="/css/" />

@@ -1,5 +1,5 @@
 package com.istockage.common.constant;
 
-public interface ControllerConstant extends ModelAttributeConstant, PathConstant {
+public interface ControllerConstant extends CommonConstant, ModelAttributeConstant, PathConstant {
 
 }

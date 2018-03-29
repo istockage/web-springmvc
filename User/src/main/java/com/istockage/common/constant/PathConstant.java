@@ -11,4 +11,6 @@ public interface PathConstant {
 
 	public static final String MEMBER_SIGN_UP_VIEW = "member/sign-up";
 
+	public static final String ERROR_PAGE_NOT_FOUND_VIEW = "error/page-not-found";
+
 }

@@ -18,6 +18,11 @@ html, body {
 	display: inline-block;
 }
 
+.alert {
+	width: 300px;
+	padding: 20px;
+}
+
 .form {
 	width: 300px;
 	padding: 20px;

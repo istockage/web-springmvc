@@ -16,6 +16,11 @@
 				<h3>iStockage</h3>
 			</div>
 		</div>
+		<c:if test="${not empty error}">
+			<div class="container alert alert-danger">
+				<span>${error}</span>
+			</div>
+		</c:if>
 		<div class="container form">
 			<form action="<c:url value='/secure/sign-in.do' />" method="post">
 				<div class="form-group">

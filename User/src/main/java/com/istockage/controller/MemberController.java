@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.istockage.common.constant.ControllerConstant;
+import com.istockage.common.message.ErrorMessage;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.service.MemberService;
 
@@ -31,7 +32,7 @@ import com.istockage.model.service.MemberService;
  */
 @Controller
 @SessionAttributes(USER)
-public class MemberController implements ControllerConstant {
+public class MemberController implements ControllerConstant, ErrorMessage {
 
 	private static final Logger logger = Logger.getLogger(MemberController.class);
 
@@ -70,27 +71,53 @@ public class MemberController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		MemberEntity user = memberService.signIn(me_email, me_password);
-
-		if (user == null) {
+		if (me_email == null || me_email.isEmpty()) {
 
 			// 取得參數，並回填表單
 			model.addAttribute(MEMBER_EMAIL, me_email);
 			model.addAttribute(MEMBER_PASSWORD, me_password);
+			model.addAttribute(ERROR, MEMBER_EMAIL_REQUIRE_MSG);
 
-			logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號或密碼錯誤");
+			logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號未填");
+
+			return MEMBER_SIGN_IN_VIEW;
+
+		} else if (me_password == null || me_password.isEmpty()) {
+
+			// 取得參數，並回填表單
+			model.addAttribute(MEMBER_EMAIL, me_email);
+			model.addAttribute(MEMBER_PASSWORD, me_password);
+			model.addAttribute(ERROR, MEMBER_PASSWORD_REQUIRE_MSG);
+
+			logger.error("(" + className + "." + methodName + ") 登入失敗: 密碼未填");
 
 			return MEMBER_SIGN_IN_VIEW;
 
 		} else {
 
-			// 放入 Session
-			model.addAttribute(USER, user);
+			MemberEntity user = memberService.signIn(me_email, me_password);
 
-			logger.info(
-					"(" + className + "." + methodName + ") 登入成功，使用者: " + user.getMe_email() + "，導向首頁: " + INDEX_VIEW);
+			if (user == null) {
 
-			return REDIRECT + INDEX_VIEW;
+				// 取得參數，並回填表單
+				model.addAttribute(MEMBER_EMAIL, me_email);
+				model.addAttribute(MEMBER_PASSWORD, me_password);
+				model.addAttribute(ERROR, MEMBER_EMAIL_OR_PASSWORD_MISTAKE_MSG);
+
+				logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號或密碼錯誤");
+
+				return MEMBER_SIGN_IN_VIEW;
+
+			} else {
+
+				// 放入 Session
+				model.addAttribute(USER, user);
+
+				logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + user.getMe_email() + "，導向首頁: "
+						+ INDEX_VIEW);
+
+				return REDIRECT + INDEX_VIEW;
+			}
 		}
 	}
 

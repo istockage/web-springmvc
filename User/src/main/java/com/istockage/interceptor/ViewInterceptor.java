@@ -23,6 +23,11 @@ import com.istockage.common.util.StringUtil;
 import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.service.UserPathService;
 
+/**
+ * view interceptor
+ * 
+ * @author 詹晟
+ */
 public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 
 	private static final Logger logger = Logger.getLogger(ViewInterceptor.class);

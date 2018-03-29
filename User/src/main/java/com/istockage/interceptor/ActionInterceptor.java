@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.istockage.common.constant.ControllerConstant;
 import com.istockage.common.util.StringUtil;
+import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.MemberLogEntity;
 import com.istockage.model.entity.UserPathEntity;
@@ -36,20 +37,60 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 	private static final Logger logger = Logger.getLogger(ActionInterceptor.class);
 
 	/**
-	 * 注入 MemberLogService
-	 */
-	@Autowired
-	private MemberLogService memberLogService;
-
-	/**
 	 * 注入 UserPathService
 	 */
 	@Autowired
 	private UserPathService userPathService;
 
+	/**
+	 * 注入 MemberLogService
+	 */
+	@Autowired
+	private MemberLogService memberLogService;
+
 	@Override
-	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
-		// TODO Auto-generated method stub
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
+		String handlerMethodName = handlerMethod.getMethod().getName();
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
+
+		String servletPath = request.getServletPath(); // /path
+		String queryString = request.getQueryString(); // query
+		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
+
+		try {
+			if (userPathService.selectByUp_path(StringUtil.getExtension(servletPath),
+					StringUtil.getPath(servletPath)) == null) {
+
+				// 有 mapping，但資料庫無此 path
+				throw new PageNotFoundException(requestPath);
+			}
+		} catch (PageNotFoundException e) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
+
+			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_VIEW).forward(request, response);
+
+			return false;
+		}
+
+		if (handlerMethodName.indexOf("Action") == -1) { // 經過 GET
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
+
+			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_VIEW).forward(request, response);
+
+			return false;
+		}
+
+		request.setAttribute(REQUEST_PATH, requestPath);
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 執行動作: " + requestPath);
+
 		return true;
 	}
 

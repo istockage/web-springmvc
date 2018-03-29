@@ -137,6 +137,7 @@ insert into path_category (pc_name, pc_extension) values ('ajax', 'ajax');
 -- User
 -- user_path
 insert into user_path (up_pc_id, up_name, up_path) values (1, '首頁', 'index');
+insert into user_path (up_pc_id, up_name, up_path) values (1, '找不到網頁', 'error/page-not-found');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '會員註冊', 'member/sign-up');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '會員註冊', 'member/sign-up.do');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '會員登入', 'secure/sign-in');

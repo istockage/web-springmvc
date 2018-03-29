@@ -13,15 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.istockage.common.constant.ControllerConstant;
 import com.istockage.common.util.StringUtil;
-import com.istockage.exception.PageNotFoundException;
-import com.istockage.model.service.UserPathService;
 
 /**
  * view interceptor
@@ -31,12 +28,6 @@ import com.istockage.model.service.UserPathService;
 public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 
 	private static final Logger logger = Logger.getLogger(ViewInterceptor.class);
-
-	/**
-	 * 注入 UserPathService
-	 */
-	@Autowired
-	private UserPathService userPathService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -51,22 +42,6 @@ public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 		String servletPath = request.getServletPath(); // /path
 		String queryString = request.getQueryString(); // query
 		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
-
-		try {
-			if (userPathService.selectByUp_path(StringUtil.getExtension(servletPath),
-					StringUtil.getPath(servletPath)) == null) {
-
-				// 有 mapping，但資料庫無此 path
-				throw new PageNotFoundException(requestPath);
-			}
-		} catch (PageNotFoundException e) {
-
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
-
-			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_VIEW).forward(request, response);
-
-			return false;
-		}
 
 		request.setAttribute(REQUEST_PATH, requestPath);
 

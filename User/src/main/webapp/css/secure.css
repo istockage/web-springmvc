@@ -1,0 +1,27 @@
+html, body {
+	background-color: #fafafa;
+}
+
+.top {
+	width: 300px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.top>.title {
+	color: #000000;
+	text-align: center;
+}
+
+.top>.title>h3 {
+	margin: 0;
+	display: inline-block;
+}
+
+.form {
+	width: 300px;
+	padding: 20px;
+	border: #ddd 1px solid;
+	border-radius: 4px 4px 4px 4px;
+	background-color: white;
+}

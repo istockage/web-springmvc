@@ -6,12 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登入 - iStockage</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure.css" type="text/css" />
 </head>
 <body>
 	<div class="container-fluid">
+		<div class="container top">
+			<div class="title">
+				<h3>iStockage</h3>
+			</div>
+		</div>
 		<div class="container form">
 			<form action="<c:url value='/secure/sign-in.do' />" method="post">
-				<div class="form-group">登入</div>
 				<div class="form-group">
 					<label for="me_email" class="control-label">信箱</label>
 					<input type="text" id="me_email" class="form-control" name="me_email" value="${me_email}" autofocus />
@@ -21,8 +27,8 @@
 					<input type="password" id="me_password" class="form-control" name="me_password" value="${me_password}" />
 					<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼？</a>
 				</div>
-				<div class="form-group" style="margin-top: 20px">
-					<input type="submit" class="btn btn-primary" style="float: right" value="登入" />
+				<div class="form-group" style="margin-bottom:0px">
+					<input type="submit" class="btn btn-primary" value="登入" />
 				</div>
 			</form>
 		</div>

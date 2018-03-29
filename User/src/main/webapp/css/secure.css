@@ -21,12 +21,13 @@ html, body {
 .alert {
 	width: 300px;
 	padding: 20px;
+	border-radius: .4rem;
 }
 
 .form {
 	width: 300px;
 	padding: 20px;
 	border: #ddd 1px solid;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: .4rem;
 	background-color: white;
 }

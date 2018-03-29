@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登入 - iStockage</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap-4.0.0.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure.css" type="text/css" />
 </head>
@@ -19,6 +19,9 @@
 		<c:if test="${not empty error}">
 			<div class="container alert alert-danger">
 				<span>${error}</span>
+				<button class="close">
+					<span>&times;</span>
+				</button>
 			</div>
 		</c:if>
 		<div class="container form">
@@ -38,5 +41,9 @@
 			</form>
 		</div>
 	</div>
+	
+	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/secure.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

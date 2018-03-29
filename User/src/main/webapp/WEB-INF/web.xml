@@ -9,7 +9,7 @@
 
 	<!-- home page -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>/WEB-INF/view/return.jsp</welcome-file>
 	</welcome-file-list>
 
 	<!-- DataSource -->

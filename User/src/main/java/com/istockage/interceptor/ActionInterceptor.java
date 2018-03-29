@@ -12,7 +12,9 @@ package com.istockage.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,6 +32,8 @@ import com.istockage.model.service.UserPathService;
  * @author 詹晟
  */
 public class ActionInterceptor implements HandlerInterceptor, ControllerConstant {
+
+	private static final Logger logger = Logger.getLogger(ActionInterceptor.class);
 
 	/**
 	 * 注入 MemberLogService
@@ -53,10 +57,19 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
+		String handlerMethodName = handlerMethod.getMethod().getName();
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
+
 		MemberEntity session_MemberEntity = (MemberEntity) request.getSession().getAttribute(USER);
 		MemberEntity model_MemberEntity = (MemberEntity) modelAndView.getModel().get(USER);
 
 		if (session_MemberEntity == null && model_MemberEntity == null) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 不寫入日誌");
+
 			return;
 		}
 
@@ -70,6 +83,8 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 		memberLogEntity.setMl_UserPathEntity(userPathEntity);
 		memberLogEntity.setMl_ip(request.getRemoteAddr());
 		memberLogService.insert(memberLogEntity);
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 寫入日誌: " + userPathEntity.getUp_name());
 	}
 
 	@Override

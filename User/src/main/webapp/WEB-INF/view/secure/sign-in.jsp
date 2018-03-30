@@ -35,7 +35,7 @@
 					<input type="password" id="me_password" class="form-control" name="me_password" value="${me_password}" />
 					<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼？</a>
 				</div>
-				<div class="form-group" style="margin-bottom:0px">
+				<div class="form-group">
 					<input type="submit" class="btn btn-success btn-block" value="登入" />
 				</div>
 			</form>

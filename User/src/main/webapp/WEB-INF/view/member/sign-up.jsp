@@ -7,24 +7,39 @@
 <title>註冊 - iStockage</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap-4.0.0.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure.css" type="text/css" />
 </head>
 <body>
-	<form:form action="/User/member/sign-up.do" method="post" modelAttribute="memberEntity">
-		<div class="form-group">
-			<form:label path="me_email">信箱</form:label>
-			<form:input path="me_email" cssClass="form-control" />
+	<div class="container-fluid">
+		<div class="container top">
+			<div class="title">
+				<h3>iStockage</h3>
+			</div>
 		</div>
-		<div class="form-group">
-			<form:label path="me_password">密碼</form:label>
-			<form:password path="me_password" cssClass="form-control" />
+		<div class="container form">
+			<form:form action="/User/member/sign-up.do" method="post" modelAttribute="memberEntity">
+				<div class="form-group">
+					<form:label path="me_email">信箱</form:label>
+					<form:input path="me_email" cssClass="form-control" />
+				</div>
+				<div class="form-group">
+					<form:label path="me_password">密碼</form:label>
+					<form:password path="me_password" cssClass="form-control" />
+				</div>
+				<div class="form-group" style="margin-bottom:20px">
+					<label for="me_password_again">確認密碼</label>
+					<input type="password" id="me_password_again" class="form-control" name="me_password_again" />
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-success btn-block" value="註冊" />
+				</div>
+			</form:form>
 		</div>
-		<div class="form-group">
-			<label for="me_password_again">確認密碼</label>
-			<input type="password" id="me_password_again" class="form-control" name="me_password_again" />
+		<div class="container bottom">
+			<div class="sign-in">
+				<span>已經有帳號了嗎？</span><a href="<%=request.getContextPath()%>/secure/sign-in">登入</a>
+			</div>
 		</div>
-		<div class="form-group">
-			<input type="submit" class="btn btn-success" value="註冊" />
-		</div>
-	</form:form>
+	</div>
 </body>
 </html>

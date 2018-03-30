@@ -85,6 +85,13 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
+		if (!OK.equals((String) request.getAttribute(MEMBER_LOG_KEY))) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 不寫入日誌");
+
+			return;
+		}
+
 		MemberEntity session_MemberEntity = (MemberEntity) request.getSession().getAttribute(USER);
 		MemberEntity model_MemberEntity = (MemberEntity) modelAndView.getModel().get(USER);
 

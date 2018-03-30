@@ -14,4 +14,6 @@ public interface ModelAttributeConstant {
 
 	public static final String MEMBER_ENTITY = "memberEntity";
 
+	public static final String MEMBER_LOG_KEY = "memberLogKey";
+
 }

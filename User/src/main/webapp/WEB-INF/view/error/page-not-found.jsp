@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>找不到網頁 - iStockage</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
 </head>
 <body>
 	<h1>page not found</h1>

@@ -26,8 +26,21 @@ html, body {
 
 .form {
 	width: 300px;
-	padding: 20px;
+	padding: 20px 20px 30px 20px;
 	border: #ddd 1px solid;
 	border-radius: .4rem;
 	background-color: white;
+}
+
+.bottom {
+	width: 300px;
+	margin-top: 20px;
+}
+
+.bottom>.sign-up {
+	text-align: center;
+}
+
+.bottom>.sign-up>span {
+	display: inline-block;
 }

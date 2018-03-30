@@ -74,6 +74,11 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<!-- Session timeout -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
 	<!-- error -->
 	<error-page>
 		<error-code>400</error-code>

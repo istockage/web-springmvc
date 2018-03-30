@@ -3,7 +3,7 @@
  * File: ViewInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/29
- * Modified: 2018/3/30
+ * Modified: 2018/3/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,8 +40,6 @@ public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
 		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
-
-		request.setAttribute(REQUEST_PATH, requestPath);
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 進入頁面: " + requestPath);
 

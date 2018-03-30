@@ -2,10 +2,6 @@ package com.istockage.common.constant;
 
 public interface ModelAttributeConstant {
 
-	public static final String REQUEST_PATH = "requestPath";
-
-	public static final String ERROR = "error";
-
 	public static final String USER = "user";
 
 	public static final String MEMBER_EMAIL = "me_email";
@@ -15,5 +11,7 @@ public interface ModelAttributeConstant {
 	public static final String MEMBER_ENTITY = "memberEntity";
 
 	public static final String MEMBER_LOG_KEY = "memberLogKey";
+
+	public static final String ERROR = "error";
 
 }

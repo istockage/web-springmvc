@@ -1,4 +1,4 @@
-// sign-in
+// secure/sign-in
 $(".close").click(function(){
 	$(".alert").remove();	
 });

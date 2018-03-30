@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/3/29
+ * Modified: 2018/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -76,7 +76,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 			// 取得參數，並回填表單
 			model.addAttribute(MEMBER_EMAIL, me_email);
 			model.addAttribute(MEMBER_PASSWORD, me_password);
-			model.addAttribute(ERROR, MEMBER_EMAIL_REQUIRE_MSG);
+			model.addAttribute(ERROR, MSG_MEMBER_EMAIL_REQUIRE);
 
 			logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號未填");
 
@@ -87,7 +87,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 			// 取得參數，並回填表單
 			model.addAttribute(MEMBER_EMAIL, me_email);
 			model.addAttribute(MEMBER_PASSWORD, me_password);
-			model.addAttribute(ERROR, MEMBER_PASSWORD_REQUIRE_MSG);
+			model.addAttribute(ERROR, MSG_MEMBER_PASSWORD_REQUIRE);
 
 			logger.error("(" + className + "." + methodName + ") 登入失敗: 密碼未填");
 
@@ -102,7 +102,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 				// 取得參數，並回填表單
 				model.addAttribute(MEMBER_EMAIL, me_email);
 				model.addAttribute(MEMBER_PASSWORD, me_password);
-				model.addAttribute(ERROR, MEMBER_EMAIL_OR_PASSWORD_MISTAKE_MSG);
+				model.addAttribute(ERROR, MSG_MEMBER_EMAIL_OR_PASSWORD_MISTAKE);
 
 				logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號或密碼錯誤");
 

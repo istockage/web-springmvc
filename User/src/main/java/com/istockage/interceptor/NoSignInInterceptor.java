@@ -42,9 +42,9 @@ public class NoSignInInterceptor implements HandlerInterceptor, ControllerConsta
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
 		HttpSession session = request.getSession();
-		String next = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 原請求 path
-
 		MemberEntity user = (MemberEntity) session.getAttribute(USER);
+
+		String next = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 原請求 path
 
 		if (user == null) {
 

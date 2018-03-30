@@ -3,7 +3,7 @@
  * File: ActionInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/3/29
+ * Modified: 2018/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -57,9 +57,7 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-		String servletPath = request.getServletPath(); // /path
-		String queryString = request.getQueryString(); // query
-		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
+		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
 		if (handlerMethodName.indexOf("Action") == -1) { // 經過 GET
 

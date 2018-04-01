@@ -18,4 +18,6 @@ public interface PathConstant {
 	// action
 	public static final String MEMBER_SIGN_OUT_DO = "secure/sign-out.do";
 
+	public static final String MEMBER_SIGN_UP_DO = "member/sign-up.do";
+
 }

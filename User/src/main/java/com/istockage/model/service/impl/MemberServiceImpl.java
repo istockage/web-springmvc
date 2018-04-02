@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/3/28
+ * Modified: 2018/4/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -51,6 +51,7 @@ public class MemberServiceImpl implements MemberService {
 
 			// 信箱錯誤
 			return null;
+
 		} else {
 
 			String me_salt = memberEntity.getMe_salt();
@@ -59,6 +60,7 @@ public class MemberServiceImpl implements MemberService {
 
 				// 密碼錯誤
 				return null;
+
 			} else {
 
 				// 信箱及密碼正確
@@ -87,6 +89,20 @@ public class MemberServiceImpl implements MemberService {
 		memberEntity.setMe_update_info_time(new java.util.Date());
 
 		return memberDao.insert(memberEntity);
+	}
+
+	/**
+	 * 會員信箱搜尋 - 信箱重複驗證 (sign-up)
+	 * 
+	 * @param me_email
+	 *            String --> 會員信箱
+	 * @return null / MemberEntity
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public MemberEntity selectByMe_email(String me_email) {
+
+		return memberDao.selectByMe_email(me_email);
 	}
 
 }

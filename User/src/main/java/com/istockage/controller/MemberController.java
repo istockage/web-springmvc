@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/1
+ * Modified: 2018/4/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -192,6 +192,8 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	/**
 	 * 註冊 - submit
 	 * 
+	 * @param me_password_again
+	 *            String --> 重複密碼(原碼)
 	 * @param memberEntity
 	 *            MemberEntity --> form-backing object
 	 * @return /WEB-INF/view/index.jsp
@@ -204,6 +206,12 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 		if (!memberEntity.getMe_password().equals(me_password_again)) {
 
 			logger.error("(" + className + "." + methodName + ") 註冊失敗: 密碼重複錯誤");
+
+			return MEMBER_SIGN_UP_VIEW;
+
+		} else if (memberService.selectByMe_email(memberEntity.getMe_email()) != null) {
+
+			logger.error("(" + className + "." + methodName + ") 註冊失敗: 帳號重複");
 
 			return MEMBER_SIGN_UP_VIEW;
 

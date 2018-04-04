@@ -1,8 +1,8 @@
 /*
  * iStockage
- * File: ViewInterceptor.java
+ * File: AjaxInterceptor.java
  * Author: 詹晟
- * Created: 2018/3/29
+ * Created: 2018/4/5
  * Modified: 2018/4/5
  * Version: 1.0
  * Since: JDK 1.8
@@ -21,13 +21,13 @@ import com.istockage.common.constant.ControllerConstant;
 import com.istockage.common.util.StringUtil;
 
 /**
- * view interceptor
+ * ajax interceptor
  * 
  * @author 詹晟
  */
-public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
+public class AjaxInterceptor implements HandlerInterceptor, ControllerConstant {
 
-	private static final Logger logger = Logger.getLogger(ViewInterceptor.class);
+	private static final Logger logger = Logger.getLogger(AjaxInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -41,7 +41,7 @@ public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 
 		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, View: " + requestPath);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, AJAX: " + requestPath);
 
 		return true;
 	}

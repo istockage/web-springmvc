@@ -3,7 +3,7 @@
  * File: MemberEntity.java
  * Author: 詹晟
  * Created: 2018/3/24
- * Modified: 2018/3/28
+ * Modified: 2018/4/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -16,6 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * member entity
@@ -29,6 +31,8 @@ public class MemberEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer me_id;
+	@NotEmpty
+	@Email
 	private String me_email;
 	private String me_password;
 	private String me_salt;

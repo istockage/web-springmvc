@@ -3,7 +3,7 @@
  * File: ActionInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/4/1
+ * Modified: 2018/4/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -68,7 +68,7 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 			return false;
 		}
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 執行動作: " + requestPath);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, Action: " + requestPath);
 
 		return true;
 	}

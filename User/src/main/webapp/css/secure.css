@@ -44,3 +44,7 @@ html, body {
 .bottom>.sign-in>span, .bottom>.sign-up>span {
 	display: inline-block;
 }
+
+.error {
+	color: red;
+}

@@ -2,6 +2,9 @@ package com.istockage.common.message;
 
 public interface ErrorMessage {
 
+	// member/sign-up
+	public static final String MSG_MEMBER_EMAIL_REPEAT = "信箱重複";
+
 	// secure/sign-in
 	public static final String MSG_MEMBER_EMAIL_REQUIRE = "請填入信箱。";
 

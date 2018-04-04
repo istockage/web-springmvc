@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/3
+ * Modified: 2018/4/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,14 +13,17 @@ import static com.istockage.common.constant.ModelAttributeConstant.USER;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -196,14 +199,23 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	 *            String --> 重複密碼(原碼)
 	 * @param memberEntity
 	 *            MemberEntity --> form-backing object
+	 * @param bindingResult
+	 *            BindingResult
 	 * @return /WEB-INF/view/index.jsp
 	 */
 	@RequestMapping(value = "/member/sign-up.do", method = RequestMethod.POST)
-	public String signUpAction(@RequestParam String me_password_again, MemberEntity memberEntity) {
+	public String signUpAction(@RequestParam String me_password_again, @Valid MemberEntity memberEntity,
+			BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		if (!memberEntity.getMe_password().equals(me_password_again)) {
+		if (bindingResult.hasErrors()) {
+
+			logger.error("(" + className + "." + methodName + ") 註冊失敗: 格式錯誤");
+
+			return MEMBER_SIGN_UP_VIEW;
+
+		} else if (!memberEntity.getMe_password().equals(me_password_again)) {
 
 			logger.error("(" + className + "." + methodName + ") 註冊失敗: 密碼重複錯誤");
 
@@ -226,6 +238,22 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 
 			return REDIRECT + INDEX_VIEW;
 		}
+	}
+
+	/**
+	 * 信箱重複驗證 (sign-up) - AJAX
+	 * 
+	 * @param me_email
+	 *            String --> 會員信箱
+	 * @return String
+	 */
+	@RequestMapping(value = "/member/sign-up-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String signUpEmailRepeatAjax(String me_email) {
+
+		MemberEntity memberEntity = memberService.selectByMe_email(me_email);
+
+		return (memberEntity != null) ? MSG_MEMBER_EMAIL_REPEAT : TRUE;
 	}
 
 }

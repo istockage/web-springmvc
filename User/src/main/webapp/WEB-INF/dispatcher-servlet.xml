@@ -44,9 +44,15 @@
 		</mvc:interceptor>
 
 		<mvc:interceptor>
+			<mvc:mapping path="/**/*.ajax" />
+			<bean class="com.istockage.interceptor.AjaxInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/member/sign-up" />
 			<mvc:exclude-mapping path="/member/sign-up.do" />
+			<mvc:exclude-mapping path="/member/sign-up-email-repeat.ajax" />
 			<mvc:exclude-mapping path="/secure/sign-in" />
 			<mvc:exclude-mapping path="/secure/sign-in.do" />
 			<mvc:exclude-mapping path="/css/**" />

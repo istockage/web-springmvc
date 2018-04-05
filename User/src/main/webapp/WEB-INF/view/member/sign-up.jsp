@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<div class="container form">
-			<form:form action="/User/member/sign-up.do" method="post" modelAttribute="memberEntity">
+			<form:form action="/User/secure/sign-up.do" method="post" modelAttribute="memberEntity">
 				<div class="form-group">
 					<form:label path="me_email">信箱</form:label>
 					<form:input path="me_email" cssClass="form-control" />

@@ -16,7 +16,7 @@ $(document).ready(function(){
 				email: true,
 				maxlength: 50,
 				remote: { // 信箱重複驗證 (sign-up) - AJAX
-					url: "../member/sign-up-email-repeat.ajax", // 後台處理程序
+					url: "../secure/sign-up-email-repeat.ajax", // 後台處理程序
 					type: "post", // 數據發送方式
 					dataType: "text", // 接受數據格式
 					data: { // 要傳遞的數據

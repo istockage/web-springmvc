@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/5
+ * Modified: 2018/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -192,9 +192,9 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	 * 
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/view/member/sign-up.jsp
+	 * @return /WEB-INF/view/secure/sign-up.jsp
 	 */
-	@RequestMapping(value = "/member/sign-up", method = RequestMethod.GET)
+	@RequestMapping(value = "/secure/sign-up", method = RequestMethod.GET)
 	public String signUpView(Model model) {
 
 		// 新增 form-backing object
@@ -214,7 +214,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	 *            BindingResult
 	 * @return /WEB-INF/view/index.jsp
 	 */
-	@RequestMapping(value = "/member/sign-up.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/secure/sign-up.do", method = RequestMethod.POST)
 	public String signUpAction(@RequestParam String me_password_again, @Valid MemberEntity memberEntity,
 			BindingResult bindingResult) {
 
@@ -258,7 +258,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	 *            String --> 會員信箱
 	 * @return String
 	 */
-	@RequestMapping(value = "/member/sign-up-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/secure/sign-up-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String signUpEmailRepeatAjax(String me_email) {
 

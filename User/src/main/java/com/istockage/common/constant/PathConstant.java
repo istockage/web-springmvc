@@ -13,13 +13,13 @@ public interface PathConstant {
 
 	public static final String MEMBER_FORGET_PASSWORD_VIEW = "secure/forget-password";
 
-	public static final String MEMBER_SIGN_UP_VIEW = "member/sign-up";
+	public static final String MEMBER_SIGN_UP_VIEW = "secure/sign-up";
 
 	public static final String ERROR_PAGE_NOT_FOUND_VIEW = "error/page-not-found";
 
 	// action
 	public static final String MEMBER_SIGN_OUT_DO = "secure/sign-out.do";
 
-	public static final String MEMBER_SIGN_UP_DO = "member/sign-up.do";
+	public static final String MEMBER_SIGN_UP_DO = "secure/sign-up.do";
 
 }

@@ -43,7 +43,7 @@
 		</div>
 		<div class="container bottom">
 			<div class="sign-up">
-				<span>還沒有帳號嗎？</span><a href="<%=request.getContextPath()%>/member/sign-up">註冊</a>
+				<span>還沒有帳號嗎？</span><a href="<%=request.getContextPath()%>/secure/sign-up">註冊</a>
 			</div>
 		</div>
 	</div>

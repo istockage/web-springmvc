@@ -18,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * member entity
@@ -34,9 +36,12 @@ public class MemberEntity {
 	@NotEmpty
 	@Email
 	private String me_email;
+	@Pattern(regexp = "^(?=.*([a-z]|[A-Z]))(?=.*[0-9])(?=\\S+$).{8,32}$")
 	private String me_password;
 	private String me_salt;
+	@Size(max = 20)
 	private String me_lastname;
+	@Size(max = 20)
 	private String me_firstname;
 	private Date me_signup_time;
 	private Date me_update_info_time;

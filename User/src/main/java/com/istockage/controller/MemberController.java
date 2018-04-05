@@ -152,6 +152,17 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	}
 
 	/**
+	 * 忘記密碼 - init
+	 * 
+	 * @return /WEB-INF/view/secure/forget-password.jsp
+	 */
+	@RequestMapping(value = "/secure/forget-password", method = RequestMethod.GET)
+	public String forgetPasswordView() {
+
+		return MEMBER_FORGET_PASSWORD_VIEW;
+	}
+
+	/**
 	 * 登出 - submit
 	 * 
 	 * @param sessionStatus

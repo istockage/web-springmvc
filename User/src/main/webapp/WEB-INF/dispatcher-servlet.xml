@@ -55,6 +55,7 @@
 			<mvc:exclude-mapping path="/member/sign-up-email-repeat.ajax" />
 			<mvc:exclude-mapping path="/secure/sign-in" />
 			<mvc:exclude-mapping path="/secure/sign-in.do" />
+			<mvc:exclude-mapping path="/secure/forget-password" />
 			<mvc:exclude-mapping path="/css/**" />
 			<mvc:exclude-mapping path="/images/**" />
 			<mvc:exclude-mapping path="/js/**" />

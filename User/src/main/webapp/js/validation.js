@@ -56,10 +56,10 @@ $(document).ready(function(){
 			},
 		},
 		highlight: function(element){
-			$(element).addClass("form-error");
+			$(element).addClass("is-invalid");
 		},
 		unhighlight: function(element){
-			$(element).removeClass("form-error");
+			$(element).removeClass("is-invalid");
 		},
 		submitHandler: function(form){
 			form.submit();

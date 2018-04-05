@@ -3,7 +3,7 @@
  * File: MemberDao.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/3/29
+ * Modified: 2018/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -28,5 +28,10 @@ public interface MemberDao extends HqlConstant {
 	 * @see com.istockage.model.dao.impl.MemberDaoImpl#insert(MemberEntity)
 	 */
 	MemberEntity insert(MemberEntity memberEntity);
+
+	/**
+	 * @see com.istockage.model.dao.impl.MemberDaoImpl#update(MemberEntity)
+	 */
+	MemberEntity update(MemberEntity memberEntity);
 
 }

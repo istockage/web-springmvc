@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,6 +17,14 @@
 				<h3>iStockage</h3>
 			</div>
 		</div>
+		<c:if test="${not empty error}">
+			<div class="container alert alert-danger">
+				<span>${error}</span>
+				<button class="close">
+					<span>&times;</span>
+				</button>
+			</div>
+		</c:if>
 		<div class="container form">
 			<form action="<c:url value='/secure/forget-password.do' />" method="post">
 				<div class="form-group">
@@ -29,5 +38,8 @@
 			</form>
 		</div>
 	</div>
+	
+	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/secure.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

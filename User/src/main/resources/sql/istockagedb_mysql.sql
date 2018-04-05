@@ -139,6 +139,7 @@ insert into path_category (pc_name, pc_extension) values ('ajax', 'ajax');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '找不到網頁', 'error/page-not-found');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '首頁', 'index');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '忘記密碼', 'secure/forget-password');
+insert into user_path (up_pc_id, up_name, up_path) values (2, '忘記密碼', 'secure/forget-password.do');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '登入', 'secure/sign-in');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '登入', 'secure/sign-in.do');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '登出', 'secure/sign-out.do');

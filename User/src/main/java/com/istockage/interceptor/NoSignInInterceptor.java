@@ -3,7 +3,7 @@
  * File: NoSignInInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/30
- * Modified: 2018/3/30
+ * Modified: 2018/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -52,7 +52,7 @@ public class NoSignInInterceptor implements HandlerInterceptor, ControllerConsta
 					+ MEMBER_SIGN_IN_VIEW);
 
 			// 將原請求 path，放入 Session
-			session.setAttribute(NEXT_VIEW, MEMBER_SIGN_OUT_DO.equals(next) ? INDEX_VIEW : next);
+			session.setAttribute(NEXT, MEMBER_SIGN_OUT_DO.equals(next) ? INDEX_VIEW : next);
 
 			response.sendRedirect(request.getContextPath() + SLASH + MEMBER_SIGN_IN_VIEW);
 

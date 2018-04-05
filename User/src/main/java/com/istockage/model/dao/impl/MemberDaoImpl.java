@@ -3,7 +3,7 @@
  * File: MemberDaoImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/3/27
+ * Modified: 2018/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -65,6 +65,22 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberEntity insert(MemberEntity memberEntity) {
 
 		hibernateTemplate.save(memberEntity);
+
+		return memberEntity;
+	}
+
+	/**
+	 * 修改資料
+	 * 
+	 * @param memberEntity
+	 *            MemberEntity
+	 * @return MemberEntity
+	 */
+	@Override
+	public MemberEntity update(MemberEntity memberEntity) {
+
+		hibernateTemplate.clear();
+		hibernateTemplate.update(memberEntity);
 
 		return memberEntity;
 	}

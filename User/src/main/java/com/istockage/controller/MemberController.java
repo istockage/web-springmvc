@@ -129,11 +129,11 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 				request.setAttribute(MEMBER_LOG_KEY, OK);
 
 				HttpSession session = request.getSession();
-				String next = (String) session.getAttribute(NEXT_VIEW);
+				String next = (String) session.getAttribute(NEXT);
 
 				if (next != null) { // 經過 NoSignInInterceptor
 
-					session.removeAttribute(NEXT_VIEW);
+					session.removeAttribute(NEXT);
 
 					logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + user.getMe_email() + "，導向原請求頁面: "
 							+ next);
@@ -160,6 +160,59 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	public String forgetPasswordView() {
 
 		return MEMBER_FORGET_PASSWORD_VIEW;
+	}
+
+	/**
+	 * 忘記密碼 - submit
+	 * 
+	 * @param me_email
+	 *            String --> 會員信箱
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/view/secure/reset-password.jsp
+	 */
+	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
+	public String forgetPasswordAction(@RequestParam String me_email, Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		if (me_email == null || me_email.isEmpty()) {
+
+			// 取得參數，並回填表單
+			model.addAttribute(MEMBER_EMAIL, me_email);
+			model.addAttribute(ERROR, MSG_MEMBER_EMAIL_REQUIRE);
+
+			logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱未填");
+
+			return MEMBER_FORGET_PASSWORD_VIEW;
+
+		} else {
+
+			MemberEntity memberEntity = memberService.selectByMe_email(me_email);
+
+			if (memberEntity == null) {
+
+				// 取得參數，並回填表單
+				model.addAttribute(MEMBER_EMAIL, me_email);
+				model.addAttribute(ERROR, MSG_MEMBER_EMAIL_MISTAKE);
+
+				logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱錯誤");
+
+				return MEMBER_FORGET_PASSWORD_VIEW;
+
+			} else {
+
+				memberService.updateMe_password(memberEntity);
+
+				// 將管理員 email 放入 Session
+				request.getSession().setAttribute(SESSION_MEMBER_EMAIL, me_email);
+				request.setAttribute(MEMBER_LOG_KEY, OK);
+
+				logger.info("(" + className + "." + methodName + ") 發送成功，傳送至: " + me_email);
+
+				return REDIRECT + MEMBER_RESET_PASSWORD_VIEW;
+			}
+		}
 	}
 
 	/**

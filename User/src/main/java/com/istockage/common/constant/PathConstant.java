@@ -7,11 +7,11 @@ public interface PathConstant {
 	// view
 	public static final String INDEX_VIEW = "index";
 
-	public static final String NEXT_VIEW = "next";
-
 	public static final String MEMBER_SIGN_IN_VIEW = "secure/sign-in";
 
 	public static final String MEMBER_FORGET_PASSWORD_VIEW = "secure/forget-password";
+
+	public static final String MEMBER_RESET_PASSWORD_VIEW = "secure/reset-password";
 
 	public static final String MEMBER_SIGN_UP_VIEW = "secure/sign-up";
 

@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/3
+ * Modified: 2018/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -92,7 +92,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	/**
-	 * 會員信箱搜尋 - 信箱重複驗證 (sign-up)
+	 * 會員信箱搜尋
 	 * 
 	 * @param me_email
 	 *            String --> 會員信箱
@@ -103,6 +103,25 @@ public class MemberServiceImpl implements MemberService {
 	public MemberEntity selectByMe_email(String me_email) {
 
 		return memberDao.selectByMe_email(me_email);
+	}
+
+	/**
+	 * 修改密碼
+	 * 
+	 * @param memberEntity
+	 *            MemberEntity
+	 * @return MemberEntity
+	 */
+	@Override
+	@Transactional
+	public MemberEntity updateMe_password(MemberEntity memberEntity) {
+
+		int random = (int) (Math.random() * 1000000);
+		String me_password_random = String.format("%06d", random);
+
+		memberEntity.setMe_password(PasswordUtil.getHashedPassword(me_password_random, memberEntity.getMe_salt()));
+
+		return memberDao.update(memberEntity);
 	}
 
 }

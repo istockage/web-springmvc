@@ -216,6 +216,17 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	}
 
 	/**
+	 * 重設密碼 - init
+	 * 
+	 * @return /WEB-INF/view/secure/reset-password.jsp
+	 */
+	@RequestMapping(value = "/secure/reset-password", method = RequestMethod.GET)
+	public String resetPasswordView() {
+
+		return MEMBER_RESET_PASSWORD_VIEW;
+	}
+
+	/**
 	 * 登出 - submit
 	 * 
 	 * @param sessionStatus

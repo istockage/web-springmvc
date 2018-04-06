@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>忘記密碼 - iStockage</title>
+<title>重設密碼 - iStockage</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap-4.0.0.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure.css" type="text/css" />
@@ -28,12 +28,19 @@
 		<div class="container form">
 			<form action="<c:url value='/secure/forget-password.do' />" method="post">
 				<div class="form-group">
-					<label for="me_email" class="control-label">信箱</label>
-					<input type="text" id="me_email" class="form-control" name="me_email" value="${me_email}" autofocus />
-					<div><p style="font-size:92%">請輸入您的信箱，系統將發送驗證碼，以重設您的密碼。<p></div>
+					<label for="me_password_random">驗證碼</label>
+					<input type="password" id="me_password_random" class="form-control" name="me_password_random" value="${me_password_random}" autofocus />
 				</div>
 				<div class="form-group">
-					<input type="submit" class="btn btn-success btn-block" value="發送驗證碼" />
+					<label for="me_password_new">新密碼</label>
+					<input type="password" id="me_password_new" class="form-control" name="me_password_new" value="${me_password_new}" />
+				</div>
+				<div class="form-group" style="margin-bottom:20px">
+					<label for="me_password_new_again">確認密碼</label>
+					<input type="password" id="me_password_new_again" class="form-control" name="me_password_new_again" value="${me_password_new_again}" />
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-success btn-block" value="重設密碼" />
 				</div>
 			</form>
 		</div>

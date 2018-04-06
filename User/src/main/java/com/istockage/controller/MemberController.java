@@ -29,6 +29,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.istockage.common.constant.ControllerConstant;
 import com.istockage.common.message.ErrorMessage;
+import com.istockage.common.util.PasswordUtil;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.service.MemberService;
 
@@ -202,7 +203,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 
 			} else {
 
-				memberService.updateMe_password(memberEntity);
+				memberService.updateMe_password(memberEntity, null);
 
 				// 將管理員 email 放入 Session
 				request.getSession().setAttribute(SESSION_MEMBER_EMAIL, me_email);
@@ -224,6 +225,82 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	public String resetPasswordView() {
 
 		return MEMBER_RESET_PASSWORD_VIEW;
+	}
+
+	/**
+	 * 重設密碼 - submit
+	 * 
+	 * @param me_password_random
+	 *            String --> 驗證碼(原碼)
+	 * @param me_password_new
+	 *            String --> 新密碼(原碼)
+	 * @param me_password_new_again
+	 *            String --> 重複新密碼(原碼)
+	 * @param sessionStatus
+	 *            SessionStatus
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/view/secure/sign-in.jsp
+	 */
+	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
+	public String resetPasswordAction(@RequestParam String me_password_random, @RequestParam String me_password_new,
+			@RequestParam String me_password_new_again, SessionStatus sessionStatus, Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		HttpSession session = request.getSession();
+		String me_email = (String) session.getAttribute(SESSION_MEMBER_EMAIL);
+
+		MemberEntity memberEntity = memberService.selectByMe_email(me_email);
+
+		if (me_password_random == null || me_password_random.isEmpty() || me_password_new == null
+				|| me_password_new.isEmpty() || me_password_new_again == null || me_password_new_again.isEmpty()) {
+
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼未填");
+
+			return MEMBER_RESET_PASSWORD_VIEW;
+
+		} else if (!me_password_new.matches("^[\\S]{8,32}$")) {
+
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼格式錯誤");
+
+			return MEMBER_RESET_PASSWORD_VIEW;
+
+		} else if (!me_password_new.equals(me_password_new_again)) {
+
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 新密碼重複錯誤");
+
+			return MEMBER_RESET_PASSWORD_VIEW;
+
+		} else if (!memberEntity.getMe_password()
+				.equals(PasswordUtil.getHashedPassword(me_password_random, memberEntity.getMe_salt()))) {
+
+			// 取得參數，並回填表單
+			model.addAttribute(MEMBER_PASSWORD_RANDOM, me_password_random);
+			model.addAttribute(MEMBER_PASSWORD_NEW, me_password_new);
+			model.addAttribute(MEMBER_PASSWORD_NEW_AGAIN, me_password_new_again);
+			model.addAttribute(ERROR, MSG_MEMBER_RANDOM_MISTAKE);
+
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 驗證碼錯誤");
+
+			return MEMBER_RESET_PASSWORD_VIEW;
+
+		} else {
+
+			memberService.updateMe_password(memberEntity, me_password_new);
+
+			// 清除 @SessionAttributes
+			sessionStatus.setComplete();
+
+			// 清除所有 HttpSession
+			session.invalidate();
+
+			request.setAttribute(MEMBER_LOG_KEY, OK);
+
+			logger.info("(" + className + "." + methodName + ") 密碼重設成功");
+
+			return REDIRECT + MEMBER_SIGN_IN_VIEW;
+		}
 	}
 
 	/**

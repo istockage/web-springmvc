@@ -26,7 +26,7 @@
 			</div>
 		</c:if>
 		<div class="container form">
-			<form action="<c:url value='/secure/forget-password.do' />" method="post">
+			<form action="<c:url value='/secure/reset-password.do' />" method="post">
 				<div class="form-group">
 					<label for="me_password_random">驗證碼</label>
 					<input type="password" id="me_password_random" class="form-control" name="me_password_random" value="${me_password_random}" autofocus />

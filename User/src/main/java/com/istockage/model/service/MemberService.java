@@ -34,8 +34,9 @@ public interface MemberService {
 	MemberEntity selectByMe_email(String me_email);
 
 	/**
-	 * @see com.istockage.model.service.MemberService#updateMe_password(MemberEntity)
+	 * @see com.istockage.model.service.MemberService#updateMe_password(MemberEntity,
+	 *      String)
 	 */
-	MemberEntity updateMe_password(MemberEntity memberEntity);
+	MemberEntity updateMe_password(MemberEntity memberEntity, String me_password_new);
 
 }

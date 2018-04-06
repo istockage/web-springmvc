@@ -7,12 +7,18 @@ public interface ModelAttributeConstant {
 
 	public static final String NEXT = "next";
 
-	public static final String SESSION_MEMBER_EMAIL = "me_email";
+	public static final String SESSION_MEMBER_EMAIL = "session_me_email";
 
 	// request
 	public static final String MEMBER_EMAIL = "me_email";
 
 	public static final String MEMBER_PASSWORD = "me_password";
+
+	public static final String MEMBER_PASSWORD_RANDOM = "me_password_random";
+
+	public static final String MEMBER_PASSWORD_NEW = "me_password_new";
+
+	public static final String MEMBER_PASSWORD_NEW_AGAIN = "me_password_new_again";
 
 	public static final String MEMBER_ENTITY = "memberEntity";
 

@@ -110,16 +110,22 @@ public class MemberServiceImpl implements MemberService {
 	 * 
 	 * @param memberEntity
 	 *            MemberEntity
+	 * @param me_password_new
+	 *            String --> 新密碼(原碼)
 	 * @return MemberEntity
 	 */
 	@Override
 	@Transactional
-	public MemberEntity updateMe_password(MemberEntity memberEntity) {
+	public MemberEntity updateMe_password(MemberEntity memberEntity, String me_password_new) {
 
-		int random = (int) (Math.random() * 1000000);
-		String me_password_random = String.format("%06d", random);
+		if (me_password_new == null) {
 
-		memberEntity.setMe_password(PasswordUtil.getHashedPassword(me_password_random, memberEntity.getMe_salt()));
+			int random = (int) (Math.random() * 1000000);
+			me_password_new = String.format("%06d", random);
+			System.out.println(me_password_new);
+		}
+
+		memberEntity.setMe_password(PasswordUtil.getHashedPassword(me_password_new, memberEntity.getMe_salt()));
 
 		return memberDao.update(memberEntity);
 	}

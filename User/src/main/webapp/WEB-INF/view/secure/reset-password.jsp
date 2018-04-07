@@ -47,6 +47,7 @@
 	</div>
 	
 	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/validation.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<%=request.getContextPath()%>/js/secure.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

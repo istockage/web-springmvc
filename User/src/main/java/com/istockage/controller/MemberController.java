@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/6
+ * Modified: 2018/4/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -256,7 +256,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 		if (me_password_random == null || me_password_random.isEmpty() || me_password_new == null
 				|| me_password_new.isEmpty() || me_password_new_again == null || me_password_new_again.isEmpty()) {
 
-			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼未填");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 資料未填");
 
 			return MEMBER_RESET_PASSWORD_VIEW;
 

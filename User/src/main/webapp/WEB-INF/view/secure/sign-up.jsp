@@ -21,7 +21,7 @@
 			<form:form action="/User/secure/sign-up.do" method="post" modelAttribute="memberEntity">
 				<div class="form-group">
 					<form:label path="me_email">信箱</form:label>
-					<form:input path="me_email" cssClass="form-control" />
+					<form:input path="me_email" cssClass="form-control" autofocus="autofocus" />
 				</div>
 				<div class="form-group">
 					<form:label path="me_password">密碼</form:label>

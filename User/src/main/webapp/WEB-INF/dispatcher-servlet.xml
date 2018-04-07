@@ -70,7 +70,7 @@
 			<mvc:exclude-mapping path="/secure/sign-out.do" />
 			<bean class="com.istockage.interceptor.SignInInterceptor" />
 		</mvc:interceptor>
-		
+
 		<mvc:interceptor>
 			<mvc:mapping path="/secure/reset-password" />
 			<mvc:mapping path="/secure/reset-password.do" />

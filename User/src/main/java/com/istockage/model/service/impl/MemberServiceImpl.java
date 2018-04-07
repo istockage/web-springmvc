@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/6
+ * Modified: 2018/4/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.istockage.common.mail.SendMail;
 import com.istockage.common.util.PasswordUtil;
 import com.istockage.model.dao.MemberDao;
 import com.istockage.model.entity.MemberEntity;
@@ -31,6 +32,12 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Autowired
 	private MemberDao memberDao;
+
+	/**
+	 * 注入 SendMail
+	 */
+	@Autowired
+	private SendMail sendMail;
 
 	/**
 	 * 登入
@@ -122,7 +129,8 @@ public class MemberServiceImpl implements MemberService {
 
 			int random = (int) (Math.random() * 1000000);
 			me_password_new = String.format("%06d", random);
-			System.out.println(me_password_new);
+
+			sendMail.forgetPasswordMail(memberEntity, me_password_new);
 		}
 
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(me_password_new, memberEntity.getMe_salt()));

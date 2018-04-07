@@ -10,6 +10,20 @@ $(document).ready(function(){
 	
 	$("form").validate({
 		rules: {
+			// secure/reset-password
+			me_password_random: {
+				required: true
+			},
+			me_password_new: {
+				required: true,
+				pattern: /^(?=.*([a-z]|[A-Z]))(?=.*[0-9])(?=\S+$).+$/,
+				minlength: 8,
+				maxlength: 32
+			},
+			me_password_new_again: {
+				required: true,
+				equalTo : "#me_password_new"
+			},
 			// secure/sign-up
 			me_email: {
 				required: true,
@@ -35,23 +49,24 @@ $(document).ready(function(){
 			me_password_again: {
 				required: true,
 				equalTo : "#me_password"
-			},
-			// secure/reset-password
-			me_password_random: {
-				required: true
-			},
-			me_password_new: {
-				required: true,
-				pattern: /^(?=.*([a-z]|[A-Z]))(?=.*[0-9])(?=\S+$).+$/,
-				minlength: 8,
-				maxlength: 32
-			},
-			me_password_new_again: {
-				required: true,
-				equalTo : "#me_password_new"
 			}
+			
 		},
 		messages: {
+			// secure/reset-password
+			me_password_random: {
+				required: "這裡必須填入資料"
+			},
+			me_password_new: {
+				required: "這裡必須填入資料",
+				pattern: "密碼必須包含英文及數字，不可填入空白",
+				minlength: "密碼必須大於8個字",
+				maxlength: "密碼必須小於32個字"
+			},
+			me_password_new_again: {
+				required: "這裡必須填入資料",
+				equalTo: "密碼重複錯誤"
+			},
 			// secure/sign-up
 			me_email: {
 				required: "這裡必須填入資料",
@@ -65,20 +80,6 @@ $(document).ready(function(){
 				maxlength: "密碼必須小於32個字"
 			},
 			me_password_again: {
-				required: "這裡必須填入資料",
-				equalTo: "密碼重複錯誤"
-			},
-			// secure/reset-password
-			me_password_random: {
-				required: "這裡必須填入資料"
-			},
-			me_password_new: {
-				required: "這裡必須填入資料",
-				pattern: "密碼必須包含英文及數字，不可填入空白",
-				minlength: "密碼必須大於8個字",
-				maxlength: "密碼必須小於32個字"
-			},
-			me_password_new_again: {
 				required: "這裡必須填入資料",
 				equalTo: "密碼重複錯誤"
 			}

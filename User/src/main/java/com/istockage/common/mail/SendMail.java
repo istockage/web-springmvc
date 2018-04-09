@@ -1,8 +1,5 @@
 package com.istockage.common.mail;
 
-import static com.istockage.common.constant.MailConstant.FORGET_PASSWORD_MAIL_FROM;
-import static com.istockage.common.constant.MailConstant.FORGET_PASSWORD_MAIL_SUBJECT;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.istockage.model.entity.MemberEntity;
 
 @Component(value = "sendMail")
-public class SendMail {
+public class SendMail implements MailContent {
 
 	/**
 	 * 注入 MailSender

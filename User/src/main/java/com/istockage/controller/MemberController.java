@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/7
+ * Modified: 2018/4/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -124,7 +124,6 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 
 			} else {
 
-				// 放入 Session
 				model.addAttribute(USER, user);
 
 				request.setAttribute(MEMBER_LOG_KEY, OK);
@@ -205,7 +204,6 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 
 				memberService.updateMe_password(memberEntity, null);
 
-				// 將管理員 email 放入 Session
 				request.getSession().setAttribute(SESSION_MEMBER_EMAIL, me_email);
 				request.setAttribute(MEMBER_LOG_KEY, OK);
 

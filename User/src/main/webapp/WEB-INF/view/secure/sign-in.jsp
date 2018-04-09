@@ -27,6 +27,12 @@
 		</c:if>
 		<div class="container form">
 			<form action="<c:url value='/secure/sign-in.do' />" method="post">
+				<div class="form-group sign-in-google">
+					<img src="<%=request.getContextPath()%>/images/btn_sign_in_google.svg" />
+				</div>
+				<div class="form-group">
+					<hr />
+				</div>
 				<div class="form-group">
 					<label for="me_email" class="control-label">信箱</label>
 					<input type="text" id="me_email" class="form-control" name="me_email" value="${me_email}" autofocus />

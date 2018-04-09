@@ -32,6 +32,15 @@ html, body {
 	background-color: white;
 }
 
+.form .sign-in-google>img {
+	border-radius: .4rem;
+	cursor: pointer;
+}
+
+.form .sign-in-google>img:hover {
+	filter: grayscale(25%);
+}
+
 .bottom {
 	width: 300px;
 	margin-top: 20px;

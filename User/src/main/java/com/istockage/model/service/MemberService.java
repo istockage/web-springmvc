@@ -3,7 +3,7 @@
  * File: MemberService.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/6
+ * Modified: 2018/4/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,6 +32,11 @@ public interface MemberService {
 	 * @see com.istockage.model.service.MemberService#selectByMe_email(String)
 	 */
 	MemberEntity selectByMe_email(String me_email);
+
+	/**
+	 * @see com.istockage.model.service.MemberService#updateMe_activity(String)
+	 */
+	MemberEntity updateMe_activity(String me_email);
 
 	/**
 	 * @see com.istockage.model.service.MemberService#updateMe_password(MemberEntity,

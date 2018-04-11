@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/9
+ * Modified: 2018/4/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -388,6 +388,21 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 
 			return REDIRECT + INDEX_VIEW;
 		}
+	}
+
+	/**
+	 * 啟用帳號
+	 * 
+	 * @param me_email
+	 *            String --> 會員信箱
+	 * @return /WEB-INF/view/secure/sign-in.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-up-activity.do", method = RequestMethod.GET)
+	public String signUpActivityAction(@RequestParam String me_email) {
+
+		memberService.updateMe_activity(me_email);
+
+		return REDIRECT + MEMBER_SIGN_IN_VIEW;
 	}
 
 	/**

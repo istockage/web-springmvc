@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/8
+ * Modified: 2018/4/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -91,9 +91,12 @@ public class MemberServiceImpl implements MemberService {
 
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(memberEntity.getMe_password(), me_salt));
 		memberEntity.setMe_salt(me_salt);
+		memberEntity.setMe_activity((byte) 0);
 		memberEntity.setMe_signup_time(new java.util.Date());
 		memberEntity.setMe_update_pwd_time(new java.util.Date());
 		memberEntity.setMe_update_info_time(new java.util.Date());
+
+		sendMail.signUpActivityMail(memberEntity);
 
 		return memberDao.insert(memberEntity);
 	}
@@ -110,6 +113,24 @@ public class MemberServiceImpl implements MemberService {
 	public MemberEntity selectByMe_email(String me_email) {
 
 		return memberDao.selectByMe_email(me_email);
+	}
+
+	/**
+	 * 啟用帳號
+	 * 
+	 * @param me_email
+	 *            String --> 會員信箱
+	 * @return MemberEntity
+	 */
+	@Override
+	@Transactional
+	public MemberEntity updateMe_activity(String me_email) {
+
+		MemberEntity memberEntity = memberDao.selectByMe_email(me_email);
+
+		memberEntity.setMe_activity((byte) 1);
+
+		return memberDao.update(memberEntity);
 	}
 
 	/**

@@ -3,7 +3,7 @@
  * File: MemberEntity.java
  * Author: 詹晟
  * Created: 2018/3/24
- * Modified: 2018/4/5
+ * Modified: 2018/4/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -43,6 +43,7 @@ public class MemberEntity {
 	private String me_lastname;
 	@Size(max = 20)
 	private String me_firstname;
+	private Byte me_activity;
 	private Date me_signup_time;
 	private Date me_update_info_time;
 	private Date me_update_pwd_time;
@@ -93,6 +94,14 @@ public class MemberEntity {
 
 	public void setMe_firstname(String me_firstname) {
 		this.me_firstname = me_firstname;
+	}
+
+	public Byte getMe_activity() {
+		return me_activity;
+	}
+
+	public void setMe_activity(Byte me_activity) {
+		this.me_activity = me_activity;
 	}
 
 	public Date getMe_signup_time() {

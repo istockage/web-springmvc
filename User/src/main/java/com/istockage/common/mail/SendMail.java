@@ -17,7 +17,7 @@ public class SendMail implements MailContent {
 	private MailSender mailSender;
 
 	/**
-	 * 寄送 Email
+	 * 寄送 Mail
 	 * 
 	 * @param to
 	 *            String --> 收件者
@@ -41,7 +41,23 @@ public class SendMail implements MailContent {
 	}
 
 	/**
-	 * 忘記密碼 Email
+	 * 啟用帳號 Mail
+	 * 
+	 * @param memberEntity
+	 *            MemberEntity
+	 */
+	public void signUpActivityMail(MemberEntity memberEntity) {
+
+		String to = memberEntity.getMe_email();
+		String from = MAIL_FROM;
+		String subject = MAIL_SUBJECT_SIGN_UP_ACTIVITY;
+		String text = "http://localhost:8080/User/secure/sign-up-activity.do?me_email=" + memberEntity.getMe_email();
+
+		sendMail(to, from, subject, text);
+	}
+
+	/**
+	 * 忘記密碼 Mail
 	 * 
 	 * @param memberEntity
 	 *            MemberEntity
@@ -51,8 +67,8 @@ public class SendMail implements MailContent {
 	public void forgetPasswordMail(MemberEntity memberEntity, String me_password_random) {
 
 		String to = memberEntity.getMe_email();
-		String from = FORGET_PASSWORD_MAIL_FROM;
-		String subject = FORGET_PASSWORD_MAIL_SUBJECT;
+		String from = MAIL_FROM;
+		String subject = MAIL_SUBJECT_FORGET_PASSWORD;
 		String text = "您的驗證碼為: " + me_password_random + "。";
 
 		sendMail(to, from, subject, text);

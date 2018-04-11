@@ -75,6 +75,7 @@ create table member (
     me_salt                 varchar(50) not null,
     me_lastname             nvarchar(20),
     me_firstname            nvarchar(20),
+    me_activity             tinyint not null,
     me_signup_time          datetime not null,
     me_update_info_time     datetime not null,
     me_update_pwd_time      datetime not null,
@@ -147,4 +148,5 @@ insert into user_path (up_pc_id, up_name, up_path) values (2, '登入', 'secure/
 insert into user_path (up_pc_id, up_name, up_path) values (2, '登出', 'secure/sign-out.do');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '註冊', 'secure/sign-up');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '註冊', 'secure/sign-up.do');
+insert into user_path (up_pc_id, up_name, up_path) values (2, '啟用帳號', 'secure/sign-up-activity.do');
 insert into user_path (up_pc_id, up_name, up_path) values (3, '信箱重複驗證', 'secure/sign-up-email-repeat.ajax');

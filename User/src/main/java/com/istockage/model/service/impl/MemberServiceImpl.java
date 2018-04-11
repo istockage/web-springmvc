@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/11
+ * Modified: 2018/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -52,11 +52,11 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	public MemberEntity signIn(String me_email, String me_password) {
 
-		MemberEntity memberEntity = memberDao.selectByMe_email(me_email);
+		MemberEntity memberEntity = memberDao.selectByMe_email(me_email, MEMBER_ACTIVITY_OPEN);
 
 		if (memberEntity == null) {
 
-			// 信箱錯誤
+			// 信箱錯誤或未啟用
 			return null;
 
 		} else {
@@ -91,7 +91,7 @@ public class MemberServiceImpl implements MemberService {
 
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(memberEntity.getMe_password(), me_salt));
 		memberEntity.setMe_salt(me_salt);
-		memberEntity.setMe_activity((byte) 0);
+		memberEntity.setMe_activity(MEMBER_ACTIVITY_CLOSE);
 		memberEntity.setMe_signup_time(new java.util.Date());
 		memberEntity.setMe_update_pwd_time(new java.util.Date());
 		memberEntity.setMe_update_info_time(new java.util.Date());
@@ -106,13 +106,15 @@ public class MemberServiceImpl implements MemberService {
 	 * 
 	 * @param me_email
 	 *            String --> 會員信箱
+	 * @param me_activity
+	 *            Byte --> 啟用狀態
 	 * @return null / MemberEntity
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public MemberEntity selectByMe_email(String me_email) {
+	public MemberEntity selectByMe_email(String me_email, Byte me_activity) {
 
-		return memberDao.selectByMe_email(me_email);
+		return memberDao.selectByMe_email(me_email, me_activity);
 	}
 
 	/**
@@ -126,9 +128,9 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	public MemberEntity updateMe_activity(String me_email) {
 
-		MemberEntity memberEntity = memberDao.selectByMe_email(me_email);
+		MemberEntity memberEntity = memberDao.selectByMe_email(me_email, MEMBER_ACTIVITY_CLOSE);
 
-		memberEntity.setMe_activity((byte) 1);
+		memberEntity.setMe_activity(MEMBER_ACTIVITY_OPEN);
 
 		return memberDao.update(memberEntity);
 	}

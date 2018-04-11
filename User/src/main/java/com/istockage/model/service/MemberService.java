@@ -3,12 +3,13 @@
  * File: MemberService.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/11
+ * Modified: 2018/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.service;
 
+import com.istockage.common.constant.CodeConstant;
 import com.istockage.model.entity.MemberEntity;
 
 /**
@@ -16,7 +17,7 @@ import com.istockage.model.entity.MemberEntity;
  * 
  * @author 詹晟
  */
-public interface MemberService {
+public interface MemberService extends CodeConstant {
 
 	/**
 	 * @see com.istockage.model.service.MemberService#signIn(String, String)
@@ -29,9 +30,9 @@ public interface MemberService {
 	MemberEntity signUp(MemberEntity memberEntity);
 
 	/**
-	 * @see com.istockage.model.service.MemberService#selectByMe_email(String)
+	 * @see com.istockage.model.service.MemberService#selectByMe_email(String, Byte)
 	 */
-	MemberEntity selectByMe_email(String me_email);
+	MemberEntity selectByMe_email(String me_email, Byte me_activity);
 
 	/**
 	 * @see com.istockage.model.service.MemberService#updateMe_activity(String)

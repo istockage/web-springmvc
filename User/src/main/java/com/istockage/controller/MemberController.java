@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/11
+ * Modified: 2018/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -188,7 +188,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 
 		} else {
 
-			MemberEntity memberEntity = memberService.selectByMe_email(me_email);
+			MemberEntity memberEntity = memberService.selectByMe_email(me_email, MEMBER_ACTIVITY_OPEN);
 
 			if (memberEntity == null) {
 
@@ -249,7 +249,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 		HttpSession session = request.getSession();
 		String me_email = (String) session.getAttribute(SESSION_MEMBER_EMAIL);
 
-		MemberEntity memberEntity = memberService.selectByMe_email(me_email);
+		MemberEntity memberEntity = memberService.selectByMe_email(me_email, MEMBER_ACTIVITY_OPEN);
 
 		if (me_password_random == null || me_password_random.isEmpty() || me_password_new == null
 				|| me_password_new.isEmpty() || me_password_new_again == null || me_password_new_again.isEmpty()) {
@@ -371,7 +371,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 
 			return MEMBER_SIGN_UP_VIEW;
 
-		} else if (memberService.selectByMe_email(memberEntity.getMe_email()) != null) {
+		} else if (memberService.selectByMe_email(memberEntity.getMe_email(), null) != null) {
 
 			logger.error("(" + className + "." + methodName + ") 註冊失敗: 帳號重複");
 
@@ -416,7 +416,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	@ResponseBody
 	public String signUpEmailRepeatAjax(String me_email) {
 
-		MemberEntity memberEntity = memberService.selectByMe_email(me_email);
+		MemberEntity memberEntity = memberService.selectByMe_email(me_email, null);
 
 		return (memberEntity != null) ? MSG_MEMBER_EMAIL_REPEAT : TRUE;
 	}

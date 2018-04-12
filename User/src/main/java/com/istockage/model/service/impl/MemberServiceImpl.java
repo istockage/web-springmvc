@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/12
+ * Modified: 2018/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -134,7 +134,10 @@ public class MemberServiceImpl implements MemberService {
 	public MemberEntity updateMe_password(MemberEntity memberEntity, String me_password_new) {
 
 		if (me_password_new == null) {
-			sendMail.forgetPasswordMail(memberEntity, MathUtil.getMe_password_random());
+
+			me_password_new = MathUtil.getMe_password_random();
+
+			sendMail.forgetPasswordMail(memberEntity, me_password_new);
 		}
 
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(me_password_new, memberEntity.getMe_salt()));

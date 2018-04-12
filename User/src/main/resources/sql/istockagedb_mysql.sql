@@ -75,7 +75,7 @@ create table member (
     me_salt                 varchar(50) not null,
     me_lastname             nvarchar(20),
     me_firstname            nvarchar(20),
-    me_activity             tinyint not null,
+    me_activity_code        tinyint not null,
     me_signup_time          datetime not null,
     me_update_info_time     datetime not null,
     me_update_pwd_time      datetime not null,

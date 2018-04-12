@@ -39,20 +39,20 @@ public class MemberDaoImpl implements MemberDao {
 	 * 
 	 * @param me_email
 	 *            String --> 會員信箱
-	 * @param me_activity
+	 * @param me_activity_code
 	 *            Byte --> 啟用狀態
 	 * @return null / MemberEntity
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public MemberEntity selectByMe_email(String me_email, Byte me_activity) {
+	public MemberEntity selectByMe_email(String me_email, Byte me_activity_code) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(MemberEntity.class);
 
 		criteria.add(Restrictions.eq("me_email", me_email));
 
-		if (me_activity != null) {
-			criteria.add(Restrictions.eq("me_activity", me_activity));
+		if (me_activity_code != null) {
+			criteria.add(Restrictions.eq("me_activity_code", me_activity_code));
 		}
 
 		List<MemberEntity> list = (List<MemberEntity>) hibernateTemplate.findByCriteria(criteria);

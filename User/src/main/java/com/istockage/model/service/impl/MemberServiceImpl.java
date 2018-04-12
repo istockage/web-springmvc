@@ -91,7 +91,7 @@ public class MemberServiceImpl implements MemberService {
 
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(memberEntity.getMe_password(), me_salt));
 		memberEntity.setMe_salt(me_salt);
-		memberEntity.setMe_activity(MEMBER_ACTIVITY_CLOSE);
+		memberEntity.setMe_activity_code(MEMBER_ACTIVITY_CLOSE);
 		memberEntity.setMe_signup_time(new java.util.Date());
 		memberEntity.setMe_update_pwd_time(new java.util.Date());
 		memberEntity.setMe_update_info_time(new java.util.Date());
@@ -106,15 +106,15 @@ public class MemberServiceImpl implements MemberService {
 	 * 
 	 * @param me_email
 	 *            String --> 會員信箱
-	 * @param me_activity
+	 * @param me_activity_code
 	 *            Byte --> 啟用狀態
 	 * @return null / MemberEntity
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public MemberEntity selectByMe_email(String me_email, Byte me_activity) {
+	public MemberEntity selectByMe_email(String me_email, Byte me_activity_code) {
 
-		return memberDao.selectByMe_email(me_email, me_activity);
+		return memberDao.selectByMe_email(me_email, me_activity_code);
 	}
 
 	/**
@@ -126,11 +126,11 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	@Transactional
-	public MemberEntity updateMe_activity(String me_email) {
+	public MemberEntity updateMe_activity_code(String me_email) {
 
 		MemberEntity memberEntity = memberDao.selectByMe_email(me_email, MEMBER_ACTIVITY_CLOSE);
 
-		memberEntity.setMe_activity(MEMBER_ACTIVITY_OPEN);
+		memberEntity.setMe_activity_code(MEMBER_ACTIVITY_OPEN);
 
 		return memberDao.update(memberEntity);
 	}

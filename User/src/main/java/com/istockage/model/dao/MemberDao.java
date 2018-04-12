@@ -23,7 +23,7 @@ public interface MemberDao extends HqlConstant {
 	 * @see com.istockage.model.dao.impl.MemberDaoImpl#selectByMe_email(String,
 	 *      Byte)
 	 */
-	MemberEntity selectByMe_email(String me_email, Byte me_activity);
+	MemberEntity selectByMe_email(String me_email, Byte me_activity_code);
 
 	/**
 	 * @see com.istockage.model.dao.impl.MemberDaoImpl#insert(MemberEntity)

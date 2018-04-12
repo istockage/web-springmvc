@@ -32,12 +32,12 @@ public interface MemberService extends CodeConstant {
 	/**
 	 * @see com.istockage.model.service.MemberService#selectByMe_email(String, Byte)
 	 */
-	MemberEntity selectByMe_email(String me_email, Byte me_activity);
+	MemberEntity selectByMe_email(String me_email, Byte me_activity_code);
 
 	/**
-	 * @see com.istockage.model.service.MemberService#updateMe_activity(String)
+	 * @see com.istockage.model.service.MemberService#updateMe_activity_code(String)
 	 */
-	MemberEntity updateMe_activity(String me_email);
+	MemberEntity updateMe_activity_code(String me_email);
 
 	/**
 	 * @see com.istockage.model.service.MemberService#updateMe_password(MemberEntity,

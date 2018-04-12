@@ -400,7 +400,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	@RequestMapping(value = "/secure/sign-up-activity.do", method = RequestMethod.GET)
 	public String signUpActivityAction(@RequestParam String me_email) {
 
-		memberService.updateMe_activity(me_email);
+		memberService.updateMe_activity_code(me_email);
 
 		return REDIRECT + MEMBER_SIGN_IN_VIEW;
 	}

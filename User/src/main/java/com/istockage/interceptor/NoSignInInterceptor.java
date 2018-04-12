@@ -3,7 +3,7 @@
  * File: NoSignInInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/30
- * Modified: 2018/4/6
+ * Modified: 2018/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -60,7 +60,7 @@ public class NoSignInInterceptor implements HandlerInterceptor, ControllerConsta
 
 		} else {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 已登入，使用者: " + user.getMe_email()
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 已登入，使用者: " + user.getMe_no()
 					+ "，放行: " + next);
 
 			return true;

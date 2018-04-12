@@ -3,12 +3,13 @@
  * File: UserPathService.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/3/28
+ * Modified: 2018/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.service;
 
+import com.istockage.common.constant.CodeConstant;
 import com.istockage.model.entity.UserPathEntity;
 
 /**
@@ -16,7 +17,7 @@ import com.istockage.model.entity.UserPathEntity;
  * 
  * @author 詹晟
  */
-public interface UserPathService {
+public interface UserPathService extends CodeConstant {
 
 	/**
 	 * @see com.istockage.model.service.impl.UserPathServiceImpl#selectByUp_path(String,

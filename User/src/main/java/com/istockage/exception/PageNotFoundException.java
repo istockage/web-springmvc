@@ -22,6 +22,10 @@ public class PageNotFoundException extends NullPointerException {
 
 	private static final Logger logger = Logger.getLogger(PageNotFoundException.class);
 
+	public PageNotFoundException() {
+
+	}
+
 	public PageNotFoundException(String requestPath) {
 
 		super("找不到這個頁面: " + requestPath);

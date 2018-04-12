@@ -136,7 +136,7 @@ public class MemberServiceImpl implements MemberService {
 
 		if (memberEntity == null) {
 
-			throw new PageNotFoundException("secure/sign-up-activity.do?me_no=" + me_no);
+			throw new PageNotFoundException();
 		}
 
 		memberEntity.setMe_activity_code(MEMBER_ACTIVITY_OPEN);

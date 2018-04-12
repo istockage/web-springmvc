@@ -3,7 +3,7 @@
  * File: AjaxInterceptor.java
  * Author: 詹晟
  * Created: 2018/4/5
- * Modified: 2018/4/5
+ * Modified: 2018/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,7 +41,7 @@ public class AjaxInterceptor implements HandlerInterceptor, ControllerConstant {
 
 		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, AJAX: " + requestPath);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 放行: " + requestPath);
 
 		return true;
 	}

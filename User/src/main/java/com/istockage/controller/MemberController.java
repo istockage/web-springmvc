@@ -408,7 +408,7 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 
 		} catch (PageNotFoundException e) {
 
-			logger.error("(" + className + "." + methodName + ") 啟用帳號失敗，會員編號錯誤:" + me_no);
+			logger.error("(" + className + "." + methodName + ") 啟用帳號失敗，會員編號錯誤: " + me_no);
 
 			return ERROR_PAGE_NOT_FOUND_VIEW;
 		}

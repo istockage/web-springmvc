@@ -121,6 +121,28 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	/**
+	 * 修改密碼
+	 * 
+	 * @param memberEntity
+	 *            MemberEntity
+	 * @param me_password_new
+	 *            String --> 新密碼(原碼)
+	 * @return MemberEntity
+	 */
+	@Override
+	@Transactional
+	public MemberEntity updateMe_password(MemberEntity memberEntity, String me_password_new) {
+
+		if (me_password_new == null) {
+			sendMail.forgetPasswordMail(memberEntity, MathUtil.getMe_password_random());
+		}
+
+		memberEntity.setMe_password(PasswordUtil.getHashedPassword(me_password_new, memberEntity.getMe_salt()));
+
+		return memberDao.update(memberEntity);
+	}
+
+	/**
 	 * 啟用帳號
 	 * 
 	 * @param me_no
@@ -135,34 +157,10 @@ public class MemberServiceImpl implements MemberService {
 		MemberEntity memberEntity = memberDao.selectByMe_no(me_no, MEMBER_ACTIVITY_CLOSE);
 
 		if (memberEntity == null) {
-
 			throw new PageNotFoundException();
 		}
 
 		memberEntity.setMe_activity_code(MEMBER_ACTIVITY_OPEN);
-
-		return memberDao.update(memberEntity);
-	}
-
-	/**
-	 * 修改密碼
-	 * 
-	 * @param memberEntity
-	 *            MemberEntity
-	 * @param me_password_new
-	 *            String --> 新密碼(原碼)
-	 * @return MemberEntity
-	 */
-	@Override
-	@Transactional
-	public MemberEntity updateMe_password(MemberEntity memberEntity, String me_password_new) {
-
-		if (me_password_new == null) {
-
-			sendMail.forgetPasswordMail(memberEntity, MathUtil.getMe_password_random());
-		}
-
-		memberEntity.setMe_password(PasswordUtil.getHashedPassword(me_password_new, memberEntity.getMe_salt()));
 
 		return memberDao.update(memberEntity);
 	}

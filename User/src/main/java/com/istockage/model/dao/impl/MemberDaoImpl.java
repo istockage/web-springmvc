@@ -35,6 +35,31 @@ public class MemberDaoImpl implements MemberDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
+	 * 會員編號搜尋
+	 * 
+	 * @param me_no
+	 *            String --> 會員編號
+	 * @param me_activity_code
+	 *            Byte --> 啟用狀態
+	 * @return null / MemberEntity
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public MemberEntity selectByMe_no(String me_no, Byte me_activity_code) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(MemberEntity.class);
+
+		criteria.add(Restrictions.eq("me_no", me_no));
+
+		if (me_activity_code != null) {
+			criteria.add(Restrictions.eq("me_activity_code", me_activity_code));
+		}
+
+		List<MemberEntity> list = (List<MemberEntity>) hibernateTemplate.findByCriteria(criteria);
+
+		return list.isEmpty() ? null : list.get(0);
+	}
+
+	/**
 	 * 會員信箱搜尋
 	 * 
 	 * @param me_email

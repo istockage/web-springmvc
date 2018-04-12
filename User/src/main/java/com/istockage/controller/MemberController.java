@@ -393,14 +393,14 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	/**
 	 * 啟用帳號
 	 * 
-	 * @param me_email
-	 *            String --> 會員信箱
+	 * @param me_no
+	 *            String --> 會員編號
 	 * @return /WEB-INF/view/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-activity.do", method = RequestMethod.GET)
-	public String signUpActivityAction(@RequestParam String me_email) {
+	public String signUpActivityAction(@RequestParam String me_no) {
 
-		memberService.updateMe_activity_code(me_email);
+		memberService.updateMe_activity_code(me_no);
 
 		return REDIRECT + MEMBER_SIGN_IN_VIEW;
 	}

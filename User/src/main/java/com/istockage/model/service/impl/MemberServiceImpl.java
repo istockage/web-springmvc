@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.istockage.common.mail.SendMail;
+import com.istockage.common.util.MathUtil;
 import com.istockage.common.util.PasswordUtil;
 import com.istockage.model.dao.MemberDao;
 import com.istockage.model.entity.MemberEntity;
@@ -89,6 +90,7 @@ public class MemberServiceImpl implements MemberService {
 
 		String me_salt = PasswordUtil.getSalt();
 
+		memberEntity.setMe_no(MathUtil.getMe_no());
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(memberEntity.getMe_password(), me_salt));
 		memberEntity.setMe_salt(me_salt);
 		memberEntity.setMe_activity_code(MEMBER_ACTIVITY_CLOSE);
@@ -120,15 +122,15 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 啟用帳號
 	 * 
-	 * @param me_email
-	 *            String --> 會員信箱
+	 * @param me_no
+	 *            String --> 會員編號
 	 * @return MemberEntity
 	 */
 	@Override
 	@Transactional
-	public MemberEntity updateMe_activity_code(String me_email) {
+	public MemberEntity updateMe_activity_code(String me_no) {
 
-		MemberEntity memberEntity = memberDao.selectByMe_email(me_email, MEMBER_ACTIVITY_CLOSE);
+		MemberEntity memberEntity = memberDao.selectByMe_no(me_no, MEMBER_ACTIVITY_CLOSE);
 
 		memberEntity.setMe_activity_code(MEMBER_ACTIVITY_OPEN);
 
@@ -150,10 +152,7 @@ public class MemberServiceImpl implements MemberService {
 
 		if (me_password_new == null) {
 
-			int random = (int) (Math.random() * 1000000);
-			me_password_new = String.format("%06d", random);
-
-			sendMail.forgetPasswordMail(memberEntity, me_password_new);
+			sendMail.forgetPasswordMail(memberEntity, MathUtil.getMe_password_random());
 		}
 
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(me_password_new, memberEntity.getMe_salt()));

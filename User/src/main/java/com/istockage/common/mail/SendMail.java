@@ -51,7 +51,7 @@ public class SendMail implements MailContent {
 		String to = memberEntity.getMe_email();
 		String from = MAIL_FROM;
 		String subject = MAIL_SUBJECT_SIGN_UP_ACTIVITY;
-		String text = "http://localhost:8080/User/secure/sign-up-activity.do?me_email=" + memberEntity.getMe_email();
+		String text = "http://localhost:8080/User/secure/sign-up-activity.do?me_no=" + memberEntity.getMe_no();
 
 		sendMail(to, from, subject, text);
 	}

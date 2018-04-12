@@ -20,6 +20,11 @@ import com.istockage.model.entity.MemberEntity;
 public interface MemberDao extends HqlConstant {
 
 	/**
+	 * @see com.istockage.model.dao.impl.MemberDaoImpl#selectByMe_no(String, Byte)
+	 */
+	MemberEntity selectByMe_no(String me_no, Byte me_activity_code);
+
+	/**
 	 * @see com.istockage.model.dao.impl.MemberDaoImpl#selectByMe_email(String,
 	 *      Byte)
 	 */

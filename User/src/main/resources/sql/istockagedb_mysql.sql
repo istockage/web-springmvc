@@ -70,6 +70,7 @@ create table broker_branch (
 -- User
 create table member (
     me_id                   int auto_increment not null,
+    me_no                   varchar(10) not null,
     me_email                varchar(50) not null,
     me_password             varchar(50) not null,
     me_salt                 varchar(50) not null,

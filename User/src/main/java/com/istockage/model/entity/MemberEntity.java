@@ -33,6 +33,7 @@ public class MemberEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer me_id;
+	private String me_no;
 	@NotEmpty
 	@Email
 	private String me_email;
@@ -54,6 +55,14 @@ public class MemberEntity {
 
 	public void setMe_id(Integer me_id) {
 		this.me_id = me_id;
+	}
+
+	public String getMe_no() {
+		return me_no;
+	}
+
+	public void setMe_no(String me_no) {
+		this.me_no = me_no;
 	}
 
 	public String getMe_email() {

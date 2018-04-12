@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.istockage.common.mail.SendMail;
 import com.istockage.common.util.MathUtil;
 import com.istockage.common.util.PasswordUtil;
+import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.dao.MemberDao;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.service.MemberService;
@@ -124,13 +125,19 @@ public class MemberServiceImpl implements MemberService {
 	 * 
 	 * @param me_no
 	 *            String --> 會員編號
+	 * @throws PageNotFoundException
 	 * @return MemberEntity
 	 */
 	@Override
 	@Transactional
-	public MemberEntity updateMe_activity_code(String me_no) {
+	public MemberEntity updateMe_activity_code(String me_no) throws PageNotFoundException {
 
 		MemberEntity memberEntity = memberDao.selectByMe_no(me_no, MEMBER_ACTIVITY_CLOSE);
+
+		if (memberEntity == null) {
+
+			throw new PageNotFoundException("secure/sign-up-activity.do?me_no=" + me_no);
+		}
 
 		memberEntity.setMe_activity_code(MEMBER_ACTIVITY_OPEN);
 

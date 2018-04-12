@@ -30,6 +30,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.istockage.common.constant.ControllerConstant;
 import com.istockage.common.message.ErrorMessage;
 import com.istockage.common.util.PasswordUtil;
+import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.service.MemberService;
 
@@ -400,7 +401,19 @@ public class MemberController implements ControllerConstant, ErrorMessage {
 	@RequestMapping(value = "/secure/sign-up-activity.do", method = RequestMethod.GET)
 	public String signUpActivityAction(@RequestParam String me_no) {
 
-		memberService.updateMe_activity_code(me_no);
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		try {
+			memberService.updateMe_activity_code(me_no);
+
+		} catch (PageNotFoundException e) {
+
+			logger.error("(" + className + "." + methodName + ") 啟用失敗，" + e.getMessage());
+
+			return ERROR_PAGE_NOT_FOUND_VIEW;
+		}
+
+		logger.info("(" + className + "." + methodName + ") 啟用成功，會員編號: " + me_no);
 
 		return REDIRECT + MEMBER_SIGN_IN_VIEW;
 	}

@@ -392,7 +392,18 @@ public class MemberController implements ControllerConstant {
 	}
 
 	/**
-	 * 啟用帳號
+	 * 重新發送確認信 - init
+	 * 
+	 * @return /WEB-INF/view/secure/sign-in-mail.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-up-mail", method = RequestMethod.GET)
+	public String signUpMailView() {
+
+		return MEMBER_SIGN_UP_MAIL_VIEW;
+	}
+
+	/**
+	 * 啟用帳號 - submit
 	 * 
 	 * @param me_no
 	 *            String --> 會員編號

@@ -151,3 +151,5 @@ insert into user_path (up_pc_id, up_name, up_path) values (1, '註冊', 'secure/
 insert into user_path (up_pc_id, up_name, up_path) values (2, '註冊', 'secure/sign-up.do');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '啟用帳號', 'secure/sign-up-activity.do');
 insert into user_path (up_pc_id, up_name, up_path) values (3, '信箱重複驗證', 'secure/sign-up-email-repeat.ajax');
+insert into user_path (up_pc_id, up_name, up_path) values (1, '重新發送確認信', 'secure/sign-up-mail');
+insert into user_path (up_pc_id, up_name, up_path) values (2, '重新發送確認信', 'secure/sign-up-mail.do');

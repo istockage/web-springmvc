@@ -3,7 +3,7 @@
  * File: MemberService.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/13
+ * Modified: 2018/4/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,6 +27,11 @@ public interface MemberService extends ServiceConstant {
 	 * @see com.istockage.model.service.MemberService#signUp(MemberEntity)
 	 */
 	MemberEntity signUp(MemberEntity memberEntity);
+
+	/**
+	 * @see com.istockage.model.service.MemberService#selectByMe_no(String, Byte)
+	 */
+	MemberEntity selectByMe_no(String me_no, Byte me_activity_code);
 
 	/**
 	 * @see com.istockage.model.service.MemberService#selectByMe_email(String, Byte)

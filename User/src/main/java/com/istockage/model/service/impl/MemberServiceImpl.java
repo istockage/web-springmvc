@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/13
+ * Modified: 2018/4/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -104,6 +104,22 @@ public class MemberServiceImpl implements MemberService {
 		sendMail.signUpActivityMail(memberEntity);
 
 		return memberDao.insert(memberEntity);
+	}
+
+	/**
+	 * 會員編號搜尋
+	 * 
+	 * @param me_no
+	 *            String --> 會員編號
+	 * @param me_activity_code
+	 *            Byte --> 啟用狀態
+	 * @return null / MemberEntity
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public MemberEntity selectByMe_no(String me_no, Byte me_activity_code) {
+
+		return memberDao.selectByMe_no(me_no, me_activity_code);
 	}
 
 	/**

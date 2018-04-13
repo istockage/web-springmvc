@@ -7,6 +7,8 @@ public interface ModelAttributeConstant {
 
 	public static final String USER = "user";
 
+	public static final String SESSION_MEMBER_NO = "session_me_no";
+
 	public static final String SESSION_MEMBER_EMAIL = "session_me_email";
 
 	// request

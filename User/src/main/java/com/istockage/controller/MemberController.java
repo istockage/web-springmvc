@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/13
+ * Modified: 2018/4/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.istockage.common.mail.SendMail;
 import com.istockage.common.util.PasswordUtil;
 import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
@@ -56,6 +57,12 @@ public class MemberController implements ControllerConstant {
 	 */
 	@Autowired
 	private MemberService memberService;
+
+	/**
+	 * 注入 SendMail
+	 */
+	@Autowired
+	private SendMail sendMail;
 
 	/**
 	 * 登入 - init
@@ -382,24 +389,40 @@ public class MemberController implements ControllerConstant {
 
 			memberService.signUp(memberEntity);
 
+			request.getSession().setAttribute(SESSION_MEMBER_NO, memberEntity.getMe_no());
 			request.setAttribute(MEMBER_ENTITY, memberEntity);
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 註冊成功，會員編號: " + memberEntity.getMe_no());
 
-			return REDIRECT + INDEX_VIEW;
+			return REDIRECT + MEMBER_SIGN_UP_MAIL_VIEW;
 		}
 	}
 
 	/**
 	 * 重新發送確認信 - init
 	 * 
-	 * @return /WEB-INF/view/secure/sign-in-mail.jsp
+	 * @return /WEB-INF/view/secure/sign-up-mail.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-mail", method = RequestMethod.GET)
 	public String signUpMailView() {
 
 		return MEMBER_SIGN_UP_MAIL_VIEW;
+	}
+
+	/**
+	 * 重新發送確認信 - submit
+	 * 
+	 * @return /WEB-INF/view/secure/sign-up-mail.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-up-mail.do", method = RequestMethod.POST)
+	public String signUpMailAction() {
+
+		String me_no = (String) request.getSession().getAttribute(SESSION_MEMBER_NO);
+
+		sendMail.signUpActivityMail(memberService.selectByMe_no(me_no, MEMBER_ACTIVITY_CLOSE));
+
+		return REDIRECT + MEMBER_SIGN_UP_MAIL_VIEW;
 	}
 
 	/**

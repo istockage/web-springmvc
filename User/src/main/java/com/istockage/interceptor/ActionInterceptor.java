@@ -100,7 +100,7 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 		String path = StringUtil.getPath(servletPath); // path
 		String extension = StringUtil.getExtension(servletPath); // extension
 
-		if (MEMBER_SIGN_UP_DO.equals(path)) {
+		if (request_MemberEntity != null) {
 
 			memberEntity = request_MemberEntity;
 

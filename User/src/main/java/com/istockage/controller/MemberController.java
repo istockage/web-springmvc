@@ -204,6 +204,7 @@ public class MemberController implements ControllerConstant {
 				memberService.updateMe_password(memberEntity, null);
 
 				request.getSession().setAttribute(SESSION_MEMBER_EMAIL, me_email);
+				request.setAttribute(MEMBER_ENTITY, memberEntity);
 				request.setAttribute(MEMBER_LOG_KEY, OK);
 
 				logger.info("(" + className + "." + methodName + ") 發送成功，傳送至: " + me_email);
@@ -292,6 +293,7 @@ public class MemberController implements ControllerConstant {
 			// 清除所有 HttpSession
 			session.invalidate();
 
+			request.setAttribute(MEMBER_ENTITY, memberEntity);
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 重設密碼成功");
@@ -401,8 +403,9 @@ public class MemberController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
+		MemberEntity memberEntity;
 		try {
-			memberService.updateMe_activity_code(me_no);
+			memberEntity = memberService.updateMe_activity_code(me_no);
 
 		} catch (PageNotFoundException e) {
 
@@ -410,6 +413,9 @@ public class MemberController implements ControllerConstant {
 
 			return ERROR_PAGE_NOT_FOUND_VIEW;
 		}
+
+		request.setAttribute(MEMBER_ENTITY, memberEntity);
+		request.setAttribute(MEMBER_LOG_KEY, OK);
 
 		logger.info("(" + className + "." + methodName + ") 啟用帳號成功，會員編號: " + me_no);
 

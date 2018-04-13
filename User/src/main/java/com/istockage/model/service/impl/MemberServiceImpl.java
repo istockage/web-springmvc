@@ -9,6 +9,8 @@
  */
 package com.istockage.model.service.impl;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -95,9 +97,9 @@ public class MemberServiceImpl implements MemberService {
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(memberEntity.getMe_password(), me_salt));
 		memberEntity.setMe_salt(me_salt);
 		memberEntity.setMe_activity_code(MEMBER_ACTIVITY_CLOSE);
-		memberEntity.setMe_signup_time(new java.util.Date());
-		memberEntity.setMe_update_pwd_time(new java.util.Date());
-		memberEntity.setMe_update_info_time(new java.util.Date());
+		memberEntity.setMe_signup_time(new Date());
+		memberEntity.setMe_update_pwd_time(new Date());
+		memberEntity.setMe_update_info_time(new Date());
 
 		sendMail.signUpActivityMail(memberEntity);
 
@@ -141,6 +143,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(me_password_new, memberEntity.getMe_salt()));
+		memberEntity.setMe_update_pwd_time(new Date());
 
 		return memberDao.update(memberEntity);
 	}

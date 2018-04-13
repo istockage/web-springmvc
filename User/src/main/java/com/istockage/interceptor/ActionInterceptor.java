@@ -123,7 +123,8 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 		memberLogEntity.setMl_ip(request.getRemoteAddr());
 		memberLogService.insert(memberLogEntity);
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 寫入日誌: " + userPathEntity.getUp_name());
+		logger.info(
+				"(" + handlerClassName + "." + handlerMethodName + ") end, 寫入日誌，動作: " + userPathEntity.getUp_name());
 	}
 
 	@Override

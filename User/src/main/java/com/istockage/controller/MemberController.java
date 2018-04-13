@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/12
+ * Modified: 2018/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,8 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.istockage.common.constant.ControllerConstant;
-import com.istockage.common.message.ErrorMessage;
 import com.istockage.common.util.PasswordUtil;
 import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
@@ -41,7 +39,7 @@ import com.istockage.model.service.MemberService;
  */
 @Controller
 @SessionAttributes(USER)
-public class MemberController implements ControllerConstant, ErrorMessage {
+public class MemberController implements ControllerConstant {
 
 	private static final Logger logger = Logger.getLogger(MemberController.class);
 

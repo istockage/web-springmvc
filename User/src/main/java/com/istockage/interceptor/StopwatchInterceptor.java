@@ -3,7 +3,7 @@
  * File: StopwatchInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/29
- * Modified: 2018/3/29
+ * Modified: 2018/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -17,12 +17,14 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.istockage.controller.ControllerConstant;
+
 /**
  * stopwatch interceptor
  * 
  * @author 詹晟
  */
-public class StopwatchInterceptor implements HandlerInterceptor {
+public class StopwatchInterceptor implements HandlerInterceptor, ControllerConstant {
 
 	private static final Logger logger = Logger.getLogger(StopwatchInterceptor.class);
 

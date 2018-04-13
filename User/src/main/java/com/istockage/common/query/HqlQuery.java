@@ -1,6 +1,6 @@
-package com.istockage.common.constant;
+package com.istockage.common.query;
 
-public interface HqlConstant {
+public interface HqlQuery {
 
 	// path_category
 	/** extension 搜尋 */

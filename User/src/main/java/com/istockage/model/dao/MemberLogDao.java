@@ -3,13 +3,12 @@
  * File: MemberLogDao.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/3/29
+ * Modified: 2018/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.dao;
 
-import com.istockage.common.constant.HqlConstant;
 import com.istockage.model.entity.MemberLogEntity;
 
 /**
@@ -17,7 +16,7 @@ import com.istockage.model.entity.MemberLogEntity;
  *
  * @author 詹晟
  */
-public interface MemberLogDao extends HqlConstant {
+public interface MemberLogDao extends DaoConstant {
 
 	/**
 	 * @see com.istockage.model.dao.impl.MemberLogDaoImpl#insert(MemberLogEntity)

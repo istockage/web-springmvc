@@ -3,7 +3,7 @@
  * File: ExceptionController.java
  * Author: 詹晟
  * Created: 2018/3/29
- * Modified: 2018/3/29
+ * Modified: 2018/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -12,8 +12,6 @@ package com.istockage.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.istockage.common.constant.ControllerConstant;
 
 /**
  * exception controller

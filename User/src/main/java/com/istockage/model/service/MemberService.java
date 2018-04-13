@@ -3,13 +3,12 @@
  * File: MemberService.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/12
+ * Modified: 2018/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.service;
 
-import com.istockage.common.constant.CodeConstant;
 import com.istockage.model.entity.MemberEntity;
 
 /**
@@ -17,7 +16,7 @@ import com.istockage.model.entity.MemberEntity;
  * 
  * @author 詹晟
  */
-public interface MemberService extends CodeConstant {
+public interface MemberService extends ServiceConstant {
 
 	/**
 	 * @see com.istockage.model.service.MemberService#signIn(String, String)

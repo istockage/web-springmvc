@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>發送確認信 - iStockage</title>
+<title>重新發送確認信 - iStockage</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap-4.0.0.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure.css" type="text/css" />
+<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -16,12 +17,23 @@
 				<h3>iStockage</h3>
 			</div>
 		</div>
-		<div class="container alert alert-warning">恭喜您註冊成為 iStockage 的會員，確認信已發送至您的信箱，請開啟信件並點擊連結以啟用您的帳號。</div>
+		<c:if test="${not empty error}">
+			<div class="container alert alert-danger">
+				<span>${error}</span>
+				<button class="close">
+					<span>&times;</span>
+				</button>
+			</div>
+		</c:if>
+		<div class="container alert alert-warning">操作逾時，請輸入註冊時的信箱，以重新發送確認信。</div>
 		<div class="container form">
-			<form action="<c:url value='/secure/sign-up-mail.do' />" method="post">
+			<form action="<c:url value='/secure/sign-up-mail-again.do' />" method="post">
 				<div class="form-group">
-					<p style="font-size:92%">若您未收到確認信，請點擊按鈕重新發送。<p>
-					<input type="submit" class="btn btn-outline-warning btn-block" value="發送確認信" />
+					<label for="me_email" class="control-label">信箱</label>
+					<input type="text" id="me_email" class="form-control" name="me_email" value="${me_email}" autofocus />
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-outline-warning btn-block" value="重新發送確認信" />
 				</div>
 			</form>
 			<div class="form-group">
@@ -29,5 +41,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/secure.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

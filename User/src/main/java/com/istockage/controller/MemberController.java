@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/14
+ * Modified: 2018/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -400,7 +400,7 @@ public class MemberController implements ControllerConstant {
 	}
 
 	/**
-	 * 重新發送確認信 - init
+	 * 發送確認信 - init
 	 * 
 	 * @return /WEB-INF/view/secure/sign-up-mail.jsp
 	 */
@@ -411,18 +411,86 @@ public class MemberController implements ControllerConstant {
 	}
 
 	/**
-	 * 重新發送確認信 - submit
+	 * 發送確認信 - submit
 	 * 
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/view/secure/sign-up-mail.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-mail.do", method = RequestMethod.POST)
-	public String signUpMailAction() {
+	public String signUpMailAction(Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		String me_no = (String) request.getSession().getAttribute(SESSION_MEMBER_NO);
 
+		if (me_no == null) {
+
+			logger.error("(" + className + "." + methodName + ") 發送失敗，操作逾時");
+
+			return REDIRECT + MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+		}
+
 		sendMail.signUpActivityMail(memberService.selectByMe_no(me_no, MEMBER_ACTIVITY_CLOSE));
 
+		logger.info("(" + className + "." + methodName + ") 發送成功，會員編號: " + me_no);
+
 		return REDIRECT + MEMBER_SIGN_UP_MAIL_VIEW;
+	}
+
+	/**
+	 * 重新發送確認信 - init
+	 * 
+	 * @return /WEB-INF/view/secure/sign-up-mail-again.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-up-mail-again", method = RequestMethod.GET)
+	public String signUpMailAgainView() {
+
+		return MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+	}
+
+	/**
+	 * 重新發送確認信 - submit
+	 * 
+	 * @param me_email
+	 *            String --> 會員信箱
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/view/secure/sign-up-mail-again.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-up-mail-again.do", method = RequestMethod.POST)
+	public String signUpMailAgainAction(@RequestParam String me_email, Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		MemberEntity memberEntity = memberService.selectByMe_email(me_email, MEMBER_ACTIVITY_CLOSE);
+
+		if (me_email == null) {
+
+			model.addAttribute(ERROR, MSG_MEMBER_EMAIL_REQUIRE);
+
+			logger.error("(" + className + "." + methodName + ") 發送失敗，信箱未填");
+
+			return MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+
+		} else if (memberEntity == null) {
+
+			// 取得參數，並回填表單
+			model.addAttribute(MEMBER_EMAIL, me_email);
+			model.addAttribute(ERROR, MSG_MEMBER_EMAIL_MISTAKE);
+
+			logger.error("(" + className + "." + methodName + ") 發送失敗，信箱錯誤");
+
+			return MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+
+		} else {
+
+			sendMail.signUpActivityMail(memberEntity);
+
+			logger.info("(" + className + "." + methodName + ") 發送成功，會員編號: " + memberEntity.getMe_no());
+
+			return REDIRECT + MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+		}
 	}
 
 	/**

@@ -60,6 +60,8 @@
 			<mvc:exclude-mapping path="/secure/sign-up.do" />
 			<mvc:exclude-mapping path="/secure/sign-up-mail" />
 			<mvc:exclude-mapping path="/secure/sign-up-mail.do" />
+			<mvc:exclude-mapping path="/secure/sign-up-mail-again" />
+			<mvc:exclude-mapping path="/secure/sign-up-mail-again.do" />
 			<mvc:exclude-mapping path="/secure/sign-up-activity.do" />
 			<mvc:exclude-mapping path="/secure/sign-up-email-repeat.ajax" />
 			<mvc:exclude-mapping path="/error/page-not-found" />
@@ -83,7 +85,6 @@
 
 		<mvc:interceptor>
 			<mvc:mapping path="/secure/sign-up-mail" />
-			<mvc:mapping path="/secure/sign-up-mail.do" />
 			<bean class="com.istockage.interceptor.SignUpMailInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

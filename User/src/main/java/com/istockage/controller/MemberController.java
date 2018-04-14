@@ -297,7 +297,7 @@ public class MemberController implements ControllerConstant {
 			// 清除 @SessionAttributes
 			sessionStatus.setComplete();
 
-			// 清除所有 HttpSession
+			// 清除 HttpSession
 			session.invalidate();
 
 			request.setAttribute(MEMBER_ENTITY, memberEntity);
@@ -324,7 +324,7 @@ public class MemberController implements ControllerConstant {
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
 
-		// 清除所有 HttpSession
+		// 清除 HttpSession
 		request.getSession().invalidate();
 
 		request.setAttribute(MEMBER_LOG_KEY, OK);

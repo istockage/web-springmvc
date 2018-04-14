@@ -98,7 +98,7 @@ public class MemberController implements ControllerConstant {
 			model.addAttribute(MEMBER_PASSWORD, me_password);
 			model.addAttribute(ERROR, MSG_MEMBER_EMAIL_REQUIRE);
 
-			logger.error("(" + className + "." + methodName + ") 登入失敗，帳號未填");
+			logger.error("(" + className + "." + methodName + ") 登入失敗，信箱未填");
 
 			return MEMBER_SIGN_IN_VIEW;
 
@@ -124,7 +124,7 @@ public class MemberController implements ControllerConstant {
 				model.addAttribute(MEMBER_PASSWORD, me_password);
 				model.addAttribute(ERROR, MSG_MEMBER_EMAIL_OR_PASSWORD_MISTAKE);
 
-				logger.error("(" + className + "." + methodName + ") 登入失敗，帳號或密碼錯誤");
+				logger.error("(" + className + "." + methodName + ") 登入失敗，信箱或密碼錯誤");
 
 				return MEMBER_SIGN_IN_VIEW;
 
@@ -381,7 +381,7 @@ public class MemberController implements ControllerConstant {
 
 		} else if (memberService.selectByMe_email(memberEntity.getMe_email(), null) != null) {
 
-			logger.error("(" + className + "." + methodName + ") 註冊失敗，帳號重複");
+			logger.error("(" + className + "." + methodName + ") 註冊失敗，信箱重複");
 
 			return MEMBER_SIGN_UP_VIEW;
 
@@ -465,8 +465,10 @@ public class MemberController implements ControllerConstant {
 
 		MemberEntity memberEntity = memberService.selectByMe_email(me_email, MEMBER_ACTIVITY_CLOSE);
 
-		if (me_email == null) {
+		if (me_email == null || me_email.isEmpty()) {
 
+			// 取得參數，並回填表單
+			model.addAttribute(MEMBER_EMAIL, me_email);
 			model.addAttribute(ERROR, MSG_MEMBER_EMAIL_REQUIRE);
 
 			logger.error("(" + className + "." + methodName + ") 發送失敗，信箱未填");

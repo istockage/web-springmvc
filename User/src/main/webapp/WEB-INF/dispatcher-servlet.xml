@@ -80,6 +80,12 @@
 			<mvc:mapping path="/secure/reset-password.do" />
 			<bean class="com.istockage.interceptor.ResetPasswordInterceptor" />
 		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/secure/sign-up-mail" />
+			<mvc:mapping path="/secure/sign-up-mail.do" />
+			<bean class="com.istockage.interceptor.SignUpMailInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<mvc:resources mapping="/css/**" location="/css/" />

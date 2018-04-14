@@ -3,7 +3,7 @@
  * File: ViewInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/29
- * Modified: 2018/4/13
+ * Modified: 2018/4/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,12 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.istockage.common.util.StringUtil;
 import com.istockage.controller.ControllerConstant;
+import com.istockage.model.service.UserPathService;
 
 /**
  * view interceptor
@@ -28,6 +30,12 @@ import com.istockage.controller.ControllerConstant;
 public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 
 	private static final Logger logger = Logger.getLogger(ViewInterceptor.class);
+
+	/**
+	 * 注入 UserPathService
+	 */
+	@Autowired
+	private UserPathService userPathService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -39,7 +47,17 @@ public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
+		String servletPath = request.getServletPath(); // /path
+		String requestPath = StringUtil.getRequestPath(servletPath, request.getQueryString()); // 請求 path
+
+		if (userPathService.selectByUp_path(VIEW, StringUtil.getPath(servletPath)) == null) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
+
+			response.sendRedirect(request.getContextPath() + SLASH + ERROR_PAGE_NOT_FOUND_VIEW);
+
+			return false;
+		}
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 放行: " + requestPath);
 

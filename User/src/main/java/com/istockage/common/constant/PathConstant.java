@@ -2,6 +2,12 @@ package com.istockage.common.constant;
 
 public interface PathConstant {
 
+	public static final String VIEW = "";
+
+	public static final String ACTION = "do";
+
+	public static final String AJAX = "ajax";
+
 	public static final String REDIRECT = "redirect:/";
 
 	// view

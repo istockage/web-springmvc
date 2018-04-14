@@ -3,7 +3,7 @@
  * File: ActionInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/4/13
+ * Modified: 2018/4/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -57,7 +57,17 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
+		String servletPath = request.getServletPath(); // /path
+		String requestPath = StringUtil.getRequestPath(servletPath, request.getQueryString()); // 請求 path
+
+		if (userPathService.selectByUp_path(ACTION, StringUtil.getPath(servletPath)) == null) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
+
+			response.sendRedirect(request.getContextPath() + SLASH + ERROR_PAGE_NOT_FOUND_VIEW);
+
+			return false;
+		}
 
 		if (handlerMethodName.indexOf("Action") == -1) { // 經過 GET
 
@@ -96,10 +106,6 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		MemberEntity memberEntity = null;
 
-		String servletPath = request.getServletPath(); // /path
-		String path = StringUtil.getPath(servletPath); // path
-		String extension = StringUtil.getExtension(servletPath); // extension
-
 		if (request_MemberEntity != null) {
 
 			memberEntity = request_MemberEntity;
@@ -115,7 +121,9 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 			return;
 		}
 
-		UserPathEntity userPathEntity = userPathService.selectByUp_path(extension, path);
+		String servletPath = request.getServletPath(); // /path
+
+		UserPathEntity userPathEntity = userPathService.selectByUp_path(ACTION, StringUtil.getPath(servletPath));
 
 		MemberLogEntity memberLogEntity = new MemberLogEntity();
 		memberLogEntity.setMl_MemberEntity(memberEntity);

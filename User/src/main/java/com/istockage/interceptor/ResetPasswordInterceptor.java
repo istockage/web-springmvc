@@ -45,7 +45,7 @@ public class ResetPasswordInterceptor implements HandlerInterceptor, ControllerC
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
-			response.sendRedirect(request.getContextPath() + SLASH + MEMBER_SIGN_IN_VIEW);
+			response.sendRedirect(request.getContextPath() + SLASH + ERROR_PAGE_NOT_FOUND_VIEW);
 
 			return false;
 

@@ -10,6 +10,8 @@ public interface ErrorMessage {
 
 	public static final String MSG_MEMBER_EMAIL_OR_PASSWORD_MISTAKE = "信箱或密碼錯誤。";
 
+	public static final String MSG_MEMBER_NOT_ACTIVITY = "帳號未啟用，確認信已發送至您的信箱，請開啟信件並點擊連結以啟用您的帳號。";
+
 	// secure/forget-password
 	// secure/sign-up-mail-again
 	public static final String MSG_MEMBER_EMAIL_MISTAKE = "沒有這個信箱。";

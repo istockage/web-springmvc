@@ -130,6 +130,20 @@ public class MemberController implements ControllerConstant {
 
 			} else {
 
+				if (user.getMe_activity_code() == MEMBER_ACTIVITY_CLOSE) {
+
+					// 取得參數，並回填表單
+					model.addAttribute(MEMBER_EMAIL, me_email);
+					model.addAttribute(MEMBER_PASSWORD, me_password);
+					model.addAttribute(ERROR, MSG_MEMBER_NOT_ACTIVITY);
+
+					sendMail.signUpActivityMail(user);
+
+					logger.error("(" + className + "." + methodName + ") 登入失敗，帳號未啟用");
+
+					return MEMBER_SIGN_IN_VIEW;
+				}
+
 				model.addAttribute(USER, user);
 
 				request.setAttribute(MEMBER_LOG_KEY, OK);

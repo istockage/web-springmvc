@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/14
+ * Modified: 2018/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -56,11 +56,11 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	public MemberEntity signIn(String me_email, String me_password) {
 
-		MemberEntity memberEntity = memberDao.selectByMe_email(me_email, MEMBER_ACTIVITY_OPEN);
+		MemberEntity memberEntity = memberDao.selectByMe_email(me_email, null);
 
 		if (memberEntity == null) {
 
-			// 信箱錯誤或未啟用
+			// 信箱錯誤
 			return null;
 
 		} else {

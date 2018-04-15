@@ -25,7 +25,9 @@
 				</button>
 			</div>
 		</c:if>
-		<div class="container alert alert-warning">操作逾時，請輸入註冊時的信箱，以重新發送確認信。</div>
+		<div class="container alert alert-warning">
+			<span>操作逾時，請輸入註冊的信箱，以重新發送確認信。</span>
+		</div>
 		<div class="container form">
 			<form action="<c:url value='/secure/sign-up-mail-again.do' />" method="post">
 				<div class="form-group">

@@ -16,11 +16,13 @@
 				<h3>iStockage</h3>
 			</div>
 		</div>
-		<div class="container alert alert-warning">恭喜您註冊成為 iStockage 的會員，確認信已發送至您的信箱，請開啟信件並點擊連結以啟用您的帳號。</div>
+		<div class="container alert alert-warning">
+			<span>恭喜您註冊成為 iStockage 的會員，確認信已發送至您的信箱，請開啟信件並點擊連結以啟用您的帳號。</span>
+		</div>
 		<div class="container form">
 			<form action="<c:url value='/secure/sign-up-mail.do' />" method="post">
 				<div class="form-group">
-					<p style="font-size:92%">若您未收到確認信，請點擊按鈕重新發送。<p>
+					<p>若您未收到確認信，請點擊按鈕重新發送。<p>
 					<input type="submit" class="btn btn-outline-warning btn-block" value="發送確認信" />
 				</div>
 			</form>

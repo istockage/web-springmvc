@@ -27,7 +27,7 @@
 					<form:label path="me_password">密碼</form:label>
 					<form:password path="me_password" cssClass="form-control" />
 				</div>
-				<div class="form-group" style="margin-bottom:20px">
+				<div class="form-group">
 					<label for="me_password_again">確認密碼</label>
 					<input type="password" id="me_password_again" class="form-control" name="me_password_again" />
 				</div>

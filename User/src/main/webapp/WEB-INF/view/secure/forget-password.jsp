@@ -30,7 +30,7 @@
 				<div class="form-group">
 					<label for="me_email" class="control-label">信箱</label>
 					<input type="text" id="me_email" class="form-control" name="me_email" value="${me_email}" autofocus />
-					<div><p style="font-size:92%">請輸入您的信箱，系統將發送驗證碼，以重設您的密碼。<p></div>
+					<p>請輸入您的信箱，系統將發送驗證碼，以重設您的密碼。<p>
 				</div>
 				<div class="form-group">
 					<input type="submit" class="btn btn-success btn-block" value="發送驗證碼" />

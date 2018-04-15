@@ -52,6 +52,10 @@ html, body {
 	filter: grayscale(25%);
 }
 
+.form p, .form a {
+	font-size: 92%;
+}
+
 .bottom {
 	width: 320px;
 	margin-top: 20px;

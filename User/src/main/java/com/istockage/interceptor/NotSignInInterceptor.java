@@ -1,9 +1,9 @@
 /*
  * iStockage
- * File: NoSignInInterceptor.java
+ * File: NotSignInInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/30
- * Modified: 2018/4/13
+ * Modified: 2018/4/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -23,13 +23,13 @@ import com.istockage.controller.ControllerConstant;
 import com.istockage.model.entity.MemberEntity;
 
 /**
- * no sign in interceptor
+ * not sign in interceptor
  * 
  * @author 詹晟
  */
-public class NoSignInInterceptor implements HandlerInterceptor, ControllerConstant {
+public class NotSignInInterceptor implements HandlerInterceptor, ControllerConstant {
 
-	private static final Logger logger = Logger.getLogger(NoSignInInterceptor.class);
+	private static final Logger logger = Logger.getLogger(NotSignInInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

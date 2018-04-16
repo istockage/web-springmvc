@@ -19,6 +19,8 @@ public interface ErrorMessage {
 	// secure/reset-password
 	public static final String MSG_MEMBER_RANDOM_MISTAKE = "驗證碼錯誤。";
 
+	public static final String MSG_MEMBER_RESET_PASSWORD_TIMEOUT = "操作逾時。";
+
 	// secure/sign-up
 	public static final String MSG_MEMBER_EMAIL_REPEAT = "這個信箱已經有人使用了";
 

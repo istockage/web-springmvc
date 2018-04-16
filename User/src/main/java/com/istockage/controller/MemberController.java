@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/16
+ * Modified: 2018/4/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -272,7 +272,7 @@ public class MemberController implements ControllerConstant {
 
 		if (me_email == null) {
 
-			model.addAttribute(ERROR, "操作逾時。");
+			model.addAttribute(ERROR, MSG_MEMBER_RESET_PASSWORD_TIMEOUT);
 
 			logger.error("(" + className + "." + methodName + ") 重設密碼失敗，操作逾時");
 

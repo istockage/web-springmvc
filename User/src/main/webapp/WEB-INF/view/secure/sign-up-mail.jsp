@@ -23,11 +23,11 @@
 			<form action="<c:url value='/secure/sign-up-mail.do' />" method="post">
 				<div class="form-group">
 					<p>若您未收到確認信，請點擊按鈕重新發送。<p>
-					<input type="submit" class="btn btn-outline-warning btn-block" value="發送確認信" />
+					<input type="submit" class="btn btn-warning btn-block" value="發送確認信" />
 				</div>
 			</form>
 			<div class="form-group">
-				<a href="<%=request.getContextPath()%>/secure/sign-in" class="btn btn-success btn-block">登入</a>
+				<a href="<%=request.getContextPath()%>/secure/sign-in" class="btn btn-outline-success btn-block">登入</a>
 			</div>
 		</div>
 	</div>

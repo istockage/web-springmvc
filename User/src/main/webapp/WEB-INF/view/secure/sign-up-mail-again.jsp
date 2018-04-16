@@ -35,11 +35,11 @@
 					<input type="text" id="me_email" class="form-control" name="me_email" value="${me_email}" autofocus />
 				</div>
 				<div class="form-group">
-					<input type="submit" class="btn btn-outline-warning btn-block" value="重新發送確認信" />
+					<input type="submit" class="btn btn-warning btn-block" value="重新發送確認信" />
 				</div>
 			</form>
 			<div class="form-group">
-				<a href="<%=request.getContextPath()%>/secure/sign-in" class="btn btn-success btn-block">登入</a>
+				<a href="<%=request.getContextPath()%>/secure/sign-in" class="btn btn-outline-success btn-block">登入</a>
 			</div>
 		</div>
 	</div>

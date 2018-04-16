@@ -1,5 +1,5 @@
 // secure/sign-in
 // secure/sign-up-mail-again
 $(".close").click(function(){
-	$(".alert-danger").remove();	
+	$(".alert-danger").remove();
 });

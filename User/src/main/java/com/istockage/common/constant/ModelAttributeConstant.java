@@ -26,6 +26,9 @@ public interface ModelAttributeConstant {
 
 	public static final String MEMBER_LOG_KEY = "memberLogKey";
 
+	// message
 	public static final String ERROR = "error";
+
+	public static final String SUCCESS = "success";
 
 }

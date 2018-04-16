@@ -508,12 +508,14 @@ public class MemberController implements ControllerConstant {
 
 			sendMail.signUpActivityMail(memberEntity);
 
+			model.addAttribute(SUCCESS, MSG_MEMBER_SEND_MAIL_SUCCESS);
+
 			request.setAttribute(MEMBER_ENTITY, memberEntity);
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 發送成功，會員編號: " + memberEntity.getMe_no());
 
-			return REDIRECT + MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+			return MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
 		}
 	}
 

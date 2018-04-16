@@ -208,7 +208,7 @@ public class MemberController implements ControllerConstant {
 
 		} else {
 
-			MemberEntity memberEntity = memberService.selectByMe_email(me_email, MEMBER_ACTIVITY_OPEN);
+			MemberEntity memberEntity = memberService.selectByMe_email(me_email, null);
 
 			if (memberEntity == null) {
 
@@ -270,7 +270,16 @@ public class MemberController implements ControllerConstant {
 		HttpSession session = request.getSession();
 		String me_email = (String) session.getAttribute(SESSION_MEMBER_EMAIL);
 
-		MemberEntity memberEntity = memberService.selectByMe_email(me_email, MEMBER_ACTIVITY_OPEN);
+		if (me_email == null) {
+
+			model.addAttribute(ERROR, "操作逾時。");
+
+			logger.error("(" + className + "." + methodName + ") 重設密碼失敗，操作逾時");
+
+			return MEMBER_RESET_PASSWORD_VIEW;
+		}
+
+		MemberEntity memberEntity = memberService.selectByMe_email(me_email, null);
 
 		if (me_password_random == null || me_password_random.isEmpty() || me_password_new == null
 				|| me_password_new.isEmpty() || me_password_new_again == null || me_password_new_again.isEmpty()) {

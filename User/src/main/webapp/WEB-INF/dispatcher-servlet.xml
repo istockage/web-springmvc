@@ -79,7 +79,6 @@
 
 		<mvc:interceptor>
 			<mvc:mapping path="/secure/reset-password" />
-			<mvc:mapping path="/secure/reset-password.do" />
 			<bean class="com.istockage.interceptor.ResetPasswordInterceptor" />
 		</mvc:interceptor>
 

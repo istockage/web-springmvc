@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/15
+ * Modified: 2018/4/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -151,7 +151,7 @@ public class MemberController implements ControllerConstant {
 				HttpSession session = request.getSession();
 				String next = (String) session.getAttribute(NEXT);
 
-				if (next != null) { // 經過 NoSignInInterceptor
+				if (next != null) { // 經過 NotSignInInterceptor
 
 					session.removeAttribute(NEXT);
 
@@ -160,7 +160,7 @@ public class MemberController implements ControllerConstant {
 
 					return REDIRECT.concat(next);
 
-				} else { // 未經過 NoSignInInterceptor
+				} else { // 未經過 NotSignInInterceptor
 
 					logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + user.getMe_no() + "，導向首頁: "
 							+ INDEX_VIEW);
@@ -445,7 +445,12 @@ public class MemberController implements ControllerConstant {
 			return REDIRECT + MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
 		}
 
-		sendMail.signUpActivityMail(memberService.selectByMe_no(me_no, MEMBER_ACTIVITY_CLOSE));
+		MemberEntity memberEntity = memberService.selectByMe_no(me_no, MEMBER_ACTIVITY_CLOSE);
+
+		sendMail.signUpActivityMail(memberEntity);
+
+		request.setAttribute(MEMBER_ENTITY, memberEntity);
+		request.setAttribute(MEMBER_LOG_KEY, OK);
 
 		logger.info("(" + className + "." + methodName + ") 發送成功，會員編號: " + me_no);
 
@@ -502,6 +507,9 @@ public class MemberController implements ControllerConstant {
 		} else {
 
 			sendMail.signUpActivityMail(memberEntity);
+
+			request.setAttribute(MEMBER_ENTITY, memberEntity);
+			request.setAttribute(MEMBER_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 發送成功，會員編號: " + memberEntity.getMe_no());
 

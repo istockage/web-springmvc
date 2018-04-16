@@ -3,7 +3,7 @@
  * File: ViewInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/29
- * Modified: 2018/4/14
+ * Modified: 2018/4/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -54,7 +54,7 @@ public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
-			response.sendRedirect(request.getContextPath() + SLASH + ERROR_PAGE_NOT_FOUND_VIEW);
+			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_VIEW).forward(request, response);
 
 			return false;
 		}

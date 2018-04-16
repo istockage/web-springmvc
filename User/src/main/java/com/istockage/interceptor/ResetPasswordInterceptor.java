@@ -3,7 +3,7 @@
  * File: ResetPasswordInterceptor.java
  * Author: 詹晟
  * Created: 2018/4/8
- * Modified: 2018/4/13
+ * Modified: 2018/4/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -45,7 +45,7 @@ public class ResetPasswordInterceptor implements HandlerInterceptor, ControllerC
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
-			response.sendRedirect(request.getContextPath() + SLASH + ERROR_PAGE_NOT_FOUND_VIEW);
+			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_VIEW).forward(request, response);
 
 			return false;
 

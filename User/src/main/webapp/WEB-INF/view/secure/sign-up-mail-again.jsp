@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<c:if test="${not empty error}">
-			<div class="container alert alert-danger">
+			<div class="container alert alert-danger error-message">
 				<span>${error}</span>
 				<button class="close">
 					<span>&times;</span>
@@ -26,13 +26,11 @@
 			</div>
 		</c:if>
 		<c:if test="${not empty success}">
-			<div class="container alert alert-success">
+			<div class="container alert alert-success success-message">
 				<span>${success}</span>
-			</div>
-		</c:if>
-		<c:if test="${empty success}">
-			<div class="container alert alert-warning">
-				<span>操作逾時，請輸入註冊的信箱，以重新發送確認信。</span>
+				<button class="close">
+					<span>&times;</span>
+				</button>
 			</div>
 		</c:if>
 		<div class="container form">
@@ -40,9 +38,10 @@
 				<div class="form-group">
 					<label for="me_email" class="control-label">信箱</label>
 					<input type="text" id="me_email" class="form-control" name="me_email" value="${me_email}" autofocus />
+					<p>請輸入您註冊的信箱，系統將重新發送確認信。<p>
 				</div>
 				<div class="form-group">
-					<input type="submit" class="btn btn-warning btn-block" value="重新發送確認信" />
+					<input type="submit" class="btn btn-success btn-block" value="重新發送確認信" />
 				</div>
 			</form>
 			<div class="form-group">

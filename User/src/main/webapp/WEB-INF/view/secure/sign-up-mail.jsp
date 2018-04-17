@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap-4.0.0.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure.css" type="text/css" />
+<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -16,14 +17,22 @@
 				<h3>iStockage</h3>
 			</div>
 		</div>
-		<div class="container alert alert-warning">
+		<c:if test="${not empty success}">
+			<div class="container alert alert-success success-message">
+				<span>${success}</span>
+				<button class="close">
+					<span>&times;</span>
+				</button>
+			</div>
+		</c:if>
+		<div class="container alert alert-success">
 			<span>恭喜您註冊成為 iStockage 的會員，確認信已發送至您的信箱，請開啟信件並點擊連結以啟用您的帳號。</span>
 		</div>
 		<div class="container form">
 			<form action="<c:url value='/secure/sign-up-mail.do' />" method="post">
 				<div class="form-group">
 					<p>若您未收到確認信，請點擊按鈕重新發送。<p>
-					<input type="submit" class="btn btn-warning btn-block" value="發送確認信" />
+					<input type="submit" class="btn btn-success btn-block" value="發送確認信" />
 				</div>
 			</form>
 			<div class="form-group">
@@ -31,5 +40,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/secure.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

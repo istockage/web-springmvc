@@ -224,13 +224,15 @@ public class MemberController implements ControllerConstant {
 
 				memberService.updateMe_password(memberEntity, null);
 
+				model.addAttribute(SUCCESS, MSG_MEMBER_SEND_MAIL_SUCCESS);
+
 				request.getSession().setAttribute(SESSION_MEMBER_EMAIL, me_email);
 				request.setAttribute(MEMBER_ENTITY, memberEntity);
 				request.setAttribute(MEMBER_LOG_KEY, OK);
 
 				logger.info("(" + className + "." + methodName + ") 發送成功，傳送至: " + me_email);
 
-				return REDIRECT + MEMBER_RESET_PASSWORD_VIEW;
+				return MEMBER_RESET_PASSWORD_VIEW;
 			}
 		}
 	}
@@ -276,7 +278,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 重設密碼失敗，操作逾時");
 
-			return MEMBER_RESET_PASSWORD_VIEW;
+			return MEMBER_FORGET_PASSWORD_VIEW;
 		}
 
 		MemberEntity memberEntity = memberService.selectByMe_email(me_email, null);
@@ -449,21 +451,25 @@ public class MemberController implements ControllerConstant {
 
 		if (me_no == null) {
 
+			model.addAttribute(ERROR, MSG_MEMBER_SIGN_UP_MAIL_TIMEOUT);
+
 			logger.error("(" + className + "." + methodName + ") 發送失敗，操作逾時");
 
-			return REDIRECT + MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+			return MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
 		}
 
 		MemberEntity memberEntity = memberService.selectByMe_no(me_no, MEMBER_ACTIVITY_CLOSE);
 
 		sendMail.signUpActivityMail(memberEntity);
 
+		model.addAttribute(SUCCESS, MSG_MEMBER_SEND_MAIL_SUCCESS);
+
 		request.setAttribute(MEMBER_ENTITY, memberEntity);
 		request.setAttribute(MEMBER_LOG_KEY, OK);
 
 		logger.info("(" + className + "." + methodName + ") 發送成功，會員編號: " + me_no);
 
-		return REDIRECT + MEMBER_SIGN_UP_MAIL_VIEW;
+		return MEMBER_SIGN_UP_MAIL_VIEW;
 	}
 
 	/**

@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<c:if test="${not empty error}">
-			<div class="container alert alert-danger">
+			<div class="container alert alert-danger error-message">
 				<span>${error}</span>
 				<button class="close">
 					<span>&times;</span>

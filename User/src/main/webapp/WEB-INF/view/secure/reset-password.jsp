@@ -18,8 +18,16 @@
 			</div>
 		</div>
 		<c:if test="${not empty error}">
-			<div class="container alert alert-danger">
+			<div class="container alert alert-danger error-message">
 				<span>${error}</span>
+				<button class="close">
+					<span>&times;</span>
+				</button>
+			</div>
+		</c:if>
+		<c:if test="${not empty success}">
+			<div class="container alert alert-success success-message">
+				<span>${success}</span>
 				<button class="close">
 					<span>&times;</span>
 				</button>

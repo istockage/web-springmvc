@@ -25,6 +25,14 @@
 				</button>
 			</div>
 		</c:if>
+		<c:if test="${not empty success}">
+			<div class="container alert alert-success success-message">
+				<span>${success}</span>
+				<button class="close">
+					<span>&times;</span>
+				</button>
+			</div>
+		</c:if>
 		<div class="container form">
 			<form action="<c:url value='/secure/sign-in.do' />" method="post">
 				<div class="form-group sign-in-google">

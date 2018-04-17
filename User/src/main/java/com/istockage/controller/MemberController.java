@@ -325,12 +325,14 @@ public class MemberController implements ControllerConstant {
 			// 清除 HttpSession
 			session.invalidate();
 
+			model.addAttribute(SUCCESS, MSG_MEMBER_RESET_PASSWORD_SUCCESS);
+
 			request.setAttribute(MEMBER_ENTITY, memberEntity);
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 重設密碼成功");
 
-			return REDIRECT + MEMBER_SIGN_IN_VIEW;
+			return MEMBER_SIGN_IN_VIEW;
 		}
 	}
 

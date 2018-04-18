@@ -73,7 +73,7 @@ create table member (
     me_no                   char(10) not null,
     me_email                varchar(50) not null,
     me_password             char(32) not null,
-    me_salt                 varchar(36) not null,
+    me_salt                 char(36) not null,
     me_random               char(6),
     me_lastname             nvarchar(20),
     me_firstname            nvarchar(20),

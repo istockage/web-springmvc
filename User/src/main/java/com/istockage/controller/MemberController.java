@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/17
+ * Modified: 2018/4/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -222,7 +222,7 @@ public class MemberController implements ControllerConstant {
 
 			} else {
 
-				memberService.updateMe_password(memberEntity, null);
+				memberService.updateMe_random(memberEntity);
 
 				model.addAttribute(SUCCESS, MSG_MEMBER_SEND_MAIL_SUCCESS);
 

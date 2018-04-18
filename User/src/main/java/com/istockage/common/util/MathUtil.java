@@ -7,7 +7,7 @@ public class MathUtil {
 		return String.format("%010d", (long) (Math.random() * 10000000000L));
 	}
 
-	public static String getMe_password_random() {
+	public static String getMe_random() {
 
 		return String.format("%06d", (int) (Math.random() * 1000000));
 	}

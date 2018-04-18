@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/15
+ * Modified: 2018/4/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -151,15 +151,28 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	public MemberEntity updateMe_password(MemberEntity memberEntity, String me_password_new) {
 
-		if (me_password_new == null) {
-
-			me_password_new = MathUtil.getMe_password_random();
-
-			sendMail.forgetPasswordMail(memberEntity, me_password_new);
-		}
-
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(me_password_new, memberEntity.getMe_salt()));
 		memberEntity.setMe_update_pwd_time(new Date());
+
+		return memberDao.update(memberEntity);
+	}
+
+	/**
+	 * 修改驗證碼
+	 * 
+	 * @param memberEntity
+	 *            MemberEntity
+	 * @return MemberEntity
+	 */
+	@Override
+	@Transactional
+	public MemberEntity updateMe_random(MemberEntity memberEntity) {
+
+		String me_random = MathUtil.getMe_random();
+
+		memberEntity.setMe_random(me_random);
+
+		sendMail.forgetPasswordMail(memberEntity, me_random);
 
 		return memberDao.update(memberEntity);
 	}

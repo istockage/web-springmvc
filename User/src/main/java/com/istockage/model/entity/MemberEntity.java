@@ -3,7 +3,7 @@
  * File: MemberEntity.java
  * Author: 詹晟
  * Created: 2018/3/24
- * Modified: 2018/4/12
+ * Modified: 2018/4/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,6 +40,7 @@ public class MemberEntity {
 	@Pattern(regexp = "^(?=.*([a-z]|[A-Z]))(?=.*[0-9])(?=\\S+$).{8,32}$")
 	private String me_password;
 	private String me_salt;
+	private String me_random;
 	@Size(max = 20)
 	private String me_lastname;
 	@Size(max = 20)
@@ -87,6 +88,14 @@ public class MemberEntity {
 
 	public void setMe_salt(String me_salt) {
 		this.me_salt = me_salt;
+	}
+
+	public String getMe_random() {
+		return me_random;
+	}
+
+	public void setMe_random(String me_random) {
+		this.me_random = me_random;
 	}
 
 	public String getMe_lastname() {

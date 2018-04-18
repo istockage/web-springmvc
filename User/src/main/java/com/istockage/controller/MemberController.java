@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.istockage.common.mail.SendMail;
-import com.istockage.common.util.PasswordUtil;
 import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.service.MemberService;
@@ -251,7 +250,7 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 重設密碼 - submit
 	 * 
-	 * @param me_password_random
+	 * @param me_random
 	 *            String --> 驗證碼(原碼)
 	 * @param me_password_new
 	 *            String --> 新密碼(原碼)
@@ -264,7 +263,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
-	public String resetPasswordAction(@RequestParam String me_password_random, @RequestParam String me_password_new,
+	public String resetPasswordAction(@RequestParam String me_random, @RequestParam String me_password_new,
 			@RequestParam String me_password_new_again, SessionStatus sessionStatus, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -283,8 +282,8 @@ public class MemberController implements ControllerConstant {
 
 		MemberEntity memberEntity = memberService.selectByMe_email(me_email, null);
 
-		if (me_password_random == null || me_password_random.isEmpty() || me_password_new == null
-				|| me_password_new.isEmpty() || me_password_new_again == null || me_password_new_again.isEmpty()) {
+		if (me_random == null || me_random.isEmpty() || me_password_new == null || me_password_new.isEmpty()
+				|| me_password_new_again == null || me_password_new_again.isEmpty()) {
 
 			logger.error("(" + className + "." + methodName + ") 重設密碼失敗，資料未填");
 
@@ -302,11 +301,10 @@ public class MemberController implements ControllerConstant {
 
 			return MEMBER_RESET_PASSWORD_VIEW;
 
-		} else if (!memberEntity.getMe_password()
-				.equals(PasswordUtil.getHashedPassword(me_password_random, memberEntity.getMe_salt()))) {
+		} else if (!memberEntity.getMe_random().equals(me_random)) {
 
 			// 取得參數，並回填表單
-			model.addAttribute(MEMBER_PASSWORD_RANDOM, me_password_random);
+			model.addAttribute(MEMBER_RANDOM, me_random);
 			model.addAttribute(MEMBER_PASSWORD_NEW, me_password_new);
 			model.addAttribute(MEMBER_PASSWORD_NEW_AGAIN, me_password_new_again);
 			model.addAttribute(ERROR, MSG_MEMBER_RANDOM_MISTAKE);

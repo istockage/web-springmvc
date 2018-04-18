@@ -36,8 +36,8 @@
 		<div class="container form">
 			<form action="<c:url value='/secure/reset-password.do' />" method="post">
 				<div class="form-group">
-					<label for="me_password_random">驗證碼</label>
-					<input type="password" id="me_password_random" class="form-control" name="me_password_random" value="${me_password_random}" autofocus />
+					<label for="me_random">驗證碼</label>
+					<input type="password" id="me_random" class="form-control" name="me_random" value="${me_random}" autofocus />
 				</div>
 				<div class="form-group">
 					<label for="me_password_new">新密碼</label>

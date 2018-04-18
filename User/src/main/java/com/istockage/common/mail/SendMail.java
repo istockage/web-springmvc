@@ -61,15 +61,15 @@ public class SendMail implements MailContent {
 	 * 
 	 * @param memberEntity
 	 *            MemberEntity
-	 * @param me_password_random
+	 * @param me_random
 	 *            String --> 驗證碼
 	 */
-	public void forgetPasswordMail(MemberEntity memberEntity, String me_password_random) {
+	public void forgetPasswordMail(MemberEntity memberEntity, String me_random) {
 
 		String to = memberEntity.getMe_email();
 		String from = MAIL_FROM;
 		String subject = MAIL_SUBJECT_FORGET_PASSWORD;
-		String text = "您的驗證碼為: " + me_password_random + "。";
+		String text = "您的驗證碼為: " + me_random + "。";
 
 		sendMail(to, from, subject, text);
 	}

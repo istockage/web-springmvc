@@ -11,7 +11,7 @@ $(document).ready(function(){
 	$("form").validate({
 		rules: {
 			// secure/reset-password
-			me_password_random: {
+			me_random: {
 				required: true
 			},
 			me_password_new: {
@@ -54,7 +54,7 @@ $(document).ready(function(){
 		},
 		messages: {
 			// secure/reset-password
-			me_password_random: {
+			me_random: {
 				required: "這裡必須填入資料"
 			},
 			me_password_new: {

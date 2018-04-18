@@ -16,11 +16,11 @@ public interface ModelAttributeConstant {
 
 	public static final String MEMBER_PASSWORD = "me_password";
 
-	public static final String MEMBER_PASSWORD_RANDOM = "me_password_random";
-
 	public static final String MEMBER_PASSWORD_NEW = "me_password_new";
 
 	public static final String MEMBER_PASSWORD_NEW_AGAIN = "me_password_new_again";
+
+	public static final String MEMBER_RANDOM = "me_random";
 
 	public static final String MEMBER_ENTITY = "memberEntity";
 

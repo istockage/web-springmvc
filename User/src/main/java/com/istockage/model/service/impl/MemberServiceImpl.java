@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/18
+ * Modified: 2018/7/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -91,9 +91,14 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	public MemberEntity signUp(MemberEntity memberEntity) {
 
+		String me_no;
+		do {
+			me_no = MathUtil.getMe_no();
+		} while (memberDao.selectByMe_no(me_no, null) != null);
+
 		String me_salt = PasswordUtil.getSalt();
 
-		memberEntity.setMe_no(MathUtil.getMe_no());
+		memberEntity.setMe_no(me_no);
 		memberEntity.setMe_password(PasswordUtil.getHashedPassword(memberEntity.getMe_password(), me_salt));
 		memberEntity.setMe_salt(me_salt);
 		memberEntity.setMe_activity_code(MEMBER_ACTIVITY_CLOSE);

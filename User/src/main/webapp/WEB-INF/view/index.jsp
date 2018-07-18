@@ -5,14 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>iStockage</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
 </head>
 <body>
-	<h1>iStockage</h1>
-	<c:choose>
-		<c:when test="${not empty user}">
-			<a href="<%=request.getContextPath()%>/secure/sign-out.do">登出</a>
-		</c:when>
-	</c:choose>
+	<!-- header -->
+	<jsp:include page="header.jsp" />
 </body>
 </html>

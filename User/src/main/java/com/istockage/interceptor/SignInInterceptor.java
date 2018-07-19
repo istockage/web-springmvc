@@ -3,7 +3,7 @@
  * File: SignInInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/30
- * Modified: 2018/4/13
+ * Modified: 2018/7/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -49,7 +49,7 @@ public class SignInInterceptor implements HandlerInterceptor, ControllerConstant
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 已登入，使用者: " + user.getMe_no()
 					+ "，攔截: " + requestPath);
 
-			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_VIEW).forward(request, response);
+			response.sendRedirect(request.getContextPath() + SLASH + INDEX_VIEW);
 
 			return false;
 

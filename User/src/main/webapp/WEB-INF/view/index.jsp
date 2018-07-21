@@ -13,6 +13,9 @@
 		<!-- header -->
 		<jsp:include page="header.jsp" />
 		
+		<!-- aside -->
+		<jsp:include page="aside.jsp" />
+				
 	</div>
 	<!-- /.app -->
 </body>

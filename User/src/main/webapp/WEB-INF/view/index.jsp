@@ -7,7 +7,13 @@
 <title>iStockage</title>
 </head>
 <body>
-	<!-- header -->
-	<jsp:include page="header.jsp" />
+	<!-- .app -->
+	<div class="app">
+	
+		<!-- header -->
+		<jsp:include page="header.jsp" />
+		
+	</div>
+	<!-- /.app -->
 </body>
 </html>

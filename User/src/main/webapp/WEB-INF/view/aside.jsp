@@ -31,7 +31,7 @@
 						
 						<!-- .menu-item -->
 						<li class="menu-item has-child">
-							<a href="#" class="menu-link"><span class="menu-text">期貨</span></a>
+							<a href="#" class="menu-link"><span class="menu-icon oi oi-bar-chart"></span><span class="menu-text">期貨</span></a>
 							<!-- child menu -->
 							<ul class="menu">
 								<li class="menu-item"><a href="#" class="menu-link">新增交易</a></li>

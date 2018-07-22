@@ -10,7 +10,6 @@
 <script src="<%=request.getContextPath()%>/js/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<%=request.getContextPath()%>/js/popper/popper.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap-4.1.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="<%=request.getContextPath()%>/js/looper/main.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<!-- .app-header -->
@@ -30,7 +29,7 @@
 					<!-- .dropdown -->
 					<div class="dropdown">
 						<!-- .btn-account -->
-						<button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<button type="button" class="btn-account d-none d-md-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<span class="user-avatar"></span>
 						</button>
 						<!-- /.btn-account -->
@@ -38,6 +37,8 @@
 						<!-- .dropdown-menu -->
 						<div class="dropdown-menu">
 							<p class="dropdown-header">${user.me_email}</p>
+							<div class="dropdown-divider"></div>
+							<a href="#" class="dropdown-item">個人帳戶</a>
 							<div class="dropdown-divider"></div>
 							<a href="<%=request.getContextPath()%>/secure/sign-out.do" class="dropdown-item">登出</a>
 						</div>

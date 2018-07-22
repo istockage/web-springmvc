@@ -18,17 +18,24 @@
 					<!-- .menu -->
 					<ul class="menu">
 						<!-- .menu-item -->
-						<li class="menu-item has-active">
-							<a href="#" class="menu-link"><span class="menu-text">Dashboard</span></a>
-						</li>
-						<!-- /.menu-item -->
-						<!-- .menu-item -->
 						<li class="menu-item has-child">
-							<a href="#" class="menu-link"><span class="menu-text">Layouts</span></a>
+							<a href="#" class="menu-link"><span class="menu-text">股票</span></a>
 							<!-- child menu -->
 							<ul class="menu">
-								<li class="menu-item"><a href="#" class="menu-link">Blank Page</a></li>
-								<li class="menu-item"><a href="#" class="menu-link">Header no Search</a></li>
+								<li class="menu-item"><a href="#" class="menu-link">新增交易</a></li>
+								<li class="menu-item"><a href="#" class="menu-link">統計</a></li>
+							</ul>
+							<!-- /child menu -->
+						</li>
+						<!-- /.menu-item -->
+						
+						<!-- .menu-item -->
+						<li class="menu-item has-child">
+							<a href="#" class="menu-link"><span class="menu-text">期貨</span></a>
+							<!-- child menu -->
+							<ul class="menu">
+								<li class="menu-item"><a href="#" class="menu-link">新增交易</a></li>
+								<li class="menu-item"><a href="#" class="menu-link">統計</a></li>
 							</ul>
 							<!-- /child menu -->
 						</li>

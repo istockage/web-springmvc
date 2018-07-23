@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap-4.1.2.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/open-iconic/open-iconic.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/looper/main.min.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/custom.css" type="text/css" />
 <script src="<%=request.getContextPath()%>/js/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<%=request.getContextPath()%>/js/popper/popper.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap-4.1.2.min.js" type="text/javascript" charset="utf-8"></script>
@@ -19,7 +20,7 @@
 		<div class="top-bar">
 			<!-- .top-bar-brand -->
 			<div class="top-bar-brand">
-				<a href="<%=request.getContextPath()%>/index">iStockage</a>
+				<a href="<%=request.getContextPath()%>/index" style="font-size:20px">iStockage</a>
 			</div>
 			<!-- /.top-bar-brand -->
 			

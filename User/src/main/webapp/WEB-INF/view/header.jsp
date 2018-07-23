@@ -43,7 +43,8 @@
 							<p class="dropdown-header" style="line-height:8px">${user.me_email}</p>
 							<p class="dropdown-header" style="line-height:8px">ID: ${user.me_no}</p>
 							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item"><span class="dropdown-icon oi oi-person"></span>個人帳戶</a>
+							<a href="#" class="dropdown-item"><span class="dropdown-icon oi oi-person"></span>帳戶</a>
+							<a href="#" class="dropdown-item"><span class="dropdown-icon oi oi-cog"></span>設定</a>
 							<div class="dropdown-divider"></div>
 							<a href="<%=request.getContextPath()%>/secure/sign-out.do" class="dropdown-item"><span class="dropdown-icon oi oi-account-logout"></span>登出</a>
 						</div>

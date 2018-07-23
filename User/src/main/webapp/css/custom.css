@@ -3,3 +3,8 @@
 html, body {
 	font-family: 'Noto Sans TC', sans-serif;
 }
+
+.dropdown-item {
+	padding-top: .25rem !important;
+	padding-bottom: .25rem !important;
+}

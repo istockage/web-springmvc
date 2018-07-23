@@ -32,17 +32,20 @@
 					<div class="dropdown">
 						<!-- .btn-account -->
 						<button type="button" class="btn-account d-none d-md-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="user-avatar"></span>
+							<div class="tile tile-circle">
+                           		<span class="oi oi-person" style="top:7px"></span>
+                         	</div>
 						</button>
 						<!-- /.btn-account -->
 						<div class="dropdown-arrow dropdown-arrow-right"></div>
 						<!-- .dropdown-menu -->
 						<div class="dropdown-menu">
-							<p class="dropdown-header">${user.me_email}</p>
+							<p class="dropdown-header" style="line-height:8px">${user.me_email}</p>
+							<p class="dropdown-header" style="line-height:8px">ID: ${user.me_no}</p>
 							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item">個人帳戶</a>
+							<a href="#" class="dropdown-item"><span class="dropdown-icon oi oi-person"></span>個人帳戶</a>
 							<div class="dropdown-divider"></div>
-							<a href="<%=request.getContextPath()%>/secure/sign-out.do" class="dropdown-item">登出</a>
+							<a href="<%=request.getContextPath()%>/secure/sign-out.do" class="dropdown-item"><span class="dropdown-icon oi oi-account-logout"></span>登出</a>
 						</div>
 						<!-- /.dropdown-menu -->
 					</div>

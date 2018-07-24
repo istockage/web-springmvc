@@ -592,4 +592,15 @@ public class MemberController implements ControllerConstant {
 		return MEMBER_PROFILE_VIEW;
 	}
 
+	/**
+	 * 帳戶設定 - init
+	 * 
+	 * @return /WEB-INF/view/settings/account.jsp
+	 */
+	@RequestMapping(value = "/settings/account", method = RequestMethod.GET)
+	public String accountView() {
+
+		return MEMBER_ACCOUNT_VIEW;
+	}
+
 }

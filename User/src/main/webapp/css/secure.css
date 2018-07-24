@@ -1,5 +1,11 @@
 html, body {
+	margin: 0;
 	background-color: #fafafa;
+	font-size: 14px;
+}
+
+img {
+	width: 100%;
 }
 
 .top {

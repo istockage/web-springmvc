@@ -25,6 +25,8 @@ public interface PathConstant {
 
 	public static final String MEMBER_SIGN_UP_MAIL_AGAIN_VIEW = "secure/sign-up-mail-again";
 
+	public static final String MEMBER_PROFILE_VIEW = "member/profile";
+
 	public static final String ERROR_PAGE_NOT_FOUND_VIEW = "error/page-not-found";
 
 	// action

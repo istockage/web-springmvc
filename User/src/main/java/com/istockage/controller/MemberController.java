@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/4/18
+ * Modified: 2018/7/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -579,6 +579,17 @@ public class MemberController implements ControllerConstant {
 		MemberEntity memberEntity = memberService.selectByMe_email(me_email, null);
 
 		return (memberEntity != null) ? MSG_MEMBER_EMAIL_REPEAT : TRUE;
+	}
+
+	/**
+	 * 帳戶 - init
+	 * 
+	 * @return /WEB-INF/view/member/profile.jsp
+	 */
+	@RequestMapping(value = "/member/profile", method = RequestMethod.GET)
+	public String profileView() {
+
+		return MEMBER_PROFILE_VIEW;
 	}
 
 }

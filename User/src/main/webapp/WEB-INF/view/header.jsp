@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>header</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap-4.1.1-looper.min.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/pace/pace.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/open-iconic/open-iconic.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/looper/main.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
@@ -13,6 +14,7 @@
 <script src="<%=request.getContextPath()%>/js/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<%=request.getContextPath()%>/js/popper/popper.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap-4.1.1-looper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=request.getContextPath()%>/js/pace/pace.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<!-- .app-header -->

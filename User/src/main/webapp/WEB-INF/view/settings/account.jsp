@@ -3,7 +3,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>帳戶 - iStockage</title>
+<title>帳戶設定 - iStockage</title>
+<%@include file="../head.jsp"%>
 </head>
 <body>
 	<!-- .app -->

@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>iStockage</title>
+<%@include file="head.jsp"%>
 </head>
 <body>
 	<!-- .app -->

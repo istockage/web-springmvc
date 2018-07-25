@@ -11,9 +11,11 @@
 	
 		<!-- header -->
 		<jsp:include page="header.jsp" />
+		<!-- /header -->
 		
 		<!-- aside -->
 		<jsp:include page="aside.jsp" />
+		<!-- /aside -->
 		
 	</div>
 	<!-- /.app -->

@@ -11,9 +11,13 @@
 	
 		<!-- header -->
 		<jsp:include page="../header.jsp" />
+		<!-- /header -->
 		
 		<!-- aside -->
 		<jsp:include page="../aside.jsp" />
+		<!-- /aside -->
+		
+		<!-- main -->
 		
 		<!-- .app-main -->
 		<main class="app-main">
@@ -43,6 +47,8 @@
 			<!-- /.wrapper -->
 		</main>
 		<!-- /.app-main -->
+		
+		<!-- /main -->
 		
 	</div>
 	<!-- /.app -->

@@ -15,7 +15,7 @@
 		<!-- /header -->
 		
 		<!-- aside -->
-		<jsp:include page="aside.jsp" />
+		<%@include file="aside.jsp"%>
 		<!-- /aside -->
 		
 	</div>

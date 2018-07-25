@@ -11,11 +11,11 @@
 	<div class="app">
 	
 		<!-- header -->
-		<%@include file="../header.jsp"%>
+		<jsp:include page="../header.jsp" />
 		<!-- /header -->
 		
 		<!-- aside -->
-		<jsp:include page="../aside.jsp" />
+		<%@include file="../aside.jsp"%>
 		<!-- /aside -->
 		
 		<!-- main -->

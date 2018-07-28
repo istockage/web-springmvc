@@ -65,21 +65,21 @@
 													<legend>基本資料</legend>
 													<!-- .form-group -->
 													<div class="form-group">
-														<label for="tf1">姓</label>
-														<input type="text" id="tf1" class="form-control" />
+														<label for="me_lastname">姓</label>
+														<input type="text" id="me_lastname" class="form-control" />
 													</div>
 													<!-- /.form-group -->
 													<!-- .form-group -->
 													<div class="form-group">
-														<label for="tf2">名</label>
-														<input type="text" id="tf2" class="form-control" />
+														<label for="me_firstname">名</label>
+														<input type="text" id="me_firstname" class="form-control" />
 													</div>
 													<!-- /.form-group -->
 													<!-- .form-group -->
 													<div class="form-group">
-														<label for="tf3">信箱</label>
-														<input type="email" id="tf3" class="form-control" aria-describedby="tf1Help" placeholder="">
-														<small id="tf1Help" class="form-text text-muted">將被變更為您的登入帳號。</small>
+														<label for="me_email">信箱</label>
+														<input type="email" id="me_email" class="form-control" aria-describedby="me_email-help" placeholder="">
+														<small id="me_email-help" class="form-text text-muted">將被變更為您的登入帳號。</small>
 													</div>
 													<!-- /.form-group -->
 												</fieldset>

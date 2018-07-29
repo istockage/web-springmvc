@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/7/24
+ * Modified: 2018/7/29
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -77,12 +77,9 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 登入 - submit
 	 * 
-	 * @param me_email
-	 *            String --> 會員信箱
-	 * @param me_password
-	 *            String --> 會員密碼(原碼)
-	 * @param model
-	 *            Model
+	 * @param me_email String --> 會員信箱
+	 * @param me_password String --> 會員密碼(原碼)
+	 * @param model Model
 	 * @return /WEB-INF/view/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
@@ -184,10 +181,8 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 忘記密碼 - submit
 	 * 
-	 * @param me_email
-	 *            String --> 會員信箱
-	 * @param model
-	 *            Model
+	 * @param me_email String --> 會員信箱
+	 * @param model Model
 	 * @return /WEB-INF/view/secure/reset-password.jsp
 	 */
 	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
@@ -250,16 +245,11 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 重設密碼 - submit
 	 * 
-	 * @param me_random
-	 *            String --> 驗證碼(原碼)
-	 * @param me_password_new
-	 *            String --> 新密碼(原碼)
-	 * @param me_password_new_again
-	 *            String --> 重複新密碼(原碼)
-	 * @param sessionStatus
-	 *            SessionStatus
-	 * @param model
-	 *            Model
+	 * @param me_random String --> 驗證碼(原碼)
+	 * @param me_password_new String --> 新密碼(原碼)
+	 * @param me_password_new_again String --> 重複新密碼(原碼)
+	 * @param sessionStatus SessionStatus
+	 * @param model Model
 	 * @return /WEB-INF/view/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
@@ -337,8 +327,7 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 登出 - submit
 	 * 
-	 * @param sessionStatus
-	 *            SessionStatus
+	 * @param sessionStatus SessionStatus
 	 * @return /WEB-INF/view/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-out.do", method = RequestMethod.GET)
@@ -362,8 +351,7 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 註冊 - init
 	 * 
-	 * @param model
-	 *            Model
+	 * @param model Model
 	 * @return /WEB-INF/view/secure/sign-up.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up", method = RequestMethod.GET)
@@ -378,12 +366,9 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 註冊 - submit
 	 * 
-	 * @param me_password_again
-	 *            String --> 重複密碼(原碼)
-	 * @param memberEntity
-	 *            MemberEntity --> form-backing object
-	 * @param bindingResult
-	 *            BindingResult
+	 * @param me_password_again String --> 重複密碼(原碼)
+	 * @param memberEntity MemberEntity --> form-backing object
+	 * @param bindingResult BindingResult
 	 * @return /WEB-INF/view/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up.do", method = RequestMethod.POST)
@@ -438,8 +423,7 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 發送確認信 - submit
 	 * 
-	 * @param model
-	 *            Model
+	 * @param model Model
 	 * @return /WEB-INF/view/secure/sign-up-mail.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-mail.do", method = RequestMethod.POST)
@@ -486,10 +470,8 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 重新發送確認信 - submit
 	 * 
-	 * @param me_email
-	 *            String --> 會員信箱
-	 * @param model
-	 *            Model
+	 * @param me_email String --> 會員信箱
+	 * @param model Model
 	 * @return /WEB-INF/view/secure/sign-up-mail-again.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-mail-again.do", method = RequestMethod.POST)
@@ -537,8 +519,7 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 啟用帳號 - submit
 	 * 
-	 * @param me_no
-	 *            String --> 會員編號
+	 * @param me_no String --> 會員編號
 	 * @return /WEB-INF/view/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-activity.do", method = RequestMethod.GET)
@@ -568,8 +549,7 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 信箱重複驗證 (sign-up) - AJAX
 	 * 
-	 * @param me_email
-	 *            String --> 會員信箱
+	 * @param me_email String --> 會員信箱
 	 * @return String
 	 */
 	@RequestMapping(value = "/secure/sign-up-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")

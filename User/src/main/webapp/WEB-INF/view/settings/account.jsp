@@ -60,7 +60,7 @@
 										<!-- .card-body -->
 										<div class="card-body">
 											<!-- .form -->
-											<form:form modelAttribute="user" action="/User/settings/account.do" method="post">
+											<form:form modelAttribute="user" action="/User/settings/account/info.do" method="post">
 												<!-- .fieldset -->
 												<fieldset>
 													<legend>基本資料</legend>

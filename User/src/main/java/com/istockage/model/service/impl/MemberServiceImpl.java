@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/7/4
+ * Modified: 2018/7/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,10 +46,8 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 登入
 	 * 
-	 * @param me_email
-	 *            String --> 會員信箱
-	 * @param me_password
-	 *            String --> 會員密碼(原碼)
+	 * @param me_email String --> 會員信箱
+	 * @param me_password String --> 會員密碼(原碼)
 	 * @return null / null / MemberEntity
 	 */
 	@Override
@@ -83,8 +81,7 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 註冊
 	 * 
-	 * @param memberEntity
-	 *            MemberEntity
+	 * @param memberEntity MemberEntity
 	 * @return MemberEntity
 	 */
 	@Override
@@ -114,10 +111,8 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 會員編號搜尋
 	 * 
-	 * @param me_no
-	 *            String --> 會員編號
-	 * @param me_activity_code
-	 *            Byte --> 啟用狀態
+	 * @param me_no String --> 會員編號
+	 * @param me_activity_code Byte --> 啟用狀態
 	 * @return null / MemberEntity
 	 */
 	@Override
@@ -130,10 +125,8 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 會員信箱搜尋
 	 * 
-	 * @param me_email
-	 *            String --> 會員信箱
-	 * @param me_activity_code
-	 *            Byte --> 啟用狀態
+	 * @param me_email String --> 會員信箱
+	 * @param me_activity_code Byte --> 啟用狀態
 	 * @return null / MemberEntity
 	 */
 	@Override
@@ -144,12 +137,27 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	/**
+	 * 修改資料
+	 * 
+	 * @param memberEntity MemberEntity
+	 * @return MemberEntity
+	 */
+	@Override
+	@Transactional
+	public MemberEntity update(MemberEntity memberEntity) {
+
+		memberEntity.setMe_lastname(memberEntity.getMe_lastname().trim());
+		memberEntity.setMe_firstname(memberEntity.getMe_firstname().trim());
+		memberEntity.setMe_email(memberEntity.getMe_email().trim());
+
+		return memberDao.update(memberEntity);
+	}
+
+	/**
 	 * 修改密碼
 	 * 
-	 * @param memberEntity
-	 *            MemberEntity
-	 * @param me_password_new
-	 *            String --> 新密碼(原碼)
+	 * @param memberEntity MemberEntity
+	 * @param me_password_new String --> 新密碼(原碼)
 	 * @return MemberEntity
 	 */
 	@Override
@@ -165,8 +173,7 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 修改驗證碼
 	 * 
-	 * @param memberEntity
-	 *            MemberEntity
+	 * @param memberEntity MemberEntity
 	 * @return MemberEntity
 	 */
 	@Override
@@ -185,8 +192,7 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 啟用帳號
 	 * 
-	 * @param me_no
-	 *            String --> 會員編號
+	 * @param me_no String --> 會員編號
 	 * @throws PageNotFoundException
 	 * @return MemberEntity
 	 */

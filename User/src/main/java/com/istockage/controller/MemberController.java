@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/7/29
+ * Modified: 2018/7/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -573,12 +574,32 @@ public class MemberController implements ControllerConstant {
 	}
 
 	/**
-	 * 帳戶設定 - init
+	 * 個人帳戶 - init
 	 * 
 	 * @return /WEB-INF/view/settings/account.jsp
 	 */
 	@RequestMapping(value = "/settings/account", method = RequestMethod.GET)
 	public String accountView() {
+
+		return MEMBER_ACCOUNT_VIEW;
+	}
+
+	/**
+	 * 個人帳戶(基本資料) - submit
+	 * 
+	 * @param user MemberEntity --> form-backing object
+	 * @return /WEB-INF/view/settings/account.jsp
+	 */
+	@RequestMapping(value = "/settings/account/info.do", method = RequestMethod.POST)
+	public String accountInfoAction(@ModelAttribute(USER) MemberEntity user) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		memberService.update(user);
+
+		request.setAttribute(MEMBER_LOG_KEY, OK);
+
+		logger.info("(" + className + "." + methodName + ") 基本資料修改成功");
 
 		return MEMBER_ACCOUNT_VIEW;
 	}

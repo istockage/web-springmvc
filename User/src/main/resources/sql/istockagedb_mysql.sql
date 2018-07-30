@@ -157,4 +157,5 @@ insert into user_path (up_pc_id, up_name, up_path) values (1, '發送確認信',
 insert into user_path (up_pc_id, up_name, up_path) values (2, '發送確認信', 'secure/sign-up-mail.do');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '重新發送確認信', 'secure/sign-up-mail-again');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '重新發送確認信', 'secure/sign-up-mail-again.do');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '帳戶設定', 'settings/account');
+insert into user_path (up_pc_id, up_name, up_path) values (1, '個人帳戶', 'settings/account');
+insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(基本資料)', 'settings/account/info.do');

@@ -3,7 +3,7 @@
  * File: MemberDaoImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/12
+ * Modified: 2018/7/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -37,10 +37,8 @@ public class MemberDaoImpl implements MemberDao {
 	/**
 	 * 會員編號搜尋
 	 * 
-	 * @param me_no
-	 *            String --> 會員編號
-	 * @param me_activity_code
-	 *            Byte --> 啟用狀態
+	 * @param me_no String --> 會員編號
+	 * @param me_activity_code Byte --> 啟用狀態
 	 * @return null / MemberEntity
 	 */
 	@Override
@@ -62,10 +60,8 @@ public class MemberDaoImpl implements MemberDao {
 	/**
 	 * 會員信箱搜尋
 	 * 
-	 * @param me_email
-	 *            String --> 會員信箱
-	 * @param me_activity_code
-	 *            Byte --> 啟用狀態
+	 * @param me_email String --> 會員信箱
+	 * @param me_activity_code Byte --> 啟用狀態
 	 * @return null / MemberEntity
 	 */
 	@Override
@@ -88,8 +84,7 @@ public class MemberDaoImpl implements MemberDao {
 	/**
 	 * 新增會員
 	 * 
-	 * @param memberEntity
-	 *            MemberEntity
+	 * @param memberEntity MemberEntity
 	 * @return MemberEntity
 	 */
 	@Override
@@ -103,8 +98,7 @@ public class MemberDaoImpl implements MemberDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param memberEntity
-	 *            MemberEntity
+	 * @param memberEntity MemberEntity
 	 * @return MemberEntity
 	 */
 	@Override

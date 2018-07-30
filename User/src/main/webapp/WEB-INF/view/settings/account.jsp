@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -59,26 +60,26 @@
 										<!-- .card-body -->
 										<div class="card-body">
 											<!-- .form -->
-											<form>
+											<form:form modelAttribute="user" action="/User/settings/account.do" method="post">
 												<!-- .fieldset -->
 												<fieldset>
 													<legend>基本資料</legend>
-													<!-- .form-group -->
-													<div class="form-group">
-														<label for="me_lastname">姓</label>
-														<input type="text" id="me_lastname" class="form-control" />
+													<!-- .form-row -->
+													<div class="form-row">
+														<div class="col-md-6 mb-3">
+															<form:label path="me_lastname">姓</form:label>
+															<form:input path="me_lastname" cssClass="form-control" />
+														</div>
+														<div class="col-md-6 mb-3">
+															<form:label path="me_firstname">名</form:label>
+															<form:input path="me_firstname" cssClass="form-control" />
+														</div>
 													</div>
-													<!-- /.form-group -->
+													<!-- /.form-row -->
 													<!-- .form-group -->
 													<div class="form-group">
-														<label for="me_firstname">名</label>
-														<input type="text" id="me_firstname" class="form-control" />
-													</div>
-													<!-- /.form-group -->
-													<!-- .form-group -->
-													<div class="form-group">
-														<label for="me_email">信箱</label>
-														<input type="email" id="me_email" class="form-control" aria-describedby="me_email-help" placeholder="">
+														<form:label path="me_email">信箱</form:label>
+														<form:input path="me_email" cssClass="form-control" aria-describedby="me_email-help" />
 														<small id="me_email-help" class="form-text text-muted">將被變更為您的登入帳號。</small>
 													</div>
 													<!-- /.form-group -->
@@ -89,8 +90,9 @@
 													<button type="submit" class="btn btn-primary ml-auto">儲存</button>
 												</div>
 												<!-- /.form-actions -->
-											</form>
+											</form:form>
 											<!-- /.form -->
+											<hr />
 											<!-- .form -->
 											<form>
 												<!-- .fieldset -->

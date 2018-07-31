@@ -12,6 +12,19 @@
 		
 		<!-- .top-bar-list -->
 		<div class="top-bar-list">
+		
+			<!-- .top-bar-item -->
+			<div class="top-bar-item px-2 d-md-none d-lg-none d-xl-none">
+				<!-- toggle menu -->
+				<button class="hamburger hamburger-squeeze" type="button" data-toggle="aside" aria-label="Menu" aria-controls="navigation">
+				<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+				</span>
+				</button>
+				<!-- /toggle menu -->
+			</div>
+			<!-- /.top-bar-item -->
+			
 			<!-- .top-bar-item -->
 			<div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
 				<!-- .dropdown -->
@@ -39,6 +52,7 @@
 				<!-- /.dropdown -->
 			</div>
 			<!-- /.top-bar-item -->
+			
 		</div>
 		<!-- /.top-bar-list -->
 	</div>

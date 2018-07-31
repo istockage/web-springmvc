@@ -1,7 +1,8 @@
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap-4.1.1-looper.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/pace/pace.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/open-iconic/open-iconic.min.css" type="text/css" />
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/looper/main.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/custom.css" type="text/css" />

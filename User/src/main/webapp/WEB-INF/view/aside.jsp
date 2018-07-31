@@ -20,6 +20,7 @@
 			<div id="dropdown-aside" class="dropdown-aside collapse">
 				<!-- dropdown-items -->
 				<div class="pb-3">
+					<div class="dropdown-divider"></div>
 					<p class="dropdown-header" style="line-height:8px">${user.me_email}</p>
 					<p class="dropdown-header" style="line-height:8px">ID: ${user.me_no}</p>
 					<div class="dropdown-divider"></div>

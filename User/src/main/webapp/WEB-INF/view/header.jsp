@@ -4,6 +4,7 @@
 <header class="app-header">
 	<!-- .top-bar -->
 	<div class="top-bar">
+	
 		<!-- .top-bar-brand -->
 		<div class="top-bar-brand">
 			<a href="<%=request.getContextPath()%>/index" style="font-size:20px">iStockage</a>
@@ -17,9 +18,9 @@
 			<div class="top-bar-item px-2 d-md-none d-lg-none d-xl-none">
 				<!-- toggle menu -->
 				<button class="hamburger hamburger-squeeze" type="button" data-toggle="aside" aria-label="Menu" aria-controls="navigation">
-				<span class="hamburger-box">
-				<span class="hamburger-inner"></span>
-				</span>
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
 				</button>
 				<!-- /toggle menu -->
 			</div>
@@ -31,9 +32,9 @@
 				<div class="dropdown">
 					<!-- .btn-account -->
 					<button type="button" class="btn-account d-none d-md-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<div class="tile tile-circle">
-                          		<span class="oi oi-person" style="top:7px"></span>
-                        	</div>
+						<span class="tile tile-circle">
+							<span class="oi oi-person" style="top:7px"></span>
+						</span>
 					</button>
 					<!-- /.btn-account -->
 					<div class="dropdown-arrow dropdown-arrow-right"></div>
@@ -55,6 +56,7 @@
 			
 		</div>
 		<!-- /.top-bar-list -->
+		
 	</div>
 	<!-- /.top-bar -->
 </header>

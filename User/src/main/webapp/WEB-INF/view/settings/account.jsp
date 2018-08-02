@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -80,7 +81,7 @@
 													<div class="form-group">
 														<form:label path="me_email">信箱</form:label>
 														<form:input path="me_email" cssClass="form-control" aria-describedby="me_email-help" />
-														<small id="me_email-help" class="form-text text-muted">將被變更為您的登入帳號。</small>
+														<small id="me_email-help" class="form-text text-muted">將被變更為您的登入信箱。</small>
 													</div>
 													<!-- /.form-group -->
 												</fieldset>
@@ -94,26 +95,26 @@
 											<!-- /.form -->
 											<hr />
 											<!-- .form -->
-											<form>
+											<form action="<c:url value='/settings/account/change-password.do' />" method="post">
 												<!-- .fieldset -->
 												<fieldset>
 													<legend>密碼</legend>
 													<!-- .form-group -->
 													<div class="form-group">
-														<label for="tf4">舊密碼</label>
-														<input type="password" id="tf4" class="form-control" />
+														<label for="me_password_old">舊密碼</label>
+														<input type="password" id="me_password_old" class="form-control" name="me_password_old" />
 													</div>
 													<!-- /.form-group -->
 													<!-- .form-group -->
 													<div class="form-group">
-														<label for="tf5">新密碼</label>
-														<input type="password" id="tf5" class="form-control" />
+														<label for="me_password_new">新密碼</label>
+														<input type="password" id="me_password_new" class="form-control" name="me_password_new" />
 													</div>
 													<!-- /.form-group -->
 													<!-- .form-group -->
 													<div class="form-group">
-														<label for="tf6">確認新密碼</label>
-														<input type="password" id="tf6" class="form-control" />
+														<label for="me_password_new_again">確認密碼</label>
+														<input type="password" id="me_password_new_again" class="form-control" name="me_password_new_again" />
 													</div>
 													<!-- /.form-group -->
 												</fieldset>

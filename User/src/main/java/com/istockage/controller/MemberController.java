@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/7/31
+ * Modified: 2018/8/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -600,6 +600,21 @@ public class MemberController implements ControllerConstant {
 		request.setAttribute(MEMBER_LOG_KEY, OK);
 
 		logger.info("(" + className + "." + methodName + ") 基本資料修改成功");
+
+		return MEMBER_ACCOUNT_VIEW;
+	}
+
+	/**
+	 * 個人帳戶(變更密碼) - submit
+	 * 
+	 * @param me_password String --> 舊密碼(原碼)
+	 * @param me_password_new String --> 新密碼(原碼)
+	 * @param me_password_new_again String --> 重複新密碼(原碼)
+	 * @return /WEB-INF/view/settings/account.jsp
+	 */
+	@RequestMapping(value = "/settings/account/change-password.do", method = RequestMethod.POST)
+	public String accountChangePasswordAction(@RequestParam String me_password, @RequestParam String me_password_new,
+			@RequestParam String me_password_new_again) {
 
 		return MEMBER_ACCOUNT_VIEW;
 	}

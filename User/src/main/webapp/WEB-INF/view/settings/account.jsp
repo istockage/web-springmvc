@@ -101,8 +101,8 @@
 													<legend>密碼</legend>
 													<!-- .form-group -->
 													<div class="form-group">
-														<label for="me_password_old">舊密碼</label>
-														<input type="password" id="me_password_old" class="form-control" name="me_password_old" />
+														<label for="me_password">舊密碼</label>
+														<input type="password" id="me_password" class="form-control" name="me_password" />
 													</div>
 													<!-- /.form-group -->
 													<!-- .form-group -->

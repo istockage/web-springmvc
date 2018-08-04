@@ -268,7 +268,7 @@ public class MemberController implements ControllerConstant {
 
 			model.addAttribute(ERROR, MSG_MEMBER_RESET_PASSWORD_TIMEOUT);
 
-			logger.error("(" + className + "." + methodName + ") 重設密碼失敗，操作逾時");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，操作逾時");
 
 			return MEMBER_FORGET_PASSWORD_VIEW;
 		}
@@ -278,19 +278,19 @@ public class MemberController implements ControllerConstant {
 		if (me_random == null || me_random.isEmpty() || me_password_new == null || me_password_new.isEmpty()
 				|| me_password_new_again == null || me_password_new_again.isEmpty()) {
 
-			logger.error("(" + className + "." + methodName + ") 重設密碼失敗，資料未填");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，資料未填");
 
 			return MEMBER_RESET_PASSWORD_VIEW;
 
 		} else if (!me_password_new.matches("^[\\S]{8,32}$")) {
 
-			logger.error("(" + className + "." + methodName + ") 重設密碼失敗，密碼格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，密碼格式錯誤");
 
 			return MEMBER_RESET_PASSWORD_VIEW;
 
 		} else if (!me_password_new.equals(me_password_new_again)) {
 
-			logger.error("(" + className + "." + methodName + ") 重設密碼失敗，新密碼重複錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，新密碼重複錯誤");
 
 			return MEMBER_RESET_PASSWORD_VIEW;
 
@@ -302,7 +302,7 @@ public class MemberController implements ControllerConstant {
 			model.addAttribute(MEMBER_PASSWORD_NEW_AGAIN, me_password_new_again);
 			model.addAttribute(ERROR, MSG_MEMBER_RANDOM_MISTAKE);
 
-			logger.error("(" + className + "." + methodName + ") 重設密碼失敗，驗證碼錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，驗證碼錯誤");
 
 			return MEMBER_RESET_PASSWORD_VIEW;
 
@@ -321,7 +321,7 @@ public class MemberController implements ControllerConstant {
 			request.setAttribute(MEMBER_ENTITY, memberEntity);
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
-			logger.info("(" + className + "." + methodName + ") 重設密碼成功");
+			logger.info("(" + className + "." + methodName + ") 密碼重設成功");
 
 			return MEMBER_SIGN_IN_VIEW;
 		}

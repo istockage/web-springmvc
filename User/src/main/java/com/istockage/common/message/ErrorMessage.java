@@ -28,4 +28,7 @@ public interface ErrorMessage {
 	// secure/sign-up-mail
 	public static final String MSG_MEMBER_SIGN_UP_MAIL_TIMEOUT = "操作逾時，請重新輸入您的信箱。";
 
+	// settings/account
+	public static final String MSG_MEMBER_PASSWORD_MISTAKE = "密碼錯誤。";
+
 }

@@ -10,4 +10,7 @@ public interface SuccessMessage {
 	// secure/reset-password
 	public static final String MSG_MEMBER_RESET_PASSWORD_SUCCESS = "密碼重設成功，請以新密碼登入。";
 
+	// settings/account
+	public static final String MSG_MEMBER_CHANGE_PASSWORD_SUCCESS = "密碼變更成功，下次請以新密碼登入。";
+
 }

@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/8/3
+ * Modified: 2018/8/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.istockage.common.mail.SendMail;
+import com.istockage.common.util.PasswordUtil;
 import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.service.MemberService;
@@ -601,22 +603,69 @@ public class MemberController implements ControllerConstant {
 
 		logger.info("(" + className + "." + methodName + ") 基本資料修改成功");
 
-		return MEMBER_ACCOUNT_VIEW;
+		return REDIRECT + MEMBER_ACCOUNT_VIEW;
 	}
 
 	/**
 	 * 個人帳戶(變更密碼) - submit
 	 * 
+	 * @param user MemberEntity --> SessionAttribute
 	 * @param me_password String --> 舊密碼(原碼)
 	 * @param me_password_new String --> 新密碼(原碼)
 	 * @param me_password_new_again String --> 重複新密碼(原碼)
+	 * @param model Model
 	 * @return /WEB-INF/view/settings/account.jsp
 	 */
 	@RequestMapping(value = "/settings/account/change-password.do", method = RequestMethod.POST)
-	public String accountChangePasswordAction(@RequestParam String me_password, @RequestParam String me_password_new,
-			@RequestParam String me_password_new_again) {
+	public String accountChangePasswordAction(@SessionAttribute(USER) MemberEntity user,
+			@RequestParam String me_password, @RequestParam String me_password_new,
+			@RequestParam String me_password_new_again, Model model) {
 
-		return MEMBER_ACCOUNT_VIEW;
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		if (me_password == null || me_password.isEmpty() || me_password_new == null || me_password_new.isEmpty()
+				|| me_password_new_again == null || me_password_new_again.isEmpty()) {
+
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，資料未填");
+
+			return MEMBER_ACCOUNT_VIEW;
+
+		} else if (!me_password_new.matches("^[\\S]{8,32}$")) {
+
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，密碼格式錯誤");
+
+			return MEMBER_ACCOUNT_VIEW;
+
+		} else if (!me_password_new.equals(me_password_new_again)) {
+
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，新密碼重複錯誤");
+
+			return MEMBER_ACCOUNT_VIEW;
+
+		} else if (!PasswordUtil.getHashedPassword(me_password, user.getMe_salt()).equals(user.getMe_password())) {
+
+			// 取得參數，並回填表單
+			model.addAttribute(MEMBER_PASSWORD, me_password);
+			model.addAttribute(MEMBER_PASSWORD_NEW, me_password_new);
+			model.addAttribute(MEMBER_PASSWORD_NEW_AGAIN, me_password_new_again);
+			model.addAttribute(ERROR, MSG_MEMBER_PASSWORD_MISTAKE);
+
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，密碼錯誤");
+
+			return MEMBER_ACCOUNT_VIEW;
+
+		} else {
+
+			memberService.updateMe_password(user, me_password_new);
+
+			model.addAttribute(SUCCESS, MSG_MEMBER_CHANGE_PASSWORD_SUCCESS);
+
+			request.setAttribute(MEMBER_LOG_KEY, OK);
+
+			logger.info("(" + className + "." + methodName + ") 密碼變更成功");
+
+			return REDIRECT + MEMBER_ACCOUNT_VIEW;
+		}
 	}
 
 }

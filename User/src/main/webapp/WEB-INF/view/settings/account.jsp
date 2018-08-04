@@ -98,23 +98,23 @@
 											<form action="<c:url value='/settings/account/change-password.do' />" method="post">
 												<!-- .fieldset -->
 												<fieldset>
-													<legend>密碼</legend>
+													<legend>變更密碼</legend>
 													<!-- .form-group -->
 													<div class="form-group">
 														<label for="me_password">舊密碼</label>
-														<input type="password" id="me_password" class="form-control" name="me_password" />
+														<input type="password" id="me_password" class="form-control" name="me_password" value="${me_password}" />
 													</div>
 													<!-- /.form-group -->
 													<!-- .form-group -->
 													<div class="form-group">
 														<label for="me_password_new">新密碼</label>
-														<input type="password" id="me_password_new" class="form-control" name="me_password_new" />
+														<input type="password" id="me_password_new" class="form-control" name="me_password_new" value="${me_password_new}" />
 													</div>
 													<!-- /.form-group -->
 													<!-- .form-group -->
 													<div class="form-group">
 														<label for="me_password_new_again">確認密碼</label>
-														<input type="password" id="me_password_new_again" class="form-control" name="me_password_new_again" />
+														<input type="password" id="me_password_new_again" class="form-control" name="me_password_new_again" value="${me_password_new_again}" />
 													</div>
 													<!-- /.form-group -->
 												</fieldset>

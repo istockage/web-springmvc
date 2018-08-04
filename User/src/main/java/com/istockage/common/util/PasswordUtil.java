@@ -20,8 +20,7 @@ public class PasswordUtil {
 	/**
 	 * 轉換為 MD5
 	 * 
-	 * @param str
-	 *            String --> 原始字串
+	 * @param str String --> 原始字串
 	 * @return MD5字串
 	 */
 	public static String getMD5(String str) {
@@ -48,10 +47,8 @@ public class PasswordUtil {
 	/**
 	 * 製造雜湊密碼
 	 * 
-	 * @param password
-	 *            String --> 密碼(原碼)
-	 * @param salt
-	 *            String
+	 * @param password String --> 密碼(原碼)
+	 * @param salt String
 	 * @return MD5雜湊密碼
 	 */
 	public static String getHashedPassword(String password, String salt) {

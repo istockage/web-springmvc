@@ -19,14 +19,10 @@ public class SendMail implements MailContent {
 	/**
 	 * 寄送 Mail
 	 * 
-	 * @param to
-	 *            String --> 收件者
-	 * @param from
-	 *            String --> 寄件者
-	 * @param subject
-	 *            String --> 信件主旨
-	 * @param text
-	 *            String --> 信件內容
+	 * @param to String --> 收件者
+	 * @param from String --> 寄件者
+	 * @param subject String --> 信件主旨
+	 * @param text String --> 信件內容
 	 */
 	private void sendMail(String to, String from, String subject, String text) {
 
@@ -43,8 +39,7 @@ public class SendMail implements MailContent {
 	/**
 	 * 啟用帳號 Mail
 	 * 
-	 * @param memberEntity
-	 *            MemberEntity
+	 * @param memberEntity MemberEntity
 	 */
 	public void signUpActivityMail(MemberEntity memberEntity) {
 
@@ -59,10 +54,8 @@ public class SendMail implements MailContent {
 	/**
 	 * 忘記密碼 Mail
 	 * 
-	 * @param memberEntity
-	 *            MemberEntity
-	 * @param me_random
-	 *            String --> 驗證碼
+	 * @param memberEntity MemberEntity
+	 * @param me_random String --> 驗證碼
 	 */
 	public void forgetPasswordMail(MemberEntity memberEntity, String me_random) {
 

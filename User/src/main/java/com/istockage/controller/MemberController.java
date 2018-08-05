@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/8/4
+ * Modified: 2018/8/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -664,7 +664,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.info("(" + className + "." + methodName + ") 密碼變更成功");
 
-			return REDIRECT + MEMBER_ACCOUNT_VIEW;
+			return MEMBER_ACCOUNT_VIEW;
 		}
 	}
 

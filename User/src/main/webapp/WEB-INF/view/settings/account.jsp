@@ -56,6 +56,22 @@
 								
 								<!-- grid column -->
 								<div class="col-lg-9">
+								
+									<c:if test="${not empty error}">
+										<div class="alert alert-danger alert-dismissible fade show">
+											<button type="button" class="close" data-dismiss="alert">×</button>
+											<strong>密碼變更失敗</strong>
+											<div>${error}</div>
+										</div>
+									</c:if>
+									<c:if test="${not empty success}">
+										<div class="alert alert-success alert-dismissible fade show">
+											<button type="button" class="close" data-dismiss="alert">×</button>
+											<strong>密碼變更成功</strong>
+											<div>${success}</div>
+										</div>
+									</c:if>
+								
 									<!-- .card -->
 									<div class="card card-fluid">
 										<!-- .card-body -->

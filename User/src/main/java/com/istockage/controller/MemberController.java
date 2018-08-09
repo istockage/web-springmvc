@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/8/5
+ * Modified: 2018/8/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -578,10 +578,14 @@ public class MemberController implements ControllerConstant {
 	/**
 	 * 個人帳戶 - init
 	 * 
+	 * @param user MemberEntity --> SessionAttribute
+	 * @param model Model
 	 * @return /WEB-INF/view/settings/account.jsp
 	 */
 	@RequestMapping(value = "/settings/account", method = RequestMethod.GET)
-	public String accountView() {
+	public String accountView(@SessionAttribute(USER) MemberEntity user, Model model) {
+
+		model.addAttribute(USER, memberService.selectByMe_id(user.getMe_id()));
 
 		return MEMBER_ACCOUNT_VIEW;
 	}
@@ -642,7 +646,8 @@ public class MemberController implements ControllerConstant {
 
 			return MEMBER_ACCOUNT_VIEW;
 
-		} else if (!PasswordUtil.getHashedPassword(me_password, user.getMe_salt()).equals(user.getMe_password())) {
+		} else if (!PasswordUtil.getHashedPassword(me_password, user.getMe_salt())
+				.equals(memberService.selectByMe_id(user.getMe_id()).getMe_password())) {
 
 			// 取得參數，並回填表單
 			model.addAttribute(MEMBER_PASSWORD, me_password);

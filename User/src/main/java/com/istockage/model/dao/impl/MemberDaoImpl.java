@@ -3,7 +3,7 @@
  * File: MemberDaoImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/7/31
+ * Modified: 2018/8/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,6 +33,18 @@ public class MemberDaoImpl implements MemberDao {
 	 */
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
+
+	/**
+	 * 會員流水號搜尋
+	 * 
+	 * @param me_id Integer --> 會員流水號
+	 * @return MemberEntity
+	 */
+	@Override
+	public MemberEntity selectByMe_id(Integer me_id) {
+
+		return hibernateTemplate.get(MemberEntity.class, me_id);
+	}
 
 	/**
 	 * 會員編號搜尋

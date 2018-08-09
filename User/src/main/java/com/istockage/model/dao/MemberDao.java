@@ -3,7 +3,7 @@
  * File: MemberDao.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/4/13
+ * Modified: 2018/8/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -17,6 +17,11 @@ import com.istockage.model.entity.MemberEntity;
  * @author 詹晟
  */
 public interface MemberDao extends DaoConstant {
+
+	/**
+	 * @see com.istockage.model.dao.impl.MemberDaoImpl#selectByMe_id(Integer)
+	 */
+	MemberEntity selectByMe_id(Integer me_id);
 
 	/**
 	 * @see com.istockage.model.dao.impl.MemberDaoImpl#selectByMe_no(String, Byte)

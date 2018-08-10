@@ -33,7 +33,7 @@
 					<!-- .btn-account -->
 					<button type="button" class="btn-account d-none d-md-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<span class="tile tile-circle">
-							<span class="oi oi-person" style="top:7px"></span>
+							<span class="oi oi-person" style="top:25%"></span>
 						</span>
 					</button>
 					<!-- /.btn-account -->

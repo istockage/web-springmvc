@@ -9,7 +9,7 @@
 			<!-- .btn-account -->
 			<button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside">
 				<span class="tile tile-circle">
-					<span class="oi oi-person" style="top:7px"></span>
+					<span class="oi oi-person" style="top:25%"></span>
 				</span>
 				<span class="account-icon">
 					<span class="fa fa-caret-down fa-lg"></span>

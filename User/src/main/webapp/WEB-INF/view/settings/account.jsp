@@ -16,7 +16,7 @@
 		<!-- /header -->
 		
 		<!-- aside -->
-		<%@include file="../aside.jsp"%>
+		<jsp:include page="../aside.jsp" />
 		<!-- /aside -->
 		
 		<!-- main -->
@@ -160,6 +160,11 @@
 				<!-- /.page -->
 			</div>
 			<!-- /.wrapper -->
+			
+			<!-- footer -->
+			<%@include file="../footer.jsp"%>
+			<!-- /footer -->
+			
 		</main>
 		<!-- /.app-main -->
 		

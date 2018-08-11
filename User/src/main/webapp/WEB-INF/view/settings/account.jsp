@@ -30,7 +30,14 @@
 					<!-- .page-inner -->
 					<div class="page-inner">
 						<!-- .page-title-bar -->
-						<header class="page-title-bar"></header>
+						<header class="page-title-bar">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/settings/account">設定</a></li>
+									<li class="breadcrumb-item active">個人帳戶</li>
+								</ol>
+							</nav>
+						</header>
 						<!-- /.page-title-bar -->
 						
 						<!-- .page-section -->
@@ -43,9 +50,9 @@
 									<div class="card card-fluid">
 										<!-- .nav -->
 										<nav class="nav nav-tabs flex-column">
-											<a href="<%=request.getContextPath()%>/settings/account" class="nav-link active">個人帳戶</a>
-											<a href="<%=request.getContextPath()%>/settings/account" class="nav-link">證券帳戶</a>
-											<a href="<%=request.getContextPath()%>/settings/account" class="nav-link">期貨帳戶</a>
+											<a class="nav-link active">個人帳戶</a>
+											<a href="#" class="nav-link">證券帳戶</a>
+											<a href="#" class="nav-link">期貨帳戶</a>
 										</nav>
 										<!-- /.nav -->
 									</div>

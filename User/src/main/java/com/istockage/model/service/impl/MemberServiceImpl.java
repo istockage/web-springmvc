@@ -3,7 +3,7 @@
  * File: MemberServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/8/9
+ * Modified: 2018/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -162,6 +162,7 @@ public class MemberServiceImpl implements MemberService {
 		memberEntity.setMe_lastname(memberEntity.getMe_lastname().trim());
 		memberEntity.setMe_firstname(memberEntity.getMe_firstname().trim());
 		memberEntity.setMe_email(memberEntity.getMe_email().trim());
+		memberEntity.setMe_update_info_time(new Date());
 
 		return memberDao.update(memberEntity);
 	}

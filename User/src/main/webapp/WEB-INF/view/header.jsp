@@ -27,6 +27,23 @@
 			<!-- /.top-bar-item -->
 			
 			<!-- .top-bar-item -->
+			<div class="top-bar-item top-bar-item-full">
+				<!-- .top-bar-search -->
+				<div class="top-bar-search">
+					<div class="input-group input-group-search">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<span class="oi oi-magnifying-glass"></span>
+							</span>
+						</div>
+						<input type="text" class="form-control" aria-label="Search" placeholder="Search" />
+					</div>
+				</div>
+				<!-- /.top-bar-search -->
+			</div>
+			<!-- /.top-bar-item -->
+			
+			<!-- .top-bar-item -->
 			<div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
 				<!-- .dropdown -->
 				<div class="dropdown">

@@ -110,7 +110,7 @@
 											<!-- /.form -->
 											<hr />
 											<!-- .form -->
-											<form action="<c:url value='/settings/account/change-password.do' />" method="post">
+											<form id="change-password-form" action="<c:url value='/settings/account/change-password.do' />" method="post">
 												<!-- .fieldset -->
 												<fieldset>
 													<legend>變更密碼</legend>
@@ -118,18 +118,21 @@
 													<div class="form-group">
 														<label for="me_password">舊密碼</label>
 														<input type="password" id="me_password" class="form-control" name="me_password" value="${me_password}" />
+														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 													</div>
 													<!-- /.form-group -->
 													<!-- .form-group -->
 													<div class="form-group">
 														<label for="me_password_new">新密碼</label>
 														<input type="password" id="me_password_new" class="form-control" name="me_password_new" value="${me_password_new}" />
+														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 													</div>
 													<!-- /.form-group -->
 													<!-- .form-group -->
 													<div class="form-group">
 														<label for="me_password_new_again">確認密碼</label>
 														<input type="password" id="me_password_new_again" class="form-control" name="me_password_new_again" value="${me_password_new_again}" />
+														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 													</div>
 													<!-- /.form-group -->
 												</fieldset>
@@ -166,5 +169,6 @@
 	<!-- /.app -->
 	
 	<script src="<%=request.getContextPath()%>/js/looper/main.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/validation-looper.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

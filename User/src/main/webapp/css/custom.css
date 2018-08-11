@@ -2,3 +2,7 @@
 	padding-top: .25rem !important;
 	padding-bottom: .25rem !important;
 }
+
+.nav-tabs .nav-link {
+	padding: .75rem 1rem !important;
+}

@@ -80,13 +80,13 @@
 								
 									<!-- .card -->
 									<div class="card card-fluid">
+										<h6 class="card-header">基本資料</h6>
 										<!-- .card-body -->
 										<div class="card-body">
 											<!-- .form -->
 											<form:form modelAttribute="user" action="/User/settings/account/info.do" method="post">
 												<!-- .fieldset -->
 												<fieldset>
-													<legend>基本資料</legend>
 													<!-- .form-row -->
 													<div class="form-row">
 														<div class="col-md-6 mb-3">
@@ -108,6 +108,7 @@
 													<!-- /.form-group -->
 												</fieldset>
 												<!-- /.fieldset -->
+												<hr />
 												<!-- .form-actions -->
 												<div class="form-actions">
 													<button type="submit" class="btn btn-primary ml-auto">儲存</button>
@@ -115,12 +116,20 @@
 												<!-- /.form-actions -->
 											</form:form>
 											<!-- /.form -->
-											<hr />
+										</div>
+										<!-- /.card-body -->
+									</div>
+									<!-- /.card -->
+									
+									<!-- .card -->
+									<div class="card card-fluid">
+										<h6 class="card-header">變更密碼</h6>
+										<!-- .card-body -->
+										<div class="card-body">
 											<!-- .form -->
 											<form id="change-password-form" action="<c:url value='/settings/account/change-password.do' />" method="post">
 												<!-- .fieldset -->
 												<fieldset>
-													<legend>變更密碼</legend>
 													<!-- .form-group -->
 													<div class="form-group">
 														<label for="me_password">舊密碼</label>
@@ -144,6 +153,7 @@
 													<!-- /.form-group -->
 												</fieldset>
 												<!-- /.fieldset -->
+												<hr />
 												<!-- .form-actions -->
 												<div class="form-actions">
 													<button type="submit" class="btn btn-primary ml-auto">儲存</button>

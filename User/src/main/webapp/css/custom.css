@@ -11,8 +11,7 @@
 }
 
 /* form */
-legend {
-	font-size: 1.25rem;
+.card-header {
 	font-weight: 400;
 }
 

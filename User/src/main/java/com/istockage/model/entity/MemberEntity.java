@@ -3,7 +3,7 @@
  * File: MemberEntity.java
  * Author: 詹晟
  * Created: 2018/3/24
- * Modified: 2018/4/18
+ * Modified: 2018/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -36,6 +36,7 @@ public class MemberEntity {
 	private String me_no;
 	@NotEmpty
 	@Email
+	@Size(max = 50)
 	private String me_email;
 	@Pattern(regexp = "^(?=.*([a-z]|[A-Z]))(?=.*[0-9])(?=\\S+$).{8,32}$")
 	private String me_password;

@@ -84,7 +84,7 @@
 										<!-- .card-body -->
 										<div class="card-body">
 											<!-- .form -->
-											<form:form modelAttribute="user" action="/User/settings/account/info.do" method="post">
+											<form:form id="info-form" modelAttribute="user" action="/User/settings/account/info.do" method="post">
 												<!-- .fieldset -->
 												<fieldset>
 													<!-- .form-row -->
@@ -92,10 +92,12 @@
 														<div class="col-md-6 mb-3">
 															<form:label path="me_lastname">姓</form:label>
 															<form:input path="me_lastname" cssClass="form-control" />
+															<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														</div>
 														<div class="col-md-6 mb-3">
 															<form:label path="me_firstname">名</form:label>
 															<form:input path="me_firstname" cssClass="form-control" />
+															<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														</div>
 													</div>
 													<!-- /.form-row -->
@@ -103,6 +105,7 @@
 													<div class="form-group">
 														<form:label path="me_email">信箱</form:label>
 														<form:input path="me_email" cssClass="form-control" aria-describedby="me_email-help" />
+														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														<small id="me_email-help" class="form-text text-muted">將被變更為您的登入信箱。</small>
 													</div>
 													<!-- /.form-group -->

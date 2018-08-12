@@ -18,9 +18,52 @@ $(document).ready(function(){
 		return regex.test(value);
 	});
 	
+	// settings/account/info
+	$("#info-form").validate({
+		rules: {
+			me_lastname: {
+				maxlength: 20
+			},
+			me_firstname: {
+				maxlength: 20
+			},
+			me_email: {
+				required: true,
+				email: true,
+				maxlength: 50
+			}
+		},
+		messages: {
+			me_lastname: {
+				maxlength: "姓必須小於20個字"
+			},
+			me_firstname: {
+				maxlength: "名必須小於20個字"
+			},
+			me_email: {
+				required: "這裡必須填入資料",
+				email: "必須填入正確的信箱格式",
+				maxlength: "信箱必須小於50個字"
+			}
+		},
+		errorElement: "span",
+		errorPlacement: function(error, element) {
+			$(element).next().append(error);
+		},
+		highlight: function(element){
+			$(element).addClass("is-invalid");
+		},
+		unhighlight: function(element){
+			$(element).removeClass("is-invalid");
+		},
+		submitHandler: function(form){
+			form.submit();
+	    }
+	});
+	
+	// settings/account/change-password
 	$("#change-password-form").validate({
 		rules: {
-			// settings/account
 			me_password: {
 				required: true
 			},
@@ -36,7 +79,6 @@ $(document).ready(function(){
 			},
 		},
 		messages: {
-			// settings/account
 			me_password: {
 				required: "這裡必須填入資料"
 			},

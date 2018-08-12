@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/8/9
+ * Modified: 2018/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -594,20 +594,30 @@ public class MemberController implements ControllerConstant {
 	 * 個人帳戶(基本資料) - submit
 	 * 
 	 * @param user MemberEntity --> form-backing object
+	 * @param bindingResult BindingResult
 	 * @return /WEB-INF/view/settings/account.jsp
 	 */
 	@RequestMapping(value = "/settings/account/info.do", method = RequestMethod.POST)
-	public String accountInfoAction(@ModelAttribute(USER) MemberEntity user) {
+	public String accountInfoAction(@Valid @ModelAttribute(USER) MemberEntity user, BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		memberService.update(user);
+		if (bindingResult.hasErrors()) {
 
-		request.setAttribute(MEMBER_LOG_KEY, OK);
+			logger.error("(" + className + "." + methodName + ") 基本資料修改失敗，格式錯誤");
 
-		logger.info("(" + className + "." + methodName + ") 基本資料修改成功");
+			return MEMBER_ACCOUNT_VIEW;
 
-		return REDIRECT + MEMBER_ACCOUNT_VIEW;
+		} else {
+
+			memberService.update(user);
+
+			request.setAttribute(MEMBER_LOG_KEY, OK);
+
+			logger.info("(" + className + "." + methodName + ") 基本資料修改成功");
+
+			return REDIRECT + MEMBER_ACCOUNT_VIEW;
+		}
 	}
 
 	/**

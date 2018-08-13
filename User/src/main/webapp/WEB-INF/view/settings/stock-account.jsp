@@ -70,11 +70,13 @@
 												<table class="table">
 													<thead>
 														<tr>
-															<th>券商</th>
+															<th>證券商</th>
 															<th>帳號</th>
 															<th>折扣</th>
 															<th>交易次數</th>
-															<th></th>
+															<th class="text-right">
+																<a href="#" class="btn btn-lg btn-light"><i class="fa fa-plus"></i></a>
+															</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -84,8 +86,8 @@
 															<td class="align-middle">0.6</td>
 															<td class="align-middle">100</td>
 															<td class="align-middle text-right">
-																<a href="#" class="btn btn-lg btn-secondary"><i class="fa fa-edit"></i></a>
-																<a href="#" class="btn btn-lg btn-secondary"><i class="fa fa-trash-o"></i><span class="sr-only">Remove</span></a>
+																<a href="#" class="btn btn-lg btn-light"><i class="fa fa-edit"></i></a>
+																<a href="#" class="btn btn-lg btn-light"><i class="fa fa-trash-o"></i></a>
 															</td>
 														</tr>
 														<tr>
@@ -94,8 +96,8 @@
 															<td class="align-middle">0.35</td>
 															<td class="align-middle">200</td>
 															<td class="align-middle text-right">
-																<a href="#" class="btn btn-lg btn-secondary"><i class="fa fa-edit"></i><span class="sr-only">Edit</span></a>
-																<a href="#" class="btn btn-lg btn-secondary"><i class="fa fa-trash-o"></i><span class="sr-only">Remove</span></a>
+																<a href="#" class="btn btn-lg btn-light"><i class="fa fa-edit"></i></a>
+																<a href="#" class="btn btn-lg btn-light"><i class="fa fa-trash-o"></i></a>
 															</td>
 														</tr>
 													</tbody>

@@ -15,6 +15,11 @@
 	font-weight: 400;
 }
 
+/* table */
+.table .btn-lg {
+	padding: .5rem;
+}
+
 /* footer */
 .copyright {
 	font-size: .75rem;

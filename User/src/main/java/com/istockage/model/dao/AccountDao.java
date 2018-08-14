@@ -11,6 +11,8 @@ package com.istockage.model.dao;
 
 import java.util.Map;
 
+import com.istockage.model.entity.MemberEntity;
+
 /**
  * account DAO interface
  *
@@ -19,8 +21,9 @@ import java.util.Map;
 public interface AccountDao extends DaoConstant {
 
 	/**
-	 * @see
+	 * @see com.istockage.model.dao.impl.AccountDaoImpl#selectPagination(MemberEntity,
+	 *      int, int)
 	 */
-	public Map<String, Object> selectPagination(int first, int max);
+	public Map<String, Object> selectPagination(MemberEntity ac_MemberEntity, int first, int max);
 
 }

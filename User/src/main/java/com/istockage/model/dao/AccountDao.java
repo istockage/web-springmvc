@@ -22,6 +22,6 @@ public interface AccountDao extends DaoConstant {
 	 * @see com.istockage.model.dao.impl.AccountDaoImpl#selectByAc_me_id(Integer,
 	 *      int, int)
 	 */
-	public Map<String, Object> selectByAc_me_id(Integer ac_me_id, int first, int max);
+	Map<String, Object> selectByAc_me_id(Integer ac_me_id, int first, int max);
 
 }

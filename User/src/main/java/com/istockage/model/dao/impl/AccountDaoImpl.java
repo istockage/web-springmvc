@@ -15,6 +15,7 @@ import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -22,7 +23,6 @@ import org.springframework.stereotype.Repository;
 
 import com.istockage.model.dao.AccountDao;
 import com.istockage.model.entity.AccountEntity;
-import com.istockage.model.entity.MemberEntity;
 
 /**
  * account DAO implement
@@ -41,14 +41,14 @@ public class AccountDaoImpl implements AccountDao {
 	/**
 	 * 搜尋所有證券帳戶 (分頁)
 	 * 
-	 * @param ac_MemberEntity MemberEntity
+	 * @param ac_me_id Integer --> 會員流水號
 	 * @param first int --> 當頁起始筆數
 	 * @param max int --> 每頁最大筆數
 	 * @return Map<String, Object>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Map<String, Object> selectPagination(MemberEntity ac_MemberEntity, int first, int max) {
+	public Map<String, Object> selectByAc_me_id(Integer ac_me_id, int first, int max) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -61,12 +61,14 @@ public class AccountDaoImpl implements AccountDao {
 					// inner method
 					public Object doInHibernate(Session session) throws HibernateException {
 
+						Query query = session.createQuery(HQL_SELECT_ACCOUNT_BY_MEMBER).setParameter("ac_me_id",
+								ac_me_id);
+
 						// count
-						map.put("count", session.createQuery("").getResultList().size());
+						map.put("count", query.getResultList().size());
 
 						// list
-						List<AccountEntity> list = session.createQuery("").setFirstResult(first).setMaxResults(max)
-								.getResultList();
+						List<AccountEntity> list = query.setFirstResult(first).setMaxResults(max).getResultList();
 
 						return list;
 					}

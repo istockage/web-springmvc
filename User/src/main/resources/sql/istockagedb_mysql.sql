@@ -137,7 +137,20 @@ insert into path_category (pc_name, pc_extension) values ('view', '');
 insert into path_category (pc_name, pc_extension) values ('action', 'do');
 insert into path_category (pc_name, pc_extension) values ('ajax', 'ajax');
 
+-- Admin
+-- broker_head
+insert into broker_head (bh_no, bh_name, bh_update_time) values ('96', '富邦', now());
+insert into broker_head (bh_no, bh_name, bh_update_time) values ('92', '凱基', now());
+
+-- broker_branch
+insert into broker_branch (bb_bh_id, bb_no, bb_name, bb_update_time) values (1, '79', '延吉', now());
+insert into broker_branch (bb_bh_id, bb_no, bb_name, bb_update_time) values (2, '18', '大直', now());
+
 -- User
+-- account
+-- insert into account (ac_me_id, ac_bb_id, ac_no, ac_discount, ac_update_time) values (1, 1, '0239889', 6, now());
+-- insert into account (ac_me_id, ac_bb_id, ac_no, ac_discount, ac_update_time) values (1, 2, '0060626', 35, now());
+
 -- user_path
 insert into user_path (up_pc_id, up_name, up_path) values (1, '找不到網頁', 'error/page-not-found');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '首頁', 'index');

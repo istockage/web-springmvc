@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -80,26 +81,18 @@
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td class="align-middle">富邦證券</td>
-															<td class="align-middle">98765432109</td>
-															<td class="align-middle">0.6</td>
-															<td class="align-middle">100</td>
-															<td class="align-middle text-right">
-																<a href="#" class="btn btn-lg btn-light"><i class="fa fa-edit"></i></a>
-																<a href="#" class="btn btn-lg btn-light"><i class="fa fa-trash-o"></i></a>
-															</td>
-														</tr>
-														<tr>
-															<td class="align-middle">凱基證券</td>
-															<td class="align-middle">12345678901</td>
-															<td class="align-middle">0.35</td>
-															<td class="align-middle">200</td>
-															<td class="align-middle text-right">
-																<a href="#" class="btn btn-lg btn-light"><i class="fa fa-edit"></i></a>
-																<a href="#" class="btn btn-lg btn-light"><i class="fa fa-trash-o"></i></a>
-															</td>
-														</tr>
+														<c:forEach var="bean" items="${accountList}" varStatus="status">
+															<tr>
+																<td class="align-middle">${bean.ac_BrokerBranchEntity.bb_BrokerHeadEntity.bh_name}證券</td>
+																<td class="align-middle">${bean.ac_BrokerBranchEntity.bb_BrokerHeadEntity.bh_no}${bean.ac_BrokerBranchEntity.bb_no}${bean.ac_no}</td>
+																<td class="align-middle">${bean.ac_discount}</td>
+																<td class="align-middle">100</td>
+																<td class="align-middle text-right">
+																	<a href="#" class="btn btn-lg btn-light"><i class="fa fa-edit"></i></a>
+																	<a href="#" class="btn btn-lg btn-light"><i class="fa fa-trash-o"></i></a>
+																</td>
+															</tr>
+														</c:forEach>
 													</tbody>
 												</table>
 											</div>

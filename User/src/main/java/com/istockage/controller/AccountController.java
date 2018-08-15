@@ -11,12 +11,13 @@ package com.istockage.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.istockage.model.entity.MemberEntity;
@@ -31,6 +32,12 @@ import com.istockage.model.service.AccountService;
 public class AccountController implements ControllerConstant {
 
 	/**
+	 * 注入 HttpServletRequest
+	 */
+	@Autowired
+	private HttpServletRequest request;
+
+	/**
 	 * 注入 AccountService
 	 */
 	@Autowired
@@ -40,12 +47,13 @@ public class AccountController implements ControllerConstant {
 	 * 證券帳戶 - init
 	 * 
 	 * @param user MemberEntity --> SessionAttribute
-	 * @param page Integer --> 當前頁碼
 	 * @param model Model
 	 * @return /WEB-INF/view/settings/stock-account.jsp
 	 */
 	@RequestMapping(value = "/settings/stock-account", method = RequestMethod.GET)
-	public String stockAccountView(@SessionAttribute(USER) MemberEntity user, @RequestParam Integer page, Model model) {
+	public String stockAccountView(@SessionAttribute(USER) MemberEntity user, Model model) {
+
+		Integer page = (request.getParameter("page") == null) ? 1 : Integer.valueOf(request.getParameter("page"));
 
 		Map<String, Object> map = accountService.selectByAc_me_id(user.getMe_id(), page, 10);
 

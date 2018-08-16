@@ -76,7 +76,7 @@
 															<th>折扣</th>
 															<th>交易次數</th>
 															<th class="text-right">
-																<a href="#" class="btn btn-lg btn-light"><i class="fa fa-plus"></i></a>
+																<a href="#" class="btn btn-lg btn-light" title="新增"><i class="fa fa-plus"></i></a>
 															</th>
 														</tr>
 													</thead>
@@ -88,8 +88,8 @@
 																<td class="align-middle">${bean.ac_discount}</td>
 																<td class="align-middle">100</td>
 																<td class="align-middle text-right">
-																	<a href="#" class="btn btn-lg btn-light"><i class="fa fa-edit"></i></a>
-																	<a href="#" class="btn btn-lg btn-light"><i class="fa fa-trash-o"></i></a>
+																	<a href="#" class="btn btn-lg btn-light" title="編輯"><i class="fa fa-edit"></i></a>
+																	<a href="#" class="btn btn-lg btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>
 																</td>
 															</tr>
 														</c:forEach>
@@ -97,6 +97,11 @@
 												</table>
 											</div>
 											<!-- /.table-responsive -->
+											
+											<!-- pagination -->
+											<jsp:include page="../pagination.jsp" />
+											<!-- /pagination -->
+											
 										</div>
 										<!-- /.card-body -->
 									</div>

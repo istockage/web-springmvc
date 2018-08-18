@@ -51,7 +51,7 @@
 										<!-- .nav -->
 										<nav class="nav nav-tabs flex-column">
 											<a class="nav-link active">個人帳戶</a>
-											<a href="<%=request.getContextPath()%>/settings/stock-account" class="nav-link">證券帳戶</a>
+											<a href="<%=request.getContextPath()%>/settings/securities-account" class="nav-link">證券帳戶</a>
 											<a href="<%=request.getContextPath()%>/settings/futures-account" class="nav-link">期貨帳戶</a>
 										</nav>
 										<!-- /.nav -->

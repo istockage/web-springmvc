@@ -28,7 +28,7 @@ public interface ModelAttributeConstant {
 
 	public static final String MEMBER_LOG_KEY = "memberLogKey";
 
-	public static final String ACCOUNT_LIST = "accountList";
+	public static final String SECURITIES_ACCOUNT_LIST = "securitiesAccountList";
 
 	// message
 	public static final String ERROR = "error";

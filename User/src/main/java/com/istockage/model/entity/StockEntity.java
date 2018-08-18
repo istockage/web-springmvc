@@ -3,7 +3,7 @@
  * File: StockEntity.java
  * Author: 詹晟
  * Created: 2018/3/23
- * Modified: 2018/3/25
+ * Modified: 2018/8/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,25 +11,29 @@ package com.istockage.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * stock entity
  * 
  * @author 詹晟
  */
+@Entity
+@Table(name = "stock")
 public class StockEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer st_id;
 	@ManyToOne
-	@JoinColumn(name = "st_ac_id")
-	private AccountEntity st_AccountEntity;
+	@JoinColumn(name = "st_sa_id")
+	private SecuritiesAccountEntity st_SecuritiesAccountEntity;
 	private String st_name;
 	private String st_no;
 	private Integer st_type_code;
@@ -55,12 +59,12 @@ public class StockEntity {
 		this.st_id = st_id;
 	}
 
-	public AccountEntity getSt_AccountEntity() {
-		return st_AccountEntity;
+	public SecuritiesAccountEntity getSt_SecuritiesAccountEntity() {
+		return st_SecuritiesAccountEntity;
 	}
 
-	public void setSt_AccountEntity(AccountEntity st_AccountEntity) {
-		this.st_AccountEntity = st_AccountEntity;
+	public void setSt_SecuritiesAccountEntity(SecuritiesAccountEntity st_SecuritiesAccountEntity) {
+		this.st_SecuritiesAccountEntity = st_SecuritiesAccountEntity;
 	}
 
 	public String getSt_name() {

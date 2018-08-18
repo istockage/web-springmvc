@@ -81,12 +81,12 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="bean" items="${accountList}" varStatus="status">
+														<c:forEach var="bean" items="${securitiesAccountList}" varStatus="status">
 															<tr>
-																<td class="align-middle">${bean.ac_BrokerBranchEntity.bb_BrokerHeadEntity.bh_name}證券</td>
-																<td class="align-middle">${bean.ac_BrokerBranchEntity.bb_BrokerHeadEntity.bh_no}${bean.ac_BrokerBranchEntity.bb_no}${bean.ac_no}</td>
-																<td class="align-middle">${bean.ac_discount}</td>
-																<td class="align-middle">100</td>
+																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_name}證券</td>
+																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.sb_no}${bean.sa_no}</td>
+																<td class="align-middle">${bean.sa_discount}</td>
+																<td class="align-middle">${bean.sa_times}</td>
 																<td class="align-middle text-right">
 																	<a href="#" class="btn btn-lg btn-light" title="編輯"><i class="fa fa-edit"></i></a>
 																	<a href="#" class="btn btn-lg btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>

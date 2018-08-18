@@ -29,7 +29,7 @@ public interface PathConstant {
 
 	public static final String MEMBER_ACCOUNT_VIEW = "settings/account";
 
-	public static final String SETTINGS_STOCK_ACCOUNT_VIEW = "settings/stock-account";
+	public static final String SETTINGS_SECURITIES_ACCOUNT_VIEW = "settings/securities-account";
 
 	public static final String ERROR_PAGE_NOT_FOUND_VIEW = "error/page-not-found";
 

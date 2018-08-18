@@ -1,9 +1,9 @@
 /*
  * iStockage
- * File: AccountController.java
+ * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/8/18
+ * Modified: 2018/8/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,15 +22,15 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.istockage.common.util.PaginationUtil;
 import com.istockage.model.entity.MemberEntity;
-import com.istockage.model.service.AccountService;
+import com.istockage.model.service.SecuritiesAccountService;
 
 /**
- * account controller
+ * securities_account controller
  * 
  * @author 詹晟
  */
 @Controller
-public class AccountController implements ControllerConstant {
+public class SecuritiesAccountController implements ControllerConstant {
 
 	/**
 	 * 注入 HttpServletRequest
@@ -39,27 +39,27 @@ public class AccountController implements ControllerConstant {
 	private HttpServletRequest request;
 
 	/**
-	 * 注入 AccountService
+	 * 注入 SecuritiesAccountService
 	 */
 	@Autowired
-	private AccountService accountService;
+	private SecuritiesAccountService securitiesAccountService;
 
 	/**
 	 * 證券帳戶 - init
 	 * 
 	 * @param user MemberEntity --> SessionAttribute
 	 * @param model Model
-	 * @return /WEB-INF/view/settings/stock-account.jsp
+	 * @return /WEB-INF/view/settings/securities-account.jsp
 	 */
-	@RequestMapping(value = "/settings/stock-account", method = RequestMethod.GET)
-	public String stockAccountView(@SessionAttribute(USER) MemberEntity user, Model model) {
+	@RequestMapping(value = "/settings/securities-account", method = RequestMethod.GET)
+	public String settingsSecuritiesAccountView(@SessionAttribute(USER) MemberEntity user, Model model) {
 
 		Integer page = (request.getParameter("page") == null) ? 1 : Integer.valueOf(request.getParameter("page"));
 
 		int pageRowCount = PAGE_ROW_COUNT_NUMBER;
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
-		Map<String, Object> map = accountService.selectByAc_me_id(user.getMe_id(), page, pageRowCount);
+		Map<String, Object> map = securitiesAccountService.selectBySa_me_id(user.getMe_id(), page, pageRowCount);
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 
@@ -67,7 +67,7 @@ public class AccountController implements ControllerConstant {
 		model.addAttribute(SERVLET_PATH, request.getServletPath());
 
 		// 取得當前頁碼的證券帳戶 List
-		model.addAttribute(ACCOUNT_LIST, map.get("list"));
+		model.addAttribute(SECURITIES_ACCOUNT_LIST, map.get("list"));
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
@@ -93,7 +93,7 @@ public class AccountController implements ControllerConstant {
 		// 取得當前群序結束頁碼
 		model.addAttribute(CURRENT_GROUP_END, PaginationUtil.getCurrentGroupEnd(pageCount, page, groupRowCount));
 
-		return SETTINGS_STOCK_ACCOUNT_VIEW;
+		return SETTINGS_SECURITIES_ACCOUNT_VIEW;
 	}
 
 }

@@ -20,8 +20,8 @@ public interface SecuritiesAccountService extends ServiceConstant {
 
 	/**
 	 * @see com.istockage.model.service.impl.SecuritiesAccountServiceImpl#selectBySa_me_id(Integer,
-	 *      Integer, int)
+	 *      int, int)
 	 */
-	Map<String, Object> selectBySa_me_id(Integer sa_me_id, Integer page, int max);
+	Map<String, Object> selectBySa_me_id(Integer sa_me_id, int currentPage, int max);
 
 }

@@ -36,16 +36,16 @@ public class SecuritiesAccountServiceImpl implements SecuritiesAccountService {
 	 * 搜尋所有證券帳戶 (分頁)
 	 * 
 	 * @param sa_me_id Integer --> 會員流水號
-	 * @param page Integer --> 當前頁碼
+	 * @param currentPage int --> 當前頁碼
 	 * @param max int --> 每頁最大筆數
 	 * @return Map<String, Object>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public Map<String, Object> selectBySa_me_id(Integer sa_me_id, Integer page, int max) {
+	public Map<String, Object> selectBySa_me_id(Integer sa_me_id, int currentPage, int max) {
 
 		// 取得當頁起始筆數
-		int first = (page - 1) * max;
+		int first = (currentPage - 1) * max;
 
 		return securitiesAccountDao.selectBySa_me_id(sa_me_id, first, max);
 	}

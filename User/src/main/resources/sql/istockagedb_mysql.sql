@@ -49,22 +49,40 @@ create table code (
 );
 
 -- Admin
-create table broker_head (
-    bh_id                   int auto_increment not null,
-    bh_no                   char(4) not null,
-    bh_name                 nvarchar(20) not null,
-    bh_update_time          datetime not null,
-    primary key (bh_id)
+create table securities_broker_head (
+    sh_id                   int auto_increment not null,
+    sh_no                   char(2) not null,
+    sh_name                 nvarchar(10) not null,
+    sh_update_time          datetime not null,
+    primary key (sh_id)
 );
 
-create table broker_branch (
-    bb_id                   int auto_increment not null,
-    bb_bh_id                int not null,
-    bb_no                   char(4) not null,
-    bb_name                 nvarchar(10) not null,
-    bb_update_time          datetime not null,
-    primary key (bb_id),
-    foreign key (bb_bh_id) references broker_head (bh_id)
+create table securities_broker_branch (
+    sb_id                   int auto_increment not null,
+    sb_sh_id                int not null,
+    sb_no                   char(2) not null,
+    sb_name                 nvarchar(10) not null,
+    sb_update_time          datetime not null,
+    primary key (sb_id),
+    foreign key (sb_sh_id) references securities_broker_head (sh_id)
+);
+
+create table futures_broker_head (
+    fh_id                   int auto_increment not null,
+    fh_no                   char(4) not null,
+    fh_name                 nvarchar(10) not null,
+    fh_update_time          datetime not null,
+    primary key (fh_id)
+);
+
+create table futures_broker_branch (
+    fb_id                   int auto_increment not null,
+    fb_fh_id                int not null,
+    fb_no                   char(3) not null,
+    fb_name                 nvarchar(10) not null,
+    fb_update_time          datetime not null,
+    primary key (fb_id),
+    foreign key (fb_fh_id) references futures_broker_head (fh_id)
 );
 
 -- User
@@ -95,21 +113,22 @@ create table member_log (
     foreign key (ml_up_id) references user_path (up_id)
 );
 
-create table account (
-    ac_id                   int auto_increment not null,
-    ac_me_id                int not null,
-    ac_bb_id                int not null,
-    ac_no                   char(7) not null,
-    ac_discount             tinyint not null,
-    ac_update_time          datetime not null,
-    primary key (ac_id),
-    foreign key (ac_me_id) references member (me_id),
-    foreign key (ac_bb_id) references broker_branch (bb_id)
+create table securities_account (
+    sa_id                   int auto_increment not null,
+    sa_me_id                int not null,
+    sa_sb_id                int not null,
+    sa_no                   char(7) not null,
+    sa_discount             tinyint not null,
+    sa_times                int not null,
+    sa_update_time          datetime not null,
+    primary key (sa_id),
+    foreign key (sa_me_id) references member (me_id),
+    foreign key (sa_sb_id) references securities_broker_branch (sb_id)
 );
 
 create table stock (
     st_id                   int auto_increment not null,
-    st_ac_id                int not null,
+    st_sa_id                int not null,
     st_name                 nvarchar(10) not null,
     st_no                   varchar(10) not null,
     st_type_code            tinyint,
@@ -127,7 +146,7 @@ create table stock (
     st_sell_tax             mediumint,
     st_sell_revenue         int,
     primary key (st_id),
-    foreign key (st_ac_id) references account (ac_id)
+    foreign key (st_sa_id) references securities_account (sa_id)
 );
 
 -- INSERT
@@ -138,18 +157,18 @@ insert into path_category (pc_name, pc_extension) values ('action', 'do');
 insert into path_category (pc_name, pc_extension) values ('ajax', 'ajax');
 
 -- Admin
--- broker_head
-insert into broker_head (bh_no, bh_name, bh_update_time) values ('96', '富邦', now());
-insert into broker_head (bh_no, bh_name, bh_update_time) values ('92', '凱基', now());
+-- securities_broker_head
+insert into securities_broker_head (sh_no, sh_name, sh_update_time) values ('96', '富邦', now());
+insert into securities_broker_head (sh_no, sh_name, sh_update_time) values ('92', '凱基', now());
 
--- broker_branch
-insert into broker_branch (bb_bh_id, bb_no, bb_name, bb_update_time) values (1, '79', '延吉', now());
-insert into broker_branch (bb_bh_id, bb_no, bb_name, bb_update_time) values (2, '18', '大直', now());
+-- securities_broker_branch
+insert into securities_broker_branch (sb_sh_id, sb_no, sb_name, sb_update_time) values (1, '79', '延吉', now());
+insert into securities_broker_branch (sb_sh_id, sb_no, sb_name, sb_update_time) values (2, '18', '大直', now());
 
 -- User
--- account
--- insert into account (ac_me_id, ac_bb_id, ac_no, ac_discount, ac_update_time) values (1, 1, '0239889', 6, now());
--- insert into account (ac_me_id, ac_bb_id, ac_no, ac_discount, ac_update_time) values (1, 2, '0060626', 35, now());
+-- securities_account
+-- insert into securities_account (sa_me_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 1, '0239889', 6, 0, now());
+-- insert into securities_account (sa_me_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 2, '0060626', 35, 0, now());
 
 -- user_path
 insert into user_path (up_pc_id, up_name, up_path) values (1, '找不到網頁', 'error/page-not-found');
@@ -173,4 +192,4 @@ insert into user_path (up_pc_id, up_name, up_path) values (2, '重新發送確�
 insert into user_path (up_pc_id, up_name, up_path) values (1, '個人帳戶', 'settings/account');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(基本資料)', 'settings/account/info.do');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(變更密碼)', 'settings/account/change-password.do');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '證券帳戶', 'settings/stock-account');
+insert into user_path (up_pc_id, up_name, up_path) values (1, '證券帳戶', 'settings/securities_account');

@@ -54,12 +54,12 @@ public class SecuritiesAccountController implements ControllerConstant {
 	@RequestMapping(value = "/settings/securities-account", method = RequestMethod.GET)
 	public String settingsSecuritiesAccountView(@SessionAttribute(USER) MemberEntity user, Model model) {
 
-		Integer page = (request.getParameter("page") == null) ? 1 : Integer.valueOf(request.getParameter("page"));
+		int currentPage = (request.getParameter("page") == null) ? 1 : Integer.parseInt(request.getParameter("page"));
 
 		int pageRowCount = PAGE_ROW_COUNT_NUMBER;
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
-		Map<String, Object> map = securitiesAccountService.selectBySa_me_id(user.getMe_id(), page, pageRowCount);
+		Map<String, Object> map = securitiesAccountService.selectBySa_me_id(user.getMe_id(), currentPage, pageRowCount);
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 
@@ -69,29 +69,8 @@ public class SecuritiesAccountController implements ControllerConstant {
 		// 取得當前頁碼的證券帳戶 List
 		model.addAttribute(SECURITIES_ACCOUNT_LIST, map.get("list"));
 
-		// 取得每頁最大筆數
-		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
-
-		// 取得總頁數
-		model.addAttribute(PAGE_COUNT, pageCount);
-
-		// 取得當前頁碼
-		model.addAttribute(CURRENT_PAGE, page);
-
-		// 取得每群最大頁數
-		model.addAttribute(GROUP_ROW_COUNT, groupRowCount);
-
-		// 取得總群數
-		model.addAttribute(GROUP_COUNT, PaginationUtil.getGroupCount(pageCount, groupRowCount));
-
-		// 取得當前群序
-		model.addAttribute(CURRENT_GROUP, PaginationUtil.getCurrentGroup(page, groupRowCount));
-
-		// 取得當前群序起始頁碼
-		model.addAttribute(CURRENT_GROUP_BEGIN, PaginationUtil.getCurrentGroupBegin(page, groupRowCount));
-
-		// 取得當前群序結束頁碼
-		model.addAttribute(CURRENT_GROUP_END, PaginationUtil.getCurrentGroupEnd(pageCount, page, groupRowCount));
+		// 取得分頁資訊
+		model.addAllAttributes(PaginationUtil.allAttributes(pageRowCount, pageCount, currentPage, groupRowCount));
 
 		return SETTINGS_SECURITIES_ACCOUNT_VIEW;
 	}

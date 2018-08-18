@@ -63,8 +63,11 @@ public class AccountController implements ControllerConstant {
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 
+		// 取得 ServletPath
+		model.addAttribute(SERVLET_PATH, request.getServletPath());
+
 		// 取得當前頁碼的證券帳戶 List
-		model.addAttribute("accountList", map.get("list"));
+		model.addAttribute(ACCOUNT_LIST, map.get("list"));
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);

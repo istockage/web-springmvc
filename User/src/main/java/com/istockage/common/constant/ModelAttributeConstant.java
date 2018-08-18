@@ -12,6 +12,8 @@ public interface ModelAttributeConstant {
 	public static final String SESSION_MEMBER_EMAIL = "session_me_email";
 
 	// request
+	public static final String SERVLET_PATH = "servletPath";
+
 	public static final String MEMBER_EMAIL = "me_email";
 
 	public static final String MEMBER_PASSWORD = "me_password";
@@ -25,6 +27,8 @@ public interface ModelAttributeConstant {
 	public static final String MEMBER_ENTITY = "memberEntity";
 
 	public static final String MEMBER_LOG_KEY = "memberLogKey";
+
+	public static final String ACCOUNT_LIST = "accountList";
 
 	// message
 	public static final String ERROR = "error";

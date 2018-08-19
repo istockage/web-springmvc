@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/8/12
+ * Modified: 2018/8/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -74,7 +74,7 @@ public class MemberController implements ControllerConstant {
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
 	public String signInView() {
 
-		return MEMBER_SIGN_IN_VIEW;
+		return SECURE_SIGN_IN_VIEW;
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 登入失敗，信箱未填");
 
-			return MEMBER_SIGN_IN_VIEW;
+			return SECURE_SIGN_IN_VIEW;
 
 		} else if (me_password == null || me_password.isEmpty()) {
 
@@ -110,7 +110,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 登入失敗，密碼未填");
 
-			return MEMBER_SIGN_IN_VIEW;
+			return SECURE_SIGN_IN_VIEW;
 
 		} else {
 
@@ -125,7 +125,7 @@ public class MemberController implements ControllerConstant {
 
 				logger.error("(" + className + "." + methodName + ") 登入失敗，信箱或密碼錯誤");
 
-				return MEMBER_SIGN_IN_VIEW;
+				return SECURE_SIGN_IN_VIEW;
 
 			} else {
 
@@ -140,7 +140,7 @@ public class MemberController implements ControllerConstant {
 
 					logger.error("(" + className + "." + methodName + ") 登入失敗，帳號未啟用");
 
-					return MEMBER_SIGN_IN_VIEW;
+					return SECURE_SIGN_IN_VIEW;
 				}
 
 				model.addAttribute(USER, user);
@@ -178,7 +178,7 @@ public class MemberController implements ControllerConstant {
 	@RequestMapping(value = "/secure/forget-password", method = RequestMethod.GET)
 	public String forgetPasswordView() {
 
-		return MEMBER_FORGET_PASSWORD_VIEW;
+		return SECURE_FORGET_PASSWORD_VIEW;
 	}
 
 	/**
@@ -201,7 +201,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 發送失敗，信箱未填");
 
-			return MEMBER_FORGET_PASSWORD_VIEW;
+			return SECURE_FORGET_PASSWORD_VIEW;
 
 		} else {
 
@@ -215,7 +215,7 @@ public class MemberController implements ControllerConstant {
 
 				logger.error("(" + className + "." + methodName + ") 發送失敗，信箱錯誤");
 
-				return MEMBER_FORGET_PASSWORD_VIEW;
+				return SECURE_FORGET_PASSWORD_VIEW;
 
 			} else {
 
@@ -229,7 +229,7 @@ public class MemberController implements ControllerConstant {
 
 				logger.info("(" + className + "." + methodName + ") 發送成功，傳送至: " + me_email);
 
-				return MEMBER_RESET_PASSWORD_VIEW;
+				return SECURE_RESET_PASSWORD_VIEW;
 			}
 		}
 	}
@@ -242,7 +242,7 @@ public class MemberController implements ControllerConstant {
 	@RequestMapping(value = "/secure/reset-password", method = RequestMethod.GET)
 	public String resetPasswordView() {
 
-		return MEMBER_RESET_PASSWORD_VIEW;
+		return SECURE_RESET_PASSWORD_VIEW;
 	}
 
 	/**
@@ -270,7 +270,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，操作逾時");
 
-			return MEMBER_FORGET_PASSWORD_VIEW;
+			return SECURE_FORGET_PASSWORD_VIEW;
 		}
 
 		MemberEntity memberEntity = memberService.selectByMe_email(me_email, null);
@@ -280,19 +280,19 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，資料未填");
 
-			return MEMBER_RESET_PASSWORD_VIEW;
+			return SECURE_RESET_PASSWORD_VIEW;
 
 		} else if (!me_password_new.matches("^[\\S]{8,32}$")) {
 
 			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，密碼格式錯誤");
 
-			return MEMBER_RESET_PASSWORD_VIEW;
+			return SECURE_RESET_PASSWORD_VIEW;
 
 		} else if (!me_password_new.equals(me_password_new_again)) {
 
 			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，新密碼重複錯誤");
 
-			return MEMBER_RESET_PASSWORD_VIEW;
+			return SECURE_RESET_PASSWORD_VIEW;
 
 		} else if (!memberEntity.getMe_random().equals(me_random)) {
 
@@ -304,7 +304,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，驗證碼錯誤");
 
-			return MEMBER_RESET_PASSWORD_VIEW;
+			return SECURE_RESET_PASSWORD_VIEW;
 
 		} else {
 
@@ -323,7 +323,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.info("(" + className + "." + methodName + ") 密碼重設成功");
 
-			return MEMBER_SIGN_IN_VIEW;
+			return SECURE_SIGN_IN_VIEW;
 		}
 	}
 
@@ -363,7 +363,7 @@ public class MemberController implements ControllerConstant {
 		// 新增 form-backing object
 		model.addAttribute(MEMBER_ENTITY, new MemberEntity());
 
-		return MEMBER_SIGN_UP_VIEW;
+		return SECURE_SIGN_UP_VIEW;
 	}
 
 	/**
@@ -384,19 +384,19 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 註冊失敗，格式錯誤");
 
-			return MEMBER_SIGN_UP_VIEW;
+			return SECURE_SIGN_UP_VIEW;
 
 		} else if (!memberEntity.getMe_password().equals(me_password_again)) {
 
 			logger.error("(" + className + "." + methodName + ") 註冊失敗，密碼重複錯誤");
 
-			return MEMBER_SIGN_UP_VIEW;
+			return SECURE_SIGN_UP_VIEW;
 
 		} else if (memberService.selectByMe_email(memberEntity.getMe_email(), null) != null) {
 
 			logger.error("(" + className + "." + methodName + ") 註冊失敗，信箱重複");
 
-			return MEMBER_SIGN_UP_VIEW;
+			return SECURE_SIGN_UP_VIEW;
 
 		} else {
 
@@ -408,7 +408,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.info("(" + className + "." + methodName + ") 註冊成功，會員編號: " + memberEntity.getMe_no());
 
-			return REDIRECT + MEMBER_SIGN_UP_MAIL_VIEW;
+			return REDIRECT + SECURE_SIGN_UP_MAIL_VIEW;
 		}
 	}
 
@@ -420,7 +420,7 @@ public class MemberController implements ControllerConstant {
 	@RequestMapping(value = "/secure/sign-up-mail", method = RequestMethod.GET)
 	public String signUpMailView() {
 
-		return MEMBER_SIGN_UP_MAIL_VIEW;
+		return SECURE_SIGN_UP_MAIL_VIEW;
 	}
 
 	/**
@@ -442,7 +442,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 發送失敗，操作逾時");
 
-			return MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+			return SECURE_SIGN_UP_MAIL_AGAIN_VIEW;
 		}
 
 		MemberEntity memberEntity = memberService.selectByMe_no(me_no, MEMBER_ACTIVITY_CLOSE);
@@ -456,7 +456,7 @@ public class MemberController implements ControllerConstant {
 
 		logger.info("(" + className + "." + methodName + ") 發送成功，會員編號: " + me_no);
 
-		return MEMBER_SIGN_UP_MAIL_VIEW;
+		return SECURE_SIGN_UP_MAIL_VIEW;
 	}
 
 	/**
@@ -467,7 +467,7 @@ public class MemberController implements ControllerConstant {
 	@RequestMapping(value = "/secure/sign-up-mail-again", method = RequestMethod.GET)
 	public String signUpMailAgainView() {
 
-		return MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+		return SECURE_SIGN_UP_MAIL_AGAIN_VIEW;
 	}
 
 	/**
@@ -492,7 +492,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 發送失敗，信箱未填");
 
-			return MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+			return SECURE_SIGN_UP_MAIL_AGAIN_VIEW;
 
 		} else if (memberEntity == null) {
 
@@ -502,7 +502,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 發送失敗，信箱錯誤");
 
-			return MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+			return SECURE_SIGN_UP_MAIL_AGAIN_VIEW;
 
 		} else {
 
@@ -515,7 +515,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.info("(" + className + "." + methodName + ") 發送成功，會員編號: " + memberEntity.getMe_no());
 
-			return MEMBER_SIGN_UP_MAIL_AGAIN_VIEW;
+			return SECURE_SIGN_UP_MAIL_AGAIN_VIEW;
 		}
 	}
 
@@ -546,7 +546,7 @@ public class MemberController implements ControllerConstant {
 
 		logger.info("(" + className + "." + methodName + ") 啟用帳號成功，會員編號: " + me_no);
 
-		return REDIRECT + MEMBER_SIGN_IN_VIEW;
+		return REDIRECT + SECURE_SIGN_IN_VIEW;
 	}
 
 	/**
@@ -565,17 +565,6 @@ public class MemberController implements ControllerConstant {
 	}
 
 	/**
-	 * 帳戶 - init
-	 * 
-	 * @return /WEB-INF/view/member/profile.jsp
-	 */
-	@RequestMapping(value = "/member/profile", method = RequestMethod.GET)
-	public String profileView() {
-
-		return MEMBER_PROFILE_VIEW;
-	}
-
-	/**
 	 * 個人帳戶 - init
 	 * 
 	 * @param user MemberEntity --> SessionAttribute
@@ -587,7 +576,7 @@ public class MemberController implements ControllerConstant {
 
 		model.addAttribute(USER, memberService.selectByMe_id(user.getMe_id()));
 
-		return MEMBER_ACCOUNT_VIEW;
+		return SETTINGS_ACCOUNT_VIEW;
 	}
 
 	/**
@@ -606,7 +595,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 基本資料修改失敗，格式錯誤");
 
-			return MEMBER_ACCOUNT_VIEW;
+			return SETTINGS_ACCOUNT_VIEW;
 
 		} else {
 
@@ -616,7 +605,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.info("(" + className + "." + methodName + ") 基本資料修改成功");
 
-			return REDIRECT + MEMBER_ACCOUNT_VIEW;
+			return REDIRECT + SETTINGS_ACCOUNT_VIEW;
 		}
 	}
 
@@ -642,19 +631,19 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，資料未填");
 
-			return MEMBER_ACCOUNT_VIEW;
+			return SETTINGS_ACCOUNT_VIEW;
 
 		} else if (!me_password_new.matches("^[\\S]{8,32}$")) {
 
 			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，密碼格式錯誤");
 
-			return MEMBER_ACCOUNT_VIEW;
+			return SETTINGS_ACCOUNT_VIEW;
 
 		} else if (!me_password_new.equals(me_password_new_again)) {
 
 			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，新密碼重複錯誤");
 
-			return MEMBER_ACCOUNT_VIEW;
+			return SETTINGS_ACCOUNT_VIEW;
 
 		} else if (!PasswordUtil.getHashedPassword(me_password, user.getMe_salt())
 				.equals(memberService.selectByMe_id(user.getMe_id()).getMe_password())) {
@@ -667,7 +656,7 @@ public class MemberController implements ControllerConstant {
 
 			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，密碼錯誤");
 
-			return MEMBER_ACCOUNT_VIEW;
+			return SETTINGS_ACCOUNT_VIEW;
 
 		} else {
 
@@ -679,8 +668,19 @@ public class MemberController implements ControllerConstant {
 
 			logger.info("(" + className + "." + methodName + ") 密碼變更成功");
 
-			return MEMBER_ACCOUNT_VIEW;
+			return SETTINGS_ACCOUNT_VIEW;
 		}
+	}
+
+	/**
+	 * 帳戶 - init
+	 * 
+	 * @return /WEB-INF/view/member/profile.jsp
+	 */
+	@RequestMapping(value = "/member/profile", method = RequestMethod.GET)
+	public String profileView() {
+
+		return MEMBER_PROFILE_VIEW;
 	}
 
 }

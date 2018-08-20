@@ -85,7 +85,7 @@
 															<tr>
 																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_name}證券</td>
 																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.sb_no}${bean.sa_no}</td>
-																<td class="align-middle">${bean.sa_discount}</td>
+																<td class="align-middle">${bean.sa_discount}折</td>
 																<td class="align-middle">${bean.sa_times}</td>
 																<td class="align-middle text-right">
 																	<a href="#" class="btn btn-lg btn-light" title="編輯"><i class="fa fa-edit"></i></a>

@@ -171,7 +171,7 @@ insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastnam
 
 -- securities_account
 insert into securities_account (sa_me_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 1, '0239889', 6, 0, now());
-insert into securities_account (sa_me_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 2, '0060626', 35, 0, now());
+insert into securities_account (sa_me_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 2, '0060626', 4, 0, now());
 
 -- user_path
 insert into user_path (up_pc_id, up_name, up_path) values (1, '找不到網頁', 'error/page-not-found');
@@ -193,6 +193,6 @@ insert into user_path (up_pc_id, up_name, up_path) values (2, '發送確認信',
 insert into user_path (up_pc_id, up_name, up_path) values (1, '重新發送確認信', 'secure/sign-up-mail-again');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '重新發送確認信', 'secure/sign-up-mail-again.do');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '個人帳戶', 'settings/account');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(基本資料)', 'settings/account/info.do');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(變更密碼)', 'settings/account/change-password.do');
+insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(基本資料)', 'settings/account/info.do');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '證券帳戶', 'settings/securities-account');

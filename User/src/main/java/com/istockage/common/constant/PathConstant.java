@@ -29,6 +29,8 @@ public interface PathConstant {
 
 	public static final String SETTINGS_SECURITIES_ACCOUNT_VIEW = "settings/securities-account";
 
+	public static final String SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW = "settings/securities-account/add";
+
 	public static final String MEMBER_PROFILE_VIEW = "member/profile";
 
 	public static final String ERROR_PAGE_NOT_FOUND_VIEW = "error/page-not-found";

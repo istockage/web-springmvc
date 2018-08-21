@@ -75,4 +75,15 @@ public class SecuritiesAccountController implements ControllerConstant {
 		return SETTINGS_SECURITIES_ACCOUNT_VIEW;
 	}
 
+	/**
+	 * 新增證券帳戶 - init
+	 * 
+	 * @return /WEB-INF/view/settings/securities-account/add.jsp
+	 */
+	@RequestMapping(value = "/settings/securities-account/add", method = RequestMethod.GET)
+	public String settingsSecuritiesAccountAddView() {
+
+		return SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW;
+	}
+
 }

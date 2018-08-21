@@ -196,3 +196,4 @@ insert into user_path (up_pc_id, up_name, up_path) values (1, '個人帳戶', 's
 insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(變更密碼)', 'settings/account/change-password.do');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(基本資料)', 'settings/account/info.do');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '證券帳戶', 'settings/securities-account');
+insert into user_path (up_pc_id, up_name, up_path) values (1, '新增證券帳戶', 'settings/securities-account/add');

@@ -32,7 +32,8 @@
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/settings/account">設定</a></li>
-									<li class="breadcrumb-item active">證券帳戶</li>
+									<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/settings/securities-account">證券帳戶</a></li>
+									<li class="breadcrumb-item active">新增</li>
 								</ol>
 							</nav>
 						</header>
@@ -65,7 +66,36 @@
 										<h6 class="card-header">新增證券帳戶</h6>
 										<!-- .card-body -->
 										<div class="card-body">
-											
+											<fieldset>
+												<div class="form-group">
+													<label for="sh_id">證券商</label>
+													<select id="sh_id" class="custom-select">
+														<option value="">請選擇</option>
+														<option>富邦證券</option>
+														<option>凱基證券</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label for="sb_id">分公司</label>
+													<select id="sb_id" class="custom-select">
+														<option value="">請選擇</option>
+														<option>延吉</option>
+														<option>大直</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label for="sa_no">帳號</label>
+													<input type="text" id="sa_no" class="form-control" />
+												</div>
+												<div class="form-group">
+													<label for="sa_discount">折扣</label>
+													<input type="text" id="sa_discount" class="form-control" />
+												</div>
+											</fieldset>
+											<hr />
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary ml-auto">新增</button>
+											</div>
 										</div>
 										<!-- /.card-body -->
 									</div>

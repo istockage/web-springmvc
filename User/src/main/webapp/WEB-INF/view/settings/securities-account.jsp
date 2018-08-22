@@ -72,6 +72,7 @@
 													<thead>
 														<tr>
 															<th>證券商</th>
+															<th>分公司</th>
 															<th>帳號</th>
 															<th>折扣</th>
 															<th>交易次數</th>
@@ -84,6 +85,7 @@
 														<c:forEach var="bean" items="${securitiesAccountList}" varStatus="status">
 															<tr>
 																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_name}證券</td>
+																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_name}分公司</td>
 																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.sb_no}${bean.sa_no}</td>
 																<td class="align-middle">${bean.sa_discount}折</td>
 																<td class="align-middle">${bean.sa_times}</td>

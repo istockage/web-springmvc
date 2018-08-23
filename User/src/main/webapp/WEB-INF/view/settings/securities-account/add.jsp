@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,36 +67,35 @@
 										<h6 class="card-header">新增證券帳戶</h6>
 										<!-- .card-body -->
 										<div class="card-body">
-											<fieldset>
-												<div class="form-group">
-													<label for="sh_id">證券商</label>
-													<select id="sh_id" class="custom-select">
-														<option value="">請選擇</option>
-														<option>富邦證券</option>
-														<option>凱基證券</option>
-													</select>
+											<form:form modelAttribute="securitiesAccountEntity" action="/User/settings/securities-account/add.do" method="post">
+												<fieldset>
+													<div class="form-group">
+														<form:label path="sa_SecuritiesBrokerHeadEntity">證券商</form:label>
+														<form:select path="sa_SecuritiesBrokerHeadEntity" cssClass="custom-select">
+															<form:option value="0" label="請選擇" />
+															<form:options items="${securitiesBrokerHeadList}" itemValue="sh_id" itemLabel="sh_name" />
+														</form:select>
+													</div>
+													<div class="form-group">
+														<form:label path="sa_SecuritiesBrokerBranchEntity">分公司</form:label>
+														<form:select path="sa_SecuritiesBrokerBranchEntity" cssClass="custom-select">
+															<form:option value="0" label="請選擇" />
+														</form:select>
+													</div>
+													<div class="form-group">
+														<form:label path="sa_no">帳號</form:label>
+														<form:input path="sa_no" cssClass="form-control" />
+													</div>
+													<div class="form-group">
+														<form:label path="sa_discount">折扣</form:label>
+														<form:input path="sa_discount" cssClass="form-control" />
+													</div>
+												</fieldset>
+												<hr />
+												<div class="form-actions">
+													<button type="submit" class="btn btn-primary ml-auto">新增</button>
 												</div>
-												<div class="form-group">
-													<label for="sb_id">分公司</label>
-													<select id="sb_id" class="custom-select">
-														<option value="">請選擇</option>
-														<option>延吉</option>
-														<option>大直</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<label for="sa_no">帳號</label>
-													<input type="text" id="sa_no" class="form-control" />
-												</div>
-												<div class="form-group">
-													<label for="sa_discount">折扣</label>
-													<input type="text" id="sa_discount" class="form-control" />
-												</div>
-											</fieldset>
-											<hr />
-											<div class="form-actions">
-												<button type="submit" class="btn btn-primary ml-auto">新增</button>
-											</div>
+											</form:form>
 										</div>
 										<!-- /.card-body -->
 									</div>

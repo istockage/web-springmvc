@@ -116,6 +116,7 @@ create table member_log (
 create table securities_account (
     sa_id                   int auto_increment not null,
     sa_me_id                int not null,
+    sa_sh_id                int not null,
     sa_sb_id                int not null,
     sa_no                   char(7) not null,
     sa_discount             tinyint not null,
@@ -123,6 +124,7 @@ create table securities_account (
     sa_update_time          datetime not null,
     primary key (sa_id),
     foreign key (sa_me_id) references member (me_id),
+    foreign key (sa_sh_id) references securities_broker_head (sh_id),
     foreign key (sa_sb_id) references securities_broker_branch (sb_id)
 );
 
@@ -170,8 +172,8 @@ insert into securities_broker_branch (sb_sh_id, sb_no, sb_name, sb_update_time) 
 insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastname, me_firstname, me_activity_code, me_signup_time, me_update_info_time, me_update_pwd_time) values ('9203330360', 'chengjhan@gmail.com', '03a6de93ab7271375694231bf9eacc5b', '992cb6c0-c52e-4155-94c5-558251878998', null, null, null, 1, now(), now(), now());
 
 -- securities_account
-insert into securities_account (sa_me_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 1, '0239889', 6, 0, now());
-insert into securities_account (sa_me_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 2, '0060626', 4, 0, now());
+insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 1, 1, '0239889', 6, 0, now());
+insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 2, 2, '0060626', 4, 0, now());
 
 -- user_path
 insert into user_path (up_pc_id, up_name, up_path) values (1, '找不到網頁', 'error/page-not-found');

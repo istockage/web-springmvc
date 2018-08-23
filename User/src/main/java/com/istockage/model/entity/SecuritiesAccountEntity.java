@@ -3,7 +3,7 @@
  * File: SecuritiesAccountEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/8/19
+ * Modified: 2018/8/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -35,6 +35,9 @@ public class SecuritiesAccountEntity {
 	@JoinColumn(name = "sa_me_id")
 	private MemberEntity sa_MemberEntity;
 	@ManyToOne
+	@JoinColumn(name = "sa_sh_id")
+	private SecuritiesBrokerHeadEntity sa_SecuritiesBrokerHeadEntity;
+	@ManyToOne
 	@JoinColumn(name = "sa_sb_id")
 	private SecuritiesBrokerBranchEntity sa_SecuritiesBrokerBranchEntity;
 	private String sa_no;
@@ -56,6 +59,14 @@ public class SecuritiesAccountEntity {
 
 	public void setSa_MemberEntity(MemberEntity sa_MemberEntity) {
 		this.sa_MemberEntity = sa_MemberEntity;
+	}
+
+	public SecuritiesBrokerHeadEntity getSa_SecuritiesBrokerHeadEntity() {
+		return sa_SecuritiesBrokerHeadEntity;
+	}
+
+	public void setSa_SecuritiesBrokerHeadEntity(SecuritiesBrokerHeadEntity sa_SecuritiesBrokerHeadEntity) {
+		this.sa_SecuritiesBrokerHeadEntity = sa_SecuritiesBrokerHeadEntity;
 	}
 
 	public SecuritiesBrokerBranchEntity getSa_SecuritiesBrokerBranchEntity() {

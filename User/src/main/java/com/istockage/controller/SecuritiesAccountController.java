@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/8/24
+ * Modified: 2018/8/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -24,6 +24,7 @@ import com.istockage.common.util.PaginationUtil;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.service.SecuritiesAccountService;
+import com.istockage.model.service.SecuritiesBrokerHeadService;
 
 /**
  * securities_account controller
@@ -38,6 +39,12 @@ public class SecuritiesAccountController implements ControllerConstant {
 	 */
 	@Autowired
 	private HttpServletRequest request;
+
+	/**
+	 * 注入 SecuritiesBrokerHeadService
+	 */
+	@Autowired
+	private SecuritiesBrokerHeadService securitiesBrokerHeadService;
 
 	/**
 	 * 注入 SecuritiesAccountService
@@ -85,10 +92,11 @@ public class SecuritiesAccountController implements ControllerConstant {
 	@RequestMapping(value = "/settings/securities-account/add", method = RequestMethod.GET)
 	public String settingsSecuritiesAccountAddView(Model model) {
 
-		model.addAttribute("securitiesBrokerHeadList", "");
+		// 取得所有證券商 List
+		model.addAttribute(SECURITIES_BROKER_HEAD_LIST, securitiesBrokerHeadService.selectByAll());
 
 		// 新增 form-backing object
-		model.addAttribute("securitiesAccountEntity", new SecuritiesAccountEntity());
+		model.addAttribute(SECURITIES_ACCOUNT_ENTITY, new SecuritiesAccountEntity());
 
 		return SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW;
 	}

@@ -28,6 +28,10 @@ public interface ModelAttributeConstant {
 
 	public static final String MEMBER_LOG_KEY = "memberLogKey";
 
+	public static final String SECURITIES_BROKER_HEAD_LIST = "securitiesBrokerHeadList";
+
+	public static final String SECURITIES_ACCOUNT_ENTITY = "securitiesAccountEntity";
+
 	public static final String SECURITIES_ACCOUNT_LIST = "securitiesAccountList";
 
 	// message

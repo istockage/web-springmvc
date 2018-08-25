@@ -3,27 +3,34 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/8/25
+ * Modified: 2018/8/26
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.google.gson.Gson;
 import com.istockage.common.util.PaginationUtil;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
+import com.istockage.model.entity.SecuritiesBrokerBranchEntity;
 import com.istockage.model.service.SecuritiesAccountService;
+import com.istockage.model.service.SecuritiesBrokerBranchService;
 import com.istockage.model.service.SecuritiesBrokerHeadService;
 
 /**
@@ -33,6 +40,10 @@ import com.istockage.model.service.SecuritiesBrokerHeadService;
  */
 @Controller
 public class SecuritiesAccountController implements ControllerConstant {
+
+	private static final Logger logger = Logger.getLogger(SecuritiesAccountController.class);
+
+	private String className = this.getClass().getSimpleName();
 
 	/**
 	 * 注入 HttpServletRequest
@@ -45,6 +56,12 @@ public class SecuritiesAccountController implements ControllerConstant {
 	 */
 	@Autowired
 	private SecuritiesBrokerHeadService securitiesBrokerHeadService;
+
+	/**
+	 * 注入 SecuritiesBrokerBranchService
+	 */
+	@Autowired
+	private SecuritiesBrokerBranchService securitiesBrokerBranchService;
 
 	/**
 	 * 注入 SecuritiesAccountService
@@ -99,6 +116,35 @@ public class SecuritiesAccountController implements ControllerConstant {
 		model.addAttribute(SECURITIES_ACCOUNT_ENTITY, new SecuritiesAccountEntity());
 
 		return SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW;
+	}
+
+	/**
+	 * 選定證券商中的所有分公司 - AJAX
+	 * 
+	 * @param sb_sh_id Integer --> 證券商流水號
+	 * @return SecuritiesBrokerBranchEntity JSON
+	 */
+	@RequestMapping(value = "/settings/securities-account/add/securities-broker-branch-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String settingsSecuritiesAccountAddSecuritiesBrokerBranchListAjax(Integer sb_sh_id) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		List<SecuritiesBrokerBranchEntity> list = securitiesBrokerBranchService.selectBySb_sh_id(sb_sh_id);
+
+		List<SecuritiesBrokerBranchEntity> jsonList = new ArrayList<SecuritiesBrokerBranchEntity>();
+		for (SecuritiesBrokerBranchEntity bean : list) {
+			SecuritiesBrokerBranchEntity jsonBean = new SecuritiesBrokerBranchEntity();
+			jsonBean.setSb_id(bean.getSb_id());
+			jsonBean.setSb_name(bean.getSb_name());
+			jsonList.add(jsonBean);
+		}
+
+		String json = new Gson().toJson(jsonList);
+
+		logger.info("(" + className + "." + methodName + ") JSON = " + json);
+
+		return json;
 	}
 
 }

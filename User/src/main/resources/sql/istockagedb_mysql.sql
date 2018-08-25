@@ -19,7 +19,7 @@ create table admin_path (
     ap_id                   int auto_increment not null,
     ap_pc_id                int not null,
     ap_name                 nvarchar(20) not null,
-    ap_path                 varchar(50) not null,
+    ap_path                 varchar(100) not null,
     primary key (ap_id),
     foreign key (ap_pc_id) references path_category (pc_id)
 );
@@ -28,7 +28,7 @@ create table user_path (
     up_id                   int auto_increment not null,
     up_pc_id                int not null,
     up_name                 nvarchar(20) not null,
-    up_path                 varchar(50) not null,
+    up_path                 varchar(100) not null,
     primary key (up_id),
     foreign key (up_pc_id) references path_category (pc_id)
 );
@@ -199,3 +199,4 @@ insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(變�
 insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(基本資料)', 'settings/account/info.do');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '證券帳戶', 'settings/securities-account');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '新增證券帳戶', 'settings/securities-account/add');
+insert into user_path (up_pc_id, up_name, up_path) values (3, '選定證券商中的所有分公司', 'settings/securities-account/add/securities-broker-branch-list.ajax');

@@ -3,7 +3,7 @@
  * File: SecuritiesAccountServiceImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/8/19
+ * Modified: 2018/8/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.istockage.model.dao.SecuritiesAccountDao;
+import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.service.SecuritiesAccountService;
 
 /**
@@ -48,6 +49,18 @@ public class SecuritiesAccountServiceImpl implements SecuritiesAccountService {
 		int first = (currentPage - 1) * max;
 
 		return securitiesAccountDao.selectBySa_me_id(sa_me_id, first, max);
+	}
+
+	/**
+	 * 新增證券帳戶
+	 * 
+	 * @param securitiesAccountEntity SecuritiesAccountEntity
+	 * @return SecuritiesAccountEntity
+	 */
+	@Override
+	public SecuritiesAccountEntity insert(SecuritiesAccountEntity securitiesAccountEntity) {
+
+		return securitiesAccountDao.insert(securitiesAccountEntity);
 	}
 
 }

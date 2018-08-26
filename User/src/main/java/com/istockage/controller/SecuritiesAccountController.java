@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/8/26
+ * Modified: 2018/8/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -145,6 +145,26 @@ public class SecuritiesAccountController implements ControllerConstant {
 		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 
 		return json;
+	}
+
+	/**
+	 * 新增證券帳戶 - submit
+	 * 
+	 * @param user MemberEntity --> SessionAttribute
+	 * @param securitiesAccountEntity SecuritiesAccountEntity --> form-backing
+	 *        object
+	 * @param model Model
+	 * @return /WEB-INF/view/settings/securities-account.jsp
+	 */
+	@RequestMapping(value = "/settings/securities-account/add.do", method = RequestMethod.POST)
+	public String settingsSecuritiesAccountAddAction(@SessionAttribute(USER) MemberEntity user,
+			SecuritiesAccountEntity securitiesAccountEntity, Model model) {
+
+		securitiesAccountEntity.setSa_MemberEntity(user);
+
+		securitiesAccountService.insert(securitiesAccountEntity);
+
+		return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;
 	}
 
 }

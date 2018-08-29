@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -67,7 +68,8 @@
 										<h6 class="card-header">新增證券帳戶</h6>
 										<!-- .card-body -->
 										<div class="card-body">
-											<form:form modelAttribute="securitiesAccountEntity" action="/User/settings/securities-account/add.do" method="post">
+											<c:url var="requestMapping" value="/settings/securities-account/add.do" />
+											<form:form modelAttribute="securitiesAccountEntity" action="${requestMapping}" method="post">
 												<fieldset>
 													<div class="form-group">
 														<form:label path="sa_SecuritiesBrokerHeadEntity">證券商</form:label>

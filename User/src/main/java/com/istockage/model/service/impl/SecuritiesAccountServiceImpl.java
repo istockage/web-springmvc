@@ -3,12 +3,13 @@
  * File: SecuritiesAccountServiceImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/8/26
+ * Modified: 2018/8/30
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.service.impl;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,11 @@ public class SecuritiesAccountServiceImpl implements SecuritiesAccountService {
 	 * @return SecuritiesAccountEntity
 	 */
 	@Override
+	@Transactional
 	public SecuritiesAccountEntity insert(SecuritiesAccountEntity securitiesAccountEntity) {
+
+		securitiesAccountEntity.setSa_times(0);
+		securitiesAccountEntity.setSa_update_time(new Date());
 
 		return securitiesAccountDao.insert(securitiesAccountEntity);
 	}

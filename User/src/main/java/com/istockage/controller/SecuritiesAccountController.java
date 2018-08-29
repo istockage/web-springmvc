@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/8/27
+ * Modified: 2018/8/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -125,8 +125,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 	 * @return SecuritiesBrokerBranchEntity JSON
 	 */
 	@RequestMapping(value = "/settings/securities-account/add/securities-broker-branch-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String settingsSecuritiesAccountAddSecuritiesBrokerBranchListAjax(Integer sb_sh_id) {
+	public @ResponseBody String settingsSecuritiesAccountAddSecuritiesBrokerBranchListAjax(Integer sb_sh_id) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -151,18 +150,16 @@ public class SecuritiesAccountController implements ControllerConstant {
 	 * 新增證券帳戶 - submit
 	 * 
 	 * @param user MemberEntity --> SessionAttribute
-	 * @param securitiesAccountEntity SecuritiesAccountEntity --> form-backing
-	 *        object
-	 * @param model Model
 	 * @return /WEB-INF/view/settings/securities-account.jsp
 	 */
 	@RequestMapping(value = "/settings/securities-account/add.do", method = RequestMethod.POST)
-	public String settingsSecuritiesAccountAddAction(@SessionAttribute(USER) MemberEntity user,
-			SecuritiesAccountEntity securitiesAccountEntity, Model model) {
+	public String settingsSecuritiesAccountAddAction(@SessionAttribute(USER) MemberEntity user) {
 
-		securitiesAccountEntity.setSa_MemberEntity(user);
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		securitiesAccountService.insert(securitiesAccountEntity);
+		request.setAttribute(MEMBER_LOG_KEY, OK);
+
+		logger.info("(" + className + "." + methodName + ") 證券帳戶新增成功");
 
 		return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;
 	}

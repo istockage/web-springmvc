@@ -199,4 +199,5 @@ insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(變�
 insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(基本資料)', 'settings/account/info.do');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '證券帳戶', 'settings/securities-account');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '新增證券帳戶', 'settings/securities-account/add');
+insert into user_path (up_pc_id, up_name, up_path) values (2, '新增證券帳戶', 'settings/securities-account/add.do');
 insert into user_path (up_pc_id, up_name, up_path) values (3, '選定證券商中的所有分公司', 'settings/securities-account/add/securities-broker-branch-list.ajax');

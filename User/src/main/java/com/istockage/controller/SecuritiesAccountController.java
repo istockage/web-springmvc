@@ -109,11 +109,11 @@ public class SecuritiesAccountController implements ControllerConstant {
 	@RequestMapping(value = "/settings/securities-account/add", method = RequestMethod.GET)
 	public String settingsSecuritiesAccountAddView(Model model) {
 
-		// 取得所有證券商 List
-		model.addAttribute(SECURITIES_BROKER_HEAD_LIST, securitiesBrokerHeadService.selectByAll());
-
 		// 新增 form-backing object
 		model.addAttribute(SECURITIES_ACCOUNT_ENTITY, new SecuritiesAccountEntity());
+
+		// 取得所有證券商 List
+		model.addAttribute(SECURITIES_BROKER_HEAD_LIST, securitiesBrokerHeadService.selectByAll());
 
 		return SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW;
 	}

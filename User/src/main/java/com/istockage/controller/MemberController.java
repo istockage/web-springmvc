@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/8/19
+ * Modified: 2018/8/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -556,8 +556,7 @@ public class MemberController implements ControllerConstant {
 	 * @return String
 	 */
 	@RequestMapping(value = "/secure/sign-up-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String signUpEmailRepeatAjax(String me_email) {
+	public @ResponseBody String signUpEmailRepeatAjax(String me_email) {
 
 		MemberEntity memberEntity = memberService.selectByMe_email(me_email, null);
 

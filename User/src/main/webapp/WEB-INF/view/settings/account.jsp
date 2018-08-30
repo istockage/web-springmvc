@@ -84,7 +84,8 @@
 										<!-- .card-body -->
 										<div class="card-body">
 											<!-- .form -->
-											<form:form id="info-form" modelAttribute="user" action="/User/settings/account/info.do" method="post">
+											<c:url var="requestMapping" value="/settings/account/info.do" />
+											<form:form id="info-form" modelAttribute="user" action="${requestMapping}" method="post">
 												<!-- .fieldset -->
 												<fieldset>
 													<!-- .form-row -->

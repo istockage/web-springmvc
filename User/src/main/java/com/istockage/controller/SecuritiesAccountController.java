@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/8/30
+ * Modified: 2018/8/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,16 +19,21 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.google.gson.Gson;
+import com.istockage.common.editor.SecuritiesBrokerBranchEntityPropertyEditor;
+import com.istockage.common.editor.SecuritiesBrokerHeadEntityPropertyEditor;
 import com.istockage.common.util.PaginationUtil;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.entity.SecuritiesBrokerBranchEntity;
+import com.istockage.model.entity.SecuritiesBrokerHeadEntity;
 import com.istockage.model.service.SecuritiesAccountService;
 import com.istockage.model.service.SecuritiesBrokerBranchService;
 import com.istockage.model.service.SecuritiesBrokerHeadService;
@@ -68,6 +73,17 @@ public class SecuritiesAccountController implements ControllerConstant {
 	 */
 	@Autowired
 	private SecuritiesAccountService securitiesAccountService;
+
+	/**
+	 * form-backing object 資料轉換
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		webDataBinder.registerCustomEditor(SecuritiesBrokerHeadEntity.class,
+				new SecuritiesBrokerHeadEntityPropertyEditor());
+		webDataBinder.registerCustomEditor(SecuritiesBrokerBranchEntity.class,
+				new SecuritiesBrokerBranchEntityPropertyEditor());
+	}
 
 	/**
 	 * 證券帳戶 - init
@@ -150,12 +166,17 @@ public class SecuritiesAccountController implements ControllerConstant {
 	 * 新增證券帳戶 - submit
 	 * 
 	 * @param user MemberEntity --> SessionAttribute
+	 * @param securitiesAccountEntity SecuritiesAccountEntity --> form-backing
+	 *        object
 	 * @return /WEB-INF/view/settings/securities-account.jsp
 	 */
 	@RequestMapping(value = "/settings/securities-account/add.do", method = RequestMethod.POST)
-	public String settingsSecuritiesAccountAddAction(@SessionAttribute(USER) MemberEntity user) {
+	public String settingsSecuritiesAccountAddAction(@SessionAttribute(USER) MemberEntity user,
+			SecuritiesAccountEntity securitiesAccountEntity) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		securitiesAccountEntity.setSa_MemberEntity(user);
 
 		request.setAttribute(MEMBER_LOG_KEY, OK);
 

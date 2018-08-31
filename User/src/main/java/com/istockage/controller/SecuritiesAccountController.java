@@ -14,11 +14,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -168,21 +170,32 @@ public class SecuritiesAccountController implements ControllerConstant {
 	 * @param user MemberEntity --> SessionAttribute
 	 * @param securitiesAccountEntity SecuritiesAccountEntity --> form-backing
 	 *        object
+	 * @param bindingResult BindingResult
 	 * @return /WEB-INF/view/settings/securities-account.jsp
 	 */
 	@RequestMapping(value = "/settings/securities-account/add.do", method = RequestMethod.POST)
 	public String settingsSecuritiesAccountAddAction(@SessionAttribute(USER) MemberEntity user,
-			SecuritiesAccountEntity securitiesAccountEntity) {
+			@Valid SecuritiesAccountEntity securitiesAccountEntity, BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		securitiesAccountEntity.setSa_MemberEntity(user);
+		if (bindingResult.hasErrors()) {
 
-		request.setAttribute(MEMBER_LOG_KEY, OK);
+			logger.error("(" + className + "." + methodName + ") 證券帳戶新增失敗，格式錯誤");
 
-		logger.info("(" + className + "." + methodName + ") 證券帳戶新增成功");
+			return SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW;
 
-		return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;
+		} else {
+
+			securitiesAccountEntity.setSa_MemberEntity(user);
+			securitiesAccountService.insert(securitiesAccountEntity);
+
+			request.setAttribute(MEMBER_LOG_KEY, OK);
+
+			logger.info("(" + className + "." + methodName + ") 證券帳戶新增成功");
+
+			return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;
+		}
 	}
 
 }

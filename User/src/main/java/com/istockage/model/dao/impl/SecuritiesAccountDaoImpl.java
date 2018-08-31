@@ -3,7 +3,7 @@
  * File: SecuritiesAccountDaoImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/8/26
+ * Modified: 2018/8/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -88,7 +88,9 @@ public class SecuritiesAccountDaoImpl implements SecuritiesAccountDao {
 	@Override
 	public SecuritiesAccountEntity insert(SecuritiesAccountEntity securitiesAccountEntity) {
 
-		return (SecuritiesAccountEntity) hibernateTemplate.save(securitiesAccountEntity);
+		hibernateTemplate.save(securitiesAccountEntity);
+
+		return securitiesAccountEntity;
 	}
 
 }

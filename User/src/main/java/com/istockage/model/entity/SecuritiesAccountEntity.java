@@ -3,7 +3,7 @@
  * File: SecuritiesAccountEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/8/24
+ * Modified: 2018/8/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,6 +18,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Range;
 
 /**
  * securities_account entity
@@ -40,7 +44,10 @@ public class SecuritiesAccountEntity {
 	@ManyToOne
 	@JoinColumn(name = "sa_sb_id")
 	private SecuritiesBrokerBranchEntity sa_SecuritiesBrokerBranchEntity;
+	@Pattern(regexp = "^[0-9]{7}$")
 	private String sa_no;
+	@Digits(integer = 3, fraction = 0)
+	@Range(min = 0, max = 100)
 	private Byte sa_discount;
 	private Integer sa_times;
 	private Date sa_update_time;

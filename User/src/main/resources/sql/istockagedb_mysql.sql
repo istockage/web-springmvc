@@ -119,7 +119,7 @@ create table securities_account (
     sa_sh_id                int not null,
     sa_sb_id                int not null,
     sa_no                   char(7) not null,
-    sa_discount             tinyint not null,
+    sa_discount             tinyint,
     sa_times                int not null,
     sa_update_time          datetime not null,
     primary key (sa_id),

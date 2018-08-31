@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -92,7 +93,11 @@
 																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_name}證券</td>
 																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_name}分公司</td>
 																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${entity.sa_SecuritiesBrokerBranchEntity.sb_no}${entity.sa_no}</td>
-																<td class="align-middle">${entity.sa_discount}<c:if test="${not empty entity.sa_discount}">折</c:if></td>
+																<td class="align-middle">
+																	<c:if test="${not empty entity.sa_discount}">
+																		<fmt:formatNumber type="number" var="sa_discount" value="${entity.sa_discount%10 == 0 ? entity.sa_discount/10 : entity.sa_discount}" maxFractionDigits="0" />${sa_discount} 折
+																	</c:if>
+																</td>
 																<td class="align-middle">${entity.sa_times}</td>
 																<td class="align-middle text-right">
 																	<a href="#" class="btn btn-lg btn-light" title="編輯"><i class="fa fa-edit"></i></a>

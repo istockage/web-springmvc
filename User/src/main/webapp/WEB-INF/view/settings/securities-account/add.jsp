@@ -29,6 +29,7 @@
 				<div class="page">
 					<!-- .page-inner -->
 					<div class="page-inner">
+					
 						<!-- .page-title-bar -->
 						<header class="page-title-bar">
 							<nav aria-label="breadcrumb">
@@ -45,8 +46,10 @@
 						<div class="page-section">
 							<!-- grid row -->
 							<div class="row">
+							
 								<!-- grid column -->
 								<div class="col-lg-3">
+								
 									<!-- .card -->
 									<div class="card card-fluid">
 										<!-- .nav -->
@@ -58,11 +61,13 @@
 										<!-- /.nav -->
 									</div>
 									<!-- /.card -->
+									
 								</div>
 								<!-- /grid column -->
 								
 								<!-- grid column -->
 								<div class="col-lg-9">
+								
 									<!-- .card -->
 									<div class="card card-fluid">
 										<h6 class="card-header">新增證券帳戶</h6>
@@ -116,12 +121,15 @@
 										<!-- /.card-body -->
 									</div>
 									<!-- /.card -->
+									
 								</div>
 								<!-- /grid column -->
+								
 							</div>
 							<!-- /grid row -->
 						</div>
 						<!-- /.page-section -->
+						
 					</div>
 					<!-- /.page-inner -->
 				</div>

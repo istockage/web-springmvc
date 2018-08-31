@@ -29,6 +29,7 @@
 				<div class="page">
 					<!-- .page-inner -->
 					<div class="page-inner">
+					
 						<!-- .page-title-bar -->
 						<header class="page-title-bar">
 							<nav aria-label="breadcrumb">
@@ -44,8 +45,10 @@
 						<div class="page-section">
 							<!-- grid row -->
 							<div class="row">
+							
 								<!-- grid column -->
 								<div class="col-lg-3">
+								
 									<!-- .card -->
 									<div class="card card-fluid">
 										<!-- .nav -->
@@ -57,12 +60,14 @@
 										<!-- /.nav -->
 									</div>
 									<!-- /.card -->
+									
 								</div>
 								<!-- /grid column -->
 								
 								<!-- grid column -->
 								<div class="col-lg-9">
 								
+									<!-- .alert -->
 									<c:if test="${not empty error}">
 										<div class="alert alert-danger alert-dismissible fade show">
 											<button type="button" class="close" data-dismiss="alert">×</button>
@@ -70,6 +75,9 @@
 											<div>${error}</div>
 										</div>
 									</c:if>
+									<!-- /.alert -->
+									
+									<!-- .alert -->
 									<c:if test="${not empty success}">
 										<div class="alert alert-success alert-dismissible fade show">
 											<button type="button" class="close" data-dismiss="alert">×</button>
@@ -77,6 +85,7 @@
 											<div>${success}</div>
 										</div>
 									</c:if>
+									<!-- /.alert -->
 								
 									<!-- .card -->
 									<div class="card card-fluid">
@@ -151,12 +160,15 @@
 										<!-- /.card-body -->
 									</div>
 									<!-- /.card -->
+									
 								</div>
 								<!-- /grid column -->
+								
 							</div>
 							<!-- /grid row -->
 						</div>
 						<!-- /.page-section -->
+						
 					</div>
 					<!-- /.page-inner -->
 				</div>

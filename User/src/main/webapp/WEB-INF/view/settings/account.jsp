@@ -85,10 +85,8 @@
 										<div class="card-body">
 											<!-- .form -->
 											<c:url var="requestMapping" value="/settings/account/info.do" />
-											<form:form id="info-form" modelAttribute="user" action="${requestMapping}" method="post">
-												<!-- .fieldset -->
+											<form:form id="account-info-form" modelAttribute="user" action="${requestMapping}" method="post">
 												<fieldset>
-													<!-- .form-row -->
 													<div class="form-row">
 														<div class="col-md-6 mb-3">
 															<form:label path="me_lastname">姓</form:label>
@@ -101,23 +99,17 @@
 															<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														</div>
 													</div>
-													<!-- /.form-row -->
-													<!-- .form-group -->
 													<div class="form-group">
 														<form:label path="me_email">信箱</form:label>
 														<form:input path="me_email" cssClass="form-control" aria-describedby="me_email-help" />
 														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														<small id="me_email-help" class="form-text text-muted">將被變更為您的登入信箱。</small>
 													</div>
-													<!-- /.form-group -->
 												</fieldset>
-												<!-- /.fieldset -->
 												<hr />
-												<!-- .form-actions -->
 												<div class="form-actions">
 													<button type="submit" class="btn btn-primary ml-auto">儲存</button>
 												</div>
-												<!-- /.form-actions -->
 											</form:form>
 											<!-- /.form -->
 										</div>
@@ -131,38 +123,28 @@
 										<!-- .card-body -->
 										<div class="card-body">
 											<!-- .form -->
-											<form id="change-password-form" action="<c:url value='/settings/account/change-password.do' />" method="post">
-												<!-- .fieldset -->
+											<form id="account-change-password-form" action="<c:url value='/settings/account/change-password.do' />" method="post">
 												<fieldset>
-													<!-- .form-group -->
 													<div class="form-group">
 														<label for="me_password">舊密碼</label>
 														<input type="password" id="me_password" class="form-control" name="me_password" value="${me_password}" />
 														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 													</div>
-													<!-- /.form-group -->
-													<!-- .form-group -->
 													<div class="form-group">
 														<label for="me_password_new">新密碼</label>
 														<input type="password" id="me_password_new" class="form-control" name="me_password_new" value="${me_password_new}" />
 														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 													</div>
-													<!-- /.form-group -->
-													<!-- .form-group -->
 													<div class="form-group">
 														<label for="me_password_new_again">確認密碼</label>
 														<input type="password" id="me_password_new_again" class="form-control" name="me_password_new_again" value="${me_password_new_again}" />
 														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 													</div>
-													<!-- /.form-group -->
 												</fieldset>
-												<!-- /.fieldset -->
 												<hr />
-												<!-- .form-actions -->
 												<div class="form-actions">
 													<button type="submit" class="btn btn-primary ml-auto">儲存</button>
 												</div>
-												<!-- /.form-actions -->
 											</form>
 											<!-- /.form -->
 										</div>

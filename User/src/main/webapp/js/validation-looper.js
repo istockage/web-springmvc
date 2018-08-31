@@ -19,7 +19,7 @@ $(document).ready(function(){
 	});
 	
 	// settings/account/info
-	$("#info-form").validate({
+	$("#account-info-form").validate({
 		rules: {
 			me_lastname: {
 				maxlength: 20
@@ -35,20 +35,20 @@ $(document).ready(function(){
 		},
 		messages: {
 			me_lastname: {
-				maxlength: "姓必須小於20個字"
+				maxlength: "必須小於 20 個字"
 			},
 			me_firstname: {
-				maxlength: "名必須小於20個字"
+				maxlength: "必須小於 20 個字"
 			},
 			me_email: {
-				required: "這裡必須填入資料",
+				required: "必須填入資料",
 				email: "必須填入正確的信箱格式",
-				maxlength: "信箱必須小於50個字"
+				maxlength: "必須小於 50 個字"
 			}
 		},
 		errorElement: "span",
 		errorPlacement: function(error, element) {
-			$(element).next().append(error);
+			$(element).siblings(".invalid-feedback").append(error);
 		},
 		highlight: function(element){
 			$(element).addClass("is-invalid");
@@ -62,7 +62,7 @@ $(document).ready(function(){
 	});
 	
 	// settings/account/change-password
-	$("#change-password-form").validate({
+	$("#account-change-password-form").validate({
 		rules: {
 			me_password: {
 				required: true
@@ -76,26 +76,77 @@ $(document).ready(function(){
 			me_password_new_again: {
 				required: true,
 				equalTo : "#me_password_new"
-			},
+			}
 		},
 		messages: {
 			me_password: {
-				required: "這裡必須填入資料"
+				required: "必須填入資料"
 			},
 			me_password_new: {
-				required: "這裡必須填入資料",
-				pattern: "密碼必須包含英文及數字，不可填入空白",
-				minlength: "密碼必須大於8個字",
-				maxlength: "密碼必須小於32個字"
+				required: "必須填入資料",
+				pattern: "必須包含英文及數字，不可填入空白",
+				minlength: "必須大於 8 個字",
+				maxlength: "必須小於 32 個字"
 			},
 			me_password_new_again: {
-				required: "這裡必須填入資料",
-				equalTo: "密碼重複錯誤"
-			},
+				required: "必須填入資料",
+				equalTo: "重複錯誤"
+			}
 		},
 		errorElement: "span",
 		errorPlacement: function(error, element) {
-			$(element).next().append(error);
+			$(element).siblings(".invalid-feedback").append(error);
+		},
+		highlight: function(element){
+			$(element).addClass("is-invalid");
+		},
+		unhighlight: function(element){
+			$(element).removeClass("is-invalid");
+		},
+		submitHandler: function(form){
+			form.submit();
+	    }
+	});
+	
+	// settings/securities-account/add
+	$("#securities-account-add-form").validate({
+		rules: {
+			sa_SecuritiesBrokerHeadEntity: {
+				min: 1
+			},
+			sa_SecuritiesBrokerBranchEntity: {
+				min: 1
+			},
+			sa_no: {
+				required: true,
+				pattern: /^[0-9]{7}$/
+			},
+			sa_discount: {
+				digits: true,
+				min: 0,
+				max: 100
+			}
+		},
+		messages: {
+			sa_SecuritiesBrokerHeadEntity: {
+				min: "必須選擇"
+			},
+			sa_SecuritiesBrokerBranchEntity: {
+				min: "必須選擇"
+			},
+			sa_no: {
+				required: "必須填入資料",
+				pattern: "必須填入 7 位數字"
+			},
+			sa_discount: {
+				digits: "必須填入數字",
+				min: "必須填入介於 0 到 100 的數字",
+				max: "必須填入介於 0 到 100 的數字"
+			}
+		},
+		errorElement: "span",
+		errorPlacement: function(error, element) {
+			$(element).siblings(".invalid-feedback").append(error);
 		},
 		highlight: function(element){
 			$(element).addClass("is-invalid");

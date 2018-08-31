@@ -68,8 +68,9 @@
 										<h6 class="card-header">新增證券帳戶</h6>
 										<!-- .card-body -->
 										<div class="card-body">
+											<!-- .form -->
 											<c:url var="requestMapping" value="/settings/securities-account/add.do" />
-											<form:form modelAttribute="securitiesAccountEntity" action="${requestMapping}" method="post">
+											<form:form id="securities-account-add-form" modelAttribute="securitiesAccountEntity" action="${requestMapping}" method="post">
 												<fieldset>
 													<div class="form-group">
 														<form:label path="sa_SecuritiesBrokerHeadEntity">證券商&nbsp;<span class="badge badge-subtle badge-danger">Required</span></form:label>
@@ -77,16 +78,19 @@
 															<form:option value="0" label="請選擇" />
 															<form:options items="${securitiesBrokerHeadList}" itemValue="sh_id" itemLabel="sh_name" />
 														</form:select>
+														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 													</div>
 													<div class="form-group">
 														<form:label path="sa_SecuritiesBrokerBranchEntity">分公司&nbsp;<span class="badge badge-subtle badge-danger">Required</span></form:label>
 														<form:select path="sa_SecuritiesBrokerBranchEntity" cssClass="custom-select">
 															<form:option value="0" label="請選擇" />
 														</form:select>
+														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 													</div>
 													<div class="form-group">
 														<form:label path="sa_no">帳號&nbsp;<span class="badge badge-subtle badge-danger">Required</span></form:label>
 														<form:input path="sa_no" cssClass="form-control" aria-describedby="sa_no-help" />
+														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														<small id="sa_no-help" class="form-text text-muted">帳號為後 7 位數字。</small>
 													</div>
 													<div class="form-group">
@@ -96,6 +100,7 @@
 															<div class="input-group-append">
 																<span class="input-group-text">%</span>
 															</div>
+															<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														</div>
 														<small id="sa_discount-help" class="form-text text-muted">若手續費折扣為 6 折，請輸入 60。</small>
 													</div>
@@ -106,6 +111,7 @@
 													<button type="submit" class="btn btn-primary">新增</button>
 												</div>
 											</form:form>
+											<!-- /.form -->
 										</div>
 										<!-- /.card-body -->
 									</div>
@@ -138,5 +144,6 @@
 	<!-- load -->
 	<script src="<%=request.getContextPath()%>/js/looper/main.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<%=request.getContextPath()%>/js/custom.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/validation-looper.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

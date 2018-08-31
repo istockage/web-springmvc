@@ -112,7 +112,7 @@
 												</fieldset>
 												<hr />
 												<div class="form-actions">
-													<button type="button" class="btn btn-secondary ml-auto">取消</button>
+													<a href="<%=request.getContextPath()%>/settings/securities-account" class="btn btn-secondary ml-auto">取消</a>
 													<button type="submit" class="btn btn-primary">新增</button>
 												</div>
 											</form:form>

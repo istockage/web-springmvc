@@ -82,13 +82,13 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="bean" items="${securitiesAccountList}" varStatus="status">
+														<c:forEach var="entity" items="${securitiesAccountList}" varStatus="status">
 															<tr>
-																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_name}證券</td>
-																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_name}分公司</td>
-																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.sb_no}${bean.sa_no}</td>
-																<td class="align-middle">${bean.sa_discount}折</td>
-																<td class="align-middle">${bean.sa_times}</td>
+																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_name}證券</td>
+																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_name}分公司</td>
+																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${entity.sa_SecuritiesBrokerBranchEntity.sb_no}${entity.sa_no}</td>
+																<td class="align-middle">${entity.sa_discount}<c:if test="${not empty entity.sa_discount}">折</c:if></td>
+																<td class="align-middle">${entity.sa_times}</td>
 																<td class="align-middle text-right">
 																	<a href="#" class="btn btn-lg btn-light" title="編輯"><i class="fa fa-edit"></i></a>
 																	<a href="#" class="btn btn-lg btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>

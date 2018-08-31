@@ -61,6 +61,8 @@ public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 放行: " + requestPath);
 
+		request.setAttribute(REQUEST_PATH, requestPath);
+
 		return true;
 	}
 

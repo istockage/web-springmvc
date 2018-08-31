@@ -3,7 +3,7 @@
  * File: SecuritiesAccountService.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/8/26
+ * Modified: 2018/9/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,6 +19,11 @@ import com.istockage.model.entity.SecuritiesAccountEntity;
  * @author 詹晟
  */
 public interface SecuritiesAccountService extends ServiceConstant {
+
+	/**
+	 * @see com.istockage.model.service.impl.SecuritiesAccountServiceImpl#selectBySa_id(Integer)
+	 */
+	SecuritiesAccountEntity selectBySa_id(Integer sa_id);
 
 	/**
 	 * @see com.istockage.model.service.impl.SecuritiesAccountServiceImpl#selectBySa_me_id(Integer,

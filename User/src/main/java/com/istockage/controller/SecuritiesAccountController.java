@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/8/31
+ * Modified: 2018/9/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,6 +32,7 @@ import com.google.gson.Gson;
 import com.istockage.common.editor.SecuritiesBrokerBranchEntityPropertyEditor;
 import com.istockage.common.editor.SecuritiesBrokerHeadEntityPropertyEditor;
 import com.istockage.common.util.PaginationUtil;
+import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.entity.SecuritiesBrokerBranchEntity;
@@ -109,7 +110,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 		// 取得 ServletPath
 		model.addAttribute(SERVLET_PATH, request.getServletPath());
 
-		// 取得當前頁碼的證券帳戶 List
+		// 取得當前頁碼的證券帳戶
 		model.addAttribute(SECURITIES_ACCOUNT_LIST, map.get("list"));
 
 		// 取得分頁資訊
@@ -130,38 +131,10 @@ public class SecuritiesAccountController implements ControllerConstant {
 		// 新增 form-backing object
 		model.addAttribute(SECURITIES_ACCOUNT_ENTITY, new SecuritiesAccountEntity());
 
-		// 取得所有證券商 List
+		// 取得所有證券商
 		model.addAttribute(SECURITIES_BROKER_HEAD_LIST, securitiesBrokerHeadService.selectByAll());
 
 		return SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW;
-	}
-
-	/**
-	 * 選定證券商中的所有分公司 - AJAX
-	 * 
-	 * @param sb_sh_id Integer --> 證券商流水號
-	 * @return SecuritiesBrokerBranchEntity JSON
-	 */
-	@RequestMapping(value = "/settings/securities-account/add/securities-broker-branch-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	public @ResponseBody String settingsSecuritiesAccountAddSecuritiesBrokerBranchListAjax(Integer sb_sh_id) {
-
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-
-		List<SecuritiesBrokerBranchEntity> list = securitiesBrokerBranchService.selectBySb_sh_id(sb_sh_id);
-
-		List<SecuritiesBrokerBranchEntity> jsonList = new ArrayList<SecuritiesBrokerBranchEntity>();
-		for (SecuritiesBrokerBranchEntity bean : list) {
-			SecuritiesBrokerBranchEntity jsonBean = new SecuritiesBrokerBranchEntity();
-			jsonBean.setSb_id(bean.getSb_id());
-			jsonBean.setSb_name(bean.getSb_name());
-			jsonList.add(jsonBean);
-		}
-
-		String json = new Gson().toJson(jsonList);
-
-		logger.info("(" + className + "." + methodName + ") JSON = " + json);
-
-		return json;
 	}
 
 	/**
@@ -196,6 +169,81 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 			return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;
 		}
+	}
+
+	/**
+	 * 編輯證券帳戶 - init
+	 * 
+	 * @param securitiesAccountEntity_sa_id SecuritiesAccountEntity --> form-backing
+	 *        object --> GET --> sa_id
+	 * @param model Model
+	 * @return /WEB-INF/view/settings/securities-account/edit.jsp
+	 */
+	@RequestMapping(value = "/settings/securities-account/edit", method = RequestMethod.GET)
+	public String settingsSecuritiesAccountEditView(SecuritiesAccountEntity securitiesAccountEntity_sa_id,
+			Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+
+		SecuritiesAccountEntity securitiesAccountEntity;
+		try {
+			securitiesAccountEntity = securitiesAccountService.selectBySa_id(securitiesAccountEntity_sa_id.getSa_id());
+
+			if (securitiesAccountEntity == null) {
+
+				throw new PageNotFoundException(requestPath);
+			}
+		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_VIEW;
+
+		} catch (IllegalArgumentException e) {
+
+			logger.error("(" + className + "." + methodName + ") " + "找不到這個頁面: " + requestPath);
+
+			return ERROR_PAGE_NOT_FOUND_VIEW;
+		}
+
+		// 使表單回填 SecuritiesAccountEntity 內所有資料
+		model.addAttribute(SECURITIES_ACCOUNT_ENTITY, securitiesAccountEntity);
+
+		// 取得所有證券商
+		model.addAttribute(SECURITIES_BROKER_HEAD_LIST, securitiesBrokerHeadService.selectByAll());
+
+		// 取得選定證券商中的所有分公司
+		model.addAttribute(SECURITIES_BROKER_BRANCH_LIST, securitiesBrokerBranchService
+				.selectBySb_sh_id(securitiesAccountEntity.getSa_SecuritiesBrokerHeadEntity().getSh_id()));
+
+		return SETTINGS_SECURITIES_ACCOUNT_EDIT_VIEW;
+	}
+
+	/**
+	 * 選定證券商中的所有分公司 - AJAX
+	 * 
+	 * @param sb_sh_id Integer --> 證券商流水號
+	 * @return SecuritiesBrokerBranchEntity JSON
+	 */
+	@RequestMapping(value = "/settings/securities-account/securities-broker-branch-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	public @ResponseBody String settingsSecuritiesAccountSecuritiesBrokerBranchListAjax(Integer sb_sh_id) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		List<SecuritiesBrokerBranchEntity> list = securitiesBrokerBranchService.selectBySb_sh_id(sb_sh_id);
+
+		List<SecuritiesBrokerBranchEntity> jsonList = new ArrayList<SecuritiesBrokerBranchEntity>();
+		for (SecuritiesBrokerBranchEntity bean : list) {
+			SecuritiesBrokerBranchEntity jsonBean = new SecuritiesBrokerBranchEntity();
+			jsonBean.setSb_id(bean.getSb_id());
+			jsonBean.setSb_name(bean.getSb_name());
+			jsonList.add(jsonBean);
+		}
+
+		String json = new Gson().toJson(jsonList);
+
+		logger.info("(" + className + "." + methodName + ") JSON = " + json);
+
+		return json;
 	}
 
 }

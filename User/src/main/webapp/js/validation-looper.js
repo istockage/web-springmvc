@@ -108,8 +108,8 @@ $(document).ready(function(){
 	    }
 	});
 	
-	// settings/securities-account/add
-	$("#securities-account-add-form").validate({
+	// settings/securities-account/add, settings/securities-account/edit
+	$("#securities-account-add-form, #securities-account-edit-form").validate({
 		rules: {
 			sa_SecuritiesBrokerHeadEntity: {
 				min: 1

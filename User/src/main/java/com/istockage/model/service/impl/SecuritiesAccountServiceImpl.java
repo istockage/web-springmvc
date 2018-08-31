@@ -3,7 +3,7 @@
  * File: SecuritiesAccountServiceImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/8/30
+ * Modified: 2018/9/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,6 +33,19 @@ public class SecuritiesAccountServiceImpl implements SecuritiesAccountService {
 	 */
 	@Autowired
 	private SecuritiesAccountDao securitiesAccountDao;
+
+	/**
+	 * 證券帳戶流水號搜尋
+	 * 
+	 * @param sa_id Integer --> 證券帳戶流水號
+	 * @return SecuritiesAccountEntity
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public SecuritiesAccountEntity selectBySa_id(Integer sa_id) {
+
+		return securitiesAccountDao.selectBySa_id(sa_id);
+	}
 
 	/**
 	 * 搜尋所有證券帳戶 (分頁)

@@ -14,6 +14,8 @@ public interface ModelAttributeConstant {
 	// request
 	public static final String SERVLET_PATH = "servletPath";
 
+	public static final String REQUEST_PATH = "requestPath";
+
 	public static final String MEMBER_EMAIL = "me_email";
 
 	public static final String MEMBER_PASSWORD = "me_password";
@@ -29,6 +31,8 @@ public interface ModelAttributeConstant {
 	public static final String MEMBER_LOG_KEY = "memberLogKey";
 
 	public static final String SECURITIES_BROKER_HEAD_LIST = "securitiesBrokerHeadList";
+
+	public static final String SECURITIES_BROKER_BRANCH_LIST = "securitiesBrokerBranchList";
 
 	public static final String SECURITIES_ACCOUNT_ENTITY = "securitiesAccountEntity";
 

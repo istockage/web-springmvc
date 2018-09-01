@@ -3,12 +3,13 @@
  * File: SecuritiesAccountDaoImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/1
+ * Modified: 2018/9/2
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.dao.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,6 +102,27 @@ public class SecuritiesAccountDaoImpl implements SecuritiesAccountDao {
 	public SecuritiesAccountEntity insert(SecuritiesAccountEntity securitiesAccountEntity) {
 
 		hibernateTemplate.save(securitiesAccountEntity);
+
+		return securitiesAccountEntity;
+	}
+
+	/**
+	 * 編輯證券帳戶
+	 * 
+	 * @param updatedEntity SecuritiesAccountEntity
+	 * @return SecuritiesAccountEntity
+	 */
+	@Override
+	public SecuritiesAccountEntity update(SecuritiesAccountEntity updatedEntity) {
+
+		SecuritiesAccountEntity securitiesAccountEntity = hibernateTemplate.get(SecuritiesAccountEntity.class,
+				updatedEntity.getSa_id());
+
+		securitiesAccountEntity.setSa_SecuritiesBrokerHeadEntity(updatedEntity.getSa_SecuritiesBrokerHeadEntity());
+		securitiesAccountEntity.setSa_SecuritiesBrokerBranchEntity(updatedEntity.getSa_SecuritiesBrokerBranchEntity());
+		securitiesAccountEntity.setSa_no(updatedEntity.getSa_no());
+		securitiesAccountEntity.setSa_discount(updatedEntity.getSa_discount());
+		securitiesAccountEntity.setSa_update_time(new Date());
 
 		return securitiesAccountEntity;
 	}

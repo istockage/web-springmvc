@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/9/1
+ * Modified: 2018/9/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -164,7 +165,6 @@ public class SecuritiesAccountController implements ControllerConstant {
 			securitiesAccountService.insert(securitiesAccountEntity);
 
 			request.setAttribute(MEMBER_LOG_KEY, OK);
-
 			logger.info("(" + className + "." + methodName + ") 證券帳戶新增成功");
 
 			return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;
@@ -216,6 +216,37 @@ public class SecuritiesAccountController implements ControllerConstant {
 				.selectBySb_sh_id(securitiesAccountEntity.getSa_SecuritiesBrokerHeadEntity().getSh_id()));
 
 		return SETTINGS_SECURITIES_ACCOUNT_EDIT_VIEW;
+	}
+
+	/**
+	 * 編輯證券帳戶 - submit
+	 * 
+	 * @param updatedEntity SecuritiesAccountEntity --> form-backing object
+	 * @param bindingResult BindingResult
+	 * @return /WEB-INF/view/settings/securities-account/edit.jsp
+	 */
+	@RequestMapping(value = "/settings/securities-account/edit", method = RequestMethod.POST)
+	public String settingsSecuritiesAccountEditAction(
+			@Valid @ModelAttribute(SECURITIES_ACCOUNT_ENTITY) SecuritiesAccountEntity updatedEntity,
+			BindingResult bindingResult) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error("(" + className + "." + methodName + ") 證券帳戶編輯失敗，格式錯誤");
+
+			return SETTINGS_SECURITIES_ACCOUNT_EDIT_VIEW;
+
+		} else {
+
+			securitiesAccountService.update(updatedEntity);
+
+			request.setAttribute(MEMBER_LOG_KEY, OK);
+			logger.info("(" + className + "." + methodName + ") 證券帳戶編輯成功");
+
+			return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;
+		}
 	}
 
 	/**

@@ -144,7 +144,6 @@
 	</div>
 	<!-- /.app -->
 	
-	<!-- load -->
-	<script src="<%=request.getContextPath()%>/js/looper/main.min.js" type="text/javascript" charset="utf-8"></script>
+	<%@include file="../body.jsp"%>
 </body>
 </html>

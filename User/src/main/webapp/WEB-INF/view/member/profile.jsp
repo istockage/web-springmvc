@@ -30,7 +30,11 @@
 						
 						<!-- .page-title-bar -->
 						<header class="page-title-bar">
-							profile
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item active">帳戶</li>
+								</ol>
+							</nav>
 						</header>
 						<!-- /.page-title-bar -->
 						
@@ -39,12 +43,18 @@
 							
 						</div>
 						<!-- /.page-section -->
+						
 					</div>
 					<!-- /.page-inner -->
 				</div>
 				<!-- /.page -->
 			</div>
 			<!-- /.wrapper -->
+			
+			<!-- footer -->
+			<%@include file="../footer.jsp"%>
+			<!-- /footer -->
+			
 		</main>
 		<!-- /.app-main -->
 		
@@ -53,6 +63,6 @@
 	</div>
 	<!-- /.app -->
 	
-	<script src="<%=request.getContextPath()%>/js/looper/main.min.js" type="text/javascript" charset="utf-8"></script>
+	<%@include file="../body.jsp"%>
 </body>
 </html>

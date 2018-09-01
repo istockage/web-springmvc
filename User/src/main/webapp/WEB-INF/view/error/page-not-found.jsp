@@ -15,62 +15,70 @@
 </c:choose>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${empty user}">
-			<div class="container-fluid">
-				<div class="container top">
-					<div class="title">
-						<h3>page not found</h3>
-					</div>
-				</div>
+<c:choose>
+<c:when test="${empty user}">
+	<div class="container-fluid">
+		<div class="container top">
+			<div class="title">
+				<h3>page not found</h3>
 			</div>
-		</c:when>
-			
-		<c:when test="${not empty user}">
-			<!-- .app -->
-			<div class="app">
-			
-				<!-- header -->
-				<jsp:include page="../header.jsp" />
-				<!-- /header -->
+		</div>
+	</div>
+</c:when>
+<c:when test="${not empty user}">
+	<!-- .app -->
+	<div class="app">
+	
+		<!-- header -->
+		<jsp:include page="../header.jsp" />
+		<!-- /header -->
+
+		<!-- aside -->
+		<%@include file="../aside.jsp"%>
+		<!-- /aside -->
+
+		<!-- main -->
 		
-				<!-- aside -->
-				<%@include file="../aside.jsp"%>
-				<!-- /aside -->
-		
-				<!-- main -->
-				
-				<!-- .app-main -->
-				<main class="app-main">
-					<!-- .wrapper -->
-					<div class="wrapper">
-						<!-- .page -->
-						<div class="page">
-							<!-- .page-inner -->
-							<div class="page-inner">
-								<!-- .page-title-bar -->
-								<header class="page-title-bar">404</header>
-								<!-- /.page-title-bar -->
-								
-								<!-- .page-section -->
-								<div class="page-section"></div>
-								<!-- /.page-section -->
-							</div>
-							<!-- /.page-inner -->
+		<!-- .app-main -->
+		<main class="app-main">
+			<!-- .wrapper -->
+			<div class="wrapper">
+				<!-- .page -->
+				<div class="page">
+					<!-- .page-inner -->
+					<div class="page-inner">
+					
+						<!-- .page-title-bar -->
+						<header class="page-title-bar">404</header>
+						<!-- /.page-title-bar -->
+						
+						<!-- .page-section -->
+						<div class="page-section">
+							
 						</div>
-						<!-- /.page -->
+						<!-- /.page-section -->
+						
 					</div>
-					<!-- /.wrapper -->
-				</main>
-				<!-- /.app-main -->
-				
-				<!-- /main -->
-				
+					<!-- /.page-inner -->
+				</div>
+				<!-- /.page -->
 			</div>
-			<!-- /.app -->
+			<!-- /.wrapper -->
 			
-			<script src="<%=request.getContextPath()%>/js/looper/main.min.js" type="text/javascript" charset="utf-8"></script>
-		</c:when>
-	</c:choose>
+			<!-- footer -->
+			<%@include file="../footer.jsp"%>
+			<!-- /footer -->
+			
+		</main>
+		<!-- /.app-main -->
+		
+		<!-- /main -->
+		
+	</div>
+	<!-- /.app -->
+	
+	<%@include file="../body.jsp"%>
+</c:when>
+</c:choose>
 </body>
 </html>

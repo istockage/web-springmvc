@@ -107,9 +107,7 @@
 														<form:label path="sa_discount">電子下單手續費折扣</form:label>
 														<div class="input-group input-group-alt">
 															<form:input path="sa_discount" cssClass="form-control" aria-describedby="sa_discount-help" />
-															<div class="input-group-append">
-																<span class="input-group-text">%</span>
-															</div>
+															<div class="input-group-append"><span class="input-group-text" style="border-radius:.25rem">%</span></div>
 															<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														</div>
 														<small id="sa_discount-help" class="form-text text-muted">若手續費折扣為 6 折，請輸入 60。</small>

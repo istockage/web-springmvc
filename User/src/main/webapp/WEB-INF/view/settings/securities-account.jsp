@@ -94,8 +94,15 @@
 																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_name}分公司</td>
 																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${entity.sa_SecuritiesBrokerBranchEntity.sb_no}${entity.sa_no}</td>
 																<td class="align-middle">
-																	<c:if test="${not empty entity.sa_discount}">
-																		<fmt:formatNumber type="number" var="sa_discount" value="${entity.sa_discount%10 == 0 ? entity.sa_discount/10 : entity.sa_discount}" maxFractionDigits="0" />${sa_discount} 折
+																	<c:if test="${not empty entity.sa_discount && entity.sa_discount != 0}">
+																		<c:choose>
+																			<c:when test="${entity.sa_discount >= 10}">
+																				<fmt:formatNumber type="number" var="sa_discount" value="${entity.sa_discount%10 == 0 ? entity.sa_discount/10 : entity.sa_discount}" maxFractionDigits="0" />${sa_discount} 折
+																			</c:when>
+																			<c:otherwise>
+																				${entity.sa_discount/10} 折
+																			</c:otherwise>
+																		</c:choose>
 																	</c:if>
 																</td>
 																<td class="align-middle">${entity.sa_times}</td>

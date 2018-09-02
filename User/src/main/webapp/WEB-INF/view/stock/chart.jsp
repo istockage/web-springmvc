@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>股票交易明細 - iStockage</title>
+<title>股票統計圖表 - iStockage</title>
 <%@include file="../head.jsp"%>
 </head>
 <body>
@@ -33,7 +33,7 @@
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/stock/chart">股票</a></li>
-									<li class="breadcrumb-item active">交易明細</li>
+									<li class="breadcrumb-item active">統計圖表</li>
 								</ol>
 							</nav>
 						</header>

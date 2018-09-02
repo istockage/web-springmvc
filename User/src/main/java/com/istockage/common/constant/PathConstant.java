@@ -35,6 +35,8 @@ public interface PathConstant {
 
 	public static final String MEMBER_PROFILE_VIEW = "member/profile";
 
+	public static final String STOCK_LIST_VIEW = "stock/list";
+
 	public static final String ERROR_PAGE_NOT_FOUND_VIEW = "error/page-not-found";
 
 	// action

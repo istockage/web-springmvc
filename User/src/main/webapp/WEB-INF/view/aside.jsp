@@ -46,8 +46,8 @@
 						<a href="#" class="menu-link"><span class="menu-icon oi oi-bar-chart"></span><span class="menu-text">股票</span></a>
 						<!-- child menu -->
 						<ul class="menu">
-							<li class="menu-item"><a href="#" class="menu-link">新增交易</a></li>
 							<li class="menu-item"><a href="#" class="menu-link">統計</a></li>
+							<li class="menu-item"><a href="<%=request.getContextPath()%>/stock/list" class="menu-link">交易明細</a></li>
 						</ul>
 						<!-- /child menu -->
 					</li>

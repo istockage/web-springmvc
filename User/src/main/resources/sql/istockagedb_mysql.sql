@@ -170,10 +170,12 @@ insert into securities_broker_branch (sb_sh_id, sb_no, sb_name, sb_update_time) 
 -- User
 -- member
 insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastname, me_firstname, me_activity_code, me_signup_time, me_update_info_time, me_update_pwd_time) values ('9203330360', 'chengjhan@gmail.com', '03a6de93ab7271375694231bf9eacc5b', '992cb6c0-c52e-4155-94c5-558251878998', null, null, null, 1, now(), now(), now());
+insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastname, me_firstname, me_activity_code, me_signup_time, me_update_info_time, me_update_pwd_time) values ('0568914095', 'chengjhan+1@gmail.com', '348f6a73c4a04d015e516ffddfde7432', '14bbce0f-78b8-4e83-822a-06b619f00758', null, null, null, 1, now(), now(), now());
 
 -- securities_account
 insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 1, 1, '0239889', 60, 0, now());
 insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 2, 2, '0060626', 38, 0, now());
+insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (2, 1, 1, '1111111', 60, 0, now());
 
 -- user_path
 insert into user_path (up_pc_id, up_name, up_path) values (1, '找不到網頁', 'error/page-not-found');
@@ -203,3 +205,4 @@ insert into user_path (up_pc_id, up_name, up_path) values (2, '新增證券帳�
 insert into user_path (up_pc_id, up_name, up_path) values (1, '編輯證券帳戶', 'settings/securities-account/edit');
 insert into user_path (up_pc_id, up_name, up_path) values (2, '編輯證券帳戶', 'settings/securities-account/edit.do');
 insert into user_path (up_pc_id, up_name, up_path) values (3, '選定證券商中的所有分公司', 'settings/securities-account/securities-broker-branch-list.ajax');
+insert into user_path (up_pc_id, up_name, up_path) values (1, '股票交易明細', 'stock/list');

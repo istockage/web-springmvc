@@ -165,6 +165,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 			securitiesAccountService.insert(securitiesAccountEntity);
 
 			request.setAttribute(MEMBER_LOG_KEY, OK);
+
 			logger.info("(" + className + "." + methodName + ") 證券帳戶新增成功");
 
 			return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;
@@ -174,21 +175,23 @@ public class SecuritiesAccountController implements ControllerConstant {
 	/**
 	 * 編輯證券帳戶 - init
 	 * 
+	 * @param user MemberEntity --> SessionAttribute
 	 * @param securitiesAccountEntity_sa_id SecuritiesAccountEntity --> form-backing
 	 *        object --> GET --> sa_id
 	 * @param model Model
 	 * @return /WEB-INF/view/settings/securities-account/edit.jsp
 	 */
 	@RequestMapping(value = "/settings/securities-account/edit", method = RequestMethod.GET)
-	public String settingsSecuritiesAccountEditView(SecuritiesAccountEntity securitiesAccountEntity_sa_id,
-			Model model) {
+	public String settingsSecuritiesAccountEditView(@SessionAttribute(USER) MemberEntity user,
+			SecuritiesAccountEntity securitiesAccountEntity_sa_id, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
 
 		SecuritiesAccountEntity securitiesAccountEntity;
 		try {
-			securitiesAccountEntity = securitiesAccountService.selectBySa_id(securitiesAccountEntity_sa_id.getSa_id());
+			securitiesAccountEntity = securitiesAccountService.selectBySa_id(securitiesAccountEntity_sa_id.getSa_id(),
+					user);
 
 			if (securitiesAccountEntity == null) {
 
@@ -243,6 +246,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 			securitiesAccountService.update(updatedEntity);
 
 			request.setAttribute(MEMBER_LOG_KEY, OK);
+
 			logger.info("(" + className + "." + methodName + ") 證券帳戶編輯成功");
 
 			return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;

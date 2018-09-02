@@ -16,6 +16,8 @@ import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
@@ -23,6 +25,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.istockage.model.dao.SecuritiesAccountDao;
+import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 
 /**
@@ -43,12 +46,21 @@ public class SecuritiesAccountDaoImpl implements SecuritiesAccountDao {
 	 * 證券帳戶流水號搜尋
 	 * 
 	 * @param sa_id Integer --> 證券帳戶流水號
+	 * @param memberEntity MemberEntity
 	 * @return SecuritiesAccountEntity
 	 */
 	@Override
-	public SecuritiesAccountEntity selectBySa_id(Integer sa_id) {
+	@SuppressWarnings("unchecked")
+	public SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity memberEntity) {
 
-		return hibernateTemplate.get(SecuritiesAccountEntity.class, sa_id);
+		DetachedCriteria criteria = DetachedCriteria.forClass(SecuritiesAccountEntity.class);
+
+		criteria.add(Restrictions.eq("sa_id", sa_id));
+		criteria.add(Restrictions.eq("sa_MemberEntity", memberEntity));
+
+		List<SecuritiesAccountEntity> list = (List<SecuritiesAccountEntity>) hibernateTemplate.findByCriteria(criteria);
+
+		return list.isEmpty() ? null : list.get(0);
 	}
 
 	/**

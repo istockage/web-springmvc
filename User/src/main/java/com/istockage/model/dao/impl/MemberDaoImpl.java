@@ -3,7 +3,7 @@
  * File: MemberDaoImpl.java
  * Author: 詹晟
  * Created: 2018/3/27
- * Modified: 2018/8/9
+ * Modified: 2018/9/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -56,6 +56,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public MemberEntity selectByMe_no(String me_no, Byte me_activity_code) {
+
 		DetachedCriteria criteria = DetachedCriteria.forClass(MemberEntity.class);
 
 		criteria.add(Restrictions.eq("me_no", me_no));

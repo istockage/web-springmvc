@@ -11,6 +11,7 @@ package com.istockage.model.service;
 
 import java.util.Map;
 
+import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 
 /**
@@ -21,9 +22,10 @@ import com.istockage.model.entity.SecuritiesAccountEntity;
 public interface SecuritiesAccountService extends ServiceConstant {
 
 	/**
-	 * @see com.istockage.model.service.impl.SecuritiesAccountServiceImpl#selectBySa_id(Integer)
+	 * @see com.istockage.model.service.impl.SecuritiesAccountServiceImpl#selectBySa_id(Integer,
+	 *      MemberEntity)
 	 */
-	SecuritiesAccountEntity selectBySa_id(Integer sa_id);
+	SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity memberEntity);
 
 	/**
 	 * @see com.istockage.model.service.impl.SecuritiesAccountServiceImpl#selectBySa_me_id(Integer,

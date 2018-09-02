@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.istockage.model.dao.SecuritiesAccountDao;
+import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.service.SecuritiesAccountService;
 
@@ -38,13 +39,14 @@ public class SecuritiesAccountServiceImpl implements SecuritiesAccountService {
 	 * 證券帳戶流水號搜尋
 	 * 
 	 * @param sa_id Integer --> 證券帳戶流水號
+	 * @param memberEntity MemberEntity
 	 * @return SecuritiesAccountEntity
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public SecuritiesAccountEntity selectBySa_id(Integer sa_id) {
+	public SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity memberEntity) {
 
-		return securitiesAccountDao.selectBySa_id(sa_id);
+		return securitiesAccountDao.selectBySa_id(sa_id, memberEntity);
 	}
 
 	/**

@@ -88,26 +88,26 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="entity" items="${securitiesAccountList}" varStatus="status">
+														<c:forEach var="bean" items="${securitiesAccountList}" varStatus="status">
 															<tr>
-																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_name}證券</td>
-																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_name}分公司</td>
-																<td class="align-middle">${entity.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${entity.sa_SecuritiesBrokerBranchEntity.sb_no}${entity.sa_no}</td>
+																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_name}證券</td>
+																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_name}分公司</td>
+																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.sb_no}${bean.sa_no}</td>
 																<td class="align-middle">
-																	<c:if test="${not empty entity.sa_discount && entity.sa_discount != 0}">
+																	<c:if test="${not empty bean.sa_discount && bean.sa_discount != 0}">
 																		<c:choose>
-																			<c:when test="${entity.sa_discount >= 10}">
-																				<fmt:formatNumber type="number" var="sa_discount" value="${entity.sa_discount%10 == 0 ? entity.sa_discount/10 : entity.sa_discount}" maxFractionDigits="0" />${sa_discount} 折
+																			<c:when test="${bean.sa_discount >= 10}">
+																				<fmt:formatNumber type="number" var="sa_discount" value="${bean.sa_discount%10 == 0 ? bean.sa_discount/10 : bean.sa_discount}" maxFractionDigits="0" />${sa_discount} 折
 																			</c:when>
 																			<c:otherwise>
-																				${entity.sa_discount/10} 折
+																				${bean.sa_discount/10} 折
 																			</c:otherwise>
 																		</c:choose>
 																	</c:if>
 																</td>
-																<td class="align-middle">${entity.sa_times}</td>
+																<td class="align-middle">${bean.sa_times}</td>
 																<td class="align-middle text-right">
-																	<a href="<%=request.getContextPath()%>/settings/securities-account/edit?sa_id=${entity.sa_id}" class="btn btn-lg btn-light" title="編輯"><i class="fa fa-edit"></i></a>
+																	<a href="<%=request.getContextPath()%>/settings/securities-account/edit?sa_id=${bean.sa_id}" class="btn btn-lg btn-light" title="編輯"><i class="fa fa-edit"></i></a>
 																	<a href="#" class="btn btn-lg btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>
 																</td>
 															</tr>

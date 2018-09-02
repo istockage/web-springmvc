@@ -11,6 +11,7 @@ package com.istockage.model.dao;
 
 import java.util.Map;
 
+import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 
 /**
@@ -21,9 +22,10 @@ import com.istockage.model.entity.SecuritiesAccountEntity;
 public interface SecuritiesAccountDao extends DaoConstant {
 
 	/**
-	 * @see com.istockage.model.dao.impl.SecuritiesAccountDaoImpl#selectBySa_id(Integer)
+	 * @see com.istockage.model.dao.impl.SecuritiesAccountDaoImpl#selectBySa_id(Integer,
+	 *      MemberEntity)
 	 */
-	SecuritiesAccountEntity selectBySa_id(Integer sa_id);
+	SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity memberEntity);
 
 	/**
 	 * @see com.istockage.model.dao.impl.SecuritiesAccountDaoImpl#selectBySa_me_id(Integer,

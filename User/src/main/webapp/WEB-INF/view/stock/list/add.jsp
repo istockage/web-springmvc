@@ -58,7 +58,9 @@
 												<form:label path="st_SecuritiesAccountEntity">證券商&nbsp;<span class="badge badge-subtle badge-danger">Required</span></form:label>
 												<form:select path="st_SecuritiesAccountEntity" cssClass="custom-select">
 													<form:option value="0" label="請選擇" />
-													<form:options items="${securitiesAccountEntity}" itemValue="sa_id" itemLabel="sa_SecuritiesBrokerBranchEntity.sb_name" />
+													<c:forEach var="bean" items="${securitiesAccountList}">
+														<form:option value="${bean.sa_id}"><c:out value="${bean.sa_SecuritiesBrokerHeadEntity.sh_name}${bean.sa_SecuritiesBrokerBranchEntity.sb_name}" /></form:option>
+													</c:forEach>
 												</form:select>
 											</div>
 											<div class="form-row">

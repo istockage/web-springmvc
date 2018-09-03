@@ -69,7 +69,8 @@ public class StockController implements ControllerConstant {
 		// 新增 form-backing object
 		model.addAttribute(STOCK_ENTITY, new StockEntity());
 
-		model.addAttribute(SECURITIES_ACCOUNT_ENTITY, securitiesAccountService.selectBySa_me_id(user.getMe_id()));
+		// 取得選定會員中的所有證券帳戶
+		model.addAttribute(SECURITIES_ACCOUNT_LIST, securitiesAccountService.selectBySa_me_id(user.getMe_id()));
 
 		return STOCK_LIST_ADD_VIEW;
 	}

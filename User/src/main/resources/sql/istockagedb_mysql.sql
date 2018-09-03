@@ -207,3 +207,4 @@ insert into user_path (up_pc_id, up_name, up_path) values (2, '編輯證券帳�
 insert into user_path (up_pc_id, up_name, up_path) values (3, '選定證券商中的所有分公司', 'settings/securities-account/securities-broker-branch-list.ajax');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '股票統計圖表', 'stock/chart');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '股票交易明細', 'stock/list');
+insert into user_path (up_pc_id, up_name, up_path) values (1, '新增股票交易', 'stock/list/add');

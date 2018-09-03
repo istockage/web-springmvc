@@ -43,4 +43,15 @@ public class StockController implements ControllerConstant {
 		return STOCK_LIST_VIEW;
 	}
 
+	/**
+	 * 新增股票交易 - init
+	 * 
+	 * @return /WEB-INF/view/stock/list/add.jsp
+	 */
+	@RequestMapping(value = "/stock/list/add", method = RequestMethod.GET)
+	public String stockListAddView() {
+
+		return STOCK_LIST_ADD_VIEW;
+	}
+
 }

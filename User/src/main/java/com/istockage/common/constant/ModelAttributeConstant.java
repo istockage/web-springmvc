@@ -38,6 +38,8 @@ public interface ModelAttributeConstant {
 
 	public static final String SECURITIES_ACCOUNT_LIST = "securitiesAccountList";
 
+	public static final String STOCK_ENTITY = "stockEntity";
+
 	// message
 	public static final String ERROR = "error";
 

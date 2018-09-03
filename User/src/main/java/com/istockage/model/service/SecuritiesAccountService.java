@@ -3,12 +3,13 @@
  * File: SecuritiesAccountService.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/2
+ * Modified: 2018/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.istockage.model.entity.MemberEntity;
@@ -26,6 +27,11 @@ public interface SecuritiesAccountService extends ServiceConstant {
 	 *      MemberEntity)
 	 */
 	SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity memberEntity);
+
+	/**
+	 * @see com.istockage.model.service.impl.SecuritiesAccountServiceImpl#selectBySa_me_id(Integer)
+	 */
+	List<SecuritiesAccountEntity> selectBySa_me_id(Integer sa_me_id);
 
 	/**
 	 * @see com.istockage.model.service.impl.SecuritiesAccountServiceImpl#selectBySa_me_id(Integer,

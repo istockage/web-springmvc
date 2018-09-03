@@ -3,7 +3,7 @@
  * File: SecuritiesAccountDaoImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/2
+ * Modified: 2018/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -61,6 +61,20 @@ public class SecuritiesAccountDaoImpl implements SecuritiesAccountDao {
 		List<SecuritiesAccountEntity> list = (List<SecuritiesAccountEntity>) hibernateTemplate.findByCriteria(criteria);
 
 		return list.isEmpty() ? null : list.get(0);
+	}
+
+	/**
+	 * 搜尋所有證券帳戶
+	 * 
+	 * @param sa_me_id Integer --> 會員流水號
+	 * @return List<SecuritiesAccountEntity>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<SecuritiesAccountEntity> selectBySa_me_id(Integer sa_me_id) {
+
+		return (List<SecuritiesAccountEntity>) hibernateTemplate
+				.findByNamedParam(HQL_SELECT_SECURITIES_ACCOUNT_BY_MEMBER, "sa_me_id", sa_me_id);
 	}
 
 	/**

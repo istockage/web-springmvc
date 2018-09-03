@@ -3,13 +3,14 @@
  * File: SecuritiesAccountServiceImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/2
+ * Modified: 2018/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.service.impl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,19 @@ public class SecuritiesAccountServiceImpl implements SecuritiesAccountService {
 	public SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity memberEntity) {
 
 		return securitiesAccountDao.selectBySa_id(sa_id, memberEntity);
+	}
+
+	/**
+	 * 搜尋所有證券帳戶
+	 * 
+	 * @param sa_me_id Integer --> 會員流水號
+	 * @return List<SecuritiesAccountEntity>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<SecuritiesAccountEntity> selectBySa_me_id(Integer sa_me_id) {
+
+		return securitiesAccountDao.selectBySa_me_id(sa_me_id);
 	}
 
 	/**

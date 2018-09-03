@@ -55,70 +55,81 @@
 									<form:form id="stock-list-add-form" modelAttribute="stockEntity" action="${requestMapping}" method="post">
 										<fieldset>
 											<div class="form-group">
-												<form:label path="st_SecuritiesAccountEntity">證券商&nbsp;<span class="badge badge-subtle badge-danger">Required</span></form:label>
+												<form:label path="st_SecuritiesAccountEntity">證券商&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
 												<form:select path="st_SecuritiesAccountEntity" cssClass="custom-select">
 													<form:option value="0" label="請選擇" />
 													<c:forEach var="bean" items="${securitiesAccountList}">
-														<form:option value="${bean.sa_id}"><c:out value="${bean.sa_SecuritiesBrokerHeadEntity.sh_name}${bean.sa_SecuritiesBrokerBranchEntity.sb_name}" /></form:option>
+														<form:option value="${bean.sa_id}"><c:out value="${bean.sa_SecuritiesBrokerHeadEntity.sh_name} ${bean.sa_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.sb_no}${bean.sa_no}" /></form:option>
 													</c:forEach>
 												</form:select>
 											</div>
 											<div class="form-row">
 												<div class="col-md-6 mb-3">
-													<label for="st_no">代號&nbsp;<span class="badge badge-subtle badge-danger">Required</span></label>
+													<label for="st_no">代號&nbsp;<span class="badge badge-subtle badge-warning">Required</span></label>
 													<input id="st_no" class="form-control" />
 												</div>
 												<div class="col-md-6 mb-3">
-													<label for="st_name">股票&nbsp;<span class="badge badge-subtle badge-danger">Required</span></label>
+													<label for="st_name">股票&nbsp;<span class="badge badge-subtle badge-warning">Required</span></label>
 													<input id="st_name" class="form-control" />
 												</div>
 											</div>
-											<div class="form-group">
-												<label class="d-block">買賣</label>
-												<div class="custom-control custom-control-inline custom-radio">
-													<input type="radio" id="buy" class="custom-control-input" name="rdGroup1" checked="checked" />
-													<label for="buy" class="custom-control-label">買進</label>
+											<!-- .card -->
+											<div class="card card-fluid">
+												<!-- .card-header -->
+												<header class="card-header">
+													<!-- .nav-tabs -->
+													<ul class="nav nav-tabs card-header-tabs">
+														<li class="nav-item"><a class="nav-link active show" style="cursor:pointer" data-toggle="tab">買進</a></li>
+														<li class="nav-item"><a class="nav-link" style="cursor:pointer" data-toggle="tab">賣出</a></li>
+													</ul>
+													<!-- /.nav-tabs -->
+												</header>
+												<!-- /.card-header -->
+												<!-- .card-body -->
+												<div class="card-body alert-danger">
+													<div class="form-group">
+														<label class="d-block">類別</label>
+														<div class="custom-control custom-control-inline custom-radio">
+															<input type="radio" id="1" class="custom-control-input" name="rdGroup2" checked="checked" />
+															<label for="1" class="custom-control-label">現股</label>
+														</div>
+														<div class="custom-control custom-control-inline custom-radio">
+															<input type="radio" id="2" class="custom-control-input" name="rdGroup2" />
+															<label for="2" class="custom-control-label">融資</label>
+														</div>
+														<div class="custom-control custom-control-inline custom-radio">
+															<input type="radio" id="3" class="custom-control-input" name="rdGroup2" />
+															<label for="3" class="custom-control-label">融券</label>
+														</div>
+														<div class="custom-control custom-control-inline custom-radio">
+															<input type="radio" id="4" class="custom-control-input" name="rdGroup2" />
+															<label for="4" class="custom-control-label">中籤</label>
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="st_buy_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></label>
+														<input id="st_buy_time" class="form-control" />
+													</div>
+													<div class="form-group">
+														<label for="st_buy_price">價格&nbsp;<span class="badge badge-subtle badge-warning">Required</span></label>
+														<input id="st_buy_price" class="form-control" />
+													</div>
+													<div class="form-group">
+														<label for="st_buy_share">股數&nbsp;<span class="badge badge-subtle badge-warning">Required</span></label>
+														<input id="st_buy_share" class="form-control" />
+													</div>
+													<div class="form-group">
+														<label for="st_buy_fee">手續費&nbsp;<span class="badge badge-subtle badge-warning">Required</span></label>
+														<input id="st_buy_fee" class="form-control" />
+													</div>
+													<div class="form-group">
+														<label for="st_buy_cost">成本&nbsp;<span class="badge badge-subtle badge-warning">Required</span></label>
+														<input id="st_buy_cost" class="form-control" />
+													</div>
 												</div>
-												<div class="custom-control custom-control-inline custom-radio">
-													<input type="radio" id="sell" class="custom-control-input" name="rdGroup1" />
-													<label for="sell" class="custom-control-label">賣出</label>
-												</div>
+												<!-- /.card-body -->
 											</div>
-											<div class="form-group">
-												<label class="d-block">買賣</label>
-												<div class="custom-control custom-control-inline custom-radio">
-													<input type="radio" id="1" class="custom-control-input" name="rdGroup2" checked="checked" />
-													<label for="1" class="custom-control-label">現股</label>
-												</div>
-												<div class="custom-control custom-control-inline custom-radio">
-													<input type="radio" id="2" class="custom-control-input" name="rdGroup2" />
-													<label for="2" class="custom-control-label">融資</label>
-												</div>
-												<div class="custom-control custom-control-inline custom-radio">
-													<input type="radio" id="3" class="custom-control-input" name="rdGroup2" />
-													<label for="3" class="custom-control-label">融券</label>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="st_buy_time">時間&nbsp;<span class="badge badge-subtle badge-danger">Required</span></label>
-												<input id="st_buy_time" class="form-control" />
-											</div>
-											<div class="form-group">
-												<label for="st_buy_price">價格&nbsp;<span class="badge badge-subtle badge-danger">Required</span></label>
-												<input id="st_buy_price" class="form-control" />
-											</div>
-											<div class="form-group">
-												<label for="st_buy_share">股數&nbsp;<span class="badge badge-subtle badge-danger">Required</span></label>
-												<input id="st_buy_share" class="form-control" />
-											</div>
-											<div class="form-group">
-												<label for="st_buy_fee">手續費&nbsp;<span class="badge badge-subtle badge-danger">Required</span></label>
-												<input id="st_buy_fee" class="form-control" />
-											</div>
-											<div class="form-group">
-												<label for="st_buy_cost">成本&nbsp;<span class="badge badge-subtle badge-danger">Required</span></label>
-												<input id="st_buy_cost" class="form-control" />
-											</div>
+											<!-- /.card -->
 										</fieldset>
 										<hr />
 										<div class="form-actions">

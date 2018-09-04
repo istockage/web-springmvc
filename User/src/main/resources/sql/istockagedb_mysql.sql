@@ -131,9 +131,10 @@ create table securities_account (
 create table stock (
     st_id                   int auto_increment not null,
     st_sa_id                int not null,
-    st_name                 nvarchar(10) not null,
     st_no                   varchar(10) not null,
-    st_type_code            tinyint,
+    st_name                 nvarchar(10) not null,
+    st_cc_id                int not null,
+    st_co_id                int not null,
     st_buy_time             datetime,
     st_buy_price            float,
     st_buy_share            int,
@@ -148,7 +149,9 @@ create table stock (
     st_sell_tax             mediumint,
     st_sell_revenue         int,
     primary key (st_id),
-    foreign key (st_sa_id) references securities_account (sa_id)
+    foreign key (st_sa_id) references securities_account (sa_id),
+    foreign key (st_cc_id) references code_category (cc_id),
+    foreign key (st_co_id) references code (co_id)
 );
 
 -- INSERT
@@ -157,25 +160,6 @@ create table stock (
 insert into path_category (pc_name, pc_extension) values ('view', '');
 insert into path_category (pc_name, pc_extension) values ('action', 'do');
 insert into path_category (pc_name, pc_extension) values ('ajax', 'ajax');
-
--- Admin
--- securities_broker_head
-insert into securities_broker_head (sh_no, sh_name, sh_update_time) values ('96', '富邦', now());
-insert into securities_broker_head (sh_no, sh_name, sh_update_time) values ('92', '凱基', now());
-
--- securities_broker_branch
-insert into securities_broker_branch (sb_sh_id, sb_no, sb_name, sb_update_time) values (1, '79', '延吉', now());
-insert into securities_broker_branch (sb_sh_id, sb_no, sb_name, sb_update_time) values (2, '18', '大直', now());
-
--- User
--- member
-insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastname, me_firstname, me_activity_code, me_signup_time, me_update_info_time, me_update_pwd_time) values ('9203330360', 'chengjhan@gmail.com', '03a6de93ab7271375694231bf9eacc5b', '992cb6c0-c52e-4155-94c5-558251878998', null, null, null, 1, now(), now(), now());
-insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastname, me_firstname, me_activity_code, me_signup_time, me_update_info_time, me_update_pwd_time) values ('0568914095', 'chengjhan+1@gmail.com', '348f6a73c4a04d015e516ffddfde7432', '14bbce0f-78b8-4e83-822a-06b619f00758', null, null, null, 1, now(), now(), now());
-
--- securities_account
-insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 1, 1, '0239889', 60, 0, now());
-insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 2, 2, '0060626', 38, 0, now());
-insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (2, 1, 1, '1111111', 60, 0, now());
 
 -- user_path
 insert into user_path (up_pc_id, up_name, up_path) values (1, '找不到網頁', 'error/page-not-found');
@@ -208,3 +192,31 @@ insert into user_path (up_pc_id, up_name, up_path) values (3, '選定證券商�
 insert into user_path (up_pc_id, up_name, up_path) values (1, '股票統計圖表', 'stock/chart');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '股票交易明細', 'stock/list');
 insert into user_path (up_pc_id, up_name, up_path) values (1, '新增股票交易', 'stock/list/add');
+
+-- code_category
+insert into code_category (cc_name) values ('買賣類別');
+
+-- code
+insert into code (co_cc_id, co_no, co_name) values (1, 1, '現股');
+insert into code (co_cc_id, co_no, co_name) values (1, 2, '融資');
+insert into code (co_cc_id, co_no, co_name) values (1, 3, '融券');
+insert into code (co_cc_id, co_no, co_name) values (1, 4, '中籤');
+
+-- Admin
+-- securities_broker_head
+insert into securities_broker_head (sh_no, sh_name, sh_update_time) values ('96', '富邦', now());
+insert into securities_broker_head (sh_no, sh_name, sh_update_time) values ('92', '凱基', now());
+
+-- securities_broker_branch
+insert into securities_broker_branch (sb_sh_id, sb_no, sb_name, sb_update_time) values (1, '79', '延吉', now());
+insert into securities_broker_branch (sb_sh_id, sb_no, sb_name, sb_update_time) values (2, '18', '大直', now());
+
+-- User
+-- member
+insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastname, me_firstname, me_activity_code, me_signup_time, me_update_info_time, me_update_pwd_time) values ('9203330360', 'chengjhan@gmail.com', '03a6de93ab7271375694231bf9eacc5b', '992cb6c0-c52e-4155-94c5-558251878998', null, null, null, 1, now(), now(), now());
+insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastname, me_firstname, me_activity_code, me_signup_time, me_update_info_time, me_update_pwd_time) values ('0568914095', 'chengjhan+1@gmail.com', '348f6a73c4a04d015e516ffddfde7432', '14bbce0f-78b8-4e83-822a-06b619f00758', null, null, null, 1, now(), now(), now());
+
+-- securities_account
+insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 1, 1, '0239889', 60, 0, now());
+insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 2, 2, '0060626', 38, 0, now());
+insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (2, 1, 1, '1111111', 60, 0, now());

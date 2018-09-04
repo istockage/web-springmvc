@@ -3,7 +3,7 @@
  * File: StockEntity.java
  * Author: 詹晟
  * Created: 2018/3/23
- * Modified: 2018/8/19
+ * Modified: 2018/9/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,9 +34,14 @@ public class StockEntity {
 	@ManyToOne
 	@JoinColumn(name = "st_sa_id")
 	private SecuritiesAccountEntity st_SecuritiesAccountEntity;
-	private String st_name;
 	private String st_no;
-	private Integer st_type_code;
+	private String st_name;
+	@ManyToOne
+	@JoinColumn(name = "st_cc_id")
+	private CodeCategoryEntity st_CodeCategoryEntity;
+	@ManyToOne
+	@JoinColumn(name = "st_co_id")
+	private CodeEntity st_CodeEntity;
 	private Date st_buy_time;
 	private Float st_buy_price;
 	private Integer st_buy_share;
@@ -67,14 +72,6 @@ public class StockEntity {
 		this.st_SecuritiesAccountEntity = st_SecuritiesAccountEntity;
 	}
 
-	public String getSt_name() {
-		return st_name;
-	}
-
-	public void setSt_name(String st_name) {
-		this.st_name = st_name;
-	}
-
 	public String getSt_no() {
 		return st_no;
 	}
@@ -83,12 +80,28 @@ public class StockEntity {
 		this.st_no = st_no;
 	}
 
-	public Integer getSt_type_code() {
-		return st_type_code;
+	public String getSt_name() {
+		return st_name;
 	}
 
-	public void setSt_type_code(Integer st_type_code) {
-		this.st_type_code = st_type_code;
+	public void setSt_name(String st_name) {
+		this.st_name = st_name;
+	}
+
+	public CodeCategoryEntity getSt_CodeCategoryEntity() {
+		return st_CodeCategoryEntity;
+	}
+
+	public void setSt_CodeCategoryEntity(CodeCategoryEntity st_CodeCategoryEntity) {
+		this.st_CodeCategoryEntity = st_CodeCategoryEntity;
+	}
+
+	public CodeEntity getSt_CodeEntity() {
+		return st_CodeEntity;
+	}
+
+	public void setSt_CodeEntity(CodeEntity st_CodeEntity) {
+		this.st_CodeEntity = st_CodeEntity;
 	}
 
 	public Date getSt_buy_time() {

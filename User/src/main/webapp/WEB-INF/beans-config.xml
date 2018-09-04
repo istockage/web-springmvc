@@ -24,6 +24,8 @@
 		</property>
 		<property name="annotatedClasses">
 			<list>
+				<value>com.istockage.model.entity.CodeCategoryEntity</value>
+				<value>com.istockage.model.entity.CodeEntity</value>
 				<value>com.istockage.model.entity.MemberEntity</value>
 				<value>com.istockage.model.entity.MemberLogEntity</value>
 				<value>com.istockage.model.entity.PathCategoryEntity</value>

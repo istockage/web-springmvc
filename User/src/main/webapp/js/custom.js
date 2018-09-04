@@ -12,25 +12,25 @@ $("#sa_SecuritiesBrokerHeadEntity").change(function(){
 });
 
 // stock/list/add
-$("input[type=radio][name=buy-sell]").change(function() {
-	if (this.value == "buy") {
+$("input[type=radio][name=buy-sell]").change(function(){
+	if (this.value == "buy"){
 		$("#buy-radio").addClass("active").css("cursor", "default");
 		$("#sell-radio").removeClass("active").removeAttr("style");
-		$("#buy-sell-card").removeClass("alert-success").addClass("alert-danger");
 		$("#spot-share-radio").children("input").prop("checked", true);
 		$("#margin-purchase-radio").removeClass("not-show");
 		$("#short-sale-radio").addClass("not-show");
 		$("#drawing-lots-radio").removeClass("not-show");
+		$("#buy-sell-card").removeClass("alert-success").addClass("alert-danger");
 		$("#buy-form").removeClass("not-show");
 		$("#sell-form").addClass("not-show");
 	} else if (this.value == "sell") {
 		$("#buy-radio").removeClass("active").removeAttr("style");
 		$("#sell-radio").addClass("active").css("cursor", "default");
-		$("#buy-sell-card").removeClass("alert-danger").addClass("alert-success");
 		$("#spot-share-radio").children("input").prop("checked", true);
 		$("#margin-purchase-radio").addClass("not-show");
 		$("#short-sale-radio").removeClass("not-show");
 		$("#drawing-lots-radio").addClass("not-show");
+		$("#buy-sell-card").removeClass("alert-danger").addClass("alert-success");
 		$("#buy-form").addClass("not-show");
 		$("#sell-form").removeClass("not-show");
 	}

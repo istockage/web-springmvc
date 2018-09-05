@@ -63,6 +63,6 @@
 	</div>
 	<!-- /.app -->
 	
-	<%@include file="../body.jsp"%>
+<%@include file="../body.jsp"%>
 </body>
 </html>

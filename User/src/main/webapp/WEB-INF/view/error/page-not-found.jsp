@@ -77,7 +77,7 @@
 	</div>
 	<!-- /.app -->
 	
-	<%@include file="../body.jsp"%>
+<%@include file="../body.jsp"%>
 </c:when>
 </c:choose>
 </body>

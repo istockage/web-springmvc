@@ -47,14 +47,14 @@ public class StockEntity {
 	private Integer st_buy_share;
 	private Byte st_buy_discount;
 	private Integer st_buy_fee;
-	private Integer st_buy_cost;
+	private Integer st_buy_delivery;
 	private Date st_sell_time;
 	private Float st_sell_price;
 	private Integer st_sell_share;
 	private Byte st_sell_discount;
 	private Integer st_sell_fee;
 	private Integer st_sell_tax;
-	private Integer st_sell_revenue;
+	private Integer st_sell_delivery;
 
 	public Integer getSt_id() {
 		return st_id;
@@ -144,12 +144,12 @@ public class StockEntity {
 		this.st_buy_fee = st_buy_fee;
 	}
 
-	public Integer getSt_buy_cost() {
-		return st_buy_cost;
+	public Integer getSt_buy_delivery() {
+		return st_buy_delivery;
 	}
 
-	public void setSt_buy_cost(Integer st_buy_cost) {
-		this.st_buy_cost = st_buy_cost;
+	public void setSt_buy_delivery(Integer st_buy_delivery) {
+		this.st_buy_delivery = st_buy_delivery;
 	}
 
 	public Date getSt_sell_time() {
@@ -200,12 +200,12 @@ public class StockEntity {
 		this.st_sell_tax = st_sell_tax;
 	}
 
-	public Integer getSt_sell_revenue() {
-		return st_sell_revenue;
+	public Integer getSt_sell_delivery() {
+		return st_sell_delivery;
 	}
 
-	public void setSt_sell_revenue(Integer st_sell_revenue) {
-		this.st_sell_revenue = st_sell_revenue;
+	public void setSt_sell_delivery(Integer st_sell_delivery) {
+		this.st_sell_delivery = st_sell_delivery;
 	}
 
 }

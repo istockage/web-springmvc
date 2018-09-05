@@ -105,10 +105,10 @@
 														</div>
 													</div>
 													<div id="buy-form">
-<!-- 														<div class="form-group"> -->
-<%-- 															<form:label path="st_buy_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label> --%>
-<%-- 															<form:input path="st_buy_time" cssClass="form-control" /> --%>
-<!-- 														</div> -->
+														<div class="form-group">
+															<form:label path="st_buy_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+															<form:input path="st_buy_time" cssClass="form-control" />
+														</div>
 														<div class="form-group">
 															<form:label path="st_buy_price">價格&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
 															<form:input path="st_buy_price" cssClass="form-control" />
@@ -131,10 +131,10 @@
 														</div>
 													</div>
 													<div id="sell-form" class="not-show">
-<!-- 														<div class="form-group"> -->
-<%-- 															<form:label path="st_sell_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label> --%>
-<%-- 															<form:input path="st_sell_time" cssClass="form-control" /> --%>
-<!-- 														</div> -->
+														<div class="form-group">
+															<form:label path="st_sell_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+															<form:input path="st_sell_time" cssClass="form-control" />
+														</div>
 														<div class="form-group">
 															<form:label path="st_sell_price">價格&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
 															<form:input path="st_sell_price" cssClass="form-control" />

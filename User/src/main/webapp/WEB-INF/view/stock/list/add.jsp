@@ -59,7 +59,7 @@
 												<form:select path="st_SecuritiesAccountEntity" cssClass="custom-select">
 													<form:option value="0" label="請選擇" />
 													<c:forEach var="bean" items="${securitiesAccountList}">
-														<form:option value="${bean.sa_id}"><c:out value="${bean.sa_SecuritiesBrokerHeadEntity.sh_name} ${bean.sa_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.sb_no}${bean.sa_no}" /></form:option>
+														<form:option value="${bean.sa_id}"><c:out value="${bean.sa_SecuritiesBrokerHeadEntity.sh_name} ${bean.sa_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.sb_no}-${bean.sa_no}" /></form:option>
 													</c:forEach>
 												</form:select>
 											</div>
@@ -88,27 +88,27 @@
 													<div class="form-group">
 														<label class="d-block">類別</label>
 														<div id="spot-share-radio" class="custom-control custom-control-inline custom-radio">
-															<input type="radio" id="1" class="custom-control-input" name="st_type_code" checked />
-															<label for="1" class="custom-control-label">現股</label>
+															<input type="radio" id="spot-share" class="custom-control-input" value="1" name="co_no" checked />
+															<label for="spot-share" class="custom-control-label">現股</label>
 														</div>
 														<div id="margin-purchase-radio" class="custom-control custom-control-inline custom-radio">
-															<input type="radio" id="2" class="custom-control-input" name="st_type_code" />
-															<label for="2" class="custom-control-label">融資</label>
+															<input type="radio" id="margin-purchase" class="custom-control-input" value="2" name="co_no" />
+															<label for="margin-purchase" class="custom-control-label">融資</label>
 														</div>
 														<div id="short-sale-radio" class="custom-control custom-control-inline custom-radio not-show">
-															<input type="radio" id="3" class="custom-control-input" name="st_type_code" />
-															<label for="3" class="custom-control-label">融券</label>
+															<input type="radio" id="short-sale" class="custom-control-input" value="3" name="co_no" />
+															<label for="short-sale" class="custom-control-label">融券</label>
 														</div>
 														<div id="drawing-lots-radio" class="custom-control custom-control-inline custom-radio">
-															<input type="radio" id="4" class="custom-control-input" name="st_type_code" />
-															<label for="4" class="custom-control-label">中籤</label>
+															<input type="radio" id="drawing-lots" class="custom-control-input" value="4" name="co_no" />
+															<label for="drawing-lots" class="custom-control-label">中籤</label>
 														</div>
 													</div>
 													<div id="buy-form">
-														<div class="form-group">
-															<form:label path="st_buy_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
-															<form:input path="st_buy_time" cssClass="form-control" />
-														</div>
+<!-- 														<div class="form-group"> -->
+<%-- 															<form:label path="st_buy_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label> --%>
+<%-- 															<form:input path="st_buy_time" cssClass="form-control" /> --%>
+<!-- 														</div> -->
 														<div class="form-group">
 															<form:label path="st_buy_price">價格&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
 															<form:input path="st_buy_price" cssClass="form-control" />
@@ -116,6 +116,10 @@
 														<div class="form-group">
 															<form:label path="st_buy_share">股數&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
 															<form:input path="st_buy_share" cssClass="form-control" />
+														</div>
+														<div class="form-group">
+															<form:label path="st_buy_discount">折扣&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+															<form:input path="st_buy_discount" cssClass="form-control" />
 														</div>
 														<div class="form-group">
 															<form:label path="st_buy_fee">手續費&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
@@ -127,10 +131,10 @@
 														</div>
 													</div>
 													<div id="sell-form" class="not-show">
-														<div class="form-group">
-															<form:label path="st_sell_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
-															<form:input path="st_sell_time" cssClass="form-control" />
-														</div>
+<!-- 														<div class="form-group"> -->
+<%-- 															<form:label path="st_sell_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label> --%>
+<%-- 															<form:input path="st_sell_time" cssClass="form-control" /> --%>
+<!-- 														</div> -->
 														<div class="form-group">
 															<form:label path="st_sell_price">價格&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
 															<form:input path="st_sell_price" cssClass="form-control" />
@@ -138,6 +142,10 @@
 														<div class="form-group">
 															<form:label path="st_sell_share">股數&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
 															<form:input path="st_sell_share" cssClass="form-control" />
+														</div>
+														<div class="form-group">
+															<form:label path="st_sell_discount">折扣&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+															<form:input path="st_sell_discount" cssClass="form-control" />
 														</div>
 														<div class="form-group">
 															<form:label path="st_sell_fee">手續費&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>

@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/3
+ * Modified: 2018/9/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -12,11 +12,16 @@ package com.istockage.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
 import com.istockage.model.entity.MemberEntity;
+import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.entity.StockEntity;
 import com.istockage.model.service.SecuritiesAccountService;
 
@@ -33,6 +38,14 @@ public class StockController implements ControllerConstant {
 	 */
 	@Autowired
 	private SecuritiesAccountService securitiesAccountService;
+
+	/**
+	 * form-backing object 資料轉換
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		webDataBinder.registerCustomEditor(SecuritiesAccountEntity.class, new SecuritiesAccountEntityPropertyEditor());
+	}
 
 	/**
 	 * 股票統計圖表 - init
@@ -73,6 +86,22 @@ public class StockController implements ControllerConstant {
 		model.addAttribute(SECURITIES_ACCOUNT_LIST, securitiesAccountService.selectBySa_me_id(user.getMe_id()));
 
 		return STOCK_LIST_ADD_VIEW;
+	}
+
+	/**
+	 * 新增股票交易 - submit
+	 * 
+	 * @param user MemberEntity --> SessionAttribute
+	 * @param stockEntity StockEntity --> form-backing object
+	 * @param co_no Byte --> 編碼
+	 * @param model Model
+	 * @return /WEB-INF/view/stock/list.jsp
+	 */
+	@RequestMapping(value = "/stock/list/add.do", method = RequestMethod.POST)
+	public String stockListAddAction(@SessionAttribute(USER) MemberEntity user, StockEntity stockEntity,
+			@RequestParam Byte co_no, Model model) {
+
+		return REDIRECT + STOCK_LIST_VIEW;
 	}
 
 }

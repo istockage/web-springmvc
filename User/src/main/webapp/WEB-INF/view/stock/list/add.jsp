@@ -107,7 +107,7 @@
 													<div id="buy-form">
 														<div class="form-group">
 															<form:label path="st_buy_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
-															<form:input path="st_buy_time" cssClass="form-control" />
+															<form:input id="flatpickr02" path="st_buy_time" cssClass="form-control" />
 														</div>
 														<div class="form-group">
 															<form:label path="st_buy_price">價格&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
@@ -118,16 +118,16 @@
 															<form:input path="st_buy_share" cssClass="form-control" />
 														</div>
 														<div class="form-group">
-															<form:label path="st_buy_discount">折扣&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+															<form:label path="st_buy_discount">手續費折扣</form:label>
 															<form:input path="st_buy_discount" cssClass="form-control" />
 														</div>
 														<div class="form-group">
-															<form:label path="st_buy_fee">手續費&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+															<form:label path="st_buy_fee">手續費</form:label>
 															<form:input path="st_buy_fee" cssClass="form-control" />
 														</div>
 														<div class="form-group">
-															<form:label path="st_buy_cost">成本&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
-															<form:input path="st_buy_cost" cssClass="form-control" />
+															<form:label path="st_buy_delivery">交割金額</form:label>
+															<form:input path="st_buy_delivery" cssClass="form-control" />
 														</div>
 													</div>
 													<div id="sell-form" class="not-show">
@@ -144,20 +144,20 @@
 															<form:input path="st_sell_share" cssClass="form-control" />
 														</div>
 														<div class="form-group">
-															<form:label path="st_sell_discount">折扣&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+															<form:label path="st_sell_discount">手續費折扣</form:label>
 															<form:input path="st_sell_discount" cssClass="form-control" />
 														</div>
 														<div class="form-group">
-															<form:label path="st_sell_fee">手續費&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+															<form:label path="st_sell_fee">手續費</form:label>
 															<form:input path="st_sell_fee" cssClass="form-control" />
 														</div>
 														<div class="form-group">
-															<form:label path="st_sell_tax">交易稅&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+															<form:label path="st_sell_tax">交易稅</form:label>
 															<form:input path="st_sell_tax" cssClass="form-control" />
 														</div>
 														<div class="form-group">
-															<form:label path="st_sell_revenue">收入&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
-															<form:input path="st_sell_revenue" cssClass="form-control" />
+															<form:label path="st_sell_delivery">交割金額</form:label>
+															<form:input path="st_sell_delivery" cssClass="form-control" />
 														</div>
 													</div>
 												</div>
@@ -199,6 +199,6 @@
 	</div>
 	<!-- /.app -->
 	
-	<%@include file="../../body.jsp"%>
+<%@include file="../../body.jsp"%>
 </body>
 </html>

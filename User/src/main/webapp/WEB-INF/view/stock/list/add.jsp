@@ -119,21 +119,34 @@
 														</div>
 														<div class="form-group">
 															<form:label path="st_buy_discount">手續費折扣</form:label>
-															<form:input path="st_buy_discount" cssClass="form-control" />
+															<div class="input-group input-group-alt">
+																<form:input path="st_buy_discount" cssClass="form-control" />
+																<div class="input-group-append"><span class="input-group-text" style="border-radius:.25rem">%</span></div>
+															</div>
 														</div>
 														<div class="form-group">
 															<form:label path="st_buy_fee">手續費</form:label>
-															<form:input path="st_buy_fee" cssClass="form-control" />
+															<div class="input-group">
+																<label for="st_buy_fee" class="input-group-prepend">
+																	<span class="badge">$</span>
+																</label>
+																<form:input path="st_buy_fee" cssClass="form-control" />
+															</div>
 														</div>
 														<div class="form-group">
 															<form:label path="st_buy_delivery">交割金額</form:label>
-															<form:input path="st_buy_delivery" cssClass="form-control" />
+															<div class="input-group">
+																<label for="st_buy_delivery" class="input-group-prepend">
+																	<span class="badge">$</span>
+																</label>
+																<form:input path="st_buy_delivery" cssClass="form-control" />
+															</div>
 														</div>
 													</div>
 													<div id="sell-form" class="not-show">
 														<div class="form-group">
 															<form:label path="st_sell_time">時間&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
-															<form:input path="st_sell_time" cssClass="form-control" />
+															<form:input id="flatpickr02" path="st_sell_time" cssClass="form-control" />
 														</div>
 														<div class="form-group">
 															<form:label path="st_sell_price">價格&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
@@ -145,19 +158,37 @@
 														</div>
 														<div class="form-group">
 															<form:label path="st_sell_discount">手續費折扣</form:label>
-															<form:input path="st_sell_discount" cssClass="form-control" />
+															<div class="input-group input-group-alt">
+																<form:input path="st_sell_discount" cssClass="form-control" />
+																<div class="input-group-append"><span class="input-group-text" style="border-radius:.25rem">%</span></div>
+															</div>
 														</div>
 														<div class="form-group">
 															<form:label path="st_sell_fee">手續費</form:label>
-															<form:input path="st_sell_fee" cssClass="form-control" />
+															<div class="input-group">
+																<label for="st_sell_fee" class="input-group-prepend">
+																	<span class="badge">$</span>
+																</label>
+																<form:input path="st_sell_fee" cssClass="form-control" />
+															</div>
 														</div>
 														<div class="form-group">
 															<form:label path="st_sell_tax">交易稅</form:label>
-															<form:input path="st_sell_tax" cssClass="form-control" />
+															<div class="input-group">
+																<label for="st_sell_tax" class="input-group-prepend">
+																	<span class="badge">$</span>
+																</label>
+																<form:input path="st_sell_tax" cssClass="form-control" />
+															</div>
 														</div>
 														<div class="form-group">
 															<form:label path="st_sell_delivery">交割金額</form:label>
-															<form:input path="st_sell_delivery" cssClass="form-control" />
+															<div class="input-group">
+																<label for="st_sell_delivery" class="input-group-prepend">
+																	<span class="badge">$</span>
+																</label>
+																<form:input path="st_sell_delivery" cssClass="form-control" />
+															</div>
 														</div>
 													</div>
 												</div>

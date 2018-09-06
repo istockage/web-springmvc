@@ -3,12 +3,16 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/5
+ * Modified: 2018/9/6
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Controller;
@@ -26,6 +30,7 @@ import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.entity.StockEntity;
 import com.istockage.model.service.SecuritiesAccountService;
+import com.istockage.model.service.StockService;
 
 /**
  * stock controller
@@ -35,11 +40,27 @@ import com.istockage.model.service.SecuritiesAccountService;
 @Controller
 public class StockController implements ControllerConstant {
 
+	private static final Logger logger = Logger.getLogger(SecuritiesAccountController.class);
+
+	private String className = this.getClass().getSimpleName();
+
+	/**
+	 * 注入 HttpServletRequest
+	 */
+	@Autowired
+	private HttpServletRequest request;
+
 	/**
 	 * 注入 SecuritiesAccountService
 	 */
 	@Autowired
 	private SecuritiesAccountService securitiesAccountService;
+
+	/**
+	 * 注入 StockService
+	 */
+	@Autowired
+	private StockService stockService;
 
 	/**
 	 * form-backing object 資料轉換
@@ -100,9 +121,27 @@ public class StockController implements ControllerConstant {
 	 * @return /WEB-INF/view/stock/list.jsp
 	 */
 	@RequestMapping(value = "/stock/list/add.do", method = RequestMethod.POST)
-	public String stockListAddAction(StockEntity stockEntity, @RequestParam Byte co_no, BindingResult bindingResult) {
+	public String stockListAddAction(@Valid StockEntity stockEntity, @RequestParam Byte co_no,
+			BindingResult bindingResult) {
 
-		return REDIRECT + STOCK_LIST_VIEW;
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error("(" + className + "." + methodName + ") 股票交易新增失敗，格式錯誤");
+
+			return STOCK_LIST_ADD_VIEW;
+
+		} else {
+
+			stockService.insert(stockEntity);
+
+			request.setAttribute(MEMBER_LOG_KEY, OK);
+
+			logger.info("(" + className + "." + methodName + ") 股票交易新增成功");
+
+			return REDIRECT + STOCK_LIST_VIEW;
+		}
 	}
 
 }

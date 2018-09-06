@@ -3,7 +3,7 @@
  * File: StockEntity.java
  * Author: 詹晟
  * Created: 2018/3/23
- * Modified: 2018/9/5
+ * Modified: 2018/9/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -55,6 +55,7 @@ public class StockEntity {
 	private Integer st_sell_fee;
 	private Integer st_sell_tax;
 	private Integer st_sell_delivery;
+	private Date st_update_time;
 
 	public Integer getSt_id() {
 		return st_id;
@@ -206,6 +207,14 @@ public class StockEntity {
 
 	public void setSt_sell_delivery(Integer st_sell_delivery) {
 		this.st_sell_delivery = st_sell_delivery;
+	}
+
+	public Date getSt_update_time() {
+		return st_update_time;
+	}
+
+	public void setSt_update_time(Date st_update_time) {
+		this.st_update_time = st_update_time;
 	}
 
 }

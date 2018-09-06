@@ -9,6 +9,8 @@
  */
 package com.istockage.model.service.impl;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +42,8 @@ public class StockServiceImpl implements StockService {
 	@Override
 	@Transactional
 	public StockEntity insert(StockEntity stockEntity) {
+
+		stockEntity.setSt_update_time(new Date());
 
 		return stockDao.insert(stockEntity);
 	}

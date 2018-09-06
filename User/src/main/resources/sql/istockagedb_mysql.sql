@@ -148,6 +148,7 @@ create table stock (
     st_sell_fee             mediumint,
     st_sell_tax             mediumint,
     st_sell_delivery        int,
+    st_update_time          datetime not null,
     primary key (st_id),
     foreign key (st_sa_id) references securities_account (sa_id),
     foreign key (st_cc_id) references code_category (cc_id),

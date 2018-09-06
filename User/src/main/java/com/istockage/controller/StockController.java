@@ -9,6 +9,8 @@
  */
 package com.istockage.controller;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -26,9 +28,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
+import com.istockage.model.entity.CodeCategoryEntity;
+import com.istockage.model.entity.CodeEntity;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.entity.StockEntity;
+import com.istockage.model.service.CodeCategoryService;
 import com.istockage.model.service.SecuritiesAccountService;
 import com.istockage.model.service.StockService;
 
@@ -55,6 +60,12 @@ public class StockController implements ControllerConstant {
 	 */
 	@Autowired
 	private SecuritiesAccountService securitiesAccountService;
+
+	/**
+	 * 注入 CodeCategoryService
+	 */
+	@Autowired
+	private CodeCategoryService codeCategoryService;
 
 	/**
 	 * 注入 StockService
@@ -134,6 +145,19 @@ public class StockController implements ControllerConstant {
 
 		} else {
 
+			CodeCategoryEntity codeCategoryEntity = codeCategoryService.selectByCc_name(STOCK_TYPE_CODE_CATEGORY);
+
+			Set<CodeEntity> set = codeCategoryEntity.getCc_CodeEntity();
+
+			for (CodeEntity codeEntity : set) {
+				if (codeEntity.getCo_no() == co_no) {
+					stockEntity.setSt_CodeEntity(codeEntity);
+				} else {
+					break;
+				}
+			}
+
+			stockEntity.setSt_CodeCategoryEntity(codeCategoryEntity);
 			stockService.insert(stockEntity);
 
 			request.setAttribute(MEMBER_LOG_KEY, OK);

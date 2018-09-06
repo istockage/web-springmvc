@@ -23,6 +23,7 @@ $("input[type=radio][name=buy-sell]").change(function(){
 		$("#buy-sell-card").removeClass("alert-success").addClass("alert-danger");
 		$("#buy-form").removeClass("not-show");
 		$("#sell-form").addClass("not-show");
+		$("#sell-form input").val("");
 	} else if (this.value == "sell") {
 		$("#buy-radio").removeClass("active").removeAttr("style");
 		$("#sell-radio").addClass("active").css("cursor", "default");
@@ -32,6 +33,28 @@ $("input[type=radio][name=buy-sell]").change(function(){
 		$("#drawing-lots-radio").addClass("not-show");
 		$("#buy-sell-card").removeClass("alert-danger").addClass("alert-success");
 		$("#buy-form").addClass("not-show");
+		$("#buy-form input").val("");
 		$("#sell-form").removeClass("not-show");
 	}
 });
+
+// stock/list/add (#st_buy_time, #st_sell_time)
+var readyFlatpickr = {
+	init: function init(){
+		this.bindUIActions();
+	},
+	bindUIActions: function bindUIActions(){
+		this.handleFlatpickr();
+	},
+	dateTime: function dateTime(){
+		return flatpickr('#st_buy_time, #st_sell_time', {
+			disableMobile: true,
+			enableTime: true,
+			dateFormat: 'Y-m-d H:i'
+		});
+	},
+	handleFlatpickr: function handleFlatpickr(){
+		this.dateTime();
+	}
+}
+readyFlatpickr.init();

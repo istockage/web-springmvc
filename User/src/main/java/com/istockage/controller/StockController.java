@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +46,7 @@ public class StockController implements ControllerConstant {
 	 */
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
-		webDataBinder.addCustomFormatter(new DateFormatter("yyyy-MM-dd HH:mm:ss"));
+		webDataBinder.addCustomFormatter(new DateFormatter("yyyy-MM-dd HH:mm"));
 		webDataBinder.registerCustomEditor(SecuritiesAccountEntity.class, new SecuritiesAccountEntityPropertyEditor());
 	}
 
@@ -93,15 +94,13 @@ public class StockController implements ControllerConstant {
 	/**
 	 * 新增股票交易 - submit
 	 * 
-	 * @param user MemberEntity --> SessionAttribute
 	 * @param stockEntity StockEntity --> form-backing object
 	 * @param co_no Byte --> 編碼
-	 * @param model Model
+	 * @param bindingResult BindingResult
 	 * @return /WEB-INF/view/stock/list.jsp
 	 */
 	@RequestMapping(value = "/stock/list/add.do", method = RequestMethod.POST)
-	public String stockListAddAction(@SessionAttribute(USER) MemberEntity user, StockEntity stockEntity,
-			@RequestParam Byte co_no, Model model) {
+	public String stockListAddAction(StockEntity stockEntity, @RequestParam Byte co_no, BindingResult bindingResult) {
 
 		return REDIRECT + STOCK_LIST_VIEW;
 	}

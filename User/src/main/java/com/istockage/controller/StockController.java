@@ -9,8 +9,6 @@
  */
 package com.istockage.controller;
 
-import java.util.Set;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -147,17 +145,15 @@ public class StockController implements ControllerConstant {
 
 			CodeCategoryEntity codeCategoryEntity = codeCategoryService.selectByCc_name(STOCK_TYPE_CODE_CATEGORY);
 
-			Set<CodeEntity> set = codeCategoryEntity.getCc_CodeEntity();
+			stockEntity.setSt_CodeCategoryEntity(codeCategoryEntity);
 
-			for (CodeEntity codeEntity : set) {
-				if (codeEntity.getCo_no() == co_no) {
+			for (CodeEntity codeEntity : codeCategoryEntity.getCc_CodeEntity()) {
+				if (co_no.equals(codeEntity.getCo_no())) {
 					stockEntity.setSt_CodeEntity(codeEntity);
-				} else {
 					break;
 				}
 			}
 
-			stockEntity.setSt_CodeCategoryEntity(codeCategoryEntity);
 			stockService.insert(stockEntity);
 
 			request.setAttribute(MEMBER_LOG_KEY, OK);

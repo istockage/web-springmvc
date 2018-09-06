@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/6
+ * Modified: 2018/9/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -130,7 +130,7 @@ public class StockController implements ControllerConstant {
 	 * @return /WEB-INF/view/stock/list.jsp
 	 */
 	@RequestMapping(value = "/stock/list/add.do", method = RequestMethod.POST)
-	public String stockListAddAction(@Valid StockEntity stockEntity, @RequestParam Byte co_no,
+	public String stockListAddAction(@RequestParam Byte co_no, @Valid StockEntity stockEntity,
 			BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();

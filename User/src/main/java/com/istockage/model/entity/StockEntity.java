@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
@@ -39,6 +40,7 @@ public class StockEntity {
 	@ManyToOne
 	@JoinColumn(name = "st_sa_id")
 	private SecuritiesAccountEntity st_SecuritiesAccountEntity;
+	@Pattern(regexp = "^[0-9a-zA-Z]{4,6}$")
 	private String st_no;
 	@Size(max = 10)
 	private String st_name;

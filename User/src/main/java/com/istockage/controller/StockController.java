@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
+import com.istockage.common.util.BindingResultUtil;
 import com.istockage.model.entity.CodeCategoryEntity;
 import com.istockage.model.entity.CodeEntity;
 import com.istockage.model.entity.MemberEntity;
@@ -124,8 +125,8 @@ public class StockController implements ControllerConstant {
 	/**
 	 * 新增股票交易 - submit
 	 * 
-	 * @param stockEntity StockEntity --> form-backing object
 	 * @param co_no Byte --> 編碼
+	 * @param stockEntity StockEntity --> form-backing object
 	 * @param bindingResult BindingResult
 	 * @return /WEB-INF/view/stock/list.jsp
 	 */
@@ -137,7 +138,8 @@ public class StockController implements ControllerConstant {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 股票交易新增失敗，格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 股票交易新增失敗，格式錯誤: "
+					+ BindingResultUtil.getFieldErrors(bindingResult));
 
 			return STOCK_LIST_ADD_VIEW;
 

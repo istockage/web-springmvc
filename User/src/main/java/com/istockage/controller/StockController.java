@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/7
+ * Modified: 2018/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -138,8 +138,8 @@ public class StockController implements ControllerConstant {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 股票交易新增失敗，格式錯誤: "
-					+ BindingResultUtil.getFieldErrors(bindingResult));
+			logger.error("(" + className + "." + methodName + ") 股票交易新增失敗 (格式錯誤: "
+					+ BindingResultUtil.getFieldErrors(bindingResult) + ")");
 
 			return STOCK_LIST_ADD_VIEW;
 

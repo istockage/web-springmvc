@@ -3,7 +3,7 @@
  * File: NotSignInInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/30
- * Modified: 2018/8/19
+ * Modified: 2018/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.istockage.common.util.StringUtil;
+import com.istockage.common.util.UrlUtil;
 import com.istockage.controller.ControllerConstant;
 import com.istockage.model.entity.MemberEntity;
 
@@ -44,12 +44,12 @@ public class NotSignInInterceptor implements HandlerInterceptor, ControllerConst
 		HttpSession session = request.getSession();
 		MemberEntity user = (MemberEntity) session.getAttribute(USER);
 
-		String next = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 原請求 path
+		String next = UrlUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 原請求 path
 
 		if (user == null) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 未登入，攔截: " + next + "，跳轉至: "
-					+ SECURE_SIGN_IN_VIEW);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (未登入, 攔截: " + next + ", 跳轉至: "
+					+ SECURE_SIGN_IN_VIEW + ")");
 
 			// 將原請求 path，放入 Session
 			session.setAttribute(NEXT, SECURE_SIGN_OUT_ACTION.equals(next) ? INDEX_VIEW : next);
@@ -60,8 +60,8 @@ public class NotSignInInterceptor implements HandlerInterceptor, ControllerConst
 
 		} else {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 已登入，使用者: " + user.getMe_no()
-					+ "，放行: " + next);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (已登入, 放行: " + next + ", 使用者: "
+					+ user.getMe_no() + ")");
 
 			return true;
 		}

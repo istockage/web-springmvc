@@ -3,7 +3,7 @@
  * File: SignInInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/30
- * Modified: 2018/7/19
+ * Modified: 2018/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -17,7 +17,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.istockage.common.util.StringUtil;
+import com.istockage.common.util.UrlUtil;
 import com.istockage.controller.ControllerConstant;
 import com.istockage.model.entity.MemberEntity;
 
@@ -42,12 +42,12 @@ public class SignInInterceptor implements HandlerInterceptor, ControllerConstant
 
 		MemberEntity user = (MemberEntity) request.getSession().getAttribute(USER);
 
-		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
+		String requestPath = UrlUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
 		if (user != null) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 已登入，使用者: " + user.getMe_no()
-					+ "，攔截: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (已登入, 攔截: " + requestPath + ", 使用者: "
+					+ user.getMe_no() + ")");
 
 			response.sendRedirect(request.getContextPath() + SLASH + INDEX_VIEW);
 
@@ -55,7 +55,7 @@ public class SignInInterceptor implements HandlerInterceptor, ControllerConstant
 
 		} else {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 未登入，放行: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (未登入, 放行: " + requestPath + ")");
 
 			return true;
 		}

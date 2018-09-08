@@ -1,6 +1,6 @@
 package com.istockage.common.util;
 
-public class StringUtil {
+public class UrlUtil {
 
 	public static String getPath(String servletPath) {
 

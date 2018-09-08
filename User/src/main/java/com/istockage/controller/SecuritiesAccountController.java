@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/9/2
+ * Modified: 2018/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -155,7 +155,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 證券帳戶新增失敗，格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 證券帳戶新增失敗 (格式錯誤)");
 
 			return SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW;
 
@@ -237,7 +237,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 證券帳戶編輯失敗，格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 證券帳戶編輯失敗 (格式錯誤)");
 
 			return SETTINGS_SECURITIES_ACCOUNT_EDIT_VIEW;
 

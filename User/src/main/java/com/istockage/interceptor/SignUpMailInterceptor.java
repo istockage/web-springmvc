@@ -3,7 +3,7 @@
  * File: SignUpMailInterceptor.java
  * Author: 詹晟
  * Created: 2018/4/14
- * Modified: 2018/4/16
+ * Modified: 2018/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -17,7 +17,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.istockage.common.util.StringUtil;
+import com.istockage.common.util.UrlUtil;
 import com.istockage.controller.ControllerConstant;
 
 /**
@@ -39,11 +39,11 @@ public class SignUpMailInterceptor implements HandlerInterceptor, ControllerCons
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
+		String requestPath = UrlUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
 		if ((String) request.getSession().getAttribute(SESSION_MEMBER_NO) == null) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (攔截: " + requestPath + ")");
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_VIEW).forward(request, response);
 
@@ -51,7 +51,7 @@ public class SignUpMailInterceptor implements HandlerInterceptor, ControllerCons
 
 		} else {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 放行: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (放行: " + requestPath + ")");
 
 			return true;
 		}

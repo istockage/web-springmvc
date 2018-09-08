@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/8/30
+ * Modified: 2018/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -97,7 +97,7 @@ public class MemberController implements ControllerConstant {
 			model.addAttribute(MEMBER_PASSWORD, me_password);
 			model.addAttribute(ERROR, MSG_MEMBER_EMAIL_REQUIRE);
 
-			logger.error("(" + className + "." + methodName + ") 登入失敗，信箱未填");
+			logger.error("(" + className + "." + methodName + ") 登入失敗 (信箱未填)");
 
 			return SECURE_SIGN_IN_VIEW;
 
@@ -108,7 +108,7 @@ public class MemberController implements ControllerConstant {
 			model.addAttribute(MEMBER_PASSWORD, me_password);
 			model.addAttribute(ERROR, MSG_MEMBER_PASSWORD_REQUIRE);
 
-			logger.error("(" + className + "." + methodName + ") 登入失敗，密碼未填");
+			logger.error("(" + className + "." + methodName + ") 登入失敗 (密碼未填)");
 
 			return SECURE_SIGN_IN_VIEW;
 
@@ -123,7 +123,7 @@ public class MemberController implements ControllerConstant {
 				model.addAttribute(MEMBER_PASSWORD, me_password);
 				model.addAttribute(ERROR, MSG_MEMBER_EMAIL_OR_PASSWORD_MISTAKE);
 
-				logger.error("(" + className + "." + methodName + ") 登入失敗，信箱或密碼錯誤");
+				logger.error("(" + className + "." + methodName + ") 登入失敗 (信箱或密碼錯誤)");
 
 				return SECURE_SIGN_IN_VIEW;
 
@@ -138,7 +138,7 @@ public class MemberController implements ControllerConstant {
 
 					sendMail.signUpActivityMail(user);
 
-					logger.error("(" + className + "." + methodName + ") 登入失敗，帳號未啟用");
+					logger.error("(" + className + "." + methodName + ") 登入失敗 (帳號未啟用)");
 
 					return SECURE_SIGN_IN_VIEW;
 				}
@@ -154,15 +154,15 @@ public class MemberController implements ControllerConstant {
 
 					session.removeAttribute(NEXT);
 
-					logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + user.getMe_no() + "，導向原請求頁面: "
-							+ next);
+					logger.info("(" + className + "." + methodName + ") 登入成功 (使用者: " + user.getMe_no() + ", 導向原請求頁面: "
+							+ next + ")");
 
 					return REDIRECT.concat(next);
 
 				} else { // 未經過 NotSignInInterceptor
 
-					logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + user.getMe_no() + "，導向首頁: "
-							+ INDEX_VIEW);
+					logger.info("(" + className + "." + methodName + ") 登入成功 (使用者: " + user.getMe_no() + ", 導向首頁: "
+							+ INDEX_VIEW + ")");
 
 					return REDIRECT + INDEX_VIEW;
 				}
@@ -199,7 +199,7 @@ public class MemberController implements ControllerConstant {
 			model.addAttribute(MEMBER_EMAIL, me_email);
 			model.addAttribute(ERROR, MSG_MEMBER_EMAIL_REQUIRE);
 
-			logger.error("(" + className + "." + methodName + ") 發送失敗，信箱未填");
+			logger.error("(" + className + "." + methodName + ") 發送失敗 (信箱未填)");
 
 			return SECURE_FORGET_PASSWORD_VIEW;
 
@@ -213,7 +213,7 @@ public class MemberController implements ControllerConstant {
 				model.addAttribute(MEMBER_EMAIL, me_email);
 				model.addAttribute(ERROR, MSG_MEMBER_EMAIL_MISTAKE);
 
-				logger.error("(" + className + "." + methodName + ") 發送失敗，信箱錯誤");
+				logger.error("(" + className + "." + methodName + ") 發送失敗 (信箱錯誤)");
 
 				return SECURE_FORGET_PASSWORD_VIEW;
 
@@ -227,7 +227,7 @@ public class MemberController implements ControllerConstant {
 				request.setAttribute(MEMBER_ENTITY, memberEntity);
 				request.setAttribute(MEMBER_LOG_KEY, OK);
 
-				logger.info("(" + className + "." + methodName + ") 發送成功，傳送至: " + me_email);
+				logger.info("(" + className + "." + methodName + ") 發送成功 (傳送至: " + me_email + ")");
 
 				return SECURE_RESET_PASSWORD_VIEW;
 			}
@@ -268,7 +268,7 @@ public class MemberController implements ControllerConstant {
 
 			model.addAttribute(ERROR, MSG_MEMBER_RESET_PASSWORD_TIMEOUT);
 
-			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，操作逾時");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗 (操作逾時)");
 
 			return SECURE_FORGET_PASSWORD_VIEW;
 		}
@@ -278,19 +278,19 @@ public class MemberController implements ControllerConstant {
 		if (me_random == null || me_random.isEmpty() || me_password_new == null || me_password_new.isEmpty()
 				|| me_password_new_again == null || me_password_new_again.isEmpty()) {
 
-			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，資料未填");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗 (資料未填)");
 
 			return SECURE_RESET_PASSWORD_VIEW;
 
 		} else if (!me_password_new.matches("^[\\S]{8,32}$")) {
 
-			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，密碼格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗 (密碼格式錯誤)");
 
 			return SECURE_RESET_PASSWORD_VIEW;
 
 		} else if (!me_password_new.equals(me_password_new_again)) {
 
-			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，新密碼重複錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗 (新密碼重複錯誤)");
 
 			return SECURE_RESET_PASSWORD_VIEW;
 
@@ -302,7 +302,7 @@ public class MemberController implements ControllerConstant {
 			model.addAttribute(MEMBER_PASSWORD_NEW_AGAIN, me_password_new_again);
 			model.addAttribute(ERROR, MSG_MEMBER_RANDOM_MISTAKE);
 
-			logger.error("(" + className + "." + methodName + ") 密碼重設失敗，驗證碼錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗 (驗證碼錯誤)");
 
 			return SECURE_RESET_PASSWORD_VIEW;
 
@@ -382,19 +382,19 @@ public class MemberController implements ControllerConstant {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 註冊失敗，格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 註冊失敗 (格式錯誤)");
 
 			return SECURE_SIGN_UP_VIEW;
 
 		} else if (!memberEntity.getMe_password().equals(me_password_again)) {
 
-			logger.error("(" + className + "." + methodName + ") 註冊失敗，密碼重複錯誤");
+			logger.error("(" + className + "." + methodName + ") 註冊失敗 (密碼重複錯誤)");
 
 			return SECURE_SIGN_UP_VIEW;
 
 		} else if (memberService.selectByMe_email(memberEntity.getMe_email(), null) != null) {
 
-			logger.error("(" + className + "." + methodName + ") 註冊失敗，信箱重複");
+			logger.error("(" + className + "." + methodName + ") 註冊失敗 (信箱重複)");
 
 			return SECURE_SIGN_UP_VIEW;
 
@@ -406,7 +406,7 @@ public class MemberController implements ControllerConstant {
 			request.setAttribute(MEMBER_ENTITY, memberEntity);
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
-			logger.info("(" + className + "." + methodName + ") 註冊成功，會員編號: " + memberEntity.getMe_no());
+			logger.info("(" + className + "." + methodName + ") 註冊成功 (會員編號: " + memberEntity.getMe_no() + ")");
 
 			return REDIRECT + SECURE_SIGN_UP_MAIL_VIEW;
 		}
@@ -440,7 +440,7 @@ public class MemberController implements ControllerConstant {
 
 			model.addAttribute(ERROR, MSG_MEMBER_SIGN_UP_MAIL_TIMEOUT);
 
-			logger.error("(" + className + "." + methodName + ") 發送失敗，操作逾時");
+			logger.error("(" + className + "." + methodName + ") 發送失敗 (操作逾時)");
 
 			return SECURE_SIGN_UP_MAIL_AGAIN_VIEW;
 		}
@@ -454,7 +454,7 @@ public class MemberController implements ControllerConstant {
 		request.setAttribute(MEMBER_ENTITY, memberEntity);
 		request.setAttribute(MEMBER_LOG_KEY, OK);
 
-		logger.info("(" + className + "." + methodName + ") 發送成功，會員編號: " + me_no);
+		logger.info("(" + className + "." + methodName + ") 發送成功 (會員編號: " + me_no + ")");
 
 		return SECURE_SIGN_UP_MAIL_VIEW;
 	}
@@ -490,7 +490,7 @@ public class MemberController implements ControllerConstant {
 			model.addAttribute(MEMBER_EMAIL, me_email);
 			model.addAttribute(ERROR, MSG_MEMBER_EMAIL_REQUIRE);
 
-			logger.error("(" + className + "." + methodName + ") 發送失敗，信箱未填");
+			logger.error("(" + className + "." + methodName + ") 發送失敗 (信箱未填)");
 
 			return SECURE_SIGN_UP_MAIL_AGAIN_VIEW;
 
@@ -500,7 +500,7 @@ public class MemberController implements ControllerConstant {
 			model.addAttribute(MEMBER_EMAIL, me_email);
 			model.addAttribute(ERROR, MSG_MEMBER_EMAIL_MISTAKE);
 
-			logger.error("(" + className + "." + methodName + ") 發送失敗，信箱錯誤");
+			logger.error("(" + className + "." + methodName + ") 發送失敗 (信箱錯誤)");
 
 			return SECURE_SIGN_UP_MAIL_AGAIN_VIEW;
 
@@ -513,7 +513,7 @@ public class MemberController implements ControllerConstant {
 			request.setAttribute(MEMBER_ENTITY, memberEntity);
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
-			logger.info("(" + className + "." + methodName + ") 發送成功，會員編號: " + memberEntity.getMe_no());
+			logger.info("(" + className + "." + methodName + ") 發送成功 (會員編號: " + memberEntity.getMe_no() + ")");
 
 			return SECURE_SIGN_UP_MAIL_AGAIN_VIEW;
 		}
@@ -536,7 +536,7 @@ public class MemberController implements ControllerConstant {
 
 		} catch (PageNotFoundException e) {
 
-			logger.error("(" + className + "." + methodName + ") 啟用帳號失敗，會員編號錯誤: " + me_no);
+			logger.error("(" + className + "." + methodName + ") 啟用帳號失敗 (會員編號錯誤: " + me_no + ")");
 
 			return ERROR_PAGE_NOT_FOUND_VIEW;
 		}
@@ -544,7 +544,7 @@ public class MemberController implements ControllerConstant {
 		request.setAttribute(MEMBER_ENTITY, memberEntity);
 		request.setAttribute(MEMBER_LOG_KEY, OK);
 
-		logger.info("(" + className + "." + methodName + ") 啟用帳號成功，會員編號: " + me_no);
+		logger.info("(" + className + "." + methodName + ") 啟用帳號成功 (會員編號: " + me_no + ")");
 
 		return REDIRECT + SECURE_SIGN_IN_VIEW;
 	}
@@ -592,7 +592,7 @@ public class MemberController implements ControllerConstant {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 基本資料修改失敗，格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 基本資料修改失敗 (格式錯誤)");
 
 			return SETTINGS_ACCOUNT_VIEW;
 
@@ -628,19 +628,19 @@ public class MemberController implements ControllerConstant {
 		if (me_password == null || me_password.isEmpty() || me_password_new == null || me_password_new.isEmpty()
 				|| me_password_new_again == null || me_password_new_again.isEmpty()) {
 
-			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，資料未填");
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗 (資料未填)");
 
 			return SETTINGS_ACCOUNT_VIEW;
 
 		} else if (!me_password_new.matches("^[\\S]{8,32}$")) {
 
-			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，密碼格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗 (密碼格式錯誤)");
 
 			return SETTINGS_ACCOUNT_VIEW;
 
 		} else if (!me_password_new.equals(me_password_new_again)) {
 
-			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，新密碼重複錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗 (新密碼重複錯誤)");
 
 			return SETTINGS_ACCOUNT_VIEW;
 
@@ -653,7 +653,7 @@ public class MemberController implements ControllerConstant {
 			model.addAttribute(MEMBER_PASSWORD_NEW_AGAIN, me_password_new_again);
 			model.addAttribute(ERROR, MSG_MEMBER_PASSWORD_MISTAKE);
 
-			logger.error("(" + className + "." + methodName + ") 密碼變更失敗，密碼錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗 (密碼錯誤)");
 
 			return SETTINGS_ACCOUNT_VIEW;
 

@@ -3,7 +3,7 @@
  * File: ActionInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/4/16
+ * Modified: 2018/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.istockage.common.util.StringUtil;
+import com.istockage.common.util.UrlUtil;
 import com.istockage.controller.ControllerConstant;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.MemberLogEntity;
@@ -58,11 +58,11 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
 		String servletPath = request.getServletPath(); // /path
-		String requestPath = StringUtil.getRequestPath(servletPath, request.getQueryString()); // 請求 path
+		String requestPath = UrlUtil.getRequestPath(servletPath, request.getQueryString()); // 請求 path
 
-		if (userPathService.selectByUp_path(ACTION, StringUtil.getPath(servletPath)) == null) {
+		if (userPathService.selectByUp_path(ACTION, UrlUtil.getPath(servletPath)) == null) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (攔截: " + requestPath + ")");
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_VIEW).forward(request, response);
 
@@ -71,14 +71,14 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		if (handlerMethodName.indexOf("Action") == -1) { // 經過 GET
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (攔截: " + requestPath + ")");
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_VIEW).forward(request, response);
 
 			return false;
 		}
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 放行: " + requestPath);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (放行: " + requestPath + ")");
 
 		return true;
 	}
@@ -95,7 +95,7 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		if (!OK.equals((String) request.getAttribute(MEMBER_LOG_KEY))) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 不寫入日誌");
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (不寫入日誌)");
 
 			return;
 		}
@@ -116,14 +116,14 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		} else {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 不寫入日誌");
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (不寫入日誌)");
 
 			return;
 		}
 
 		String servletPath = request.getServletPath(); // /path
 
-		UserPathEntity userPathEntity = userPathService.selectByUp_path(ACTION, StringUtil.getPath(servletPath));
+		UserPathEntity userPathEntity = userPathService.selectByUp_path(ACTION, UrlUtil.getPath(servletPath));
 
 		MemberLogEntity memberLogEntity = new MemberLogEntity();
 		memberLogEntity.setMl_MemberEntity(memberEntity);
@@ -131,8 +131,8 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 		memberLogEntity.setMl_ip(request.getRemoteAddr());
 		memberLogService.insert(memberLogEntity);
 
-		logger.info(
-				"(" + handlerClassName + "." + handlerMethodName + ") end, 寫入日誌，動作: " + userPathEntity.getUp_name());
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (寫入日誌, 動作: " + userPathEntity.getUp_name()
+				+ ")");
 	}
 
 	@Override

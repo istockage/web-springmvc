@@ -3,7 +3,7 @@
  * File: StopwatchInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/29
- * Modified: 2018/4/13
+ * Modified: 2018/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -62,8 +62,8 @@ public class StopwatchInterceptor implements HandlerInterceptor, ControllerConst
 
 		endTime = System.currentTimeMillis();
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") time stop, time: " + (endTime - startTime)
-				+ "ms\n");
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") time stop (time: " + (endTime - startTime)
+				+ "ms)\n");
 	}
 
 }

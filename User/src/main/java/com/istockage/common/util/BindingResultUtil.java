@@ -11,18 +11,19 @@ public class BindingResultUtil {
 
 		List<FieldError> list = bindingResult.getFieldErrors();
 
-		String fieldErrors = "";
+		StringBuilder stringBuilder = new StringBuilder();
 
 		for (int i = 0; i < list.size(); i++) {
 			if (i == 0) {
-				fieldErrors = list.get(i).getField();
+				stringBuilder.append(list.get(i).getField());
 			}
 			if (i > 0) {
-				fieldErrors = fieldErrors.concat(", ").concat(list.get(i).getField());
+				stringBuilder.append(", ");
+				stringBuilder.append(list.get(i).getField());
 			}
 		}
 
-		return fieldErrors;
+		return stringBuilder.toString();
 	}
 
 }

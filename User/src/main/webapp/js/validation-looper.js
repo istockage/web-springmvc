@@ -139,9 +139,176 @@ $(document).ready(function(){
 				pattern: "必須填入 7 位數字"
 			},
 			sa_discount: {
-				digits: "必須填入數字",
-				min: "必須填入介於 0 到 100 的數字",
-				max: "必須填入介於 0 到 100 的數字"
+				digits: "必須填入整數數字",
+				min: "必須填入介於 0 到 100 的整數數字",
+				max: "必須填入介於 0 到 100 的整數數字"
+			}
+		},
+		errorElement: "span",
+		errorPlacement: function(error, element) {
+			$(element).siblings(".invalid-feedback").append(error);
+		},
+		highlight: function(element){
+			$(element).addClass("is-invalid");
+		},
+		unhighlight: function(element){
+			$(element).removeClass("is-invalid");
+		},
+		submitHandler: function(form){
+			form.submit();
+	    }
+	});
+	
+	// stock/list/add
+	$("#stock-list-add-form").validate({
+		rules: {
+			st_SecuritiesAccountEntity: {
+				min: 1
+			},
+			st_no: {
+				required: true,
+				pattern: /^[0-9a-zA-Z]{4,6}$/
+			},
+			st_name: {
+				required: true,
+				pattern: /^\S+$/,
+				maxlength: 10
+			},
+			st_buy_time: {
+				required: true,
+			},
+			st_buy_price: {
+				required: true,
+				number: true,
+				max: 9999
+			},
+			st_buy_share: {
+				required: true,
+				digits: true,
+				max: 999999999
+			},
+			st_buy_discount: {
+				digits: true,
+				min: 0,
+				max: 100
+			},
+			st_buy_fee: {
+				required: true,
+				digits: true,
+				max: 999999999
+			},
+			st_buy_delivery: {
+				required: true,
+				digits: true,
+				max: 999999999
+			},
+			st_sell_time: {
+				required: true,
+			},
+			st_sell_price: {
+				required: true,
+				number: true,
+				max: 9999
+			},
+			st_sell_share: {
+				required: true,
+				digits: true,
+				max: 999999999
+			},
+			st_sell_discount: {
+				digits: true,
+				min: 0,
+				max: 100
+			},
+			st_sell_fee: {
+				required: true,
+				digits: true,
+				max: 999999999
+			},
+			st_sell_tax: {
+				required: true,
+				digits: true,
+				max: 999999999
+			},
+			st_sell_delivery: {
+				required: true,
+				digits: true,
+				max: 999999999
+			}
+		},
+		messages: {
+			st_SecuritiesAccountEntity: {
+				min: "必須選擇"
+			},
+			st_no: {
+				required: "必須填入資料",
+				pattern: "必須填入 4 到 6 位英數字"
+			},
+			st_name: {
+				required: "必須填入資料",
+				pattern: "不可填入空白",
+				maxlength: "必須小於 10 個字"
+			},
+			st_buy_time: {
+				required: "必須填入資料",
+			},
+			st_buy_price: {
+				required: "必須填入資料",
+				number: "必須填入數字",
+				max: "必須填入小於 9999 的數字"
+			},
+			st_buy_share: {
+				required: "必須填入資料",
+				digits: "必須填入整數數字",
+				max: "必須填入小於 999999999 的整數數字"
+			},
+			st_buy_discount: {
+				digits: "必須填入整數數字",
+				min: "必須填入介於 0 到 100 的整數數字",
+				max: "必須填入介於 0 到 100 的整數數字"
+			},
+			st_buy_fee: {
+				required: "必須填入資料",
+				digits: "必須填入整數數字",
+				max: "必須填入小於 999999999 的整數數字"
+			},
+			st_buy_delivery: {
+				required: "必須填入資料",
+				digits: "必須填入整數數字",
+				max: "必須填入小於 999999999 的整數數字"
+			},
+			st_sell_time: {
+				required: "必須填入資料",
+			},
+			st_sell_price: {
+				required: "必須填入資料",
+				number: "必須填入數字",
+				max: "必須填入小於 9999 的數字"
+			},
+			st_sell_share: {
+				required: "必須填入資料",
+				digits: "必須填入整數數字",
+				max: "必須填入小於 999999999 的整數數字"
+			},
+			st_sell_discount: {
+				digits: "必須填入整數數字",
+				min: "必須填入介於 0 到 100 的整數數字",
+				max: "必須填入介於 0 到 100 的整數數字"
+			},
+			st_sell_fee: {
+				required: "必須填入資料",
+				digits: "必須填入整數數字",
+				max: "必須填入小於 999999999 的整數數字"
+			},
+			st_sell_tax: {
+				required: "必須填入資料",
+				digits: "必須填入整數數字",
+				max: "必須填入小於 999999999 的整數數字"
+			},
+			st_sell_delivery: {
+				required: "必須填入資料",
+				digits: "必須填入整數數字",
+				max: "必須填入小於 999999999 的整數數字"
 			}
 		},
 		errorElement: "span",

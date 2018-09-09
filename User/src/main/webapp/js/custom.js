@@ -24,6 +24,7 @@ $("input[type=radio][name=buy-sell]").change(function(){
 		$("#buy-form").removeClass("not-show");
 		$("#sell-form").addClass("not-show");
 		$("#sell-form input").val("");
+		$("#sell-form input").removeClass("is-invalid");
 	} else if (this.value == "sell") {
 		$("#buy-radio").removeClass("active").removeAttr("style");
 		$("#sell-radio").addClass("active").css("cursor", "default");
@@ -34,6 +35,7 @@ $("input[type=radio][name=buy-sell]").change(function(){
 		$("#buy-sell-card").removeClass("alert-danger").addClass("alert-success");
 		$("#buy-form").addClass("not-show");
 		$("#buy-form input").val("");
+		$("#buy-form input").removeClass("is-invalid");
 		$("#sell-form").removeClass("not-show");
 	}
 });

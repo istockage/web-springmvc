@@ -3,7 +3,7 @@
  * File: StockEntity.java
  * Author: 詹晟
  * Created: 2018/3/23
- * Modified: 2018/9/7
+ * Modified: 2018/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -42,6 +43,7 @@ public class StockEntity {
 	private SecuritiesAccountEntity st_SecuritiesAccountEntity;
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,6}$")
 	private String st_no;
+	@NotBlank
 	@Size(max = 10)
 	private String st_name;
 	@ManyToOne

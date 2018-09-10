@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/8
+ * Modified: 2018/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -125,14 +125,15 @@ public class StockController implements ControllerConstant {
 	/**
 	 * 新增股票交易 - submit
 	 * 
+	 * @param user MemberEntity --> SessionAttribute
 	 * @param co_no Byte --> 編碼
 	 * @param stockEntity StockEntity --> form-backing object
 	 * @param bindingResult BindingResult
 	 * @return /WEB-INF/view/stock/list.jsp
 	 */
 	@RequestMapping(value = "/stock/list/add.do", method = RequestMethod.POST)
-	public String stockListAddAction(@RequestParam Byte co_no, @Valid StockEntity stockEntity,
-			BindingResult bindingResult) {
+	public String stockListAddAction(@SessionAttribute(USER) MemberEntity user, @RequestParam Byte co_no,
+			@Valid StockEntity stockEntity, BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -144,6 +145,8 @@ public class StockController implements ControllerConstant {
 			return STOCK_LIST_ADD_VIEW;
 
 		} else {
+
+			stockEntity.setSt_MemberEntity(user);
 
 			CodeCategoryEntity codeCategoryEntity = codeCategoryService.selectByCc_name(STOCK_TYPE_CODE_CATEGORY);
 

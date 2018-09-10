@@ -37,7 +37,7 @@
 								</ol>
 							</nav>
 							<div class="d-md-flex align-items-md-start">
-								<h1 class="page-title mr-sm-auto">交易明細</h1>
+								<h1 class="page-title mr-sm-auto">股票交易明細</h1>
 								<div class="btn-toolbar">
 									<button type="button" class="btn btn-light">
 										<i class="oi oi-data-transfer-download"></i>
@@ -92,26 +92,26 @@
 															</th>
 														</tr>
 													</thead>
-													<tbody>
+													<tbody style="font-size:13px">
 														<tr>
 															<td>2317</td>
 															<td>鴻海</td>
 															<td>12/08/27</td>
-															<td>85</td>
-															<td>1</td>
-															<td>6</td>
-															<td>121</td>
-															<td>85121</td>
+															<td style="text-align:right">85</td>
+															<td style="text-align:right">1</td>
+															<td style="text-align:right">6</td>
+															<td style="text-align:right">121</td>
+															<td style="text-align:right">85121</td>
 															<td>12/09/14</td>
-															<td>96.2</td>
-															<td>1</td>
-															<td>6</td>
-															<td>137</td>
-															<td>288</td>
-															<td>95775</td>
-															<td>13.18</td>
-															<td>10654</td>
-															<td>10654</td>
+															<td style="text-align:right">96.2</td>
+															<td style="text-align:right">1</td>
+															<td style="text-align:right">6</td>
+															<td style="text-align:right">137</td>
+															<td style="text-align:right">288</td>
+															<td style="text-align:right">95775</td>
+															<td style="text-align:right">13.18</td>
+															<td style="text-align:right">10654</td>
+															<td style="text-align:right">10654</td>
 															<td class="align-middle text-right">
 																<a href="#" class="btn btn-sm btn-light" title="編輯"><i class="fa fa-edit"></i></a>
 																<a href="#" class="btn btn-sm btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>
@@ -121,21 +121,21 @@
 															<td>3264</td>
 															<td>欣銓</td>
 															<td>12/09/17</td>
-															<td>20.8</td>
-															<td>1</td>
-															<td>6</td>
-															<td>29</td>
-															<td>20829</td>
+															<td style="text-align:right">20.8</td>
+															<td style="text-align:right">1</td>
+															<td style="text-align:right">6</td>
+															<td style="text-align:right">29</td>
+															<td style="text-align:right">20829</td>
 															<td>12/09/27</td>
-															<td>20.2</td>
-															<td>1</td>
-															<td>6</td>
-															<td>28</td>
-															<td>60</td>
-															<td>20112</td>
-															<td>-2.88</td>
-															<td>717</td>
-															<td>9937</td>
+															<td style="text-align:right">20.2</td>
+															<td style="text-align:right">1</td>
+															<td style="text-align:right">6</td>
+															<td style="text-align:right">28</td>
+															<td style="text-align:right">60</td>
+															<td style="text-align:right">20112</td>
+															<td style="text-align:right">-2.88</td>
+															<td style="text-align:right">717</td>
+															<td style="text-align:right">9937</td>
 															<td class="align-middle text-right">
 																<a href="#" class="btn btn-sm btn-light" title="編輯"><i class="fa fa-edit"></i></a>
 																<a href="#" class="btn btn-sm btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>

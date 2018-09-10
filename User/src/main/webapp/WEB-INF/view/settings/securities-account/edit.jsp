@@ -70,7 +70,7 @@
 									
 									<!-- .card -->
 									<div class="card card-fluid">
-										<h6 class="card-header">新增證券帳戶</h6>
+										<h6 class="card-header">編輯證券帳戶</h6>
 										<!-- .card-body -->
 										<div class="card-body">
 											<!-- .form -->

@@ -26,6 +26,15 @@
 	color: gray;
 }
 
+/* stock-list */
+#stock-list-table, #stock-list-table th, #stock-list-table td {
+	border: 1px solid #e8e8e9;
+}
+
+#stock-list-table>tbody>tr>td {
+	vertical-align: middle;
+}
+
 /* stock-list-add */
 .not-show {
 	display: none;

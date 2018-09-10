@@ -39,6 +39,9 @@
 									<li class="breadcrumb-item active">新增</li>
 								</ol>
 							</nav>
+							<div class="d-md-flex align-items-md-start">
+								<h1 class="page-title mr-sm-auto">新增股票交易</h1>
+							</div>
 						</header>
 						<!-- /.page-title-bar -->
 						
@@ -47,7 +50,6 @@
 						
 							<!-- .card -->
 							<div class="card card-fluid">
-								<h6 class="card-header">新增股票交易</h6>
 								<!-- .card-body -->
 								<div class="card-body">
 									<!-- .form -->

@@ -5,14 +5,18 @@
 	padding-bottom: .25rem;
 }
 
+/* settings/ */
 /* sub-menu */
 .nav-tabs .nav-link {
 	padding: .75rem 1rem;
 }
 
-/* form */
-.card-header {
-	font-weight: 400;
+/* title */
+.page-title::before {
+	content: "\00a0";
+	height: 100%;
+	background-color: #337ab7;
+	margin-right: 7px;
 }
 
 /* table */
@@ -20,13 +24,12 @@
 	padding: .5rem;
 }
 
-/* footer */
-.copyright {
-	font-size: .75rem;
-	color: gray;
+/* form */
+.card-header {
+	font-weight: 400;
 }
 
-/* stock-list */
+/* stock/list */
 #stock-list-table, #stock-list-table th, #stock-list-table td {
 	border: 1px solid #e8e8e9;
 }
@@ -35,7 +38,13 @@
 	vertical-align: middle;
 }
 
-/* stock-list-add */
+/* stock/list/add */
 .not-show {
 	display: none;
+}
+
+/* footer */
+.copyright {
+	font-size: .75rem;
+	color: gray;
 }

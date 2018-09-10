@@ -3,7 +3,7 @@
  * File: StockEntity.java
  * Author: 詹晟
  * Created: 2018/3/23
- * Modified: 2018/9/8
+ * Modified: 2018/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -38,6 +38,9 @@ public class StockEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer st_id;
+	@ManyToOne
+	@JoinColumn(name = "st_me_id")
+	private MemberEntity st_MemberEntity;
 	@ManyToOne
 	@JoinColumn(name = "st_sa_id")
 	private SecuritiesAccountEntity st_SecuritiesAccountEntity;
@@ -88,6 +91,14 @@ public class StockEntity {
 
 	public void setSt_id(Integer st_id) {
 		this.st_id = st_id;
+	}
+
+	public MemberEntity getSt_MemberEntity() {
+		return st_MemberEntity;
+	}
+
+	public void setSt_MemberEntity(MemberEntity st_MemberEntity) {
+		this.st_MemberEntity = st_MemberEntity;
 	}
 
 	public SecuritiesAccountEntity getSt_SecuritiesAccountEntity() {

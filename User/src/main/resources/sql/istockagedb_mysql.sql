@@ -130,6 +130,7 @@ create table securities_account (
 
 create table stock (
     st_id                   int auto_increment not null,
+    st_me_id                int not null,
     st_sa_id                int not null,
     st_no                   varchar(10) not null,
     st_name                 nvarchar(10) not null,
@@ -150,6 +151,7 @@ create table stock (
     st_sell_delivery        int,
     st_update_time          datetime not null,
     primary key (st_id),
+    foreign key (st_me_id) references member (me_id),
     foreign key (st_sa_id) references securities_account (sa_id),
     foreign key (st_cc_id) references code_category (cc_id),
     foreign key (st_co_id) references code (co_id)

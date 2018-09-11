@@ -104,7 +104,8 @@ public class SecuritiesAccountController implements ControllerConstant {
 		int pageRowCount = PAGE_ROW_COUNT_NUMBER;
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
-		Map<String, Object> map = securitiesAccountService.selectBySa_me_id(user.getMe_id(), currentPage, pageRowCount);
+		Map<String, Object> map = securitiesAccountService.selectBySa_me_id(user.getMe_id(),
+				PaginationUtil.getFirst(currentPage, pageRowCount), pageRowCount);
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 

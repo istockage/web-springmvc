@@ -3,7 +3,7 @@
  * File: SecuritiesAccountServiceImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/3
+ * Modified: 2018/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -67,16 +67,13 @@ public class SecuritiesAccountServiceImpl implements SecuritiesAccountService {
 	 * 搜尋所有證券帳戶 (分頁)
 	 * 
 	 * @param sa_me_id Integer --> 會員流水號
-	 * @param currentPage int --> 當前頁碼
+	 * @param first int --> 當頁起始筆數
 	 * @param max int --> 每頁最大筆數
 	 * @return Map<String, Object>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public Map<String, Object> selectBySa_me_id(Integer sa_me_id, int currentPage, int max) {
-
-		// 取得當頁起始筆數
-		int first = (currentPage - 1) * max;
+	public Map<String, Object> selectBySa_me_id(Integer sa_me_id, int first, int max) {
 
 		return securitiesAccountDao.selectBySa_me_id(sa_me_id, first, max);
 	}

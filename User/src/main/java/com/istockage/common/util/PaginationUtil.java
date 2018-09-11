@@ -33,6 +33,18 @@ public class PaginationUtil {
 	public static final String CURRENT_GROUP_END = "currentGroupEnd";
 
 	/**
+	 * 取得當頁起始筆數
+	 * 
+	 * @param currentPage int --> 當前頁碼
+	 * @param pageRowCount int --> 每頁最大筆數
+	 * @return int
+	 */
+	public static int getFirst(int currentPage, int pageRowCount) {
+
+		return (currentPage - 1) * pageRowCount;
+	}
+
+	/**
 	 * 取得總頁數
 	 * 
 	 * @param totalRowCount int --> 總筆數

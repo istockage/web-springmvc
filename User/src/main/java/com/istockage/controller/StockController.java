@@ -9,6 +9,8 @@
  */
 package com.istockage.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
 import com.istockage.common.util.BindingResultUtil;
+import com.istockage.common.util.PaginationUtil;
 import com.istockage.model.entity.CodeCategoryEntity;
 import com.istockage.model.entity.CodeEntity;
 import com.istockage.model.entity.MemberEntity;
@@ -95,10 +98,28 @@ public class StockController implements ControllerConstant {
 	/**
 	 * 股票交易明細 - init
 	 * 
+	 * @param user MemberEntity --> SessionAttribute
+	 * @param model Model
 	 * @return /WEB-INF/view/stock/list.jsp
 	 */
 	@RequestMapping(value = "/stock/list", method = RequestMethod.GET)
-	public String stockListView() {
+	public String stockListView(@SessionAttribute(USER) MemberEntity user, Model model) {
+
+		int currentPage = (request.getParameter("page") == null) ? 1 : Integer.parseInt(request.getParameter("page"));
+
+		int pageRowCount = PAGE_ROW_COUNT_NUMBER;
+		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
+
+		Map<String, Object> map = stockService.selectByConditions(user, null, currentPage, pageRowCount);
+
+		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
+
+		// 取得當前頁碼的證券帳戶
+		model.addAttribute(STOCK_LIST, map.get("list"));
+
+		// 取得分頁資訊
+		model.addAllAttributes(PaginationUtil.allAttributes(request.getServletPath(), pageRowCount, pageCount,
+				currentPage, groupRowCount));
 
 		return STOCK_LIST_VIEW;
 	}

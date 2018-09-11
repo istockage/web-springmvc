@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -93,58 +94,39 @@
 														</tr>
 													</thead>
 													<tbody style="font-size:13px">
-														<tr>
-															<td>2317</td>
-															<td>鴻海</td>
-															<td>12/08/27</td>
-															<td style="text-align:right">85</td>
-															<td style="text-align:right">1</td>
-															<td style="text-align:right">6</td>
-															<td style="text-align:right">121</td>
-															<td style="text-align:right">85121</td>
-															<td>12/09/14</td>
-															<td style="text-align:right">96.2</td>
-															<td style="text-align:right">1</td>
-															<td style="text-align:right">6</td>
-															<td style="text-align:right">137</td>
-															<td style="text-align:right">288</td>
-															<td style="text-align:right">95775</td>
-															<td style="text-align:right">13.18</td>
-															<td style="text-align:right">10654</td>
-															<td style="text-align:right">10654</td>
-															<td class="align-middle text-right">
-																<a href="#" class="btn btn-sm btn-light" title="編輯"><i class="fa fa-edit"></i></a>
-																<a href="#" class="btn btn-sm btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>
-															</td>
-														</tr>
-														<tr>
-															<td>3264</td>
-															<td>欣銓</td>
-															<td>12/09/17</td>
-															<td style="text-align:right">20.8</td>
-															<td style="text-align:right">1</td>
-															<td style="text-align:right">6</td>
-															<td style="text-align:right">29</td>
-															<td style="text-align:right">20829</td>
-															<td>12/09/27</td>
-															<td style="text-align:right">20.2</td>
-															<td style="text-align:right">1</td>
-															<td style="text-align:right">6</td>
-															<td style="text-align:right">28</td>
-															<td style="text-align:right">60</td>
-															<td style="text-align:right">20112</td>
-															<td style="text-align:right">-2.88</td>
-															<td style="text-align:right">717</td>
-															<td style="text-align:right">9937</td>
-															<td class="align-middle text-right">
-																<a href="#" class="btn btn-sm btn-light" title="編輯"><i class="fa fa-edit"></i></a>
-																<a href="#" class="btn btn-sm btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>
-															</td>
-														</tr>
+														<c:forEach var="bean" items="${stockList}" varStatus="status">
+															<tr>
+																<td>${bean.st_no}</td>
+																<td>${bean.st_name}</td>
+																<td>${bean.st_buy_time}</td>
+																<td style="text-align:right">${bean.st_buy_price}</td>
+																<td style="text-align:right">${bean.st_buy_share}</td>
+																<td style="text-align:right">${bean.st_buy_discount}</td>
+																<td style="text-align:right">${bean.st_buy_fee}</td>
+																<td style="text-align:right">${bean.st_buy_delivery}</td>
+																<td>${bean.st_sell_time}</td>
+																<td style="text-align:right">${bean.st_sell_price}</td>
+																<td style="text-align:right">${bean.st_sell_share}</td>
+																<td style="text-align:right">${bean.st_sell_discount}</td>
+																<td style="text-align:right">${bean.st_sell_fee}</td>
+																<td style="text-align:right">${bean.st_sell_tax}</td>
+																<td style="text-align:right">${bean.st_sell_delivery}</td>
+																<td style="text-align:right">-2.88</td>
+																<td style="text-align:right">717</td>
+																<td style="text-align:right">9937</td>
+																<td class="align-middle text-right">
+																	<a href="#" class="btn btn-sm btn-light" title="編輯"><i class="fa fa-edit"></i></a>
+																	<a href="#" class="btn btn-sm btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>
+																</td>
+															</tr>
+														</c:forEach>
 													</tbody>
 												</table>
 											</div>
 											<!-- /.table-responsive -->
+											<!-- pagination -->
+											<jsp:include page="../pagination.jsp" />
+											<!-- /pagination -->
 										</div>
 										<!-- /.card-body -->
 									</div>

@@ -82,6 +82,9 @@ public class StockDaoImpl implements StockDao {
 
 						// where
 						List<Predicate> predicates = new ArrayList<Predicate>();
+						if (st_MemberEntity != null) {
+							predicates.add(criteriaBuilder.equal(root.get("st_MemberEntity"), st_MemberEntity));
+						}
 						if (st_SecuritiesAccountEntity != null) {
 							predicates.add(criteriaBuilder.equal(root.get("st_SecuritiesAccountEntity"),
 									st_SecuritiesAccountEntity));
@@ -91,7 +94,7 @@ public class StockDaoImpl implements StockDao {
 						}
 
 						// order by
-						criteriaQuery.orderBy(criteriaBuilder.asc(root.get("st_sell_time")));
+						criteriaQuery.orderBy(criteriaBuilder.asc(root.get("st_buy_time")));
 
 						TypedQuery<StockEntity> typedQuery = session.createQuery(criteriaQuery);
 

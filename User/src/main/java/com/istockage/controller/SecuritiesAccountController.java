@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/9/8
+ * Modified: 2018/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -108,14 +108,12 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 
-		// 取得 ServletPath
-		model.addAttribute(SERVLET_PATH, request.getServletPath());
-
 		// 取得當前頁碼的證券帳戶
 		model.addAttribute(SECURITIES_ACCOUNT_LIST, map.get("list"));
 
 		// 取得分頁資訊
-		model.addAllAttributes(PaginationUtil.allAttributes(pageRowCount, pageCount, currentPage, groupRowCount));
+		model.addAllAttributes(PaginationUtil.allAttributes(request.getServletPath(), pageRowCount, pageCount,
+				currentPage, groupRowCount));
 
 		return SETTINGS_SECURITIES_ACCOUNT_VIEW;
 	}

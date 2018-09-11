@@ -5,6 +5,9 @@ import java.util.Map;
 
 public class PaginationUtil {
 
+	/** ServletPath */
+	public static final String SERVLET_PATH = "servletPath";
+
 	/** 每頁最大筆數 */
 	public static final String PAGE_ROW_COUNT = "pageRowCount";
 
@@ -102,16 +105,20 @@ public class PaginationUtil {
 	/**
 	 * 取得分頁資訊
 	 * 
+	 * @param servletPath String --> ServletPath
 	 * @param pageRowCount int --> 每頁最大筆數
 	 * @param pageCount int --> 總頁數
 	 * @param currentPage int --> 當前頁碼
 	 * @param groupRowCount int --> 每群最大頁數
 	 * @return Map<String, Object>
 	 */
-	public static Map<String, Object> allAttributes(int pageRowCount, int pageCount, int currentPage,
-			int groupRowCount) {
+	public static Map<String, Object> allAttributes(String servletPath, int pageRowCount, int pageCount,
+			int currentPage, int groupRowCount) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
+
+		// 取得 ServletPath
+		map.put(SERVLET_PATH, servletPath);
 
 		// 取得每頁最大筆數
 		map.put(PAGE_ROW_COUNT, pageRowCount);

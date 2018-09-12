@@ -40,7 +40,7 @@
 								</ol>
 							</nav>
 							<div class="d-md-flex align-items-md-start">
-								<h1 class="page-title mr-sm-auto">新增股票交易</h1>
+								<h1 class="page-title mr-sm-auto">${viewName}</h1>
 							</div>
 						</header>
 						<!-- /.page-title-bar -->

@@ -39,7 +39,7 @@
 								</ol>
 							</nav>
 							<div class="d-md-flex align-items-md-start">
-								<h1 class="page-title mr-sm-auto">股票交易明細</h1>
+								<h1 class="page-title mr-sm-auto">${viewName}</h1>
 								<div class="btn-toolbar">
 									<button type="button" class="btn btn-light">
 										<i class="oi oi-data-transfer-download"></i>

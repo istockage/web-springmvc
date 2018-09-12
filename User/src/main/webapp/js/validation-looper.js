@@ -175,12 +175,13 @@ $(document).ready(function(){
 				maxlength: 10
 			},
 			st_buy_time: {
-				required: true,
+				required: true
 			},
 			st_buy_price: {
 				required: true,
 				number: true,
-				max: 9999
+				pattern: /^[0-9]+(.[0-9]{1,2})?$/,
+				max: 9999.99
 			},
 			st_buy_share: {
 				required: true,
@@ -203,12 +204,13 @@ $(document).ready(function(){
 				max: 999999999
 			},
 			st_sell_time: {
-				required: true,
+				required: true
 			},
 			st_sell_price: {
 				required: true,
 				number: true,
-				max: 9999
+				pattern: /^[0-9]+(.[0-9]{1,2})?$/,
+				max: 9999.99
 			},
 			st_sell_share: {
 				required: true,
@@ -250,65 +252,67 @@ $(document).ready(function(){
 				maxlength: "必須小於 10 個字"
 			},
 			st_buy_time: {
-				required: "必須填入資料",
+				required: "必須填入資料"
 			},
 			st_buy_price: {
 				required: "必須填入資料",
 				number: "必須填入數字",
-				max: "必須填入小於 9999 的數字"
+				pattern: "必須填入正數，並小於 2 位小數",
+				max: "必須小於 9999.99 的數字"
 			},
 			st_buy_share: {
 				required: "必須填入資料",
-				digits: "必須填入整數數字",
-				max: "必須填入小於 999999999 的整數數字"
+				digits: "必須填入正整數",
+				max: "必須小於 999999999 的正整數"
 			},
 			st_buy_discount: {
-				digits: "必須填入整數數字",
-				min: "必須填入介於 0 到 100 的整數數字",
-				max: "必須填入介於 0 到 100 的整數數字"
+				digits: "必須填入正整數",
+				min: "必須填入 0 到 100 的整數",
+				max: "必須填入 0 到 100 的整數"
 			},
 			st_buy_fee: {
 				required: "必須填入資料",
-				digits: "必須填入整數數字",
-				max: "必須填入小於 999999999 的整數數字"
+				digits: "必須填入正整數",
+				max: "必須小於 999999999 的正整數"
 			},
 			st_buy_delivery: {
 				required: "必須填入資料",
-				digits: "必須填入整數數字",
-				max: "必須填入小於 999999999 的整數數字"
+				digits: "必須填入正整數",
+				max: "必須小於 999999999 的正整數"
 			},
 			st_sell_time: {
-				required: "必須填入資料",
+				required: "必須填入資料"
 			},
 			st_sell_price: {
 				required: "必須填入資料",
 				number: "必須填入數字",
-				max: "必須填入小於 9999 的數字"
+				pattern: "必須填入正數，並小於 2 位小數",
+				max: "必須小於 9999.99 的數字"
 			},
 			st_sell_share: {
 				required: "必須填入資料",
-				digits: "必須填入整數數字",
-				max: "必須填入小於 999999999 的整數數字"
+				digits: "必須填入正整數",
+				max: "必須小於 999999999 的正整數"
 			},
 			st_sell_discount: {
-				digits: "必須填入整數數字",
-				min: "必須填入介於 0 到 100 的整數數字",
-				max: "必須填入介於 0 到 100 的整數數字"
+				digits: "必須填入正整數",
+				min: "必須填入 0 到 100 的整數",
+				max: "必須填入 0 到 100 的整數"
 			},
 			st_sell_fee: {
 				required: "必須填入資料",
-				digits: "必須填入整數數字",
-				max: "必須填入小於 999999999 的整數數字"
+				digits: "必須填入正整數",
+				max: "必須小於 999999999 的正整數"
 			},
 			st_sell_tax: {
 				required: "必須填入資料",
-				digits: "必須填入整數數字",
-				max: "必須填入小於 999999999 的整數數字"
+				digits: "必須填入正整數",
+				max: "必須小於 999999999 的正整數"
 			},
 			st_sell_delivery: {
 				required: "必須填入資料",
-				digits: "必須填入整數數字",
-				max: "必須填入小於 999999999 的整數數字"
+				digits: "必須填入正整數",
+				max: "必須小於 999999999 的正整數"
 			}
 		},
 		errorElement: "span",

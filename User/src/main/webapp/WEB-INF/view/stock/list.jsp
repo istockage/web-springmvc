@@ -68,24 +68,26 @@
 										<div class="card-body">
 											<!-- .table-responsive -->
 											<div class="table-responsive">
-												<table id="stock-list-table" class="table table-sm mb-0">
+												<table id="stock-list-table" class="table table-sm mb-0" style="font-size:.8rem">
 													<thead class="thead-">
 														<tr>
+															<th>編號</th>
 															<th>代號</th>
 															<th>股票</th>
+															<th>類別</th>
 															<th>買進時間</th>
 															<th>價格</th>
 															<th>股數</th>
 															<th>折扣</th>
 															<th>手續費</th>
-															<th>交割金額</th>
+															<th>交割金</th>
 															<th>買出時間</th>
 															<th>價格</th>
 															<th>仟股</th>
 															<th>折扣</th>
 															<th>手續費</th>
 															<th>證交稅</th>
-															<th>交割金額</th>
+															<th>交割金</th>
 															<th>漲幅</th>
 															<th>淨利</th>
 															<th>盈虧</th>
@@ -94,39 +96,28 @@
 															</th>
 														</tr>
 													</thead>
-													<tbody style="font-size:13px">
+													<tbody>
 														<c:forEach var="bean" items="${stockList}" varStatus="status">
 															<tr>
+																<td>${status.count + (currentPage - 1) * pageRowCount}</td>
 																<td>${bean.st_no}</td>
 																<td>${bean.st_name}</td>
-																<fmt:formatDate type="date" var="st_buy_time" value="${bean.st_buy_time}" pattern="yy/MM/dd" />
-																<td>${st_buy_time}</td>
-																<fmt:formatNumber type="currency" var="st_buy_price" value="${bean.st_buy_price}" pattern=".00" />
-																<td style="text-align:right">${st_buy_price}</td>
-																<fmt:formatNumber type="currency" var="st_buy_share" value="${bean.st_buy_share}" pattern="#,#00" />
-																<td style="text-align:right">${st_buy_share}</td>
+																<td>${bean.st_CodeEntity.co_name}</td>
+																<td><fmt:formatDate type="date" pattern="yy/MM/dd" value="${bean.st_buy_time}" /></td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern=".00" value="${bean.st_buy_price}" /></td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_buy_share}" /></td>
 																<td style="text-align:right"><c:if test="${not empty bean.st_buy_discount && bean.st_buy_discount != 0}">${bean.st_buy_discount}%</c:if></td>
-																<fmt:formatNumber type="currency" var="st_buy_fee" value="${bean.st_buy_fee}" pattern="#,#00" />
-																<td style="text-align:right">${st_buy_fee}</td>
-																<fmt:formatNumber type="currency" var="st_buy_delivery" value="${bean.st_buy_delivery}" pattern="#,#00" />
-																<td style="text-align:right">${st_buy_delivery}</td>
-																<fmt:formatDate type="date" var="st_sell_time" value="${bean.st_sell_time}" pattern="yy/MM/dd" />
-																<td>${st_sell_time}</td>
-																<fmt:formatNumber type="currency" var="st_sell_price" value="${bean.st_sell_price}" pattern=".00" />
-																<td style="text-align:right">${st_sell_price}</td>
-																<fmt:formatNumber type="currency" var="st_sell_share" value="${bean.st_sell_share}" pattern="#,#00" />
-																<td style="text-align:right">${st_sell_share}</td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_buy_fee}" /></td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_buy_delivery}" /></td>
+																<td><fmt:formatDate type="date" pattern="yy/MM/dd" value="${bean.st_sell_time}" /></td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern=".00" value="${bean.st_sell_price}" /></td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_share}" /></td>
 																<td style="text-align:right"><c:if test="${not empty bean.st_sell_discount && bean.st_sell_discount != 0}">${bean.st_sell_discount}%</c:if></td>
-																<fmt:formatNumber type="currency" var="st_sell_fee" value="${bean.st_sell_fee}" pattern="#,#00" />
-																<td style="text-align:right">${st_sell_fee}</td>
-																<fmt:formatNumber type="currency" var="st_sell_tax" value="${bean.st_sell_tax}" pattern="#,#00" />
-																<td style="text-align:right">${st_sell_tax}</td>
-																<fmt:formatNumber type="currency" var="st_sell_delivery" value="${bean.st_sell_delivery}" pattern="#,#00" />
-																<td style="text-align:right">${st_sell_delivery}</td>
-																<fmt:formatNumber type="currency" var="st_percent" value="${bean.st_sell_price/bean.st_buy_price*100}" pattern=".00" />
-																<td style="text-align:right">${st_percent}%</td>
-																<fmt:formatNumber type="currency" var="st_surplus" value="${bean.st_sell_delivery - bean.st_buy_delivery}" pattern="#,#00" />
-																<td style="text-align:right">${st_surplus}</td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_fee}" /></td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_tax}" /></td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_delivery}" /></td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern=".00" value="${bean.st_sell_price/bean.st_buy_price * 100}" />%</td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_delivery - bean.st_buy_delivery}" /></td>
 																<td style="text-align:right">9937</td>
 																<td class="align-middle text-right">
 																	<a href="#" class="btn btn-sm btn-light" title="編輯"><i class="fa fa-edit"></i></a>

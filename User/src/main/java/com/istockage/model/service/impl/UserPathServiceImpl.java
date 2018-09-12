@@ -3,7 +3,7 @@
  * File: UserPathServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/3/28
+ * Modified: 2018/9/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,11 +41,9 @@ public class UserPathServiceImpl implements UserPathService {
 	/**
 	 * extension 及 path 搜尋
 	 * 
-	 * @param pc_extension
-	 *            String --> extension
-	 * @param up_path
-	 *            String --> path
-	 * @return null / AdminPathBean
+	 * @param pc_extension String --> extension
+	 * @param up_path String --> path
+	 * @return null / UserPathEntity
 	 */
 	@Override
 	@Transactional(readOnly = true)

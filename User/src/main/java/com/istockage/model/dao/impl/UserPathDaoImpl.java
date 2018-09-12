@@ -3,7 +3,7 @@
  * File: UserPathDaoImpl.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/3/28
+ * Modified: 2018/9/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -38,10 +38,8 @@ public class UserPathDaoImpl implements UserPathDao {
 	/**
 	 * path 類別及 path 搜尋
 	 * 
-	 * @param up_PathCategoryEntity
-	 *            PathCategoryEntity --> path 類別
-	 * @param up_path
-	 *            String --> path
+	 * @param up_PathCategoryEntity PathCategoryEntity --> path 類別
+	 * @param up_path String --> path
 	 * @return null / UserPathEntity
 	 */
 	@Override

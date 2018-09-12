@@ -3,7 +3,7 @@
  * File: ViewInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/29
- * Modified: 2018/9/8
+ * Modified: 2018/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.istockage.common.util.UrlUtil;
 import com.istockage.controller.ControllerConstant;
+import com.istockage.model.entity.UserPathEntity;
 import com.istockage.model.service.UserPathService;
 
 /**
@@ -50,7 +51,9 @@ public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 		String servletPath = request.getServletPath(); // /path
 		String requestPath = UrlUtil.getRequestPath(servletPath, request.getQueryString()); // 請求 path
 
-		if (userPathService.selectByUp_path(VIEW, UrlUtil.getPath(servletPath)) == null) {
+		UserPathEntity userPathEntity = userPathService.selectByUp_path(VIEW, UrlUtil.getPath(servletPath));
+
+		if (userPathEntity == null) {
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (攔截: " + requestPath + ")");
 
@@ -62,6 +65,7 @@ public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (放行: " + requestPath + ")");
 
 		request.setAttribute(REQUEST_PATH, requestPath);
+		request.setAttribute(VIEW_NAME, userPathEntity.getUp_name());
 
 		return true;
 	}

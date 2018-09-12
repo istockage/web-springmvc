@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>找不到網頁 - iStockage</title>
+<title>${viewName} - iStockage</title>
 <c:choose>
 <c:when test="${empty user}">
 <%@include file="../secure/head.jsp"%>

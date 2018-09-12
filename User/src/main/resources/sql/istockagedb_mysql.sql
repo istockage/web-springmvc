@@ -120,7 +120,7 @@ create table securities_account (
     sa_sb_id                int not null,
     sa_no                   char(7) not null,
     sa_discount             tinyint,
-    sa_times                int not null,
+    sa_count                int not null,
     sa_update_time          datetime not null,
     primary key (sa_id),
     foreign key (sa_me_id) references member (me_id),
@@ -221,9 +221,9 @@ insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastnam
 insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastname, me_firstname, me_activity_code, me_signup_time, me_update_info_time, me_update_pwd_time) values ('0568914095', 'chengjhan+1@gmail.com', '348f6a73c4a04d015e516ffddfde7432', '14bbce0f-78b8-4e83-822a-06b619f00758', null, null, null, 1, now(), now(), now());
 
 -- securities_account
-insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 1, 1, '0239889', 60, 0, now());
-insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (1, 2, 2, '0060626', 38, 0, now());
-insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_times, sa_update_time) values (2, 1, 1, '1111111', 60, 0, now());
+insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_count, sa_update_time) values (1, 1, 1, '0239889', 60, 0, now());
+insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_count, sa_update_time) values (1, 2, 2, '0060626', 38, 0, now());
+insert into securities_account (sa_me_id, sa_sh_id, sa_sb_id, sa_no, sa_discount, sa_count, sa_update_time) values (2, 1, 1, '1111111', 60, 0, now());
 
 -- stock
 insert into stock (st_me_id, st_sa_id, st_no, st_name, st_cc_id, st_co_id, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2317', '鴻海', 1, 1, '2012-08-27 12:00:00', 85, 1000, 60, 73, 85073, '2012-09-14 12:00:00', 96.2, 1000, 60, 82, 288, 95830, now());

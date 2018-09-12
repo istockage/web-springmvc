@@ -3,7 +3,7 @@
  * File: SecuritiesAccountEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/8/31
+ * Modified: 2018/9/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -49,7 +49,7 @@ public class SecuritiesAccountEntity {
 	@Digits(integer = 3, fraction = 0)
 	@Range(min = 0, max = 100)
 	private Byte sa_discount;
-	private Integer sa_times;
+	private Integer sa_count;
 	private Date sa_update_time;
 
 	public Integer getSa_id() {
@@ -100,12 +100,12 @@ public class SecuritiesAccountEntity {
 		this.sa_discount = sa_discount;
 	}
 
-	public Integer getSa_times() {
-		return sa_times;
+	public Integer getSa_count() {
+		return sa_count;
 	}
 
-	public void setSa_times(Integer sa_times) {
-		this.sa_times = sa_times;
+	public void setSa_count(Integer sa_count) {
+		this.sa_count = sa_count;
 	}
 
 	public Date getSa_update_time() {

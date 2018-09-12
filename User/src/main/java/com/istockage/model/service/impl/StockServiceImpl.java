@@ -70,7 +70,7 @@ public class StockServiceImpl implements StockService {
 	@Transactional
 	public StockEntity insert(StockEntity stockEntity) {
 
-		securitiesAccountDao.updateSa_times(stockEntity.getSt_SecuritiesAccountEntity());
+		securitiesAccountDao.updateSa_count(stockEntity.getSt_SecuritiesAccountEntity());
 
 		stockEntity.setSt_update_time(new Date());
 

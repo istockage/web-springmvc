@@ -107,7 +107,7 @@
 																		</c:choose>
 																	</c:if>
 																</td>
-																<td class="align-middle">${bean.sa_times}</td>
+																<td class="align-middle">${bean.sa_count}</td>
 																<td class="align-middle text-right">
 																	<a href="<%=request.getContextPath()%>/settings/securities-account/edit?sa_id=${bean.sa_id}" class="btn btn-lg btn-light" title="編輯"><i class="fa fa-edit"></i></a>
 																	<a href="#" class="btn btn-lg btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>

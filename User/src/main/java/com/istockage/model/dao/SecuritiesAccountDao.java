@@ -50,8 +50,8 @@ public interface SecuritiesAccountDao extends DaoConstant {
 	SecuritiesAccountEntity update(SecuritiesAccountEntity updatedEntity);
 
 	/**
-	 * @see com.istockage.model.dao.impl.SecuritiesAccountDaoImpl#updateSa_times(SecuritiesAccountEntity)
+	 * @see com.istockage.model.dao.impl.SecuritiesAccountDaoImpl#updateSa_count(SecuritiesAccountEntity)
 	 */
-	SecuritiesAccountEntity updateSa_times(SecuritiesAccountEntity updatedEntity);
+	SecuritiesAccountEntity updateSa_count(SecuritiesAccountEntity updatedEntity);
 
 }

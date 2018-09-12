@@ -160,12 +160,12 @@ public class SecuritiesAccountDaoImpl implements SecuritiesAccountDao {
 	 * @return SecuritiesAccountEntity
 	 */
 	@Override
-	public SecuritiesAccountEntity updateSa_times(SecuritiesAccountEntity updatedEntity) {
+	public SecuritiesAccountEntity updateSa_count(SecuritiesAccountEntity updatedEntity) {
 
 		SecuritiesAccountEntity securitiesAccountEntity = hibernateTemplate.get(SecuritiesAccountEntity.class,
 				updatedEntity.getSa_id());
 
-		securitiesAccountEntity.setSa_times(securitiesAccountEntity.getSa_times() + 1);
+		securitiesAccountEntity.setSa_count(securitiesAccountEntity.getSa_count() + 1);
 
 		return securitiesAccountEntity;
 	}

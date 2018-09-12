@@ -3,7 +3,7 @@
  * File: SecuritiesAccountServiceImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/11
+ * Modified: 2018/9/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -88,7 +88,7 @@ public class SecuritiesAccountServiceImpl implements SecuritiesAccountService {
 	@Transactional
 	public SecuritiesAccountEntity insert(SecuritiesAccountEntity securitiesAccountEntity) {
 
-		securitiesAccountEntity.setSa_times(0);
+		securitiesAccountEntity.setSa_count(0);
 		securitiesAccountEntity.setSa_update_time(new Date());
 
 		return securitiesAccountDao.insert(securitiesAccountEntity);

@@ -3,7 +3,7 @@
  * File: SecuritiesAccountDao.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/3
+ * Modified: 2018/9/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -48,5 +48,10 @@ public interface SecuritiesAccountDao extends DaoConstant {
 	 * @see com.istockage.model.dao.impl.SecuritiesAccountDaoImpl#update(SecuritiesAccountEntity)
 	 */
 	SecuritiesAccountEntity update(SecuritiesAccountEntity updatedEntity);
+
+	/**
+	 * @see com.istockage.model.dao.impl.SecuritiesAccountDaoImpl#updateSa_times(SecuritiesAccountEntity)
+	 */
+	SecuritiesAccountEntity updateSa_times(SecuritiesAccountEntity updatedEntity);
 
 }

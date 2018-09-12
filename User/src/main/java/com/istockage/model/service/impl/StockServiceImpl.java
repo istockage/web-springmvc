@@ -3,7 +3,7 @@
  * File: StockServiceImpl.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/11
+ * Modified: 2018/9/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.istockage.model.dao.SecuritiesAccountDao;
 import com.istockage.model.dao.StockDao;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
@@ -29,6 +30,12 @@ import com.istockage.model.service.StockService;
  */
 @Service(value = "stockService")
 public class StockServiceImpl implements StockService {
+
+	/**
+	 * 注入 SecuritiesAccountDao
+	 */
+	@Autowired
+	private SecuritiesAccountDao securitiesAccountDao;
 
 	/**
 	 * 注入 StockDao
@@ -62,6 +69,8 @@ public class StockServiceImpl implements StockService {
 	@Override
 	@Transactional
 	public StockEntity insert(StockEntity stockEntity) {
+
+		securitiesAccountDao.updateSa_times(stockEntity.getSt_SecuritiesAccountEntity());
 
 		stockEntity.setSt_update_time(new Date());
 

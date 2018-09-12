@@ -3,7 +3,7 @@
  * File: SecuritiesAccountDaoImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/3
+ * Modified: 2018/9/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -149,6 +149,23 @@ public class SecuritiesAccountDaoImpl implements SecuritiesAccountDao {
 		securitiesAccountEntity.setSa_no(updatedEntity.getSa_no());
 		securitiesAccountEntity.setSa_discount(updatedEntity.getSa_discount());
 		securitiesAccountEntity.setSa_update_time(new Date());
+
+		return securitiesAccountEntity;
+	}
+
+	/**
+	 * 變更交易次數
+	 * 
+	 * @param updatedEntity SecuritiesAccountEntity
+	 * @return SecuritiesAccountEntity
+	 */
+	@Override
+	public SecuritiesAccountEntity updateSa_times(SecuritiesAccountEntity updatedEntity) {
+
+		SecuritiesAccountEntity securitiesAccountEntity = hibernateTemplate.get(SecuritiesAccountEntity.class,
+				updatedEntity.getSa_id());
+
+		securitiesAccountEntity.setSa_times(securitiesAccountEntity.getSa_times() + 1);
 
 		return securitiesAccountEntity;
 	}

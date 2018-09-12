@@ -116,9 +116,9 @@
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_fee}" /></td>
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_tax}" /></td>
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_delivery}" /></td>
-																<td style="text-align:right"><fmt:formatNumber type="currency" pattern=".00" value="${bean.st_sell_price/bean.st_buy_price * 100}" />%</td>
+																<td style="text-align:right"><fmt:formatNumber type="currency" pattern=".00" value="${(bean.st_sell_price - bean.st_buy_price)/bean.st_buy_price * 100}" />%</td>
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_delivery - bean.st_buy_delivery}" /></td>
-																<td style="text-align:right">9937</td>
+																<td style="text-align:right">10,757</td>
 																<td class="align-middle text-right">
 																	<a href="#" class="btn btn-sm btn-light" title="編輯"><i class="fa fa-edit"></i></a>
 																	<a href="#" class="btn btn-sm btn-light" title="刪除"><i class="fa fa-trash-o"></i></a>

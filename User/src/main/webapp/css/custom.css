@@ -20,8 +20,12 @@
 }
 
 /* table */
-.table .btn-lg {
-	padding: .5rem;
+.table {
+	white-space: nowrap; /* 強制不換行 */
+}
+
+.table>tbody>tr>td {
+	vertical-align: middle;
 }
 
 /* form */
@@ -29,13 +33,18 @@
 	font-weight: 400;
 }
 
-/* stock/list */
-#stock-list-table, #stock-list-table th, #stock-list-table td {
-	border: 1px solid #e8e8e9;
+/* settings/securities-account */
+#securities-account-table .btn-lg {
+	padding: .5rem;
 }
 
-#stock-list-table>tbody>tr>td {
-	vertical-align: middle;
+/* stock/list */
+#stock-list-table th {
+	font-weight: 500;
+}
+
+#stock-list-table, #stock-list-table th, #stock-list-table td {
+	border: 1px solid #e8e8e9;
 }
 
 /* stock/list/add */

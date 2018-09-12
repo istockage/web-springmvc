@@ -74,7 +74,7 @@
 										<div class="card-body">
 											<!-- .table-responsive -->
 											<div class="table-responsive">
-												<table class="table">
+												<table id="securities-account-table" class="table">
 													<thead>
 														<tr>
 															<th>證券商</th>

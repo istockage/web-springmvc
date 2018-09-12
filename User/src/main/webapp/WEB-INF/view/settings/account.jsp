@@ -94,7 +94,7 @@
 										<div class="card-body">
 											<!-- .form -->
 											<c:url var="requestMapping" value="/settings/account/info.do" />
-											<form:form id="account-info-form" modelAttribute="user" action="${requestMapping}" method="post">
+											<form:form id="settings-account-info-form" modelAttribute="user" action="${requestMapping}" method="post">
 												<fieldset>
 													<div class="form-row">
 														<div class="col-md-6 mb-3">
@@ -132,7 +132,7 @@
 										<!-- .card-body -->
 										<div class="card-body">
 											<!-- .form -->
-											<form id="account-change-password-form" action="<c:url value='/settings/account/change-password.do' />" method="post">
+											<form id="settings-account-change-password-form" action="<c:url value='/settings/account/change-password.do' />" method="post">
 												<fieldset>
 													<div class="form-group">
 														<label for="me_password">舊密碼</label>

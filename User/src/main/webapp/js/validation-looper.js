@@ -19,7 +19,7 @@ $(document).ready(function(){
 	});
 	
 	// settings/account/info
-	$("#account-info-form").validate({
+	$("#settings-account-info-form").validate({
 		rules: {
 			me_lastname: {
 				maxlength: 20
@@ -62,7 +62,7 @@ $(document).ready(function(){
 	});
 	
 	// settings/account/change-password
-	$("#account-change-password-form").validate({
+	$("#settings-account-change-password-form").validate({
 		rules: {
 			me_password: {
 				required: true

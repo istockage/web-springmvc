@@ -77,6 +77,7 @@
 												<table id="securities-account-table" class="table">
 													<thead>
 														<tr>
+															<th>編號</th>
 															<th>證券商</th>
 															<th>分公司</th>
 															<th>帳號</th>
@@ -90,6 +91,7 @@
 													<tbody>
 														<c:forEach var="bean" items="${securitiesAccountList}" varStatus="status">
 															<tr>
+																<td>${status.count + (currentPage - 1) * pageRowCount}</td>
 																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_name}證券</td>
 																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_name}分公司</td>
 																<td class="align-middle">${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.sb_no}-${bean.sa_no}</td>

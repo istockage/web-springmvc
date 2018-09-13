@@ -48,6 +48,7 @@
 						<ul class="menu">
 							<li class="menu-item"><a href="<%=request.getContextPath()%>/stock/chart" class="menu-link">統計圖表</a></li>
 							<li class="menu-item"><a href="<%=request.getContextPath()%>/stock/list" class="menu-link">交易明細</a></li>
+							<li class="menu-item"><a href="<%=request.getContextPath()%>/stock/inventory" class="menu-link">庫存明細</a></li>
 						</ul>
 						<!-- /child menu -->
 					</li>

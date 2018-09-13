@@ -9,6 +9,7 @@
  */
 package com.istockage.model.dao.impl;
 
+import static com.istockage.common.constant.PathConstant.STOCK_INVENTORY_VIEW;
 import static com.istockage.common.constant.PathConstant.STOCK_LIST_VIEW;
 
 import java.util.ArrayList;
@@ -92,9 +93,13 @@ public class StockDaoImpl implements StockDao {
 							predicates.add(criteriaBuilder.equal(root.get("st_SecuritiesAccountEntity"),
 									st_SecuritiesAccountEntity));
 						}
-						if (STOCK_LIST_VIEW.equals(path)) {
-							predicates.add(criteriaBuilder.and(criteriaBuilder.isNotNull(root.get("st_buy_time"))));
-							predicates.add(criteriaBuilder.and(criteriaBuilder.isNotNull(root.get("st_sell_time"))));
+						if (STOCK_LIST_VIEW.equals(path)) { // (st_buy_time != null && st_sell_time != null)
+							predicates.add(criteriaBuilder.and(criteriaBuilder.isNotNull(root.get("st_buy_time")),
+									criteriaBuilder.isNotNull(root.get("st_sell_time"))));
+						}
+						if (STOCK_INVENTORY_VIEW.equals(path)) { // (st_buy_time == null || st_sell_time == null)
+							predicates.add(criteriaBuilder.or(criteriaBuilder.isNull(root.get("st_buy_time")),
+									criteriaBuilder.isNull(root.get("st_sell_time"))));
 						}
 						if (!predicates.isEmpty()) {
 							criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));

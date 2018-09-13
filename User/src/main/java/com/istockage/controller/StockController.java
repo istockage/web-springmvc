@@ -97,14 +97,16 @@ public class StockController implements ControllerConstant {
 	}
 
 	/**
-	 * 股票交易明細 - init
+	 * 股票交易明細 / 股票庫存明細 - init
 	 * 
 	 * @param user MemberEntity --> SessionAttribute
 	 * @param model Model
-	 * @return /WEB-INF/view/stock/list.jsp
+	 * @return /WEB-INF/view/stock/list.jsp / /WEB-INF/view/stock/inventory.jsp
 	 */
-	@RequestMapping(value = "/stock/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/stock/*", method = RequestMethod.GET)
 	public String stockListView(@SessionAttribute(USER) MemberEntity user, Model model) {
+
+		String path = UrlUtil.getPath(request.getServletPath());
 
 		int currentPage = (request.getParameter("page") == null) ? 1 : Integer.parseInt(request.getParameter("page"));
 
@@ -112,8 +114,7 @@ public class StockController implements ControllerConstant {
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
 		Map<String, Object> map = stockService.selectByConditions(user, null,
-				PaginationUtil.getFirst(currentPage, pageRowCount), pageRowCount,
-				UrlUtil.getPath(request.getServletPath()));
+				PaginationUtil.getFirst(currentPage, pageRowCount), pageRowCount, path);
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 
@@ -124,7 +125,7 @@ public class StockController implements ControllerConstant {
 		model.addAllAttributes(PaginationUtil.allAttributes(request.getServletPath(), pageRowCount, pageCount,
 				currentPage, groupRowCount));
 
-		return STOCK_LIST_VIEW;
+		return path;
 	}
 
 	/**

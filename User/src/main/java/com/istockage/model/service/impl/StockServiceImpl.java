@@ -44,7 +44,7 @@ public class StockServiceImpl implements StockService {
 	private StockDao stockDao;
 
 	/**
-	 * 搜尋所有股票交易明細 (分頁)
+	 * 搜尋所有股票交易明細 (分頁) / 搜尋所有股票庫存明細 (分頁)
 	 * 
 	 * @param st_MemberEntity MemberEntity
 	 * @param st_SecuritiesAccountEntity SecuritiesAccountEntity
@@ -62,7 +62,7 @@ public class StockServiceImpl implements StockService {
 	}
 
 	/**
-	 * 新增股票交易
+	 * 新增股票庫存
 	 * 
 	 * @param stockEntity StockEntity
 	 * @return StockEntity

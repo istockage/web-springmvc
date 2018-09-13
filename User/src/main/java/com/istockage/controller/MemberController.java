@@ -3,7 +3,7 @@
  * File: MemberController.java
  * Author: 詹晟
  * Created: 2018/3/26
- * Modified: 2018/9/8
+ * Modified: 2018/9/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -72,7 +72,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
-	public String signInView() {
+	public String secureSignInView() {
 
 		return SECURE_SIGN_IN_VIEW;
 	}
@@ -86,7 +86,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
-	public String signInAction(@RequestParam String me_email, @RequestParam String me_password, Model model) {
+	public String secureSignInAction(@RequestParam String me_email, @RequestParam String me_password, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -176,7 +176,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/forget-password.jsp
 	 */
 	@RequestMapping(value = "/secure/forget-password", method = RequestMethod.GET)
-	public String forgetPasswordView() {
+	public String secureForgetPasswordView() {
 
 		return SECURE_FORGET_PASSWORD_VIEW;
 	}
@@ -189,7 +189,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/reset-password.jsp
 	 */
 	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
-	public String forgetPasswordAction(@RequestParam String me_email, Model model) {
+	public String secureForgetPasswordAction(@RequestParam String me_email, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -240,7 +240,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/reset-password.jsp
 	 */
 	@RequestMapping(value = "/secure/reset-password", method = RequestMethod.GET)
-	public String resetPasswordView() {
+	public String secureResetPasswordView() {
 
 		return SECURE_RESET_PASSWORD_VIEW;
 	}
@@ -256,7 +256,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
-	public String resetPasswordAction(@RequestParam String me_random, @RequestParam String me_password_new,
+	public String secureResetPasswordAction(@RequestParam String me_random, @RequestParam String me_password_new,
 			@RequestParam String me_password_new_again, SessionStatus sessionStatus, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -334,7 +334,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-out.do", method = RequestMethod.GET)
-	public String signOutAction(SessionStatus sessionStatus) {
+	public String secureSignOutAction(SessionStatus sessionStatus) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -358,7 +358,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/sign-up.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up", method = RequestMethod.GET)
-	public String signUpView(Model model) {
+	public String secureSignUpView(Model model) {
 
 		// 新增 form-backing object
 		model.addAttribute(MEMBER_ENTITY, new MemberEntity());
@@ -375,7 +375,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up.do", method = RequestMethod.POST)
-	public String signUpAction(@RequestParam String me_password_again, @Valid MemberEntity memberEntity,
+	public String secureSignUpAction(@RequestParam String me_password_again, @Valid MemberEntity memberEntity,
 			BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -418,7 +418,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/sign-up-mail.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-mail", method = RequestMethod.GET)
-	public String signUpMailView() {
+	public String secureSignUpMailView() {
 
 		return SECURE_SIGN_UP_MAIL_VIEW;
 	}
@@ -430,7 +430,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/sign-up-mail.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-mail.do", method = RequestMethod.POST)
-	public String signUpMailAction(Model model) {
+	public String secureSignUpMailAction(Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -465,7 +465,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/sign-up-mail-again.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-mail-again", method = RequestMethod.GET)
-	public String signUpMailAgainView() {
+	public String secureSignUpMailAgainView() {
 
 		return SECURE_SIGN_UP_MAIL_AGAIN_VIEW;
 	}
@@ -478,7 +478,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/sign-up-mail-again.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-mail-again.do", method = RequestMethod.POST)
-	public String signUpMailAgainAction(@RequestParam String me_email, Model model) {
+	public String secureSignUpMailAgainAction(@RequestParam String me_email, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -526,7 +526,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-up-activity.do", method = RequestMethod.GET)
-	public String signUpActivityAction(@RequestParam String me_no) {
+	public String secureSignUpActivityAction(@RequestParam String me_no) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -556,7 +556,7 @@ public class MemberController implements ControllerConstant {
 	 * @return String
 	 */
 	@RequestMapping(value = "/secure/sign-up-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	public @ResponseBody String signUpEmailRepeatAjax(String me_email) {
+	public @ResponseBody String secureSignUpEmailRepeatAjax(String me_email) {
 
 		MemberEntity memberEntity = memberService.selectByMe_email(me_email, null);
 
@@ -571,7 +571,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/settings/account.jsp
 	 */
 	@RequestMapping(value = "/settings/account", method = RequestMethod.GET)
-	public String accountView(@SessionAttribute(USER) MemberEntity user, Model model) {
+	public String settingsAccountView(@SessionAttribute(USER) MemberEntity user, Model model) {
 
 		model.addAttribute(USER, memberService.selectByMe_id(user.getMe_id()));
 
@@ -586,7 +586,8 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/settings/account.jsp
 	 */
 	@RequestMapping(value = "/settings/account/info.do", method = RequestMethod.POST)
-	public String accountInfoAction(@Valid @ModelAttribute(USER) MemberEntity user, BindingResult bindingResult) {
+	public String settingsAccountInfoAction(@Valid @ModelAttribute(USER) MemberEntity user,
+			BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -619,7 +620,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/settings/account.jsp
 	 */
 	@RequestMapping(value = "/settings/account/change-password.do", method = RequestMethod.POST)
-	public String accountChangePasswordAction(@SessionAttribute(USER) MemberEntity user,
+	public String settingsAccountChangePasswordAction(@SessionAttribute(USER) MemberEntity user,
 			@RequestParam String me_password, @RequestParam String me_password_new,
 			@RequestParam String me_password_new_again, Model model) {
 
@@ -677,7 +678,7 @@ public class MemberController implements ControllerConstant {
 	 * @return /WEB-INF/view/member/profile.jsp
 	 */
 	@RequestMapping(value = "/member/profile", method = RequestMethod.GET)
-	public String profileView() {
+	public String memberProfileView() {
 
 		return MEMBER_PROFILE_VIEW;
 	}

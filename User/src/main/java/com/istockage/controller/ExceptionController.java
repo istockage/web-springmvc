@@ -3,7 +3,7 @@
  * File: ExceptionController.java
  * Author: 詹晟
  * Created: 2018/3/29
- * Modified: 2018/4/13
+ * Modified: 2018/9/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,7 +27,7 @@ public class ExceptionController implements ControllerConstant {
 	 * @return /WEB-INF/view/error/page-not-found.jsp
 	 */
 	@RequestMapping(value = "/error/page-not-found", method = RequestMethod.GET)
-	public String pageNotFoundView() {
+	public String errorPageNotFoundView() {
 
 		return ERROR_PAGE_NOT_FOUND_VIEW;
 	}

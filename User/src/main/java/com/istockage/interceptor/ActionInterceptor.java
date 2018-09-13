@@ -3,7 +3,7 @@
  * File: ActionInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/9/8
+ * Modified: 2018/9/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -60,7 +60,9 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 		String servletPath = request.getServletPath(); // /path
 		String requestPath = UrlUtil.getRequestPath(servletPath, request.getQueryString()); // 請求 path
 
-		if (userPathService.selectByUp_path(ACTION, UrlUtil.getPath(servletPath)) == null) {
+		UserPathEntity userPathEntity = userPathService.selectByUp_path(ACTION, UrlUtil.getPath(servletPath));
+
+		if (userPathEntity == null) {
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (攔截: " + requestPath + ")");
 
@@ -79,6 +81,8 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 		}
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (放行: " + requestPath + ")");
+
+		request.setAttribute(VIEW_NAME, userPathEntity.getUp_name());
 
 		return true;
 	}

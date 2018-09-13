@@ -91,9 +91,7 @@
 															<th>漲幅</th>
 															<th>淨利</th>
 															<th>盈虧</th>
-															<th class="text-right">
-																<a href="<%=request.getContextPath()%>/stock/list/add" class="btn btn-sm btn-light" title="新增"><i class="fa fa-plus"></i></a>
-															</th>
+															<th class="text-right"><a href="<%=request.getContextPath()%>/stock/inventory/add" class="btn btn-sm btn-light" title="新增"><i class="fa fa-plus"></i></a></th>
 														</tr>
 													</thead>
 													<tbody>

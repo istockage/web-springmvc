@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -91,9 +91,7 @@
 															<th>漲幅</th>
 															<th>淨利</th>
 															<th>盈虧</th>
-															<th class="text-right">
-																<a href="<%=request.getContextPath()%>/stock/list/add" class="btn btn-sm btn-light" title="新增"><i class="fa fa-plus"></i></a>
-															</th>
+															<th></th>
 														</tr>
 													</thead>
 													<tbody>

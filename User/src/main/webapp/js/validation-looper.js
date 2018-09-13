@@ -159,8 +159,8 @@ $(document).ready(function(){
 	    }
 	});
 	
-	// stock/list/add
-	$("#stock-list-add-form").validate({
+	// stock/inventory/add
+	$("#stock-inventory-add-form").validate({
 		rules: {
 			st_SecuritiesAccountEntity: {
 				min: 1

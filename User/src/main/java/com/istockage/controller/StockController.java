@@ -129,14 +129,14 @@ public class StockController implements ControllerConstant {
 	}
 
 	/**
-	 * 新增股票交易 - init
+	 * 新增股票庫存 - init
 	 * 
 	 * @param user MemberEntity --> SessionAttribute
 	 * @param model Model
-	 * @return /WEB-INF/view/stock/list/add.jsp
+	 * @return /WEB-INF/view/stock/inventory/add.jsp
 	 */
-	@RequestMapping(value = "/stock/list/add", method = RequestMethod.GET)
-	public String stockListAddView(@SessionAttribute(USER) MemberEntity user, Model model) {
+	@RequestMapping(value = "/stock/inventory/add", method = RequestMethod.GET)
+	public String stockInventoryAddView(@SessionAttribute(USER) MemberEntity user, Model model) {
 
 		// 新增 form-backing object
 		model.addAttribute(STOCK_ENTITY, new StockEntity());
@@ -144,30 +144,30 @@ public class StockController implements ControllerConstant {
 		// 取得選定會員中的所有證券帳戶
 		model.addAttribute(SECURITIES_ACCOUNT_LIST, securitiesAccountService.selectBySa_me_id(user.getMe_id()));
 
-		return STOCK_LIST_ADD_VIEW;
+		return STOCK_INVENTORY_ADD_VIEW;
 	}
 
 	/**
-	 * 新增股票交易 - submit
+	 * 新增股票庫存 - submit
 	 * 
 	 * @param user MemberEntity --> SessionAttribute
 	 * @param co_no Byte --> 編碼
 	 * @param stockEntity StockEntity --> form-backing object
 	 * @param bindingResult BindingResult
-	 * @return /WEB-INF/view/stock/list.jsp
+	 * @return /WEB-INF/view/stock/inventory.jsp
 	 */
-	@RequestMapping(value = "/stock/list/add.do", method = RequestMethod.POST)
-	public String stockListAddAction(@SessionAttribute(USER) MemberEntity user, @RequestParam Byte co_no,
+	@RequestMapping(value = "/stock/inventory/add.do", method = RequestMethod.POST)
+	public String stockInventoryAddAction(@SessionAttribute(USER) MemberEntity user, @RequestParam Byte co_no,
 			@Valid StockEntity stockEntity, BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 股票交易新增失敗 (格式錯誤: "
+			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (格式錯誤: "
 					+ BindingResultUtil.getFieldErrors(bindingResult) + ")");
 
-			return STOCK_LIST_ADD_VIEW;
+			return STOCK_INVENTORY_ADD_VIEW;
 
 		} else {
 
@@ -188,9 +188,9 @@ public class StockController implements ControllerConstant {
 
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
-			logger.info("(" + className + "." + methodName + ") 股票交易新增成功");
+			logger.info("(" + className + "." + methodName + ") 股票庫存新增成功");
 
-			return REDIRECT + STOCK_LIST_VIEW;
+			return REDIRECT + STOCK_INVENTORY_VIEW;
 		}
 	}
 

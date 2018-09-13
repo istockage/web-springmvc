@@ -35,7 +35,7 @@
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/stock/chart">股票</a></li>
-									<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/stock/list">交易明細</a></li>
+									<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/stock/inventory">庫存明細</a></li>
 									<li class="breadcrumb-item active">新增</li>
 								</ol>
 							</nav>
@@ -53,8 +53,8 @@
 								<!-- .card-body -->
 								<div class="card-body">
 									<!-- .form -->
-									<c:url var="requestMapping" value="/stock/list/add.do" />
-									<form:form id="stock-list-add-form" modelAttribute="stockEntity" action="${requestMapping}" method="post">
+									<c:url var="requestMapping" value="/stock/inventory/add.do" />
+									<form:form id="stock-inventory-add-form" modelAttribute="stockEntity" action="${requestMapping}" method="post">
 										<fieldset>
 											<div class="form-group">
 												<form:label path="st_SecuritiesAccountEntity">證券商&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
@@ -174,7 +174,7 @@
 															<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														</div>
 														<div class="form-group">
-															<form:label path="st_sell_tax">交易稅</form:label>
+															<form:label path="st_sell_tax">證交稅</form:label>
 															<form:input path="st_sell_tax" cssClass="form-control" />
 															<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														</div>
@@ -191,7 +191,7 @@
 										</fieldset>
 										<hr />
 										<div class="form-actions">
-											<a href="<%=request.getContextPath()%>/stock/list" class="btn btn-secondary ml-auto">取消</a>
+											<a href="<%=request.getContextPath()%>/stock/inventory" class="btn btn-secondary ml-auto">取消</a>
 											<button type="submit" class="btn btn-primary">新增</button>
 										</div>
 									</form:form>

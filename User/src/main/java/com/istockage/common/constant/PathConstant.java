@@ -39,9 +39,9 @@ public interface PathConstant {
 
 	public static final String STOCK_LIST_VIEW = "stock/list";
 
-	public static final String STOCK_LIST_ADD_VIEW = "stock/list/add";
-
 	public static final String STOCK_INVENTORY_VIEW = "stock/inventory";
+
+	public static final String STOCK_INVENTORY_ADD_VIEW = "stock/inventory/add";
 
 	public static final String ERROR_PAGE_NOT_FOUND_VIEW = "error/page-not-found";
 

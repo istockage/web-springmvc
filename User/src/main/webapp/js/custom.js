@@ -11,7 +11,7 @@ $("#sa_SecuritiesBrokerHeadEntity").change(function(){
 	});
 });
 
-// stock/list/add
+// stock/inventory/add
 $("input[type=radio][name=buy-sell]").change(function(){
 	if (this.value == "buy"){
 		$("#buy-radio").addClass("active").css("cursor", "default");
@@ -40,7 +40,7 @@ $("input[type=radio][name=buy-sell]").change(function(){
 	}
 });
 
-// stock/list/add (#st_buy_time, #st_sell_time)
+// stock/inventory/add (#st_buy_time, #st_sell_time)
 var readyFlatpickr = {
 	init: function init(){
 		this.bindUIActions();

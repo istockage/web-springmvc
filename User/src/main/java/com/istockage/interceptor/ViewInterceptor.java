@@ -3,7 +3,7 @@
  * File: ViewInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/29
- * Modified: 2018/9/11
+ * Modified: 2018/9/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -65,7 +65,7 @@ public class ViewInterceptor implements HandlerInterceptor, ControllerConstant {
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (放行: " + requestPath + ")");
 
 		request.setAttribute(REQUEST_PATH, requestPath);
-		request.setAttribute(VIEW_NAME, userPathEntity.getUp_name());
+		request.setAttribute(PATH_NAME, userPathEntity.getUp_name());
 
 		return true;
 	}

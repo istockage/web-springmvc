@@ -82,7 +82,7 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (放行: " + requestPath + ")");
 
-		request.setAttribute(VIEW_NAME, userPathEntity.getUp_name());
+		request.setAttribute(PATH_NAME, userPathEntity.getUp_name());
 
 		return true;
 	}

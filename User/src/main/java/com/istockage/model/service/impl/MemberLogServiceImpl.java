@@ -3,7 +3,7 @@
  * File: MemberLogServiceImpl.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/3/28
+ * Modified: 2018/9/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,8 +34,7 @@ public class MemberLogServiceImpl implements MemberLogService {
 	/**
 	 * 新增會員日誌
 	 * 
-	 * @param memberLogEntity
-	 *            MemberLogEntity
+	 * @param memberLogEntity MemberLogEntity
 	 * @return MemberLogEntity
 	 */
 	@Override

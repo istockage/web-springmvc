@@ -3,7 +3,7 @@
  * File: PathCategoryDaoImpl.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/4/9
+ * Modified: 2018/9/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -35,8 +35,7 @@ public class PathCategoryDaoImpl implements PathCategoryDao {
 	/**
 	 * extension 搜尋
 	 * 
-	 * @param pc_extension
-	 *            String --> extension
+	 * @param pc_extension String --> extension
 	 * @return null / PathCategoryEntity
 	 */
 	@Override

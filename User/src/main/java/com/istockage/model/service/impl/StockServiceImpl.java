@@ -3,7 +3,7 @@
  * File: StockServiceImpl.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/12
+ * Modified: 2018/9/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -50,14 +50,15 @@ public class StockServiceImpl implements StockService {
 	 * @param st_SecuritiesAccountEntity SecuritiesAccountEntity
 	 * @param first int --> 當頁起始筆數
 	 * @param max int --> 每頁最大筆數
+	 * @param path String --> path
 	 * @return Map<String, Object>
 	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Map<String, Object> selectByConditions(MemberEntity st_MemberEntity,
-			SecuritiesAccountEntity st_SecuritiesAccountEntity, int first, int max) {
+			SecuritiesAccountEntity st_SecuritiesAccountEntity, int first, int max, String path) {
 
-		return stockDao.selectByConditions(st_MemberEntity, st_SecuritiesAccountEntity, first, max);
+		return stockDao.selectByConditions(st_MemberEntity, st_SecuritiesAccountEntity, first, max, path);
 	}
 
 	/**

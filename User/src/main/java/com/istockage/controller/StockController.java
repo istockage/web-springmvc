@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/11
+ * Modified: 2018/9/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
 import com.istockage.common.util.BindingResultUtil;
 import com.istockage.common.util.PaginationUtil;
+import com.istockage.common.util.UrlUtil;
 import com.istockage.model.entity.CodeCategoryEntity;
 import com.istockage.model.entity.CodeEntity;
 import com.istockage.model.entity.MemberEntity;
@@ -111,7 +112,8 @@ public class StockController implements ControllerConstant {
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
 		Map<String, Object> map = stockService.selectByConditions(user, null,
-				PaginationUtil.getFirst(currentPage, pageRowCount), pageRowCount);
+				PaginationUtil.getFirst(currentPage, pageRowCount), pageRowCount,
+				UrlUtil.getPath(request.getServletPath()));
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 

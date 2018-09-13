@@ -3,11 +3,13 @@
  * File: StockDaoImpl.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/11
+ * Modified: 2018/9/13
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.dao.impl;
+
+import static com.istockage.common.constant.PathConstant.STOCK_LIST_VIEW;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,12 +55,13 @@ public class StockDaoImpl implements StockDao {
 	 * @param st_SecuritiesAccountEntity SecuritiesAccountEntity
 	 * @param first int --> 當頁起始筆數
 	 * @param max int --> 每頁最大筆數
+	 * @param path String --> path
 	 * @return Map<String, Object>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Map<String, Object> selectByConditions(MemberEntity st_MemberEntity,
-			SecuritiesAccountEntity st_SecuritiesAccountEntity, int first, int max) {
+			SecuritiesAccountEntity st_SecuritiesAccountEntity, int first, int max, String path) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -88,6 +91,10 @@ public class StockDaoImpl implements StockDao {
 						if (st_SecuritiesAccountEntity != null) {
 							predicates.add(criteriaBuilder.equal(root.get("st_SecuritiesAccountEntity"),
 									st_SecuritiesAccountEntity));
+						}
+						if (STOCK_LIST_VIEW.equals(path)) {
+							predicates.add(criteriaBuilder.and(criteriaBuilder.isNotNull(root.get("st_buy_time"))));
+							predicates.add(criteriaBuilder.and(criteriaBuilder.isNotNull(root.get("st_sell_time"))));
 						}
 						if (!predicates.isEmpty()) {
 							criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));

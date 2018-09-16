@@ -9,9 +9,9 @@
  */
 package com.istockage.controller;
 
-import static com.istockage.common.json.GsonReader.getStockExchangeReport;
-
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -35,9 +35,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
+import com.istockage.common.json.GsonReader;
 import com.istockage.common.json.StockExchangeReportBean;
 import com.istockage.common.util.BindingResultUtil;
 import com.istockage.common.util.PaginationUtil;
+import com.istockage.common.util.StockUtil;
 import com.istockage.common.util.UrlUtil;
 import com.istockage.model.entity.CodeCategoryEntity;
 import com.istockage.model.entity.CodeEntity;
@@ -139,7 +141,9 @@ public class StockController implements ControllerConstant {
 			Map<String, Float> stockPriceMap = new HashMap<String, Float>();
 			for (String st_no : stockNoSet) {
 				try {
-					StockExchangeReportBean stockExchangeReportBean = getStockExchangeReport("201809", st_no);
+					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+					StockExchangeReportBean stockExchangeReportBean = GsonReader
+							.getStockExchangeReport(simpleDateFormat.format(new Date()), st_no);
 					stockPriceMap.put(st_no, Float.valueOf(stockExchangeReportBean.getData()
 							.get(stockExchangeReportBean.getData().get(0).size()).get(6)));
 				} catch (IOException e) {
@@ -149,7 +153,9 @@ public class StockController implements ControllerConstant {
 
 			for (StockEntity stockEntity : stockList) {
 				if (stockEntity.getSt_sell_price() == null) {
-					stockEntity.setSt_sell_price(stockPriceMap.get(stockEntity.getSt_no()));
+					Float st_sell_price = stockPriceMap.get(stockEntity.getSt_no());
+					stockEntity.setSt_sell_price(st_sell_price);
+					stockEntity.setSt_sell_delivery(StockUtil.getSt_sell_delivery(st_sell_price, stockEntity));
 				}
 			}
 		}

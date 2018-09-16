@@ -3,13 +3,20 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/13
+ * Modified: 2018/9/16
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.controller;
 
+import static com.istockage.common.json.GsonReader.getStockExchangeReport;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -28,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
+import com.istockage.common.json.StockExchangeReportBean;
 import com.istockage.common.util.BindingResultUtil;
 import com.istockage.common.util.PaginationUtil;
 import com.istockage.common.util.UrlUtil;
@@ -103,6 +111,7 @@ public class StockController implements ControllerConstant {
 	 * @param model Model
 	 * @return /WEB-INF/view/stock/list.jsp / /WEB-INF/view/stock/inventory.jsp
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/stock/*", method = RequestMethod.GET)
 	public String stockListView(@SessionAttribute(USER) MemberEntity user, Model model) {
 
@@ -118,8 +127,35 @@ public class StockController implements ControllerConstant {
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 
+		List<StockEntity> stockList = (List<StockEntity>) map.get("list");
+
+		if (STOCK_INVENTORY_VIEW.equals(path)) {
+
+			Set<String> stockNoSet = new HashSet<String>();
+			for (StockEntity stockEntity : stockList) {
+				stockNoSet.add(stockEntity.getSt_no());
+			}
+
+			Map<String, Float> stockPriceMap = new HashMap<String, Float>();
+			for (String st_no : stockNoSet) {
+				try {
+					StockExchangeReportBean stockExchangeReportBean = getStockExchangeReport("201809", st_no);
+					stockPriceMap.put(st_no, Float.valueOf(stockExchangeReportBean.getData()
+							.get(stockExchangeReportBean.getData().get(0).size()).get(6)));
+				} catch (IOException e) {
+
+				}
+			}
+
+			for (StockEntity stockEntity : stockList) {
+				if (stockEntity.getSt_sell_price() == null) {
+					stockEntity.setSt_sell_price(stockPriceMap.get(stockEntity.getSt_no()));
+				}
+			}
+		}
+
 		// 取得當前頁碼的證券帳戶
-		model.addAttribute(STOCK_LIST, map.get("list"));
+		model.addAttribute(STOCK_LIST, stockList);
 
 		// 取得分頁資訊
 		model.addAllAttributes(PaginationUtil.allAttributes(request.getServletPath(), pageRowCount, pageCount,

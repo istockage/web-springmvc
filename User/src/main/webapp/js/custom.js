@@ -1,3 +1,10 @@
+$(document).ready(function(){
+	// stock/inventory
+	if($("#stock-inventory-table #st_sell_time").text().length == 0){
+		$("#stock-inventory-table>tbody>tr>td:nth-child(n+11):nth-child(-n+20)").css("background-color", "#f2f3f4");
+	}
+});
+
 // settings/securities-account
 $("#sa_SecuritiesBrokerHeadEntity").change(function(){
 	var securities_broker_branch_select = $("#sa_SecuritiesBrokerBranchEntity");
@@ -49,7 +56,7 @@ var readyFlatpickr = {
 		this.handleFlatpickr();
 	},
 	dateTime: function dateTime(){
-		return flatpickr('#st_buy_time, #st_sell_time', {
+		return flatpickr('#stock-inventory-add-form #st_buy_time, #stock-inventory-add-form #st_sell_time', {
 			disableMobile: true,
 			enableTime: true,
 			dateFormat: 'Y-m-d H:i'

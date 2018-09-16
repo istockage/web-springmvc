@@ -68,7 +68,7 @@
 										<div class="card-body">
 											<!-- .table-responsive -->
 											<div class="table-responsive">
-												<table id="stock-list-table" class="table table-sm mb-0" style="font-size:.8rem">
+												<table id="stock-inventory-table" class="table table-sm mb-0" style="font-size:.8rem">
 													<thead class="thead-">
 														<tr>
 															<th>編號</th>
@@ -107,7 +107,7 @@
 																<td style="text-align:right"><c:if test="${not empty bean.st_buy_discount && bean.st_buy_discount != 0}">${bean.st_buy_discount}%</c:if></td>
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_buy_fee}" /></td>
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_buy_delivery}" /></td>
-																<td><fmt:formatDate type="date" pattern="yy/MM/dd" value="${bean.st_sell_time}" /></td>
+																<td id="st_sell_time"><fmt:formatDate type="date" pattern="yy/MM/dd" value="${bean.st_sell_time}" /></td>
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern=".00" value="${bean.st_sell_price}" /></td>
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_share}" /></td>
 																<td style="text-align:right"><c:if test="${not empty bean.st_sell_discount && bean.st_sell_discount != 0}">${bean.st_sell_discount}%</c:if></td>

@@ -39,11 +39,14 @@
 }
 
 /* stock/list */
-#stock-list-table th {
+/* stock/inventory */
+#stock-list-table th, #stock-inventory-table th {
 	font-weight: 500;
 }
 
-#stock-list-table, #stock-list-table th, #stock-list-table td {
+#stock-list-table, #stock-list-table th, #stock-list-table td,
+	#stock-inventory-table, #stock-inventory-table th,
+	#stock-inventory-table td {
 	border: 1px solid #e8e8e9;
 }
 

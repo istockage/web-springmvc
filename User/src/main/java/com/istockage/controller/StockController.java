@@ -3,13 +3,12 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/16
+ * Modified: 2018/9/17
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.controller;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -58,7 +57,7 @@ import com.istockage.model.service.StockService;
 @Controller
 public class StockController implements ControllerConstant {
 
-	private static final Logger logger = Logger.getLogger(SecuritiesAccountController.class);
+	private static final Logger logger = Logger.getLogger(StockController.class);
 
 	private String className = this.getClass().getSimpleName();
 
@@ -115,12 +114,13 @@ public class StockController implements ControllerConstant {
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/stock/*", method = RequestMethod.GET)
-	public String stockListView(@SessionAttribute(USER) MemberEntity user, Model model) {
+	public String stockListOrInventoryView(@SessionAttribute(USER) MemberEntity user, Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		String path = UrlUtil.getPath(request.getServletPath());
 
 		int currentPage = (request.getParameter("page") == null) ? 1 : Integer.parseInt(request.getParameter("page"));
-
 		int pageRowCount = PAGE_ROW_COUNT_NUMBER;
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
@@ -130,6 +130,9 @@ public class StockController implements ControllerConstant {
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 
 		List<StockEntity> stockList = (List<StockEntity>) map.get("list");
+
+		// 取得當前頁碼的證券帳戶
+		model.addAttribute(STOCK_LIST, stockList);
 
 		if (STOCK_INVENTORY_VIEW.equals(path)) {
 
@@ -141,15 +144,21 @@ public class StockController implements ControllerConstant {
 			Map<String, Float> stockPriceMap = new HashMap<String, Float>();
 			for (String st_no : stockNoSet) {
 				try {
-					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 					StockExchangeReportBean stockExchangeReportBean = GsonReader
-							.getStockExchangeReport(simpleDateFormat.format(new Date()), st_no);
+							.getStockExchangeReport(new SimpleDateFormat("yyyyMMdd").format(new Date()), st_no);
+
 					stockPriceMap.put(st_no, Float.valueOf(stockExchangeReportBean.getData()
 							.get(stockExchangeReportBean.getData().get(0).size()).get(6)));
-				} catch (IOException e) {
-					// TODO
+
+				} catch (Exception e) {
+
+					logger.error("(" + className + "." + methodName + ") 股票交易報告請求失敗 (代號: " + st_no + ")");
+
+					return path;
 				}
 			}
+
+			logger.info("(" + className + "." + methodName + ") 股票交易報告請求成功");
 
 			for (StockEntity stockEntity : stockList) {
 				if (stockEntity.getSt_sell_price() == null) {
@@ -159,9 +168,6 @@ public class StockController implements ControllerConstant {
 				}
 			}
 		}
-
-		// 取得當前頁碼的證券帳戶
-		model.addAttribute(STOCK_LIST, stockList);
 
 		// 取得分頁資訊
 		model.addAllAttributes(PaginationUtil.allAttributes(request.getServletPath(), pageRowCount, pageCount,

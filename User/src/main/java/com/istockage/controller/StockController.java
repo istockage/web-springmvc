@@ -156,7 +156,7 @@ public class StockController implements ControllerConstant {
 							.getStockExchangeReport(new SimpleDateFormat("yyyyMMdd").format(new Date()), st_no);
 
 					stockPriceMap.put(st_no, Float.valueOf(stockExchangeReportBean.getData()
-							.get(stockExchangeReportBean.getData().get(0).size()).get(6)));
+							.get(stockExchangeReportBean.getData().size() - 1).get(6)));
 
 				} catch (Exception e) {
 

@@ -19,19 +19,23 @@ public class GsonReader {
 	public static StockExchangeReportBean getStockExchangeReport(String date, String stockNo)
 			throws MalformedURLException, IOException {
 
+		String className = GsonReader.class.getSimpleName();
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String url = "http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=" + date + "&stockNo="
 				+ stockNo;
 
-		logger.info("URL: " + url);
+		logger.info("(" + className + "." + methodName + ") URL: " + url);
 
 		InputStream inputStream = new URL(url).openStream();
 		Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
 		StockExchangeReportBean stockExchangeReportBean = new Gson().fromJson(reader, StockExchangeReportBean.class);
 
-		int lastDay = stockExchangeReportBean.getData().get(0).size();
+		int days = stockExchangeReportBean.getData().size();
 
-		logger.info(stockNo + ": " + stockExchangeReportBean.getData().get(lastDay).get(0) + ", "
-				+ stockExchangeReportBean.getData().get(lastDay).get(6));
+		logger.info("(" + className + "." + methodName + ") Result: " + stockNo + ", "
+				+ stockExchangeReportBean.getData().get(days - 1).get(0) + ", "
+				+ stockExchangeReportBean.getData().get(days - 1).get(6));
 
 		return stockExchangeReportBean;
 	}
@@ -43,16 +47,16 @@ public class GsonReader {
 
 		StockExchangeReportBean stockExchangeReportBean = getStockExchangeReport(date, stockNo);
 
-		int lastDay = stockExchangeReportBean.getData().get(0).size();
+		int days = stockExchangeReportBean.getData().size();
 
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(stockNo);
 		stringBuilder.append(": ");
-		stringBuilder.append(stockExchangeReportBean.getData().get(lastDay).get(0));
+		stringBuilder.append(stockExchangeReportBean.getData().get(days - 1).get(0));
 		stringBuilder.append(" ");
 		stringBuilder.append(stockExchangeReportBean.getFields().get(6));
 		stringBuilder.append(" ");
-		stringBuilder.append(stockExchangeReportBean.getData().get(lastDay).get(6));
+		stringBuilder.append(stockExchangeReportBean.getData().get(days - 1).get(6));
 		stringBuilder.append(" 元");
 
 		System.out.println(stringBuilder.toString());

@@ -102,7 +102,15 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 		String path = UrlUtil.getPath(request.getServletPath());
 
-		int currentPage = (request.getParameter("page") == null) ? 1 : Integer.parseInt(request.getParameter("page"));
+		int currentPage;
+		try {
+			String pageParameter = request.getParameter("page");
+			currentPage = (pageParameter == null) ? 1 : Integer.parseInt(pageParameter);
+
+		} catch (NumberFormatException e) {
+
+			return ERROR_PAGE_NOT_FOUND_VIEW;
+		}
 
 		int pageRowCount = PAGE_ROW_COUNT_NUMBER;
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;

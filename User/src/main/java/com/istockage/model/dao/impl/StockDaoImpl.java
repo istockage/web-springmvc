@@ -3,7 +3,7 @@
  * File: StockDaoImpl.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/13
+ * Modified: 2018/9/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -54,15 +54,15 @@ public class StockDaoImpl implements StockDao {
 	 * 
 	 * @param st_MemberEntity MemberEntity
 	 * @param st_SecuritiesAccountEntity SecuritiesAccountEntity
+	 * @param path String --> path
 	 * @param first int --> 當頁起始筆數
 	 * @param max int --> 每頁最大筆數
-	 * @param path String --> path
 	 * @return Map<String, Object>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Map<String, Object> selectByConditions(MemberEntity st_MemberEntity,
-			SecuritiesAccountEntity st_SecuritiesAccountEntity, int first, int max, String path) {
+			SecuritiesAccountEntity st_SecuritiesAccountEntity, String path, int first, int max) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 

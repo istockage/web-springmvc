@@ -3,7 +3,7 @@
  * File: StockService.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/13
+ * Modified: 2018/9/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -24,10 +24,10 @@ public interface StockService extends ServiceConstant {
 
 	/**
 	 * @see com.istockage.model.service.impl.StockServiceImpl#selectByConditions(MemberEntity,
-	 *      SecuritiesAccountEntity, int, int, String)
+	 *      SecuritiesAccountEntity, String, int, int)
 	 */
 	Map<String, Object> selectByConditions(MemberEntity st_MemberEntity,
-			SecuritiesAccountEntity st_SecuritiesAccountEntity, int first, int max, String path);
+			SecuritiesAccountEntity st_SecuritiesAccountEntity, String path, int first, int max);
 
 	/**
 	 * @see com.istockage.model.service.impl.StockServiceImpl#insert(StockEntity)

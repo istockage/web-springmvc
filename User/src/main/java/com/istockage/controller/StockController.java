@@ -124,8 +124,8 @@ public class StockController implements ControllerConstant {
 		int pageRowCount = PAGE_ROW_COUNT_NUMBER;
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
-		Map<String, Object> map = stockService.selectByConditions(user, null,
-				PaginationUtil.getFirst(currentPage, pageRowCount), pageRowCount, path);
+		Map<String, Object> map = stockService.selectByConditions(user, null, path,
+				PaginationUtil.getFirst(currentPage, pageRowCount), pageRowCount);
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 
@@ -170,8 +170,7 @@ public class StockController implements ControllerConstant {
 		}
 
 		// 取得分頁資訊
-		model.addAllAttributes(PaginationUtil.allAttributes(request.getServletPath(), pageRowCount, pageCount,
-				currentPage, groupRowCount));
+		model.addAllAttributes(PaginationUtil.allAttributes(path, pageRowCount, pageCount, currentPage, groupRowCount));
 
 		return path;
 	}

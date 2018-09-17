@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/9/11
+ * Modified: 2018/9/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,6 +33,7 @@ import com.google.gson.Gson;
 import com.istockage.common.editor.SecuritiesBrokerBranchEntityPropertyEditor;
 import com.istockage.common.editor.SecuritiesBrokerHeadEntityPropertyEditor;
 import com.istockage.common.util.PaginationUtil;
+import com.istockage.common.util.UrlUtil;
 import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
@@ -99,6 +100,8 @@ public class SecuritiesAccountController implements ControllerConstant {
 	@RequestMapping(value = "/settings/securities-account", method = RequestMethod.GET)
 	public String settingsSecuritiesAccountView(@SessionAttribute(USER) MemberEntity user, Model model) {
 
+		String path = UrlUtil.getPath(request.getServletPath());
+
 		int currentPage = (request.getParameter("page") == null) ? 1 : Integer.parseInt(request.getParameter("page"));
 
 		int pageRowCount = PAGE_ROW_COUNT_NUMBER;
@@ -113,8 +116,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 		model.addAttribute(SECURITIES_ACCOUNT_LIST, map.get("list"));
 
 		// 取得分頁資訊
-		model.addAllAttributes(PaginationUtil.allAttributes(request.getServletPath(), pageRowCount, pageCount,
-				currentPage, groupRowCount));
+		model.addAllAttributes(PaginationUtil.allAttributes(path, pageRowCount, pageCount, currentPage, groupRowCount));
 
 		return SETTINGS_SECURITIES_ACCOUNT_VIEW;
 	}

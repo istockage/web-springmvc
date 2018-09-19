@@ -68,10 +68,9 @@ create table securities_broker_branch (
 );
 
 create table securities (
-	se_id                   int auto_increment not null,
 	se_no                   varchar(10) not null,
 	se_name                 nvarchar(10) not null,
-	primary key (se_id)
+	primary key (se_no)
 );
 
 create table futures_broker_head (
@@ -222,6 +221,13 @@ insert into securities_broker_head (sh_no, sh_name, sh_update_time) values ('92'
 -- securities_broker_branch
 insert into securities_broker_branch (sb_sh_id, sb_no, sb_name, sb_update_time) values (1, '79', '延吉', now());
 insert into securities_broker_branch (sb_sh_id, sb_no, sb_name, sb_update_time) values (2, '18', '大直', now());
+
+-- securities
+insert into securities (se_no, se_name) values ('2317', '鴻海');
+insert into securities (se_no, se_name) values ('2337', '旺宏');
+insert into securities (se_no, se_name) values ('2834', '臺企銀');
+insert into securities (se_no, se_name) values ('2884', '玉山金');
+insert into securities (se_no, se_name) values ('3264', '欣銓');
 
 -- User
 -- member

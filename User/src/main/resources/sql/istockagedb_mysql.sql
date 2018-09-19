@@ -67,6 +67,13 @@ create table securities_broker_branch (
     foreign key (sb_sh_id) references securities_broker_head (sh_id)
 );
 
+create table securities (
+	se_id                   int auto_increment not null,
+	se_no                   varchar(10) not null,
+	se_name                 nvarchar(10) not null,
+	primary key (se_id)
+);
+
 create table futures_broker_head (
     fh_id                   int auto_increment not null,
     fh_no                   char(4) not null,

@@ -70,6 +70,7 @@ create table securities_broker_branch (
 create table securities (
 	se_no                   varchar(10) not null,
 	se_name                 nvarchar(10) not null,
+	se_update_time          datetime not null,
 	primary key (se_no)
 );
 

@@ -9,6 +9,8 @@
  */
 package com.istockage.model.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -31,6 +33,7 @@ public class SecuritiesEntity {
 	@NotBlank
 	@Size(max = 10)
 	private String se_name;
+	private Date se_update_time;
 
 	public String getSe_no() {
 		return se_no;
@@ -46,6 +49,14 @@ public class SecuritiesEntity {
 
 	public void setSe_name(String se_name) {
 		this.se_name = se_name;
+	}
+
+	public Date getSe_update_time() {
+		return se_update_time;
+	}
+
+	public void setSe_update_time(Date se_update_time) {
+		this.se_update_time = se_update_time;
 	}
 
 }

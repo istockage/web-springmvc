@@ -73,6 +73,7 @@ create table securities (
 	primary key (se_no)
 );
 
+/*
 create table futures_broker_head (
     fh_id                   int auto_increment not null,
     fh_no                   char(4) not null,
@@ -90,6 +91,7 @@ create table futures_broker_branch (
     primary key (fb_id),
     foreign key (fb_fh_id) references futures_broker_head (fh_id)
 );
+*/
 
 -- User
 create table member (

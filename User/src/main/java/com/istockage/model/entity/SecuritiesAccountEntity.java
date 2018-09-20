@@ -3,7 +3,7 @@
  * File: SecuritiesAccountEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/9/20
+ * Modified: 2018/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -39,10 +40,7 @@ public class SecuritiesAccountEntity {
 	@JoinColumn(name = "sa_me_id")
 	private MemberEntity sa_MemberEntity;
 	@ManyToOne
-	@JoinColumn(name = "sa_sh_no")
-	private SecuritiesBrokerHeadEntity sa_SecuritiesBrokerHeadEntity;
-	@ManyToOne
-	@JoinColumn(name = "sa_sb_id")
+	@JoinColumns({ @JoinColumn(name = "sa_sb_sh_no"), @JoinColumn(name = "sa_sb_no") })
 	private SecuritiesBrokerBranchEntity sa_SecuritiesBrokerBranchEntity;
 	@Pattern(regexp = "^[0-9]{7}$")
 	private String sa_no;
@@ -66,14 +64,6 @@ public class SecuritiesAccountEntity {
 
 	public void setSa_MemberEntity(MemberEntity sa_MemberEntity) {
 		this.sa_MemberEntity = sa_MemberEntity;
-	}
-
-	public SecuritiesBrokerHeadEntity getSa_SecuritiesBrokerHeadEntity() {
-		return sa_SecuritiesBrokerHeadEntity;
-	}
-
-	public void setSa_SecuritiesBrokerHeadEntity(SecuritiesBrokerHeadEntity sa_SecuritiesBrokerHeadEntity) {
-		this.sa_SecuritiesBrokerHeadEntity = sa_SecuritiesBrokerHeadEntity;
 	}
 
 	public SecuritiesBrokerBranchEntity getSa_SecuritiesBrokerBranchEntity() {

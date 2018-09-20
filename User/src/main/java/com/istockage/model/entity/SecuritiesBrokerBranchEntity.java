@@ -3,7 +3,7 @@
  * File: SecuritiesBrokerBranchEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/9/20
+ * Modified: 2018/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,12 +11,8 @@ package com.istockage.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,38 +24,17 @@ import javax.persistence.Table;
 @Table(name = "securities_broker_branch")
 public class SecuritiesBrokerBranchEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer sb_id;
-	@ManyToOne
-	@JoinColumn(name = "sb_sh_no")
-	private SecuritiesBrokerHeadEntity sb_SecuritiesBrokerHeadEntity;
-	private String sb_no;
+	@EmbeddedId
+	private SecuritiesBrokerBranchId securitiesBrokerBranchId;
 	private String sb_name;
 	private Date sb_update_time;
 
-	public Integer getSb_id() {
-		return sb_id;
+	public SecuritiesBrokerBranchId getSecuritiesBrokerBranchId() {
+		return securitiesBrokerBranchId;
 	}
 
-	public void setSb_id(Integer sb_id) {
-		this.sb_id = sb_id;
-	}
-
-	public SecuritiesBrokerHeadEntity getSb_SecuritiesBrokerHeadEntity() {
-		return sb_SecuritiesBrokerHeadEntity;
-	}
-
-	public void setSb_SecuritiesBrokerHeadEntity(SecuritiesBrokerHeadEntity sb_SecuritiesBrokerHeadEntity) {
-		this.sb_SecuritiesBrokerHeadEntity = sb_SecuritiesBrokerHeadEntity;
-	}
-
-	public String getSb_no() {
-		return sb_no;
-	}
-
-	public void setSb_no(String sb_no) {
-		this.sb_no = sb_no;
+	public void setSecuritiesBrokerBranchId(SecuritiesBrokerBranchId securitiesBrokerBranchId) {
+		this.securitiesBrokerBranchId = securitiesBrokerBranchId;
 	}
 
 	public String getSb_name() {

@@ -6,7 +6,7 @@ $(document).ready(function(){
 });
 
 // settings/securities-account
-$("#sa_SecuritiesBrokerHeadEntity").change(function(){
+$("#sa_no").change(function(){
 	var securities_broker_branch_select = $("#sa_SecuritiesBrokerBranchEntity");
 	securities_broker_branch_select.empty();
 	securities_broker_branch_select.append("<option value='0'>請選擇</option>");

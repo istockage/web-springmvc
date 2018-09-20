@@ -12,7 +12,7 @@ public interface HqlQuery {
 
 	// securities_broker_head
 	/** 搜尋所有證券商 */
-	public static final String HQL_SELECT_SECURITIES_BROKER_HEAD = "from SecuritiesBrokerHeadEntity order by sh_id";
+	public static final String HQL_SELECT_SECURITIES_BROKER_HEAD = "from SecuritiesBrokerHeadEntity order by sh_no";
 
 	// securities_broker_branch
 	/** 證券商流水號搜尋 */

@@ -57,12 +57,11 @@ create table securities_broker_head (
 );
 
 create table securities_broker_branch (
-    sb_id                   int auto_increment not null,
     sb_sh_no                char(2) not null,
     sb_no                   char(2) not null,
     sb_name                 nvarchar(10) not null,
     sb_update_time          datetime not null,
-    primary key (sb_id),
+    primary key (sb_sh_no, sb_no),
     foreign key (sb_sh_no) references securities_broker_head (sh_no)
 );
 
@@ -124,16 +123,15 @@ create table member_log (
 create table securities_account (
     sa_id                   int auto_increment not null,
     sa_me_id                int not null,
-    sa_sh_no                char(2) not null,
-    sa_sb_id                int not null,
+    sa_sb_sh_no             char(2) not null,
+    sa_sb_no                char(2) not null,
     sa_no                   char(7) not null,
     sa_discount             tinyint,
     sa_count                int not null,
     sa_update_time          datetime not null,
     primary key (sa_id),
     foreign key (sa_me_id) references member (me_id),
-    foreign key (sa_sh_no) references securities_broker_head (sh_no),
-    foreign key (sa_sb_id) references securities_broker_branch (sb_id)
+    foreign key (sa_sb_sh_no, sa_sb_no) references securities_broker_branch (sb_sh_no, sb_no)
 );
 
 create table stock (
@@ -237,9 +235,9 @@ insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastnam
 insert into member (me_no, me_email, me_password, me_salt, me_random, me_lastname, me_firstname, me_activity_code, me_signup_time, me_update_info_time, me_update_pwd_time) values ('0568914095', 'chengjhan+1@gmail.com', '348f6a73c4a04d015e516ffddfde7432', '14bbce0f-78b8-4e83-822a-06b619f00758', null, null, null, 1, now(), now(), now());
 
 -- securities_account
-insert into securities_account (sa_me_id, sa_sh_no, sa_sb_id, sa_no, sa_discount, sa_count, sa_update_time) values (1, '96', 1, '0239889', 60, 0, now());
-insert into securities_account (sa_me_id, sa_sh_no, sa_sb_id, sa_no, sa_discount, sa_count, sa_update_time) values (1, '92', 2, '0060626', 38, 0, now());
-insert into securities_account (sa_me_id, sa_sh_no, sa_sb_id, sa_no, sa_discount, sa_count, sa_update_time) values (2, '96', 1, '1111111', 60, 0, now());
+insert into securities_account (sa_me_id, sa_sb_sh_no, sa_sb_no, sa_no, sa_discount, sa_count, sa_update_time) values (1, '96', '79', '0239889', 60, 0, now());
+insert into securities_account (sa_me_id, sa_sb_sh_no, sa_sb_no, sa_no, sa_discount, sa_count, sa_update_time) values (1, '92', '18', '0060626', 38, 0, now());
+insert into securities_account (sa_me_id, sa_sb_sh_no, sa_sb_no, sa_no, sa_discount, sa_count, sa_update_time) values (2, '96', '79', '1111111', 60, 0, now());
 
 -- stock
 insert into stock (st_me_id, st_sa_id, st_se_no, st_cc_id, st_co_id, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2317', 1, 1, '2012-08-27 12:00:00', 85, 1000, 60, 73, 85073, '2012-09-14 12:00:00', 96.2, 1000, 60, 82, 288, 95830, now());

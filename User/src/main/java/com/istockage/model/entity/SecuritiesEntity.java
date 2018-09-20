@@ -3,7 +3,7 @@
  * File: SecuritiesEntity.java
  * Author: 詹晟
  * Created: 2018/9/19
- * Modified: 2018/9/19
+ * Modified: 2018/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -12,6 +12,9 @@ package com.istockage.model.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * securities entity
@@ -23,7 +26,10 @@ import javax.persistence.Table;
 public class SecuritiesEntity {
 
 	@Id
+	@Pattern(regexp = "^[0-9a-zA-Z]{4,6}$")
 	private String se_no;
+	@NotBlank
+	@Size(max = 10)
 	private String se_name;
 
 	public String getSe_no() {

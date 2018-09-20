@@ -68,14 +68,13 @@
 											</div>
 											<div class="form-row">
 												<div class="col-md-6 mb-3">
-													<form:label path="st_no">代號&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
-													<form:input path="st_no" cssClass="form-control" />
+													<form:label path="st_SecuritiesEntity">代號&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+													<form:input path="st_SecuritiesEntity" cssClass="form-control" />
 													<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 												</div>
 												<div class="col-md-6 mb-3">
-													<form:label path="st_name">股票&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
-													<form:input path="st_name" cssClass="form-control" />
-													<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
+													<label for="se_name">股票</label>
+													<input type="text" id="se_name" class="form-control" />
 												</div>
 											</div>
 											<div class="btn-group btn-group-toggle" style="margin:10px 0">

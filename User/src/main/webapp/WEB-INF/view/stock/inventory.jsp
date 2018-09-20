@@ -98,8 +98,8 @@
 														<c:forEach var="bean" items="${stockList}" varStatus="status">
 															<tr>
 																<td>${status.count + (currentPage - 1) * pageRowCount}</td>
-																<td>${bean.st_no}</td>
-																<td>${bean.st_name}</td>
+																<td>${bean.st_SecuritiesEntity.se_no}</td>
+																<td>${bean.st_SecuritiesEntity.se_name}</td>
 																<td>${bean.st_CodeEntity.co_name}</td>
 																<td><fmt:formatDate type="date" pattern="yy/MM/dd" value="${bean.st_buy_time}" /></td>
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern=".00" value="${bean.st_buy_price}" /></td>
@@ -114,7 +114,7 @@
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_fee}" /></td>
 																<td style="text-align:right"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_tax}" /></td>
 																<td style="text-align:right"><c:if test="${not empty bean.st_sell_price}"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_delivery}" /></c:if></td>
-																<td style="text-align:right"><c:if test="${not empty bean.st_sell_price}"><fmt:formatNumber type="currency" pattern=".00" value="${(bean.st_sell_price - bean.st_buy_price)/bean.st_buy_price * 100}" />%</c:if></td>
+																<td style="text-align:right"><c:if test="${not empty bean.st_sell_price}"><fmt:formatNumber type="currency" pattern="0.00" value="${(bean.st_sell_price - bean.st_buy_price)/bean.st_buy_price * 100}" />%</c:if></td>
 																<td style="text-align:right"><c:if test="${not empty bean.st_sell_price}"><fmt:formatNumber type="currency" pattern="#,#00" value="${bean.st_sell_delivery - bean.st_buy_delivery}" /></c:if></td>
 																<td style="text-align:right"><c:if test="${not empty bean.st_sell_price}">10,757</c:if></td>
 																<td class="align-middle text-right">

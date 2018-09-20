@@ -3,7 +3,7 @@
  * File: StockEntity.java
  * Author: 詹晟
  * Created: 2018/3/23
- * Modified: 2018/9/11
+ * Modified: 2018/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,10 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
 
@@ -44,11 +41,9 @@ public class StockEntity {
 	@ManyToOne
 	@JoinColumn(name = "st_sa_id")
 	private SecuritiesAccountEntity st_SecuritiesAccountEntity;
-	@Pattern(regexp = "^[0-9a-zA-Z]{4,6}$")
-	private String st_no;
-	@NotBlank
-	@Size(max = 10)
-	private String st_name;
+	@ManyToOne
+	@JoinColumn(name = "st_se_no")
+	private SecuritiesEntity st_SecuritiesEntity;
 	@ManyToOne
 	@JoinColumn(name = "st_cc_id")
 	private CodeCategoryEntity st_CodeCategoryEntity;
@@ -109,20 +104,12 @@ public class StockEntity {
 		this.st_SecuritiesAccountEntity = st_SecuritiesAccountEntity;
 	}
 
-	public String getSt_no() {
-		return st_no;
+	public SecuritiesEntity getSt_SecuritiesEntity() {
+		return st_SecuritiesEntity;
 	}
 
-	public void setSt_no(String st_no) {
-		this.st_no = st_no;
-	}
-
-	public String getSt_name() {
-		return st_name;
-	}
-
-	public void setSt_name(String st_name) {
-		this.st_name = st_name;
+	public void setSt_SecuritiesEntity(SecuritiesEntity st_SecuritiesEntity) {
+		this.st_SecuritiesEntity = st_SecuritiesEntity;
 	}
 
 	public CodeCategoryEntity getSt_CodeCategoryEntity() {

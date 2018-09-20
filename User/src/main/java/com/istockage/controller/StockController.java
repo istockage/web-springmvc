@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
+import com.istockage.common.editor.SecuritiesEntityPropertyEditor;
 import com.istockage.common.json.GsonReader;
 import com.istockage.common.json.StockExchangeReportBean;
 import com.istockage.common.util.BindingResultUtil;
@@ -44,9 +45,11 @@ import com.istockage.model.entity.CodeCategoryEntity;
 import com.istockage.model.entity.CodeEntity;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
+import com.istockage.model.entity.SecuritiesEntity;
 import com.istockage.model.entity.StockEntity;
 import com.istockage.model.service.CodeCategoryService;
 import com.istockage.model.service.SecuritiesAccountService;
+import com.istockage.model.service.SecuritiesService;
 import com.istockage.model.service.StockService;
 
 /**
@@ -74,6 +77,12 @@ public class StockController implements ControllerConstant {
 	private CodeCategoryService codeCategoryService;
 
 	/**
+	 * 注入 SecuritiesService
+	 */
+	@Autowired
+	private SecuritiesService securitiesService;
+
+	/**
 	 * 注入 SecuritiesAccountService
 	 */
 	@Autowired
@@ -92,6 +101,7 @@ public class StockController implements ControllerConstant {
 	public void initBinder(WebDataBinder webDataBinder) {
 		webDataBinder.addCustomFormatter(new DateFormatter("yyyy-MM-dd HH:mm"));
 		webDataBinder.registerCustomEditor(SecuritiesAccountEntity.class, new SecuritiesAccountEntityPropertyEditor());
+		webDataBinder.registerCustomEditor(SecuritiesEntity.class, new SecuritiesEntityPropertyEditor());
 	}
 
 	/**
@@ -146,7 +156,7 @@ public class StockController implements ControllerConstant {
 
 			Set<String> stockNoSet = new HashSet<String>();
 			for (StockEntity stockEntity : stockList) {
-				stockNoSet.add(stockEntity.getSt_no());
+				stockNoSet.add(stockEntity.getSt_SecuritiesEntity().getSe_no());
 			}
 
 			Map<String, Float> stockPriceMap = new HashMap<String, Float>();
@@ -170,7 +180,7 @@ public class StockController implements ControllerConstant {
 
 			for (StockEntity stockEntity : stockList) {
 				if (stockEntity.getSt_sell_price() == null) {
-					Float st_sell_price = stockPriceMap.get(stockEntity.getSt_no());
+					Float st_sell_price = stockPriceMap.get(stockEntity.getSt_SecuritiesEntity().getSe_no());
 					stockEntity.setSt_sell_price(st_sell_price);
 					stockEntity.setSt_sell_delivery(StockUtil.getSt_sell_delivery(st_sell_price, stockEntity));
 				}
@@ -217,6 +227,9 @@ public class StockController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
+		SecuritiesEntity securitiesEntity = securitiesService
+				.selectBySe_no(stockEntity.getSt_SecuritiesEntity().getSe_no());
+
 		if (bindingResult.hasErrors()) {
 
 			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (格式錯誤: "
@@ -224,9 +237,17 @@ public class StockController implements ControllerConstant {
 
 			return STOCK_INVENTORY_ADD_VIEW;
 
+		} else if (securitiesEntity == null) {
+
+			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (股票代號錯誤: "
+					+ stockEntity.getSt_SecuritiesEntity().getSe_no() + ")");
+
+			return STOCK_INVENTORY_ADD_VIEW;
+
 		} else {
 
 			stockEntity.setSt_MemberEntity(user);
+			stockEntity.setSt_SecuritiesEntity(securitiesEntity);
 
 			CodeCategoryEntity codeCategoryEntity = codeCategoryService.selectByCc_name(STOCK_TYPE_CODE_CATEGORY);
 

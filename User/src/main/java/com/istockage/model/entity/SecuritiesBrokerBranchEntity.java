@@ -3,7 +3,7 @@
  * File: SecuritiesBrokerBranchEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/8/19
+ * Modified: 2018/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,7 +32,7 @@ public class SecuritiesBrokerBranchEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer sb_id;
 	@ManyToOne
-	@JoinColumn(name = "sb_sh_id")
+	@JoinColumn(name = "sb_sh_no")
 	private SecuritiesBrokerHeadEntity sb_SecuritiesBrokerHeadEntity;
 	private String sb_no;
 	private String sb_name;

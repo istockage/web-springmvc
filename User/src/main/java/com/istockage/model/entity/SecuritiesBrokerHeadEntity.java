@@ -3,7 +3,7 @@
  * File: SecuritiesBrokerHeadEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/8/19
+ * Modified: 2018/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -12,8 +12,6 @@ package com.istockage.model.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -27,19 +25,9 @@ import javax.persistence.Table;
 public class SecuritiesBrokerHeadEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer sh_id;
 	private String sh_no;
 	private String sh_name;
 	private Date sh_update_time;
-
-	public Integer getSh_id() {
-		return sh_id;
-	}
-
-	public void setSh_id(Integer sh_id) {
-		this.sh_id = sh_id;
-	}
 
 	public String getSh_no() {
 		return sh_no;

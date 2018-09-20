@@ -3,7 +3,7 @@
  * File: SecuritiesAccountEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/9/12
+ * Modified: 2018/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -39,7 +39,7 @@ public class SecuritiesAccountEntity {
 	@JoinColumn(name = "sa_me_id")
 	private MemberEntity sa_MemberEntity;
 	@ManyToOne
-	@JoinColumn(name = "sa_sh_id")
+	@JoinColumn(name = "sa_sh_no")
 	private SecuritiesBrokerHeadEntity sa_SecuritiesBrokerHeadEntity;
 	@ManyToOne
 	@JoinColumn(name = "sa_sb_id")

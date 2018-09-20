@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/17
+ * Modified: 2018/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -68,16 +68,16 @@ public class StockController implements ControllerConstant {
 	private HttpServletRequest request;
 
 	/**
-	 * 注入 SecuritiesAccountService
-	 */
-	@Autowired
-	private SecuritiesAccountService securitiesAccountService;
-
-	/**
 	 * 注入 CodeCategoryService
 	 */
 	@Autowired
 	private CodeCategoryService codeCategoryService;
+
+	/**
+	 * 注入 SecuritiesAccountService
+	 */
+	@Autowired
+	private SecuritiesAccountService securitiesAccountService;
 
 	/**
 	 * 注入 StockService

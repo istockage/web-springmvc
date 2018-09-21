@@ -3,7 +3,7 @@
  * File: SecuritiesBrokerHeadServiceImpl.java
  * Author: 詹晟
  * Created: 2018/8/25
- * Modified: 2018/8/25
+ * Modified: 2018/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,6 +41,18 @@ public class SecuritiesBrokerHeadServiceImpl implements SecuritiesBrokerHeadServ
 	public List<SecuritiesBrokerHeadEntity> selectByAll() {
 
 		return securitiesBrokerHeadDao.selectByAll();
+	}
+
+	/**
+	 * 證券商代號搜尋
+	 * 
+	 * @param sh_no String --> 證券商代號
+	 * @return SecuritiesBrokerHeadEntity
+	 */
+	@Override
+	public SecuritiesBrokerHeadEntity selectBySh_no(String sh_no) {
+
+		return securitiesBrokerHeadDao.selectBySh_no(sh_no);
 	}
 
 }

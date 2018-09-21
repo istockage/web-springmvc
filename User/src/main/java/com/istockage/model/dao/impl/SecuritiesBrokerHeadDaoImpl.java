@@ -3,7 +3,7 @@
  * File: SecuritiesBrokerHeadDaoImpl.java
  * Author: 詹晟
  * Created: 2018/8/25
- * Modified: 2018/8/25
+ * Modified: 2018/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -42,6 +42,18 @@ public class SecuritiesBrokerHeadDaoImpl implements SecuritiesBrokerHeadDao {
 	public List<SecuritiesBrokerHeadEntity> selectByAll() {
 
 		return (List<SecuritiesBrokerHeadEntity>) hibernateTemplate.find(HQL_SELECT_SECURITIES_BROKER_HEAD);
+	}
+
+	/**
+	 * 證券商代號搜尋
+	 * 
+	 * @param sh_no String --> 證券商代號
+	 * @return SecuritiesBrokerHeadEntity
+	 */
+	@Override
+	public SecuritiesBrokerHeadEntity selectBySh_no(String sh_no) {
+
+		return hibernateTemplate.get(SecuritiesBrokerHeadEntity.class, sh_no);
 	}
 
 }

@@ -3,7 +3,7 @@
  * File: SecuritiesBrokerBranchServiceImpl.java
  * Author: 詹晟
  * Created: 2018/8/25
- * Modified: 2018/8/26
+ * Modified: 2018/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,15 +33,15 @@ public class SecuritiesBrokerBranchServiceImpl implements SecuritiesBrokerBranch
 	private SecuritiesBrokerBranchDao securitiesBrokerBranchDao;
 
 	/**
-	 * 證券商流水號搜尋
+	 * 證券商代號搜尋
 	 * 
-	 * @param sb_sh_id Integer --> 證券商流水號
+	 * @param sb_sh_no String --> 證券商代號
 	 * @return List<SecuritiesBrokerBranchEntity>
 	 */
 	@Override
-	public List<SecuritiesBrokerBranchEntity> selectBySb_sh_id(Integer sb_sh_id) {
+	public List<SecuritiesBrokerBranchEntity> selectBySb_sh_no(String sb_sh_no) {
 
-		return securitiesBrokerBranchDao.selectBySb_sh_id(sb_sh_id);
+		return securitiesBrokerBranchDao.selectBySb_sh_no(sb_sh_no);
 	}
 
 }

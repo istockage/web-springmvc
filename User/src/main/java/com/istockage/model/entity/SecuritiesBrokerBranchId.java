@@ -6,6 +6,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.google.gson.annotations.Expose;
+
 @Embeddable
 public class SecuritiesBrokerBranchId implements Serializable {
 
@@ -14,6 +16,7 @@ public class SecuritiesBrokerBranchId implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "sb_sh_no")
 	private SecuritiesBrokerHeadEntity sb_SecuritiesBrokerHeadEntity;
+	@Expose
 	private String sb_no;
 
 	public SecuritiesBrokerHeadEntity getSb_SecuritiesBrokerHeadEntity() {

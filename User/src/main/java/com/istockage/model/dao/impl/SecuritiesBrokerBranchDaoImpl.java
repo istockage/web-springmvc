@@ -3,7 +3,7 @@
  * File: SecuritiesBrokerBranchDaoImpl.java
  * Author: 詹晟
  * Created: 2018/8/25
- * Modified: 2018/8/26
+ * Modified: 2018/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,17 +33,17 @@ public class SecuritiesBrokerBranchDaoImpl implements SecuritiesBrokerBranchDao 
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 證券商流水號搜尋
+	 * 證券商代號搜尋
 	 * 
-	 * @param sb_sh_id Integer --> 證券商流水號
+	 * @param sb_sh_no String --> 證券商代號
 	 * @return List<SecuritiesBrokerBranchEntity>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<SecuritiesBrokerBranchEntity> selectBySb_sh_id(Integer sb_sh_id) {
+	public List<SecuritiesBrokerBranchEntity> selectBySb_sh_no(String sb_sh_no) {
 
 		return (List<SecuritiesBrokerBranchEntity>) hibernateTemplate
-				.findByNamedParam(HQL_SELECT_SECURITIES_BROKER_BRANCH_BY_SECURITIES_BROKER_HEAD, "sb_sh_id", sb_sh_id);
+				.findByNamedParam(HQL_SELECT_SECURITIES_BROKER_BRANCH_BY_SECURITIES_BROKER_HEAD, "sb_sh_no", sb_sh_no);
 	}
 
 }

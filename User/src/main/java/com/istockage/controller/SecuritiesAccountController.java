@@ -3,14 +3,12 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/9/17
+ * Modified: 2018/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.istockage.common.editor.SecuritiesBrokerBranchEntityPropertyEditor;
 import com.istockage.common.editor.SecuritiesBrokerHeadEntityPropertyEditor;
 import com.istockage.common.util.PaginationUtil;
@@ -224,8 +223,10 @@ public class SecuritiesAccountController implements ControllerConstant {
 		model.addAttribute(SECURITIES_BROKER_HEAD_LIST, securitiesBrokerHeadService.selectByAll());
 
 		// 取得選定證券商中的所有分公司
-		model.addAttribute(SECURITIES_BROKER_BRANCH_LIST, securitiesBrokerBranchService
-				.selectBySb_sh_id(securitiesAccountEntity.getSa_SecuritiesBrokerHeadEntity().getSh_id()));
+		model.addAttribute(SECURITIES_BROKER_BRANCH_LIST,
+				securitiesBrokerBranchService
+						.selectBySb_sh_no(securitiesAccountEntity.getSa_SecuritiesBrokerBranchEntity()
+								.getSecuritiesBrokerBranchId().getSb_SecuritiesBrokerHeadEntity().getSh_no()));
 
 		return SETTINGS_SECURITIES_ACCOUNT_EDIT_VIEW;
 	}
@@ -265,25 +266,19 @@ public class SecuritiesAccountController implements ControllerConstant {
 	/**
 	 * 選定證券商中的所有分公司 - AJAX
 	 * 
-	 * @param sb_sh_id Integer --> 證券商流水號
+	 * @param sh_no String --> 證券商代號
 	 * @return SecuritiesBrokerBranchEntity JSON
 	 */
 	@RequestMapping(value = "/settings/securities-account/securities-broker-branch-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	public @ResponseBody String settingsSecuritiesAccountSecuritiesBrokerBranchListAjax(Integer sb_sh_id) {
+	public @ResponseBody String settingsSecuritiesAccountSecuritiesBrokerBranchListAjax(String sh_no) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		List<SecuritiesBrokerBranchEntity> list = securitiesBrokerBranchService.selectBySb_sh_id(sb_sh_id);
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
 
-		List<SecuritiesBrokerBranchEntity> jsonList = new ArrayList<SecuritiesBrokerBranchEntity>();
-		for (SecuritiesBrokerBranchEntity bean : list) {
-			SecuritiesBrokerBranchEntity jsonBean = new SecuritiesBrokerBranchEntity();
-			jsonBean.setSb_id(bean.getSb_id());
-			jsonBean.setSb_name(bean.getSb_name());
-			jsonList.add(jsonBean);
-		}
-
-		String json = new Gson().toJson(jsonList);
+		String json = gson.toJson(securitiesBrokerBranchService.selectBySb_sh_no(sh_no));
 
 		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 

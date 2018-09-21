@@ -3,7 +3,7 @@
  * File: SecuritiesBrokerBranchDao.java
  * Author: 詹晟
  * Created: 2018/8/25
- * Modified: 2018/8/25
+ * Modified: 2018/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,8 +21,8 @@ import com.istockage.model.entity.SecuritiesBrokerBranchEntity;
 public interface SecuritiesBrokerBranchDao extends DaoConstant {
 
 	/**
-	 * @see com.istockage.model.dao.impl.SecuritiesBrokerBranchDaoImpl#selectBySb_sh_id(Integer)
+	 * @see com.istockage.model.dao.impl.SecuritiesBrokerBranchDaoImpl#selectBySb_sh_no(String)
 	 */
-	List<SecuritiesBrokerBranchEntity> selectBySb_sh_id(Integer sb_sh_id);
+	List<SecuritiesBrokerBranchEntity> selectBySb_sh_no(String sb_sh_no);
 
 }

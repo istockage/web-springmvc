@@ -15,6 +15,8 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * securities_broker_branch entity
  * 
@@ -25,7 +27,9 @@ import javax.persistence.Table;
 public class SecuritiesBrokerBranchEntity {
 
 	@EmbeddedId
+	@Expose
 	private SecuritiesBrokerBranchId securitiesBrokerBranchId;
+	@Expose
 	private String sb_name;
 	private Date sb_update_time;
 

@@ -10,7 +10,7 @@ public class SecuritiesBrokerHeadEntityPropertyEditor extends PropertyEditorSupp
 	public void setAsText(String text) {
 		if (!"0".equals(text)) {
 			SecuritiesBrokerHeadEntity securitiesBrokerHeadEntity = new SecuritiesBrokerHeadEntity();
-			securitiesBrokerHeadEntity.setSh_id(Integer.parseInt(text));
+			securitiesBrokerHeadEntity.setSh_no(text);
 			setValue(securitiesBrokerHeadEntity);
 		}
 	}

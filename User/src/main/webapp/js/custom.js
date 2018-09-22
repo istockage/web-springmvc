@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 // settings/securities-account
 $("#sh_no").change(function(){
-	var securities_broker_branch_select = $("#sa_SecuritiesBrokerBranchEntity");
+	var securities_broker_branch_select = $("#sb_no");
 	securities_broker_branch_select.empty();
 	securities_broker_branch_select.append("<option value='0'>請選擇</option>");
 	$.getJSON("../../settings/securities-account/securities-broker-branch-list.ajax", {"sh_no": $(this).val()}, function(data){

@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/9/21
+ * Modified: 2018/9/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -29,14 +29,15 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.istockage.common.editor.SecuritiesBrokerBranchEntityPropertyEditor;
+import com.istockage.common.editor.SecuritiesBrokerBranchIdPropertyEditor;
 import com.istockage.common.editor.SecuritiesBrokerHeadEntityPropertyEditor;
+import com.istockage.common.util.BindingResultUtil;
 import com.istockage.common.util.PaginationUtil;
 import com.istockage.common.util.UrlUtil;
 import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
-import com.istockage.model.entity.SecuritiesBrokerBranchEntity;
+import com.istockage.model.entity.SecuritiesBrokerBranchId;
 import com.istockage.model.entity.SecuritiesBrokerHeadEntity;
 import com.istockage.model.service.SecuritiesAccountService;
 import com.istockage.model.service.SecuritiesBrokerBranchService;
@@ -83,10 +84,10 @@ public class SecuritiesAccountController implements ControllerConstant {
 	 */
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
+		webDataBinder.registerCustomEditor(SecuritiesBrokerBranchId.class,
+				new SecuritiesBrokerBranchIdPropertyEditor());
 		webDataBinder.registerCustomEditor(SecuritiesBrokerHeadEntity.class,
 				new SecuritiesBrokerHeadEntityPropertyEditor());
-		webDataBinder.registerCustomEditor(SecuritiesBrokerBranchEntity.class,
-				new SecuritiesBrokerBranchEntityPropertyEditor());
 	}
 
 	/**
@@ -163,7 +164,8 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 證券帳戶新增失敗 (格式錯誤)");
+			logger.error("(" + className + "." + methodName + ") 證券帳戶新增失敗 (格式錯誤: "
+					+ BindingResultUtil.getFieldErrors(bindingResult) + ")");
 
 			return SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW;
 

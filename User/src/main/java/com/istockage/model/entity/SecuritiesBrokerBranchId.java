@@ -1,6 +1,7 @@
 package com.istockage.model.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -33,6 +34,24 @@ public class SecuritiesBrokerBranchId implements Serializable {
 
 	public void setSb_no(String sb_no) {
 		this.sb_no = sb_no;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof SecuritiesBrokerBranchId)) {
+			return false;
+		}
+		SecuritiesBrokerBranchId that = (SecuritiesBrokerBranchId) obj;
+		return Objects.equals(getSb_SecuritiesBrokerHeadEntity(), that.getSb_SecuritiesBrokerHeadEntity())
+				&& Objects.equals(getSb_no(), that.getSb_no());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getSb_SecuritiesBrokerHeadEntity(), getSb_no());
 	}
 
 }

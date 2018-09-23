@@ -3,7 +3,7 @@
  * File: StockEntity.java
  * Author: 詹晟
  * Created: 2018/3/23
- * Modified: 2018/9/20
+ * Modified: 2018/9/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -44,9 +44,6 @@ public class StockEntity {
 	@ManyToOne
 	@JoinColumn(name = "st_se_no")
 	private SecuritiesEntity st_SecuritiesEntity;
-	@ManyToOne
-	@JoinColumn(name = "st_cc_id")
-	private CodeCategoryEntity st_CodeCategoryEntity;
 	@ManyToOne
 	@JoinColumn(name = "st_co_id")
 	private CodeEntity st_CodeEntity;
@@ -110,14 +107,6 @@ public class StockEntity {
 
 	public void setSt_SecuritiesEntity(SecuritiesEntity st_SecuritiesEntity) {
 		this.st_SecuritiesEntity = st_SecuritiesEntity;
-	}
-
-	public CodeCategoryEntity getSt_CodeCategoryEntity() {
-		return st_CodeCategoryEntity;
-	}
-
-	public void setSt_CodeCategoryEntity(CodeCategoryEntity st_CodeCategoryEntity) {
-		this.st_CodeCategoryEntity = st_CodeCategoryEntity;
 	}
 
 	public CodeEntity getSt_CodeEntity() {

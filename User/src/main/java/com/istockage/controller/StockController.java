@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/20
+ * Modified: 2018/9/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,7 +41,6 @@ import com.istockage.common.util.BindingResultUtil;
 import com.istockage.common.util.PaginationUtil;
 import com.istockage.common.util.StockUtil;
 import com.istockage.common.util.UrlUtil;
-import com.istockage.model.entity.CodeCategoryEntity;
 import com.istockage.model.entity.CodeEntity;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
@@ -249,11 +248,8 @@ public class StockController implements ControllerConstant {
 			stockEntity.setSt_MemberEntity(user);
 			stockEntity.setSt_SecuritiesEntity(securitiesEntity);
 
-			CodeCategoryEntity codeCategoryEntity = codeCategoryService.selectByCc_name(STOCK_TYPE_CODE_CATEGORY);
-
-			stockEntity.setSt_CodeCategoryEntity(codeCategoryEntity);
-
-			for (CodeEntity codeEntity : codeCategoryEntity.getCc_CodeEntity()) {
+			for (CodeEntity codeEntity : codeCategoryService.selectByCc_name(STOCK_TYPE_CODE_CATEGORY)
+					.getCc_CodeEntity()) {
 				if (co_no.equals(codeEntity.getCo_no())) {
 					stockEntity.setSt_CodeEntity(codeEntity);
 					break;

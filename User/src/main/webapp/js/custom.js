@@ -12,7 +12,7 @@ $("#sh_no").change(function(){
 	securities_broker_branch_select.append("<option value='0'>請選擇</option>");
 	$.getJSON("../../settings/securities-account/securities-broker-branch-list.ajax", {"sh_no": $(this).val()}, function(data){
 		$.each(data, function(index, securitiesBrokerBranchEntity){
-			var securities_broker_branch_option = $("<option value=" + securitiesBrokerBranchEntity.securitiesBrokerBranchId.sb_no + "></option>").append(securitiesBrokerBranchEntity.sb_name);
+			var securities_broker_branch_option = $("<option value=" + securitiesBrokerBranchEntity.sb_no + "></option>").append(securitiesBrokerBranchEntity.sb_name);
 			securities_broker_branch_select.append(securities_broker_branch_option);
 		});
 	});

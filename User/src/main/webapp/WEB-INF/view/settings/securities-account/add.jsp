@@ -78,16 +78,16 @@
 											<form:form id="securities-account-add-form" modelAttribute="securitiesAccountEntity" action="${requestMapping}" method="post">
 												<fieldset>
 													<div class="form-group">
-														<form:label path="sa_SecuritiesBrokerBranchEntity.securitiesBrokerBranchId.sb_SecuritiesBrokerHeadEntity">證券商&nbsp;<span class="badge badge-subtle badge-danger">Required</span></form:label>
-														<form:select id="sh_no" path="sa_SecuritiesBrokerBranchEntity.securitiesBrokerBranchId.sb_SecuritiesBrokerHeadEntity" cssClass="custom-select">
+														<form:label path="sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity">證券商&nbsp;<span class="badge badge-subtle badge-danger">Required</span></form:label>
+														<form:select id="sh_no" path="sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity" cssClass="custom-select">
 															<form:option value="0" label="請選擇" />
 															<form:options items="${securitiesBrokerHeadList}" itemValue="sh_no" itemLabel="sh_name" />
 														</form:select>
 														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 													</div>
 													<div class="form-group">
-														<form:label path="sa_SecuritiesBrokerBranchEntity.securitiesBrokerBranchId">分公司&nbsp;<span class="badge badge-subtle badge-danger">Required</span></form:label>
-														<form:select id="sb_no" path="sa_SecuritiesBrokerBranchEntity.securitiesBrokerBranchId" cssClass="custom-select">
+														<form:label path="sa_SecuritiesBrokerBranchEntity">分公司&nbsp;<span class="badge badge-subtle badge-danger">Required</span></form:label>
+														<form:select id="sb_no" path="sa_SecuritiesBrokerBranchEntity" cssClass="custom-select">
 															<form:option value="0" label="請選擇" />
 														</form:select>
 														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>

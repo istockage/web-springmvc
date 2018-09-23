@@ -10,7 +10,7 @@ public class SecuritiesBrokerBranchEntityPropertyEditor extends PropertyEditorSu
 	public void setAsText(String text) {
 		if (!"0".equals(text)) {
 			SecuritiesBrokerBranchEntity securitiesBrokerBranchEntity = new SecuritiesBrokerBranchEntity();
-			securitiesBrokerBranchEntity.getSecuritiesBrokerBranchId().setSb_no(text);
+			securitiesBrokerBranchEntity.setSb_no(text);
 			setValue(securitiesBrokerBranchEntity);
 		}
 	}

@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.istockage.common.editor.SecuritiesBrokerBranchEntityPropertyEditor;
-import com.istockage.common.editor.SecuritiesBrokerBranchIdPropertyEditor;
 import com.istockage.common.editor.SecuritiesBrokerHeadEntityPropertyEditor;
 import com.istockage.common.util.BindingResultUtil;
 import com.istockage.common.util.PaginationUtil;
@@ -39,7 +38,6 @@ import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.entity.SecuritiesBrokerBranchEntity;
-import com.istockage.model.entity.SecuritiesBrokerBranchId;
 import com.istockage.model.entity.SecuritiesBrokerHeadEntity;
 import com.istockage.model.service.SecuritiesAccountService;
 import com.istockage.model.service.SecuritiesBrokerBranchService;
@@ -86,8 +84,6 @@ public class SecuritiesAccountController implements ControllerConstant {
 	 */
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
-		webDataBinder.registerCustomEditor(SecuritiesBrokerBranchId.class,
-				new SecuritiesBrokerBranchIdPropertyEditor());
 		webDataBinder.registerCustomEditor(SecuritiesBrokerHeadEntity.class,
 				new SecuritiesBrokerHeadEntityPropertyEditor());
 		webDataBinder.registerCustomEditor(SecuritiesBrokerBranchEntity.class,
@@ -230,9 +226,8 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 		// 取得選定證券商中的所有分公司
 		model.addAttribute(SECURITIES_BROKER_BRANCH_LIST,
-				securitiesBrokerBranchService
-						.selectBySb_sh_no(securitiesAccountEntity.getSa_SecuritiesBrokerBranchEntity()
-								.getSecuritiesBrokerBranchId().getSb_SecuritiesBrokerHeadEntity().getSh_no()));
+				securitiesBrokerBranchService.selectBySb_sh_no(securitiesAccountEntity
+						.getSa_SecuritiesBrokerBranchEntity().getSb_SecuritiesBrokerHeadEntity().getSh_no()));
 
 		return SETTINGS_SECURITIES_ACCOUNT_EDIT_VIEW;
 	}

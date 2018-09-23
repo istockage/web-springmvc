@@ -3,21 +3,11 @@ package com.istockage.model.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.google.gson.annotations.Expose;
-
-@Embeddable
 public class SecuritiesBrokerBranchId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne
-	@JoinColumn(name = "sb_sh_no")
 	private SecuritiesBrokerHeadEntity sb_SecuritiesBrokerHeadEntity;
-	@Expose
 	private String sb_no;
 
 	public SecuritiesBrokerHeadEntity getSb_SecuritiesBrokerHeadEntity() {

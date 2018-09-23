@@ -3,7 +3,7 @@
  * File: SecuritiesBrokerHeadEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/9/21
+ * Modified: 2018/9/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,7 +33,7 @@ public class SecuritiesBrokerHeadEntity {
 	private String sh_name;
 	private Date sh_update_time;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "securitiesBrokerBranchId.sb_SecuritiesBrokerHeadEntity")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sb_SecuritiesBrokerHeadEntity")
 	private Set<SecuritiesBrokerBranchEntity> sh_SecuritiesBrokerBranchEntity;
 
 	public String getSh_no() {

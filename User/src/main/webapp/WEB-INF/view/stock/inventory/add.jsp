@@ -61,7 +61,7 @@
 												<form:select path="st_SecuritiesAccountEntity" cssClass="custom-select">
 													<form:option value="0" label="請選擇" />
 													<c:forEach var="bean" items="${securitiesAccountList}">
-														<form:option value="${bean.sa_id}"><c:out value="${bean.sa_SecuritiesBrokerBranchEntity.securitiesBrokerBranchId.sb_SecuritiesBrokerHeadEntity.sh_name} ${bean.sa_SecuritiesBrokerBranchEntity.securitiesBrokerBranchId.sb_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.securitiesBrokerBranchId.sb_no}-${bean.sa_no}" /></form:option>
+														<form:option value="${bean.sa_id}"><c:out value="${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_name} ${bean.sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity.sh_no}${bean.sa_SecuritiesBrokerBranchEntity.sb_no}-${bean.sa_no}" /></form:option>
 													</c:forEach>
 												</form:select>
 												<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>

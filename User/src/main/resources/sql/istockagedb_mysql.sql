@@ -215,12 +215,12 @@ insert into code (co_cc_id, co_no, co_name) values (1, 4, '中籤');
 
 -- Admin
 -- securities_broker_head
-insert into securities_broker_head (sh_no, sh_name, sh_update_time) values ('96', '富邦', now());
 insert into securities_broker_head (sh_no, sh_name, sh_update_time) values ('92', '凱基', now());
+insert into securities_broker_head (sh_no, sh_name, sh_update_time) values ('96', '富邦', now());
 
 -- securities_broker_branch
-insert into securities_broker_branch (sb_sh_no, sb_no, sb_name, sb_update_time) values ('96', '79', '延吉', now());
 insert into securities_broker_branch (sb_sh_no, sb_no, sb_name, sb_update_time) values ('92', '18', '大直', now());
+insert into securities_broker_branch (sb_sh_no, sb_no, sb_name, sb_update_time) values ('96', '79', '延吉', now());
 
 -- securities
 insert into securities (se_no, se_name, se_update_time) values ('2317', '鴻海', now());

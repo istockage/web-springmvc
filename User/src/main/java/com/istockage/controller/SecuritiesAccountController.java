@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.istockage.common.editor.SecuritiesBrokerBranchEntityPropertyEditor;
 import com.istockage.common.editor.SecuritiesBrokerBranchIdPropertyEditor;
 import com.istockage.common.editor.SecuritiesBrokerHeadEntityPropertyEditor;
 import com.istockage.common.util.BindingResultUtil;
@@ -37,6 +38,7 @@ import com.istockage.common.util.UrlUtil;
 import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
+import com.istockage.model.entity.SecuritiesBrokerBranchEntity;
 import com.istockage.model.entity.SecuritiesBrokerBranchId;
 import com.istockage.model.entity.SecuritiesBrokerHeadEntity;
 import com.istockage.model.service.SecuritiesAccountService;
@@ -88,6 +90,8 @@ public class SecuritiesAccountController implements ControllerConstant {
 				new SecuritiesBrokerBranchIdPropertyEditor());
 		webDataBinder.registerCustomEditor(SecuritiesBrokerHeadEntity.class,
 				new SecuritiesBrokerHeadEntityPropertyEditor());
+		webDataBinder.registerCustomEditor(SecuritiesBrokerBranchEntity.class,
+				new SecuritiesBrokerBranchEntityPropertyEditor());
 	}
 
 	/**

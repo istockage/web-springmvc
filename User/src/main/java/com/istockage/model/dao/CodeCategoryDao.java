@@ -19,8 +19,8 @@ import com.istockage.model.entity.CodeCategoryEntity;
 public interface CodeCategoryDao extends DaoConstant {
 
 	/**
-	 * @see com.istockage.model.dao.impl.CodeCategoryDaoImpl#selectByCc_id(Integer)
+	 * @see com.istockage.model.dao.impl.CodeCategoryDaoImpl#selectByCc_no(Integer)
 	 */
-	CodeCategoryEntity selectByCc_id(Integer cc_id);
+	CodeCategoryEntity selectByCc_no(Integer cc_no);
 
 }

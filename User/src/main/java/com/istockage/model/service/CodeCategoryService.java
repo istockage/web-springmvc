@@ -19,8 +19,8 @@ import com.istockage.model.entity.CodeCategoryEntity;
 public interface CodeCategoryService extends ServiceConstant {
 
 	/**
-	 * @see com.istockage.model.service.impl.CodeCategoryServiceImpl#selectByCc_id(Integer)
+	 * @see com.istockage.model.service.impl.CodeCategoryServiceImpl#selectByCc_no(Integer)
 	 */
-	CodeCategoryEntity selectByCc_id(Integer cc_id);
+	CodeCategoryEntity selectByCc_no(Integer cc_no);
 
 }

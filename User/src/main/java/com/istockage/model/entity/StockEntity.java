@@ -46,7 +46,7 @@ public class StockEntity {
 	@JoinColumn(name = "st_se_no")
 	private SecuritiesEntity st_SecuritiesEntity;
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "st_co_cc_id"), @JoinColumn(name = "st_co_no") })
+	@JoinColumns({ @JoinColumn(name = "st_co_cc_no"), @JoinColumn(name = "st_co_no") })
 	private CodeEntity st_CodeEntity;
 	@Past
 	private Date st_buy_time;

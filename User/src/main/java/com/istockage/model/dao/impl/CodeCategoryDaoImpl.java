@@ -31,15 +31,15 @@ public class CodeCategoryDaoImpl implements CodeCategoryDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * code 類別流水號搜尋
+	 * code 類別編號搜尋
 	 * 
-	 * @param cc_id Integer --> code 類別流水號
+	 * @param cc_no Integer --> code 類別編號
 	 * @return CodeCategoryEntity
 	 */
 	@Override
-	public CodeCategoryEntity selectByCc_id(Integer cc_id) {
+	public CodeCategoryEntity selectByCc_no(Integer cc_no) {
 
-		return hibernateTemplate.get(CodeCategoryEntity.class, cc_id);
+		return hibernateTemplate.get(CodeCategoryEntity.class, cc_no);
 	}
 
 }

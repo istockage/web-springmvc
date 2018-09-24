@@ -28,7 +28,7 @@ public class CodeEntity {
 
 	@Id
 	@ManyToOne
-	@JoinColumn(name = "co_cc_id")
+	@JoinColumn(name = "co_cc_no")
 	private CodeCategoryEntity co_CodeCategoryEntity;
 	@Id
 	private Byte co_no;

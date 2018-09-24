@@ -34,17 +34,17 @@ create table user_path (
 );
 
 create table code_category (
-    cc_id                   int auto_increment not null,
+    cc_no                   int not null,
     cc_name                 nvarchar(20) not null,
-    primary key (cc_id)
+    primary key (cc_no)
 );
 
 create table code (
-    co_cc_id                int not null,
+    co_cc_no                int not null,
     co_no                   tinyint not null,
     co_name                 nvarchar(20) not null,
-    primary key (co_cc_id, co_no),
-    foreign key (co_cc_id) references code_category (cc_id)
+    primary key (co_cc_no, co_no),
+    foreign key (co_cc_no) references code_category (cc_no)
 );
 
 -- Admin
@@ -138,7 +138,7 @@ create table stock (
     st_me_id                int not null,
     st_sa_id                int not null,
     st_se_no                varchar(10) not null,
-    st_co_cc_id             int not null,
+    st_co_cc_no             int not null,
     st_co_no                tinyint not null,
     st_buy_time             datetime,
     st_buy_price            float,
@@ -158,7 +158,7 @@ create table stock (
     foreign key (st_me_id) references member (me_id),
     foreign key (st_sa_id) references securities_account (sa_id),
     foreign key (st_se_no) references securities (se_no),
-    foreign key (st_co_cc_id, st_co_no) references code (co_cc_id, co_no)
+    foreign key (st_co_cc_no, st_co_no) references code (co_cc_no, co_no)
 );
 
 -- INSERT
@@ -203,13 +203,13 @@ insert into user_path (up_pc_id, up_name, up_path) values (2, '新增股票庫�
 insert into user_path (up_pc_id, up_name, up_path) values (1, '股票交易明細', 'stock/list');
 
 -- code_category
-insert into code_category (cc_name) values ('買賣類別');
+insert into code_category (cc_no, cc_name) values (1, '買賣類別');
 
 -- code
-insert into code (co_cc_id, co_no, co_name) values (1, 1, '現股');
-insert into code (co_cc_id, co_no, co_name) values (1, 2, '融資');
-insert into code (co_cc_id, co_no, co_name) values (1, 3, '融券');
-insert into code (co_cc_id, co_no, co_name) values (1, 4, '中籤');
+insert into code (co_cc_no, co_no, co_name) values (1, 1, '現股');
+insert into code (co_cc_no, co_no, co_name) values (1, 2, '融資');
+insert into code (co_cc_no, co_no, co_name) values (1, 3, '融券');
+insert into code (co_cc_no, co_no, co_name) values (1, 4, '中籤');
 
 -- Admin
 -- securities_broker_head
@@ -238,15 +238,15 @@ insert into securities_account (sa_me_id, sa_sb_sh_no, sa_sb_no, sa_no, sa_disco
 insert into securities_account (sa_me_id, sa_sb_sh_no, sa_sb_no, sa_no, sa_discount, sa_count, sa_update_time) values (2, '96', '79', '1111111', 60, 0, now());
 
 -- stock
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2317', 1, 1, '2012-08-27 12:00:00', 85, 1000, 60, 73, 85073, '2012-09-14 12:00:00', 96.2, 1000, 60, 82, 288, 95830, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '3264', 1, 1, '2012-09-17 12:00:00', 20.8, 1000, 60, 20, 20820, '2012-09-27 12:00:00', 20.2, 1000, 60, 20, 60, 20120, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2337', 1, 1, '2012-09-20 12:00:00', 9.8, 2000, 60, 20, 19620, '2012-10-04 12:00:00', 9.5, 2000, 60, 20, 57, 18923, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2884', 1, 1, '2018-07-26 10:33:43', 20.95, 2000, 40, 24, 41924, null, null, null, null, null, null, null, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2884', 1, 1, '2018-08-02 11:46:14', 21.3, 2000, 40, 24, 42624, null, null, null, null, null, null, null, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2884', 1, 1, '2018-08-02 12:27:25', 21.25, 2000, 40, 24, 42524, null, null, null, null, null, null, null, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2884', 1, 1, '2018-08-08 14:30:00', 21.95, 2000, 60, 37, 43937, null, null, null, null, null, null, null, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2884', 1, 1, '2018-08-09 13:15:10', 21.85, 2000, 60, 37, 43737, null, null, null, null, null, null, null, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2884', 1, 1, '2018-08-09 13:18:06', 21.8, 2000, 60, 37, 43637, null, null, null, null, null, null, null, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2884', 1, 1, '2018-08-13 13:20:54', 21.5, 2000, 40, 24, 43024, null, null, null, null, null, null, null, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2834', 1, 1, '2018-09-06 14:30:00', 10.55, 5000, 40, 30, 52780, null, null, null, null, null, null, null, now());
-insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_id, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2834', 1, 1, '2018-09-10 14:30:00', 10.55, 5000, 40, 30, 52780, null, null, null, null, null, null, null, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2317', 1, 1, '2012-08-27 12:00:00', 85, 1000, 60, 73, 85073, '2012-09-14 12:00:00', 96.2, 1000, 60, 82, 288, 95830, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '3264', 1, 1, '2012-09-17 12:00:00', 20.8, 1000, 60, 20, 20820, '2012-09-27 12:00:00', 20.2, 1000, 60, 20, 60, 20120, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2337', 1, 1, '2012-09-20 12:00:00', 9.8, 2000, 60, 20, 19620, '2012-10-04 12:00:00', 9.5, 2000, 60, 20, 57, 18923, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2884', 1, 1, '2018-07-26 10:33:43', 20.95, 2000, 40, 24, 41924, null, null, null, null, null, null, null, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2884', 1, 1, '2018-08-02 11:46:14', 21.3, 2000, 40, 24, 42624, null, null, null, null, null, null, null, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2884', 1, 1, '2018-08-02 12:27:25', 21.25, 2000, 40, 24, 42524, null, null, null, null, null, null, null, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2884', 1, 1, '2018-08-08 14:30:00', 21.95, 2000, 60, 37, 43937, null, null, null, null, null, null, null, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2884', 1, 1, '2018-08-09 13:15:10', 21.85, 2000, 60, 37, 43737, null, null, null, null, null, null, null, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 1, '2884', 1, 1, '2018-08-09 13:18:06', 21.8, 2000, 60, 37, 43637, null, null, null, null, null, null, null, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2884', 1, 1, '2018-08-13 13:20:54', 21.5, 2000, 40, 24, 43024, null, null, null, null, null, null, null, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2834', 1, 1, '2018-09-06 14:30:00', 10.55, 5000, 40, 30, 52780, null, null, null, null, null, null, null, now());
+insert into stock (st_me_id, st_sa_id, st_se_no, st_co_cc_no, st_co_no, st_buy_time, st_buy_price, st_buy_share, st_buy_discount, st_buy_fee, st_buy_delivery, st_sell_time, st_sell_price, st_sell_share, st_sell_discount, st_sell_fee, st_sell_tax, st_sell_delivery, st_update_time) values (1, 2, '2834', 1, 1, '2018-09-10 14:30:00', 10.55, 5000, 40, 30, 52780, null, null, null, null, null, null, null, now());

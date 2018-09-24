@@ -31,15 +31,15 @@ public class CodeCategoryServiceImpl implements CodeCategoryService {
 	private CodeCategoryDao codeCategoryDao;
 
 	/**
-	 * code 類別流水號搜尋
+	 * code 類別編號搜尋
 	 * 
-	 * @param cc_id Integer --> code 類別流水號
+	 * @param cc_no Integer --> code 類別編號
 	 * @return CodeCategoryEntity
 	 */
 	@Override
-	public CodeCategoryEntity selectByCc_id(Integer cc_id) {
+	public CodeCategoryEntity selectByCc_no(Integer cc_no) {
 
-		return codeCategoryDao.selectByCc_id(cc_id);
+		return codeCategoryDao.selectByCc_no(cc_no);
 	}
 
 }

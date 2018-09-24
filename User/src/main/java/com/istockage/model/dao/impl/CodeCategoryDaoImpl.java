@@ -3,13 +3,11 @@
  * File: CodeCategoryDaoImpl.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/6
+ * Modified: 2018/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.dao.impl;
-
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -33,19 +31,15 @@ public class CodeCategoryDaoImpl implements CodeCategoryDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 名稱搜尋
+	 * code 類別流水號搜尋
 	 * 
-	 * @param cc_name String --> 名稱
-	 * @return null / CodeCategoryEntity
+	 * @param cc_id Integer --> code 類別流水號
+	 * @return CodeCategoryEntity
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	public CodeCategoryEntity selectByCc_name(String cc_name) {
+	public CodeCategoryEntity selectByCc_id(Integer cc_id) {
 
-		List<CodeCategoryEntity> list = (List<CodeCategoryEntity>) hibernateTemplate
-				.findByNamedParam(HQL_SELECT_CODE_CATEGORY_BY_NAME, "cc_name", cc_name);
-
-		return list.isEmpty() ? null : list.get(0);
+		return hibernateTemplate.get(CodeCategoryEntity.class, cc_id);
 	}
 
 }

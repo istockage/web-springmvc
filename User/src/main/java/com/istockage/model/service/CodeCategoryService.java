@@ -3,7 +3,7 @@
  * File: CodeCategoryService.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/6
+ * Modified: 2018/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,8 +19,8 @@ import com.istockage.model.entity.CodeCategoryEntity;
 public interface CodeCategoryService extends ServiceConstant {
 
 	/**
-	 * @see com.istockage.model.service.impl.CodeCategoryServiceImpl#selectByCc_name(String)
+	 * @see com.istockage.model.service.impl.CodeCategoryServiceImpl#selectByCc_id(Integer)
 	 */
-	CodeCategoryEntity selectByCc_name(String cc_name);
+	CodeCategoryEntity selectByCc_id(Integer cc_id);
 
 }

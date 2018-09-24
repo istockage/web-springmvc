@@ -3,7 +3,7 @@
  * File: StockEntity.java
  * Author: 詹晟
  * Created: 2018/3/23
- * Modified: 2018/9/23
+ * Modified: 2018/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -45,7 +46,7 @@ public class StockEntity {
 	@JoinColumn(name = "st_se_no")
 	private SecuritiesEntity st_SecuritiesEntity;
 	@ManyToOne
-	@JoinColumn(name = "st_co_id")
+	@JoinColumns({ @JoinColumn(name = "st_co_cc_id"), @JoinColumn(name = "st_co_no") })
 	private CodeEntity st_CodeEntity;
 	@Past
 	private Date st_buy_time;

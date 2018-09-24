@@ -3,7 +3,7 @@
  * File: CodeCategoryServiceImpl.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/6
+ * Modified: 2018/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -31,15 +31,15 @@ public class CodeCategoryServiceImpl implements CodeCategoryService {
 	private CodeCategoryDao codeCategoryDao;
 
 	/**
-	 * 名稱搜尋
+	 * code 類別流水號搜尋
 	 * 
-	 * @param cc_name String --> 名稱
-	 * @return null / CodeCategoryEntity
+	 * @param cc_id Integer --> code 類別流水號
+	 * @return CodeCategoryEntity
 	 */
 	@Override
-	public CodeCategoryEntity selectByCc_name(String cc_name) {
+	public CodeCategoryEntity selectByCc_id(Integer cc_id) {
 
-		return codeCategoryDao.selectByCc_name(cc_name);
+		return codeCategoryDao.selectByCc_id(cc_id);
 	}
 
 }

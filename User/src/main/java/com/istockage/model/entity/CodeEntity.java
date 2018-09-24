@@ -3,16 +3,15 @@
  * File: CodeEntity.java
  * Author: 詹晟
  * Created: 2018/9/5
- * Modified: 2018/9/5
+ * Modified: 2018/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -24,24 +23,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "code")
+@IdClass(CodeId.class)
 public class CodeEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer co_id;
 	@ManyToOne
 	@JoinColumn(name = "co_cc_id")
 	private CodeCategoryEntity co_CodeCategoryEntity;
+	@Id
 	private Byte co_no;
 	private String co_name;
-
-	public Integer getCo_id() {
-		return co_id;
-	}
-
-	public void setCo_id(Integer co_id) {
-		this.co_id = co_id;
-	}
 
 	public CodeCategoryEntity getCo_CodeCategoryEntity() {
 		return co_CodeCategoryEntity;

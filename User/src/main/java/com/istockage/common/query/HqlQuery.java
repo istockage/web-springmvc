@@ -6,10 +6,6 @@ public interface HqlQuery {
 	/** extension 搜尋 */
 	public static final String HQL_SELECT_PATH_CATEGORY_BY_EXTENSION = "from PathCategoryEntity where pc_extension=:pc_extension";
 
-	// code_category
-	/** 名稱搜尋 */
-	public static final String HQL_SELECT_CODE_CATEGORY_BY_NAME = "from CodeCategoryEntity where cc_name=:cc_name";
-
 	// securities_broker_head
 	/** 搜尋所有證券商 */
 	public static final String HQL_SELECT_SECURITIES_BROKER_HEAD = "from SecuritiesBrokerHeadEntity order by sh_no";

@@ -47,6 +47,7 @@ import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.entity.SecuritiesEntity;
 import com.istockage.model.entity.StockEntity;
 import com.istockage.model.service.CodeCategoryService;
+import com.istockage.model.service.CodeService;
 import com.istockage.model.service.SecuritiesAccountService;
 import com.istockage.model.service.SecuritiesService;
 import com.istockage.model.service.StockService;
@@ -74,6 +75,12 @@ public class StockController implements ControllerConstant {
 	 */
 	@Autowired
 	private CodeCategoryService codeCategoryService;
+
+	/**
+	 * 注入 CodeService
+	 */
+	@Autowired
+	private CodeService codeService;
 
 	/**
 	 * 注入 SecuritiesService
@@ -215,7 +222,7 @@ public class StockController implements ControllerConstant {
 	 * 新增股票庫存 - submit
 	 * 
 	 * @param user MemberEntity --> SessionAttribute
-	 * @param co_no Byte --> 買賣類別編號
+	 * @param co_no Byte --> code 編號
 	 * @param stockEntity StockEntity --> form-backing object
 	 * @param bindingResult BindingResult
 	 * @return /WEB-INF/view/stock/inventory.jsp
@@ -225,6 +232,9 @@ public class StockController implements ControllerConstant {
 			@Valid StockEntity stockEntity, BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		CodeEntity codeEntity = codeService.selectByCodeId(codeCategoryService.selectByCc_id(STOCK_TYPE_CODE_CATEGORY),
+				co_no);
 
 		SecuritiesEntity securitiesEntity = securitiesService
 				.selectBySe_no(stockEntity.getSt_SecuritiesEntity().getSe_no());
@@ -236,9 +246,9 @@ public class StockController implements ControllerConstant {
 
 			return STOCK_INVENTORY_ADD_VIEW;
 
-		} else if (co_no == null) {
+		} else if (codeEntity == null) {
 
-			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (買賣類別編號未填)");
+			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (買賣類別編號錯誤: " + co_no + ")");
 
 			return STOCK_INVENTORY_ADD_VIEW;
 
@@ -253,15 +263,7 @@ public class StockController implements ControllerConstant {
 
 			stockEntity.setSt_MemberEntity(user);
 			stockEntity.setSt_SecuritiesEntity(securitiesEntity);
-
-			for (CodeEntity codeEntity : codeCategoryService.selectByCc_name(STOCK_TYPE_CODE_CATEGORY)
-					.getCc_CodeEntity()) {
-				if (codeEntity.getCo_no().equals(co_no)) {
-					stockEntity.setSt_CodeEntity(codeEntity);
-					break;
-				}
-			}
-
+			stockEntity.setSt_CodeEntity(codeEntity);
 			stockService.insert(stockEntity);
 
 			request.setAttribute(MEMBER_LOG_KEY, OK);

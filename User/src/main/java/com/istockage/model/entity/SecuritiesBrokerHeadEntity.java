@@ -3,20 +3,16 @@
  * File: SecuritiesBrokerHeadEntity.java
  * Author: 詹晟
  * Created: 2018/3/25
- * Modified: 2018/9/23
+ * Modified: 2018/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.entity;
 
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,9 +28,6 @@ public class SecuritiesBrokerHeadEntity {
 	private String sh_no;
 	private String sh_name;
 	private Date sh_update_time;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sb_SecuritiesBrokerHeadEntity")
-	private Set<SecuritiesBrokerBranchEntity> sh_SecuritiesBrokerBranchEntity;
 
 	public String getSh_no() {
 		return sh_no;
@@ -58,14 +51,6 @@ public class SecuritiesBrokerHeadEntity {
 
 	public void setSh_update_time(Date sh_update_time) {
 		this.sh_update_time = sh_update_time;
-	}
-
-	public Set<SecuritiesBrokerBranchEntity> getSh_SecuritiesBrokerBranchEntity() {
-		return sh_SecuritiesBrokerBranchEntity;
-	}
-
-	public void setSh_SecuritiesBrokerBranchEntity(Set<SecuritiesBrokerBranchEntity> sh_SecuritiesBrokerBranchEntity) {
-		this.sh_SecuritiesBrokerBranchEntity = sh_SecuritiesBrokerBranchEntity;
 	}
 
 }

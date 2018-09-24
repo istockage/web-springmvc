@@ -83,7 +83,7 @@
 													</div>
 													<div class="form-group">
 														<form:label path="sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity">證券商</form:label>
-														<form:select id="sh_no" path="sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity" cssClass="custom-select">
+														<form:select id="sh_no" path="sa_SecuritiesBrokerBranchEntity.sb_SecuritiesBrokerHeadEntity" cssClass="custom-select" disabled="true">
 															<form:option value="0" label="請選擇" />
 															<form:options items="${securitiesBrokerHeadList}" itemValue="sh_no" itemLabel="sh_name" />
 														</form:select>
@@ -91,7 +91,7 @@
 													</div>
 													<div class="form-group">
 														<form:label path="sa_SecuritiesBrokerBranchEntity">分公司</form:label>
-														<form:select id="sb_no" path="sa_SecuritiesBrokerBranchEntity" cssClass="custom-select">
+														<form:select id="sb_no" path="sa_SecuritiesBrokerBranchEntity" cssClass="custom-select" disabled="true">
 															<form:option value="0" label="請選擇" />
 															<form:options items="${securitiesBrokerBranchList}" itemValue="sb_no" itemLabel="sb_name" />
 														</form:select>
@@ -99,7 +99,7 @@
 													</div>
 													<div class="form-group">
 														<form:label path="sa_no">帳號</form:label>
-														<form:input path="sa_no" cssClass="form-control" aria-describedby="sa_no-help" />
+														<form:input path="sa_no" cssClass="form-control" aria-describedby="sa_no-help" disabled="true" />
 														<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 														<small id="sa_no-help" class="form-text text-muted">帳號為後 7 位數字。</small>
 													</div>

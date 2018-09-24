@@ -41,6 +41,7 @@ import com.istockage.common.util.BindingResultUtil;
 import com.istockage.common.util.PaginationUtil;
 import com.istockage.common.util.StockUtil;
 import com.istockage.common.util.UrlUtil;
+import com.istockage.model.entity.CodeCategoryEntity;
 import com.istockage.model.entity.CodeEntity;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
@@ -233,11 +234,10 @@ public class StockController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		CodeEntity codeEntity = codeService.selectByCodeId(codeCategoryService.selectByCc_id(STOCK_TYPE_CODE_CATEGORY),
-				co_no);
-
-		SecuritiesEntity securitiesEntity = securitiesService
-				.selectBySe_no(stockEntity.getSt_SecuritiesEntity().getSe_no());
+		CodeCategoryEntity codeCategoryEntity = codeCategoryService.selectByCc_no(STOCK_TYPE_CODE_CATEGORY);
+		CodeEntity codeEntity = codeService.selectByCodeId(codeCategoryEntity, co_no);
+		String se_no = stockEntity.getSt_SecuritiesEntity().getSe_no();
+		SecuritiesEntity securitiesEntity = securitiesService.selectBySe_no(se_no);
 
 		if (bindingResult.hasErrors()) {
 
@@ -248,14 +248,14 @@ public class StockController implements ControllerConstant {
 
 		} else if (codeEntity == null) {
 
-			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (買賣類別編號錯誤: " + co_no + ")");
+			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (" + codeCategoryEntity.getCc_name()
+					+ "編號錯誤: " + co_no + ")");
 
 			return STOCK_INVENTORY_ADD_VIEW;
 
 		} else if (securitiesEntity == null) {
 
-			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (股票代號錯誤: "
-					+ stockEntity.getSt_SecuritiesEntity().getSe_no() + ")");
+			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (股票代號錯誤: " + se_no + ")");
 
 			return STOCK_INVENTORY_ADD_VIEW;
 

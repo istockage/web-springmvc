@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/23
+ * Modified: 2018/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -99,8 +99,8 @@ public class StockController implements ControllerConstant {
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
 		webDataBinder.addCustomFormatter(new DateFormatter("yyyy-MM-dd HH:mm"));
-		webDataBinder.registerCustomEditor(SecuritiesAccountEntity.class, new SecuritiesAccountEntityPropertyEditor());
 		webDataBinder.registerCustomEditor(SecuritiesEntity.class, new SecuritiesEntityPropertyEditor());
+		webDataBinder.registerCustomEditor(SecuritiesAccountEntity.class, new SecuritiesAccountEntityPropertyEditor());
 	}
 
 	/**
@@ -215,7 +215,7 @@ public class StockController implements ControllerConstant {
 	 * 新增股票庫存 - submit
 	 * 
 	 * @param user MemberEntity --> SessionAttribute
-	 * @param co_no Byte --> 編碼
+	 * @param co_no Byte --> 買賣類別編號
 	 * @param stockEntity StockEntity --> form-backing object
 	 * @param bindingResult BindingResult
 	 * @return /WEB-INF/view/stock/inventory.jsp
@@ -236,6 +236,12 @@ public class StockController implements ControllerConstant {
 
 			return STOCK_INVENTORY_ADD_VIEW;
 
+		} else if (co_no == null) {
+
+			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (買賣類別編號未填)");
+
+			return STOCK_INVENTORY_ADD_VIEW;
+
 		} else if (securitiesEntity == null) {
 
 			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (股票代號錯誤: "
@@ -250,7 +256,7 @@ public class StockController implements ControllerConstant {
 
 			for (CodeEntity codeEntity : codeCategoryService.selectByCc_name(STOCK_TYPE_CODE_CATEGORY)
 					.getCc_CodeEntity()) {
-				if (co_no.equals(codeEntity.getCo_no())) {
+				if (codeEntity.getCo_no().equals(co_no)) {
 					stockEntity.setSt_CodeEntity(codeEntity);
 					break;
 				}

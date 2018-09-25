@@ -15,6 +15,7 @@ create table path_category (
     primary key (pc_id)
 );
 
+/*
 create table admin_path (
     ap_id                   int auto_increment not null,
     ap_pc_id                int not null,
@@ -23,6 +24,7 @@ create table admin_path (
     primary key (ap_id),
     foreign key (ap_pc_id) references path_category (pc_id)
 );
+*/
 
 create table user_path (
     up_id                   int auto_increment not null,

@@ -20,7 +20,7 @@
 			</c:when>
 		</c:choose>
 		<c:forEach begin="${currentGroupBegin}" end="${currentGroupEnd}" varStatus="status">
-			<li id="page-${status.count + (currentGroup - 1) * groupRowCount}" class="page-item"><a href="<%=request.getContextPath()%>${servletPath}?page=${status.count + (currentGroup - 1) * groupRowCount}" class="page-link">${status.count + (currentGroup - 1) * groupRowCount}</a></li>
+			<li id="page-${status.count + (currentGroup - 1) * groupRowCount}" class="page-item"><a href="<%=request.getContextPath()%>/${path}?page=${status.count + (currentGroup - 1) * groupRowCount}" class="page-link">${status.count + (currentGroup - 1) * groupRowCount}</a></li>
 		</c:forEach>
 		<c:choose>
 			<c:when test="${currentPage < pageCount}">

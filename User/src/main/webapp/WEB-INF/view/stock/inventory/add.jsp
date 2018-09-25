@@ -68,8 +68,8 @@
 											</div>
 											<div class="form-row">
 												<div class="col-md-6 mb-3">
-													<form:label path="st_SecuritiesEntity">代號&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
-													<form:input path="st_SecuritiesEntity" cssClass="form-control" />
+													<form:label path="st_SecuritiesEntity.se_no">代號&nbsp;<span class="badge badge-subtle badge-warning">Required</span></form:label>
+													<form:input path="st_SecuritiesEntity.se_no" cssClass="form-control" />
 													<div class="invalid-feedback"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 												</div>
 												<div class="col-md-6 mb-3">

@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/24
+ * Modified: 2018/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,7 +34,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
-import com.istockage.common.editor.SecuritiesEntityPropertyEditor;
 import com.istockage.common.json.GsonReader;
 import com.istockage.common.json.StockExchangeReportBean;
 import com.istockage.common.util.BindingResultUtil;
@@ -107,7 +106,6 @@ public class StockController implements ControllerConstant {
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
 		webDataBinder.addCustomFormatter(new DateFormatter("yyyy-MM-dd HH:mm"));
-		webDataBinder.registerCustomEditor(SecuritiesEntity.class, new SecuritiesEntityPropertyEditor());
 		webDataBinder.registerCustomEditor(SecuritiesAccountEntity.class, new SecuritiesAccountEntityPropertyEditor());
 	}
 

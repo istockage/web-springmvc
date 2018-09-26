@@ -59,7 +59,7 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		String servletPath = request.getServletPath(); // /path
 		String requestPath = UrlUtil.getRequestPath(servletPath, request.getQueryString()); // 請求 path
-		UserPathEntity userPathEntity = userPathService.selectByUp_path(ACTION, UrlUtil.getPath(servletPath));
+		UserPathEntity userPathEntity = userPathService.selectByUp_path(UrlUtil.getPath(servletPath));
 
 		if (userPathEntity == null) {
 

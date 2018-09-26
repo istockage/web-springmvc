@@ -3,7 +3,7 @@
  * File: MemberLogEntity.java
  * Author: 詹晟
  * Created: 2018/3/24
- * Modified: 2018/3/25
+ * Modified: 2018/9/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -36,7 +36,7 @@ public class MemberLogEntity {
 	@JoinColumn(name = "ml_me_id")
 	private MemberEntity ml_MemberEntity;
 	@ManyToOne
-	@JoinColumn(name = "ml_up_id")
+	@JoinColumn(name = "ml_up_path")
 	private UserPathEntity ml_UserPathEntity;
 	private String ml_ip;
 

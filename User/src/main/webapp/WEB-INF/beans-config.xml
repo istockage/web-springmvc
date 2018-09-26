@@ -28,7 +28,6 @@
 				<value>com.istockage.model.entity.CodeEntity</value>
 				<value>com.istockage.model.entity.MemberEntity</value>
 				<value>com.istockage.model.entity.MemberLogEntity</value>
-				<value>com.istockage.model.entity.PathCategoryEntity</value>
 				<value>com.istockage.model.entity.SecuritiesAccountEntity</value>
 				<value>com.istockage.model.entity.SecuritiesBrokerBranchEntity</value>
 				<value>com.istockage.model.entity.SecuritiesBrokerHeadEntity</value>

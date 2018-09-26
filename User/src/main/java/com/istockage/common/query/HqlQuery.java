@@ -2,10 +2,6 @@ package com.istockage.common.query;
 
 public interface HqlQuery {
 
-	// path_category
-	/** extension 搜尋 */
-	public static final String HQL_SELECT_PATH_CATEGORY_BY_EXTENSION = "from PathCategoryEntity where pc_extension=:pc_extension";
-
 	// securities_broker_head
 	/** 搜尋所有證券商 */
 	public static final String HQL_SELECT_SECURITIES_BROKER_HEAD = "from SecuritiesBrokerHeadEntity order by sh_no";

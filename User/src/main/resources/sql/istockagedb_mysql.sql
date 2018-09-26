@@ -8,31 +8,18 @@ use istockagedb;
 
 -- CREATE
 -- System
-create table path_category (
-    pc_id                   int auto_increment not null,
-    pc_name                 varchar(10) not null,
-    pc_extension            varchar(10) not null,
-    primary key (pc_id)
-);
-
 /*
 create table admin_path (
-    ap_id                   int auto_increment not null,
-    ap_pc_id                int not null,
-    ap_name                 nvarchar(20) not null,
     ap_path                 varchar(100) not null,
-    primary key (ap_id),
-    foreign key (ap_pc_id) references path_category (pc_id)
+    ap_name                 nvarchar(20) not null,
+    primary key (ap_path)
 );
 */
 
 create table user_path (
-    up_id                   int auto_increment not null,
-    up_pc_id                int not null,
-    up_name                 nvarchar(20) not null,
     up_path                 varchar(100) not null,
-    primary key (up_id),
-    foreign key (up_pc_id) references path_category (pc_id)
+    up_name                 nvarchar(20) not null,
+    primary key (up_path)
 );
 
 create table code_category (
@@ -75,21 +62,19 @@ create table securities (
 
 /*
 create table futures_broker_head (
-    fh_id                   int auto_increment not null,
     fh_no                   char(4) not null,
     fh_name                 nvarchar(10) not null,
     fh_update_time          datetime not null,
-    primary key (fh_id)
+    primary key (fh_no)
 );
 
 create table futures_broker_branch (
-    fb_id                   int auto_increment not null,
-    fb_fh_id                int not null,
+    fb_fh_no                char(4) not null,
     fb_no                   char(3) not null,
     fb_name                 nvarchar(10) not null,
     fb_update_time          datetime not null,
-    primary key (fb_id),
-    foreign key (fb_fh_id) references futures_broker_head (fh_id)
+    primary key (fb_fh_no, fb_no),
+    foreign key (fb_fh_no) references futures_broker_head (fh_no)
 );
 */
 
@@ -114,11 +99,11 @@ create table member_log (
     ml_id                   int auto_increment not null,
     ml_insert_time          timestamp default current_timestamp not null,
     ml_me_id                int not null,
-    ml_up_id                int not null,
+    ml_up_path              varchar(100) not null,
     ml_ip                   varchar(20),
     primary key (ml_id),
     foreign key (ml_me_id) references member (me_id),
-    foreign key (ml_up_id) references user_path (up_id)
+    foreign key (ml_up_path) references user_path (up_path)
 );
 
 create table securities_account (
@@ -165,44 +150,39 @@ create table stock (
 
 -- INSERT
 -- System
--- path_category
-insert into path_category (pc_name, pc_extension) values ('view', '');
-insert into path_category (pc_name, pc_extension) values ('action', 'do');
-insert into path_category (pc_name, pc_extension) values ('ajax', 'ajax');
-
 -- user_path
-insert into user_path (up_pc_id, up_name, up_path) values (1, '找不到網頁', 'error/page-not-found');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '首頁', 'index');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '帳戶', 'member/profile');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '忘記密碼', 'secure/forget-password');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '忘記密碼', 'secure/forget-password.do');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '重設密碼', 'secure/reset-password');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '重設密碼', 'secure/reset-password.do');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '登入', 'secure/sign-in');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '登入', 'secure/sign-in.do');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '登出', 'secure/sign-out.do');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '註冊', 'secure/sign-up');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '註冊', 'secure/sign-up.do');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '啟用帳號', 'secure/sign-up-activity.do');
-insert into user_path (up_pc_id, up_name, up_path) values (3, '信箱重複驗證', 'secure/sign-up-email-repeat.ajax');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '發送確認信', 'secure/sign-up-mail');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '發送確認信', 'secure/sign-up-mail.do');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '重新發送確認信', 'secure/sign-up-mail-again');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '重新發送確認信', 'secure/sign-up-mail-again.do');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '個人帳戶', 'settings/account');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(變更密碼)', 'settings/account/change-password.do');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '個人帳戶(基本資料)', 'settings/account/info.do');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '證券帳戶', 'settings/securities-account');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '新增證券帳戶', 'settings/securities-account/add');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '新增證券帳戶', 'settings/securities-account/add.do');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '編輯證券帳戶', 'settings/securities-account/edit');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '編輯證券帳戶', 'settings/securities-account/edit.do');
-insert into user_path (up_pc_id, up_name, up_path) values (3, '選定證券商中的所有分公司', 'settings/securities-account/securities-broker-branch-list.ajax');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '股票統計圖表', 'stock/chart');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '股票庫存明細', 'stock/inventory');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '新增股票庫存', 'stock/inventory/add');
-insert into user_path (up_pc_id, up_name, up_path) values (2, '新增股票庫存', 'stock/inventory/add.do');
-insert into user_path (up_pc_id, up_name, up_path) values (1, '股票交易明細', 'stock/list');
+insert into user_path (up_path, up_name) values ('error/page-not-found', '找不到網頁');
+insert into user_path (up_path, up_name) values ('index', '首頁');
+insert into user_path (up_path, up_name) values ('member/profile', '帳戶');
+insert into user_path (up_path, up_name) values ('secure/forget-password', '忘記密碼');
+insert into user_path (up_path, up_name) values ('secure/forget-password.do', '忘記密碼');
+insert into user_path (up_path, up_name) values ('secure/reset-password', '重設密碼');
+insert into user_path (up_path, up_name) values ('secure/reset-password.do', '重設密碼');
+insert into user_path (up_path, up_name) values ('secure/sign-in', '登入');
+insert into user_path (up_path, up_name) values ('secure/sign-in.do', '登入');
+insert into user_path (up_path, up_name) values ('secure/sign-out.do', '登出');
+insert into user_path (up_path, up_name) values ('secure/sign-up', '註冊');
+insert into user_path (up_path, up_name) values ('secure/sign-up.do', '註冊');
+insert into user_path (up_path, up_name) values ('secure/sign-up-activity.do', '啟用帳號');
+insert into user_path (up_path, up_name) values ('secure/sign-up-email-repeat.ajax', '信箱重複驗證');
+insert into user_path (up_path, up_name) values ('secure/sign-up-mail', '發送確認信');
+insert into user_path (up_path, up_name) values ('secure/sign-up-mail.do', '發送確認信');
+insert into user_path (up_path, up_name) values ('secure/sign-up-mail-again', '重新發送確認信');
+insert into user_path (up_path, up_name) values ('secure/sign-up-mail-again.do', '重新發送確認信');
+insert into user_path (up_path, up_name) values ('settings/account', '個人帳戶');
+insert into user_path (up_path, up_name) values ('settings/account/change-password.do', '個人帳戶(變更密碼)');
+insert into user_path (up_path, up_name) values ('settings/account/info.do', '個人帳戶(基本資料)');
+insert into user_path (up_path, up_name) values ('settings/securities-account', '證券帳戶');
+insert into user_path (up_path, up_name) values ('settings/securities-account/add', '新增證券帳戶');
+insert into user_path (up_path, up_name) values ('settings/securities-account/add.do', '新增證券帳戶');
+insert into user_path (up_path, up_name) values ('settings/securities-account/edit', '編輯證券帳戶');
+insert into user_path (up_path, up_name) values ('settings/securities-account/edit.do', '編輯證券帳戶');
+insert into user_path (up_path, up_name) values ('settings/securities-account/securities-broker-branch-list.ajax', '選定證券商中的所有分公司');
+insert into user_path (up_path, up_name) values ('stock/chart', '股票統計圖表');
+insert into user_path (up_path, up_name) values ('stock/inventory', '股票庫存明細');
+insert into user_path (up_path, up_name) values ('stock/inventory/add', '新增股票庫存');
+insert into user_path (up_path, up_name) values ('stock/inventory/add.do', '新增股票庫存');
+insert into user_path (up_path, up_name) values ('stock/list', '股票交易明細');
 
 -- code_category
 insert into code_category (cc_no, cc_name) values (1, '買賣類別');

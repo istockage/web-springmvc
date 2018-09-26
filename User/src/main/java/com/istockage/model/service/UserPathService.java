@@ -3,7 +3,7 @@
  * File: UserPathService.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/4/13
+ * Modified: 2018/9/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,9 +19,8 @@ import com.istockage.model.entity.UserPathEntity;
 public interface UserPathService extends ServiceConstant {
 
 	/**
-	 * @see com.istockage.model.service.impl.UserPathServiceImpl#selectByUp_path(String,
-	 *      String)
+	 * @see com.istockage.model.service.impl.UserPathServiceImpl#selectByUp_path(String)
 	 */
-	UserPathEntity selectByUp_path(String pc_extension, String up_path);
+	UserPathEntity selectByUp_path(String up_path);
 
 }

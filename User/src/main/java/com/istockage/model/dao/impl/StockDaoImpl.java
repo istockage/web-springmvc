@@ -3,7 +3,7 @@
  * File: StockDaoImpl.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/17
+ * Modified: 2018/9/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -54,7 +54,7 @@ public class StockDaoImpl implements StockDao {
 	 * 
 	 * @param st_MemberEntity MemberEntity
 	 * @param st_SecuritiesAccountEntity SecuritiesAccountEntity
-	 * @param path String --> path
+	 * @param up_path String --> path
 	 * @param first int --> 當頁起始筆數
 	 * @param max int --> 每頁最大筆數
 	 * @return Map<String, Object>
@@ -62,7 +62,7 @@ public class StockDaoImpl implements StockDao {
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Map<String, Object> selectByConditions(MemberEntity st_MemberEntity,
-			SecuritiesAccountEntity st_SecuritiesAccountEntity, String path, int first, int max) {
+			SecuritiesAccountEntity st_SecuritiesAccountEntity, String up_path, int first, int max) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -93,11 +93,11 @@ public class StockDaoImpl implements StockDao {
 							predicates.add(criteriaBuilder.equal(root.get("st_SecuritiesAccountEntity"),
 									st_SecuritiesAccountEntity));
 						}
-						if (STOCK_LIST_VIEW.equals(path)) { // (st_buy_time != null && st_sell_time != null)
+						if (STOCK_LIST_VIEW.equals(up_path)) { // (st_buy_time != null && st_sell_time != null)
 							predicates.add(criteriaBuilder.and(criteriaBuilder.isNotNull(root.get("st_buy_time")),
 									criteriaBuilder.isNotNull(root.get("st_sell_time"))));
 						}
-						if (STOCK_INVENTORY_VIEW.equals(path)) { // (st_buy_time == null || st_sell_time == null)
+						if (STOCK_INVENTORY_VIEW.equals(up_path)) { // (st_buy_time == null || st_sell_time == null)
 							predicates.add(criteriaBuilder.or(criteriaBuilder.isNull(root.get("st_buy_time")),
 									criteriaBuilder.isNull(root.get("st_sell_time"))));
 						}

@@ -3,7 +3,7 @@
  * File: StockDao.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/17
+ * Modified: 2018/9/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,7 +27,7 @@ public interface StockDao extends DaoConstant {
 	 *      SecuritiesAccountEntity, String, int, int)
 	 */
 	Map<String, Object> selectByConditions(MemberEntity st_MemberEntity,
-			SecuritiesAccountEntity st_SecuritiesAccountEntity, String path, int first, int max);
+			SecuritiesAccountEntity st_SecuritiesAccountEntity, String up_path, int first, int max);
 
 	/**
 	 * @see com.istockage.model.dao.impl.StockDaoImpl#insert(StockEntity)

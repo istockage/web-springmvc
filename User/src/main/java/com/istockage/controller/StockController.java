@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/25
+ * Modified: 2018/9/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -39,13 +39,13 @@ import com.istockage.common.json.StockExchangeReportBean;
 import com.istockage.common.util.BindingResultUtil;
 import com.istockage.common.util.PaginationUtil;
 import com.istockage.common.util.StockUtil;
-import com.istockage.common.util.UrlUtil;
 import com.istockage.model.entity.CodeCategoryEntity;
 import com.istockage.model.entity.CodeEntity;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.entity.SecuritiesEntity;
 import com.istockage.model.entity.StockEntity;
+import com.istockage.model.entity.UserPathEntity;
 import com.istockage.model.service.CodeCategoryService;
 import com.istockage.model.service.CodeService;
 import com.istockage.model.service.SecuritiesAccountService;
@@ -117,6 +117,15 @@ public class StockController implements ControllerConstant {
 	@RequestMapping(value = "/stock/chart", method = RequestMethod.GET)
 	public String stockChartView() {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		logger.info("(" + className + "." + methodName + ") start");
+
+		UserPathEntity userPathEntity = (UserPathEntity) request.getAttribute(USER_PATH_ENTITY);
+		String up_name = userPathEntity.getUp_name();
+
+		logger.info("(" + className + "." + methodName + ") end (成功: " + up_name + ")");
+
 		return STOCK_CHART_VIEW;
 	}
 
@@ -132,7 +141,12 @@ public class StockController implements ControllerConstant {
 	public String stockListOrInventoryView(@SessionAttribute(USER) MemberEntity user, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		String path = UrlUtil.getPath(request.getServletPath());
+
+		logger.info("(" + className + "." + methodName + ") start");
+
+		UserPathEntity userPathEntity = (UserPathEntity) request.getAttribute(USER_PATH_ENTITY);
+		String up_path = userPathEntity.getUp_path();
+		String up_name = userPathEntity.getUp_name();
 
 		int currentPage;
 		try {
@@ -147,7 +161,7 @@ public class StockController implements ControllerConstant {
 		int pageRowCount = PAGE_ROW_COUNT_NUMBER;
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
-		Map<String, Object> map = stockService.selectByConditions(user, null, path,
+		Map<String, Object> map = stockService.selectByConditions(user, null, up_path,
 				PaginationUtil.getFirst(currentPage, pageRowCount), pageRowCount);
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
@@ -157,7 +171,7 @@ public class StockController implements ControllerConstant {
 		// 取得當前頁碼的證券帳戶
 		model.addAttribute(STOCK_LIST, stockList);
 
-		if (STOCK_INVENTORY_VIEW.equals(path)) {
+		if (STOCK_INVENTORY_VIEW.equals(up_path)) {
 
 			Set<String> stockNoSet = new HashSet<String>();
 			for (StockEntity stockEntity : stockList) {
@@ -175,13 +189,13 @@ public class StockController implements ControllerConstant {
 
 				} catch (Exception e) {
 
-					logger.error("(" + className + "." + methodName + ") 股票交易報告請求失敗 (代號: " + st_no + ")");
+					logger.error("(" + className + "." + methodName + ") halfway (失敗: 股票交易報告, 代號: " + st_no + ")");
 
-					return path;
+					return up_path;
 				}
 			}
 
-			logger.info("(" + className + "." + methodName + ") 股票交易報告請求成功");
+			logger.info("(" + className + "." + methodName + ") halfway (成功: 股票交易報告)");
 
 			for (StockEntity stockEntity : stockList) {
 				if (stockEntity.getSt_sell_price() == null) {
@@ -193,9 +207,12 @@ public class StockController implements ControllerConstant {
 		}
 
 		// 取得分頁資訊
-		model.addAllAttributes(PaginationUtil.allAttributes(path, pageRowCount, pageCount, currentPage, groupRowCount));
+		model.addAllAttributes(
+				PaginationUtil.allAttributes(up_path, pageRowCount, pageCount, currentPage, groupRowCount));
 
-		return path;
+		logger.info("(" + className + "." + methodName + ") end (成功: " + up_name + ")");
+
+		return up_path;
 	}
 
 	/**
@@ -232,6 +249,11 @@ public class StockController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
+		logger.info("(" + className + "." + methodName + ") start");
+
+		UserPathEntity userPathEntity = (UserPathEntity) request.getAttribute(USER_PATH_ENTITY);
+		String up_name = userPathEntity.getUp_name();
+
 		CodeCategoryEntity codeCategoryEntity = codeCategoryService.selectByCc_no(STOCK_TYPE_CODE_CATEGORY);
 		CodeEntity codeEntity = codeService.selectByCodeId(codeCategoryEntity, co_no);
 		String se_no = stockEntity.getSt_SecuritiesEntity().getSe_no();
@@ -239,21 +261,21 @@ public class StockController implements ControllerConstant {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (格式錯誤: "
+			logger.error("(" + className + "." + methodName + ") end (失敗: " + up_name + ", 格式錯誤: "
 					+ BindingResultUtil.getFieldErrors(bindingResult) + ")");
 
 			return STOCK_INVENTORY_ADD_VIEW;
 
 		} else if (codeEntity == null) {
 
-			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (" + codeCategoryEntity.getCc_name()
-					+ "編號錯誤: " + co_no + ")");
+			logger.error("(" + className + "." + methodName + ") end (失敗: " + up_name + ", "
+					+ codeCategoryEntity.getCc_name() + "編號錯誤: " + co_no + ")");
 
 			return STOCK_INVENTORY_ADD_VIEW;
 
 		} else if (securitiesEntity == null) {
 
-			logger.error("(" + className + "." + methodName + ") 股票庫存新增失敗 (股票代號錯誤: " + se_no + ")");
+			logger.error("(" + className + "." + methodName + ") end (失敗: " + up_name + ", 股票代號錯誤: " + se_no + ")");
 
 			return STOCK_INVENTORY_ADD_VIEW;
 
@@ -266,7 +288,7 @@ public class StockController implements ControllerConstant {
 
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
-			logger.info("(" + className + "." + methodName + ") 股票庫存新增成功");
+			logger.info("(" + className + "." + methodName + ") end (成功: " + up_name + ")");
 
 			return REDIRECT + STOCK_INVENTORY_VIEW;
 		}

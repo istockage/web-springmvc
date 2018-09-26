@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/9/24
+ * Modified: 2018/9/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -39,6 +39,7 @@ import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
 import com.istockage.model.entity.SecuritiesBrokerBranchEntity;
 import com.istockage.model.entity.SecuritiesBrokerHeadEntity;
+import com.istockage.model.entity.UserPathEntity;
 import com.istockage.model.service.SecuritiesAccountService;
 import com.istockage.model.service.SecuritiesBrokerBranchService;
 import com.istockage.model.service.SecuritiesBrokerHeadService;
@@ -162,9 +163,14 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
+		logger.info("(" + className + "." + methodName + ") start");
+
+		UserPathEntity userPathEntity = (UserPathEntity) request.getAttribute(USER_PATH_ENTITY);
+		String up_name = userPathEntity.getUp_name();
+
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 證券帳戶新增失敗 (格式錯誤: "
+			logger.error("(" + className + "." + methodName + ") end (失敗: " + up_name + ", 格式錯誤: "
 					+ BindingResultUtil.getFieldErrors(bindingResult) + ")");
 
 			return SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW;
@@ -176,7 +182,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
-			logger.info("(" + className + "." + methodName + ") 證券帳戶新增成功");
+			logger.info("(" + className + "." + methodName + ") end (成功: " + up_name + ")");
 
 			return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;
 		}
@@ -196,6 +202,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 			SecuritiesAccountEntity securitiesAccountEntity_sa_id, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
 
 		SecuritiesAccountEntity securitiesAccountEntity;
@@ -213,7 +220,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("(" + className + "." + methodName + ") " + "找不到這個頁面: " + requestPath);
+			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestPath);
 
 			return ERROR_PAGE_NOT_FOUND_VIEW;
 		}
@@ -246,9 +253,14 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
+		logger.info("(" + className + "." + methodName + ") start");
+
+		UserPathEntity userPathEntity = (UserPathEntity) request.getAttribute(USER_PATH_ENTITY);
+		String up_name = userPathEntity.getUp_name();
+
 		if (bindingResult.hasErrors()) {
 
-			logger.error("(" + className + "." + methodName + ") 證券帳戶編輯失敗 (格式錯誤: "
+			logger.error("(" + className + "." + methodName + ") end (失敗: " + up_name + ", 格式錯誤: "
 					+ BindingResultUtil.getFieldErrors(bindingResult) + ")");
 
 			return SETTINGS_SECURITIES_ACCOUNT_EDIT_VIEW;
@@ -259,7 +271,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 			request.setAttribute(MEMBER_LOG_KEY, OK);
 
-			logger.info("(" + className + "." + methodName + ") 證券帳戶編輯成功");
+			logger.info("(" + className + "." + methodName + ") end (成功: " + up_name + ")");
 
 			return REDIRECT + SETTINGS_SECURITIES_ACCOUNT_VIEW;
 		}

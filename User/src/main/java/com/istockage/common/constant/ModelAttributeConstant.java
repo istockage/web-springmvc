@@ -14,7 +14,7 @@ public interface ModelAttributeConstant {
 	// request
 	public static final String REQUEST_PATH = "requestPath";
 
-	public static final String PATH_NAME = "pathName";
+	public static final String USER_PATH_ENTITY = "userPathEntity";
 
 	public static final String MEMBER_EMAIL = "me_email";
 

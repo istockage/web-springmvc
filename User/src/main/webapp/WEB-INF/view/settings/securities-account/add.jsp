@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>${pathName} - iStockage</title>
+<title>${userPathEntity.up_name} - iStockage</title>
 <%@include file="../../head.jsp"%>
 </head>
 <body>
@@ -70,7 +70,7 @@
 								
 									<!-- .card -->
 									<div class="card card-fluid">
-										<h6 class="card-header">新增證券帳戶</h6>
+										<h6 class="card-header">${userPathEntity.up_name}</h6>
 										<!-- .card-body -->
 										<div class="card-body">
 											<!-- .form -->

@@ -3,7 +3,7 @@
  * File: ActionInterceptor.java
  * Author: 詹晟
  * Created: 2018/3/28
- * Modified: 2018/9/13
+ * Modified: 2018/9/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -59,7 +59,6 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		String servletPath = request.getServletPath(); // /path
 		String requestPath = UrlUtil.getRequestPath(servletPath, request.getQueryString()); // 請求 path
-
 		UserPathEntity userPathEntity = userPathService.selectByUp_path(ACTION, UrlUtil.getPath(servletPath));
 
 		if (userPathEntity == null) {
@@ -82,7 +81,7 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end (放行: " + requestPath + ")");
 
-		request.setAttribute(PATH_NAME, userPathEntity.getUp_name());
+		request.setAttribute(USER_PATH_ENTITY, userPathEntity);
 
 		return true;
 	}
@@ -96,6 +95,8 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
+
+		UserPathEntity userPathEntity = (UserPathEntity) request.getAttribute(USER_PATH_ENTITY);
 
 		if (!OK.equals((String) request.getAttribute(MEMBER_LOG_KEY))) {
 
@@ -124,10 +125,6 @@ public class ActionInterceptor implements HandlerInterceptor, ControllerConstant
 
 			return;
 		}
-
-		String servletPath = request.getServletPath(); // /path
-
-		UserPathEntity userPathEntity = userPathService.selectByUp_path(ACTION, UrlUtil.getPath(servletPath));
 
 		MemberLogEntity memberLogEntity = new MemberLogEntity();
 		memberLogEntity.setMl_MemberEntity(memberEntity);

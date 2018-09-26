@@ -3,11 +3,16 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/9/26
+ * Modified: 2018/9/27
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.controller;
+
+import static com.istockage.common.util.BindingResultUtil.getFieldErrors;
+import static com.istockage.common.util.PaginationUtil.allAttributes;
+import static com.istockage.common.util.PaginationUtil.getFirst;
+import static com.istockage.common.util.PaginationUtil.getPageCount;
 
 import java.util.Map;
 
@@ -31,9 +36,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.istockage.common.editor.SecuritiesBrokerBranchEntityPropertyEditor;
 import com.istockage.common.editor.SecuritiesBrokerHeadEntityPropertyEditor;
-import com.istockage.common.util.BindingResultUtil;
-import com.istockage.common.util.PaginationUtil;
-import com.istockage.common.util.UrlUtil;
 import com.istockage.exception.PageNotFoundException;
 import com.istockage.model.entity.MemberEntity;
 import com.istockage.model.entity.SecuritiesAccountEntity;
@@ -101,7 +103,13 @@ public class SecuritiesAccountController implements ControllerConstant {
 	@RequestMapping(value = "/settings/securities-account", method = RequestMethod.GET)
 	public String settingsSecuritiesAccountView(@SessionAttribute(USER) MemberEntity user, Model model) {
 
-		String path = UrlUtil.getPath(request.getServletPath());
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		logger.info("(" + className + "." + methodName + ") start");
+
+		UserPathEntity userPathEntity = (UserPathEntity) request.getAttribute(USER_PATH_ENTITY);
+		String up_path = userPathEntity.getUp_path();
+		String up_name = userPathEntity.getUp_name();
 
 		int currentPage;
 		try {
@@ -117,15 +125,17 @@ public class SecuritiesAccountController implements ControllerConstant {
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
 		Map<String, Object> map = securitiesAccountService.selectBySa_me_id(user.getMe_id(),
-				PaginationUtil.getFirst(currentPage, pageRowCount), pageRowCount);
+				getFirst(currentPage, pageRowCount), pageRowCount);
 
-		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
+		int pageCount = getPageCount((int) map.get("count"), pageRowCount);
 
 		// 取得當前頁碼的證券帳戶
 		model.addAttribute(SECURITIES_ACCOUNT_LIST, map.get("list"));
 
 		// 取得分頁資訊
-		model.addAllAttributes(PaginationUtil.allAttributes(path, pageRowCount, pageCount, currentPage, groupRowCount));
+		model.addAllAttributes(allAttributes(up_path, pageRowCount, pageCount, currentPage, groupRowCount));
+
+		logger.info("(" + className + "." + methodName + ") end (成功: " + up_name + ")");
 
 		return SETTINGS_SECURITIES_ACCOUNT_VIEW;
 	}
@@ -171,7 +181,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 		if (bindingResult.hasErrors()) {
 
 			logger.error("(" + className + "." + methodName + ") end (失敗: " + up_name + ", 格式錯誤: "
-					+ BindingResultUtil.getFieldErrors(bindingResult) + ")");
+					+ getFieldErrors(bindingResult) + ")");
 
 			return SETTINGS_SECURITIES_ACCOUNT_ADD_VIEW;
 
@@ -261,7 +271,7 @@ public class SecuritiesAccountController implements ControllerConstant {
 		if (bindingResult.hasErrors()) {
 
 			logger.error("(" + className + "." + methodName + ") end (失敗: " + up_name + ", 格式錯誤: "
-					+ BindingResultUtil.getFieldErrors(bindingResult) + ")");
+					+ getFieldErrors(bindingResult) + ")");
 
 			return SETTINGS_SECURITIES_ACCOUNT_EDIT_VIEW;
 

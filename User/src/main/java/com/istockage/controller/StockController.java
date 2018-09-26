@@ -3,11 +3,16 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/26
+ * Modified: 2018/9/27
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.controller;
+
+import static com.istockage.common.util.BindingResultUtil.getFieldErrors;
+import static com.istockage.common.util.PaginationUtil.allAttributes;
+import static com.istockage.common.util.PaginationUtil.getFirst;
+import static com.istockage.common.util.PaginationUtil.getPageCount;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,8 +41,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
 import com.istockage.common.json.GsonReader;
 import com.istockage.common.json.StockExchangeReportBean;
-import com.istockage.common.util.BindingResultUtil;
-import com.istockage.common.util.PaginationUtil;
 import com.istockage.common.util.StockUtil;
 import com.istockage.model.entity.CodeCategoryEntity;
 import com.istockage.model.entity.CodeEntity;
@@ -162,9 +165,9 @@ public class StockController implements ControllerConstant {
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
 		Map<String, Object> map = stockService.selectByConditions(user, null, up_path,
-				PaginationUtil.getFirst(currentPage, pageRowCount), pageRowCount);
+				getFirst(currentPage, pageRowCount), pageRowCount);
 
-		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
+		int pageCount = getPageCount((int) map.get("count"), pageRowCount);
 
 		List<StockEntity> stockList = (List<StockEntity>) map.get("list");
 
@@ -207,8 +210,7 @@ public class StockController implements ControllerConstant {
 		}
 
 		// 取得分頁資訊
-		model.addAllAttributes(
-				PaginationUtil.allAttributes(up_path, pageRowCount, pageCount, currentPage, groupRowCount));
+		model.addAllAttributes(allAttributes(up_path, pageRowCount, pageCount, currentPage, groupRowCount));
 
 		logger.info("(" + className + "." + methodName + ") end (成功: " + up_name + ")");
 
@@ -262,7 +264,7 @@ public class StockController implements ControllerConstant {
 		if (bindingResult.hasErrors()) {
 
 			logger.error("(" + className + "." + methodName + ") end (失敗: " + up_name + ", 格式錯誤: "
-					+ BindingResultUtil.getFieldErrors(bindingResult) + ")");
+					+ getFieldErrors(bindingResult) + ")");
 
 			return STOCK_INVENTORY_ADD_VIEW;
 

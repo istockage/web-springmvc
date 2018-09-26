@@ -3,7 +3,7 @@
  * File: CodeDaoImpl.java
  * Author: 詹晟
  * Created: 2018/9/24
- * Modified: 2018/9/24
+ * Modified: 2018/9/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,7 +33,7 @@ public class CodeDaoImpl implements CodeDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * code id 搜尋
+	 * CodeId 搜尋
 	 * 
 	 * @param co_CodeCategoryEntity CodeCategoryEntity
 	 * @param co_no Byte --> code 編號

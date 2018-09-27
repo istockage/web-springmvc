@@ -77,6 +77,12 @@
 													<input type="text" id="se_name" class="form-control" />
 												</div>
 											</div>
+																					
+											<div class="form-group">
+												<label for="select2-data-remote" class="control-label">股票</label>
+												<select id="select2-data-remote" class="form-control"></select>
+											</div>
+
 											<div class="btn-group btn-group-toggle" style="margin:10px 0">
 												<label id="buy-radio" class="btn btn-outline-danger active" style="cursor:default">
 													<input type="radio" value="buy" name="buy-sell" checked />買進

@@ -38,6 +38,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.istockage.common.editor.SecuritiesAccountEntityPropertyEditor;
 import com.istockage.common.json.GsonReader;
 import com.istockage.common.json.StockExchangeReportBean;
@@ -126,6 +128,11 @@ public class StockController implements ControllerConstant {
 
 		UserPathEntity userPathEntity = (UserPathEntity) request.getAttribute(USER_PATH_ENTITY);
 		String up_name = userPathEntity.getUp_name();
+
+		// TODO
+		for (SecuritiesEntity bean : securitiesService.selectLikeBySe_noOrSe_name("鴻")) {
+			System.out.println(bean.getSe_no() + " " + bean.getSe_name());
+		}
 
 		logger.info("(" + className + "." + methodName + ") end (成功: " + up_name + ")");
 
@@ -294,6 +301,28 @@ public class StockController implements ControllerConstant {
 
 			return REDIRECT + STOCK_INVENTORY_VIEW;
 		}
+	}
+
+	/**
+	 * 符合的所有股票 - AJAX
+	 * 
+	 * @param search String --> 股票代號或名稱
+	 * @return SecuritiesEntity JSON
+	 */
+	@RequestMapping(value = "/stock/inventory/securities-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	public String stockInventorySecuritiesListAjax(String search) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
+
+		String json = gson.toJson(securitiesService.selectLikeBySe_noOrSe_name(search));
+
+		logger.info("(" + className + "." + methodName + ") JSON = " + json);
+
+		return json;
 	}
 
 }

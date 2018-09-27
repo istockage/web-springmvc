@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/27
+ * Modified: 2018/9/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -130,9 +130,11 @@ public class StockController implements ControllerConstant {
 		String up_name = userPathEntity.getUp_name();
 
 		// TODO
-		for (SecuritiesEntity bean : securitiesService.selectLikeBySe_noOrSe_name("鴻")) {
-			System.out.println(bean.getSe_no() + " " + bean.getSe_name());
-		}
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
+		String json = gson.toJson(securitiesService.selectLikeBySe_noOrSe_name("23"));
+		System.out.println(json);
 
 		logger.info("(" + className + "." + methodName + ") end (成功: " + up_name + ")");
 

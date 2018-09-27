@@ -3,7 +3,7 @@
  * File: SecuritiesEntity.java
  * Author: 詹晟
  * Created: 2018/9/19
- * Modified: 2018/9/20
+ * Modified: 2018/9/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,6 +18,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * securities entity
  * 
@@ -29,9 +31,11 @@ public class SecuritiesEntity {
 
 	@Id
 	@Pattern(regexp = "^[0-9a-zA-Z]{4,6}$")
+	@Expose
 	private String se_no;
 	@NotBlank
 	@Size(max = 10)
+	@Expose
 	private String se_name;
 	private Date se_update_time;
 

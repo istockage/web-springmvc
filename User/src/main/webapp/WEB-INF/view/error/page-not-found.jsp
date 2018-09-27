@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pathName} - iStockage</title>
+<title>${userPathEntity.up_name} - iStockage</title>
 <c:choose>
 <c:when test="${empty user}">
 <%@include file="../secure/head.jsp"%>

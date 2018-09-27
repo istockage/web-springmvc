@@ -1,5 +1,16 @@
 -- MySQL
 
+-- SET UP
+-- show variables like 'character_set_%';
+-- set character_set_database = utf8;
+-- set character_set_results = utf8;
+-- set character_set_server = utf8;
+-- set character_set_system = utf8;
+
+-- show variables like 'collation_%';
+-- set collation_server = utf8_general_ci;
+-- set collation_database = utf8_general_ci;
+
 drop database if exists istockagedb;
 
 create database if not exists istockagedb;

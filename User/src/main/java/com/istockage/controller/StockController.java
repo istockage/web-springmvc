@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.google.gson.Gson;
@@ -312,7 +313,7 @@ public class StockController implements ControllerConstant {
 	 * @return SecuritiesEntity JSON
 	 */
 	@RequestMapping(value = "/stock/inventory/securities-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	public String stockInventorySecuritiesListAjax(String search) {
+	public @ResponseBody String stockInventorySecuritiesListAjax(String search) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -320,7 +321,10 @@ public class StockController implements ControllerConstant {
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
 
-		String json = gson.toJson(securitiesService.selectLikeBySe_noOrSe_name(search));
+		Map<String, List<SecuritiesEntity>> map = new HashMap<String, List<SecuritiesEntity>>();
+		map.put("securities", securitiesService.selectLikeBySe_noOrSe_name(search));
+
+		String json = gson.toJson(map);
 
 		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 

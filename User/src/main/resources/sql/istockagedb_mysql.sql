@@ -193,6 +193,7 @@ insert into user_path (up_path, up_name) values ('stock/chart', '股票統計圖
 insert into user_path (up_path, up_name) values ('stock/inventory', '股票庫存明細');
 insert into user_path (up_path, up_name) values ('stock/inventory/add', '新增股票庫存');
 insert into user_path (up_path, up_name) values ('stock/inventory/add.do', '新增股票庫存');
+insert into user_path (up_path, up_name) values ('stock/inventory/securities-list.ajax', '符合的所有股票');
 insert into user_path (up_path, up_name) values ('stock/list', '股票交易明細');
 
 -- code_category

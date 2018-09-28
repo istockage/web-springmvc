@@ -3,7 +3,7 @@
  * File: SecuritiesDaoImpl.java
  * Author: 詹晟
  * Created: 2018/9/20
- * Modified: 2018/9/27
+ * Modified: 2018/9/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -56,12 +56,14 @@ public class SecuritiesDaoImpl implements SecuritiesDao {
 	@SuppressWarnings("unchecked")
 	public List<SecuritiesEntity> selectLikeBySe_noOrSe_name(String search) {
 
+		if (search == null) {
+			return null;
+		}
+
 		DetachedCriteria criteria = DetachedCriteria.forClass(SecuritiesEntity.class);
 
-		if (search != null) {
-			criteria.add(Restrictions.or(Restrictions.like("se_no", "%" + search + "%"),
-					Restrictions.like("se_name", "%" + search + "%")));
-		}
+		criteria.add(Restrictions.or(Restrictions.like("se_no", "%" + search + "%"),
+				Restrictions.like("se_name", "%" + search + "%")));
 
 		return (List<SecuritiesEntity>) hibernateTemplate.findByCriteria(criteria);
 	}

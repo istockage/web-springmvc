@@ -68,7 +68,7 @@ var readyFlatpickr = {
 }
 readyFlatpickr.init();
 
-var select2Demo = {
+var select2 = {
 	init: function init() {
 		this.bindUIActions();
 	},
@@ -76,32 +76,29 @@ var select2Demo = {
 		$.fn.select2.defaults.set('width', '100%');
 		this.remoteData();
 	},
-	getStates: function getStates() {
-		return $('#select2-source-states').html();
-	},
 	remoteData: function remoteData() {
 		var formatRepo = function formatRepo(repo) {
 			if (repo.loading) {
 				return repo.text;
 			}
-			var markup = '<div class="media">' + '<div class="user-avatar mr-2"><img src="' + repo.owner.avatar_url + '" /></div>' + '<div class="media-body">' + '<h6 class="my-0">' + repo.full_name + '</h6>';
-			if (repo.description) {
-				markup += '<div class="small text-muted">' + repo.description + '</div>';
-			}
-			markup += '<ul class="list-inline small text-muted">' + '<li class="list-inline-item"><i class="fa fa-flash"></i> ' + repo.forks_count + ' Forks</li>' + '<li class="list-inline-item"><i class="fa fa-star"></i> ' + repo.stargazers_count + ' Stars</li>' + '<li class="list-inline-item"><i class="fa fa-eye"></i> ' + repo.watchers_count + ' Watchers</li>' + '</ul>' + '</div></div>';
+			var markup = '<div class="media">' + '<div class="media-body">' + '<p class="my-0">' + repo.full_name + '</p>' + '</div>' + '</div>';
+//			var markup = '<div class="media">' + '<div class="media-body">' + '<p class="my-0">' + repo.se_no + ' ' + repo.se_name + '</p>' + '</div>' + '</div>';
 			return markup;
 		}
 		var formatRepoSelection = function formatRepoSelection(repo) {
-			return '<div class="user-avatar user-avatar-xs mr-2"><img src="' + repo.owner.avatar_url + '" /></div>' + repo.full_name || repo.text;
+			return repo.full_name || repo.text;
+//			return repo.se_no + ' ' + repo.se_name || repo.text;
 		}
 		$('#select2-data-remote').select2({
 			ajax: {
 				url: 'https://api.github.com/search/repositories',
+//				url: '../../stock/inventory/securities-list.ajax',
 				dataType: 'json',
 				delay: 250,
 				data: function data(params) {
 					return {
-						q: params.term, // search term
+						q: params.term,
+//						search: params.term, // ?search=[term]
 						page: params.page
 					}
 				},
@@ -109,6 +106,7 @@ var select2Demo = {
 					params.page = params.page || 1;
 					return {
 						results: data.items,
+//						results: data.securities,
 						pagination: {
 							more: params.page * 30 < data.total_count
 						}
@@ -116,6 +114,7 @@ var select2Demo = {
 				},
 				cache: true
 			},
+			placeholder: '請選擇',
 			escapeMarkup: function escapeMarkup(markup) {
 				return markup;
 			},
@@ -125,4 +124,4 @@ var select2Demo = {
 		});
 	}
 }
-select2Demo.init();
+select2.init();

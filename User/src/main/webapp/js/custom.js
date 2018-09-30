@@ -81,32 +81,32 @@ var select2 = {
 			if (repo.loading) {
 				return repo.text;
 			}
-			var markup = '<div class="media">' + '<div class="media-body">' + '<p class="my-0">' + repo.full_name + '</p>' + '</div>' + '</div>';
-//			var markup = '<div class="media">' + '<div class="media-body">' + '<p class="my-0">' + repo.se_no + ' ' + repo.se_name + '</p>' + '</div>' + '</div>';
+//			var markup = '<div class="media">' + '<div class="media-body">' + '<p class="my-0">' + repo.full_name + '</p>' + '</div>' + '</div>';
+			var markup = '<div class="media">' + '<div class="media-body">' + '<p class="my-0">' + repo.se_no + ' ' + repo.se_name + '</p>' + '</div>' + '</div>';
 			return markup;
 		}
 		var formatRepoSelection = function formatRepoSelection(repo) {
-			return repo.full_name || repo.text;
-//			return repo.se_no + ' ' + repo.se_name || repo.text;
+//			return repo.full_name || repo.text;
+			return repo.se_no + ' ' + repo.se_name || repo.text;
 		}
 		$('#select2-data-remote').select2({
 			ajax: {
-				url: 'https://api.github.com/search/repositories',
-//				url: '../../stock/inventory/securities-list.ajax',
+//				url: 'https://api.github.com/search/repositories',
+				url: '../../stock/inventory/securities-list.ajax',
 				dataType: 'json',
 				delay: 250,
 				data: function data(params) {
 					return {
-						q: params.term,
-//						search: params.term, // ?search=[term]
+//						q: params.term,
+						search: params.term, // ?search=[term]
 						page: params.page
 					}
 				},
 				processResults: function processResults(data, params) {
 					params.page = params.page || 1;
 					return {
-						results: data.items,
-//						results: data.securities,
+//						results: data.items,
+						results: data.securities,
 						pagination: {
 							more: params.page * 30 < data.total_count
 						}
@@ -114,7 +114,7 @@ var select2 = {
 				},
 				cache: true
 			},
-			placeholder: '請選擇',
+//			placeholder: '請選擇',
 			escapeMarkup: function escapeMarkup(markup) {
 				return markup;
 			},

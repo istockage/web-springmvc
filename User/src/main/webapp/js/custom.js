@@ -68,6 +68,7 @@ var readyFlatpickr = {
 }
 readyFlatpickr.init();
 
+/*
 var select2 = {
 	init: function init() {
 		this.bindUIActions();
@@ -125,3 +126,4 @@ var select2 = {
 	}
 }
 select2.init();
+*/

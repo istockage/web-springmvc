@@ -59,21 +59,7 @@
 										<!-- .card-body -->
 										<div class="card-body">
 										
-											<div id="demo"></div>
-										
-											<script type="text/babel">
-												class MyHead extends React.Component {
-													render() {
-														return <h1>Hello World</h1>;
-													}
-												}
-												window.addEventListener("load", () => {
-													ReactDOM.render(
-														<MyHead/>,
-														document.getElementById('demo')
-													);
-												});
-											</script>
+											<div id="hello-world"></div>
 											
 										</div>
 										<!-- /.card-body -->
@@ -106,7 +92,8 @@
 		
 	</div>
 	<!-- /.app -->
-	
+
 <%@include file="body.jsp"%>
+<script src="<%=request.getContextPath()%>/jsx/HelloWorld.jsx" type="text/babel"></script>
 </body>
 </html>

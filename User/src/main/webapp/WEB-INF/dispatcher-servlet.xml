@@ -23,8 +23,9 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/css/**" />
-			<mvc:exclude-mapping path="/images/**" />
 			<mvc:exclude-mapping path="/js/**" />
+			<mvc:exclude-mapping path="/jsx/**" />
+			<mvc:exclude-mapping path="/images/**" />
 			<bean class="com.istockage.interceptor.StopwatchInterceptor" />
 		</mvc:interceptor>
 
@@ -33,8 +34,9 @@
 			<mvc:exclude-mapping path="/**/*.do" />
 			<mvc:exclude-mapping path="/**/*.ajax" />
 			<mvc:exclude-mapping path="/css/**" />
-			<mvc:exclude-mapping path="/images/**" />
 			<mvc:exclude-mapping path="/js/**" />
+			<mvc:exclude-mapping path="/jsx/**" />
+			<mvc:exclude-mapping path="/images/**" />
 			<bean class="com.istockage.interceptor.ViewInterceptor" />
 		</mvc:interceptor>
 
@@ -66,8 +68,9 @@
 			<mvc:exclude-mapping path="/secure/sign-up-email-repeat.ajax" />
 			<mvc:exclude-mapping path="/error/page-not-found" />
 			<mvc:exclude-mapping path="/css/**" />
-			<mvc:exclude-mapping path="/images/**" />
 			<mvc:exclude-mapping path="/js/**" />
+			<mvc:exclude-mapping path="/jsx/**" />
+			<mvc:exclude-mapping path="/images/**" />
 			<bean class="com.istockage.interceptor.NotSignInInterceptor" />
 		</mvc:interceptor>
 
@@ -89,7 +92,8 @@
 	</mvc:interceptors>
 
 	<mvc:resources mapping="/css/**" location="/css/" />
-	<mvc:resources mapping="/images/**" location="/images/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/jsx/**" location="/jsx/" />
+	<mvc:resources mapping="/images/**" location="/images/" />
 
 </beans>

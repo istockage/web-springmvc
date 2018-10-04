@@ -3,7 +3,7 @@
  * File: SecuritiesAccountServiceImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/12
+ * Modified: 2018/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,14 +40,14 @@ public class SecuritiesAccountServiceImpl implements SecuritiesAccountService {
 	 * 證券帳戶流水號搜尋
 	 * 
 	 * @param sa_id Integer --> 證券帳戶流水號
-	 * @param memberEntity MemberEntity
+	 * @param sa_MemberEntity MemberEntity
 	 * @return SecuritiesAccountEntity
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity memberEntity) {
+	public SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity sa_MemberEntity) {
 
-		return securitiesAccountDao.selectBySa_id(sa_id, memberEntity);
+		return securitiesAccountDao.selectBySa_id(sa_id, sa_MemberEntity);
 	}
 
 	/**

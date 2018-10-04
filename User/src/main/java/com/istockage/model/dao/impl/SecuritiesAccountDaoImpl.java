@@ -3,7 +3,7 @@
  * File: SecuritiesAccountDaoImpl.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/26
+ * Modified: 2018/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,17 +46,17 @@ public class SecuritiesAccountDaoImpl implements SecuritiesAccountDao {
 	 * 證券帳戶流水號搜尋
 	 * 
 	 * @param sa_id Integer --> 證券帳戶流水號
-	 * @param memberEntity MemberEntity
+	 * @param sa_MemberEntity MemberEntity
 	 * @return SecuritiesAccountEntity
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity memberEntity) {
+	public SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity sa_MemberEntity) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(SecuritiesAccountEntity.class);
 
 		criteria.add(Restrictions.eq("sa_id", sa_id));
-		criteria.add(Restrictions.eq("sa_MemberEntity", memberEntity));
+		criteria.add(Restrictions.eq("sa_MemberEntity", sa_MemberEntity));
 
 		List<SecuritiesAccountEntity> list = (List<SecuritiesAccountEntity>) hibernateTemplate.findByCriteria(criteria);
 

@@ -3,7 +3,7 @@
  * File: SecuritiesAccountDao.java
  * Author: 詹晟
  * Created: 2018/8/14
- * Modified: 2018/9/12
+ * Modified: 2018/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -26,7 +26,7 @@ public interface SecuritiesAccountDao extends DaoConstant {
 	 * @see com.istockage.model.dao.impl.SecuritiesAccountDaoImpl#selectBySa_id(Integer,
 	 *      MemberEntity)
 	 */
-	SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity memberEntity);
+	SecuritiesAccountEntity selectBySa_id(Integer sa_id, MemberEntity sa_MemberEntity);
 
 	/**
 	 * @see com.istockage.model.dao.impl.SecuritiesAccountDaoImpl#selectBySa_me_id(Integer)

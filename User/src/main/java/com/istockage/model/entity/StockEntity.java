@@ -3,7 +3,7 @@
  * File: StockEntity.java
  * Author: 詹晟
  * Created: 2018/3/23
- * Modified: 2018/9/24
+ * Modified: 2018/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -24,6 +24,8 @@ import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Range;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * stock entity
  * 
@@ -35,6 +37,7 @@ public class StockEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose
 	private Integer st_id;
 	@ManyToOne
 	@JoinColumn(name = "st_me_id")
@@ -44,38 +47,54 @@ public class StockEntity {
 	private SecuritiesAccountEntity st_SecuritiesAccountEntity;
 	@ManyToOne
 	@JoinColumn(name = "st_se_no")
+	@Expose
 	private SecuritiesEntity st_SecuritiesEntity;
 	@ManyToOne
 	@JoinColumns({ @JoinColumn(name = "st_co_cc_no"), @JoinColumn(name = "st_co_no") })
+	@Expose
 	private CodeEntity st_CodeEntity;
 	@Past
+	@Expose
 	private Date st_buy_time;
 	@Digits(integer = 4, fraction = 2)
+	@Expose
 	private Float st_buy_price;
 	@Digits(integer = 9, fraction = 0)
+	@Expose
 	private Integer st_buy_share;
 	@Digits(integer = 3, fraction = 0)
 	@Range(min = 0, max = 100)
+	@Expose
 	private Byte st_buy_discount;
 	@Digits(integer = 6, fraction = 0)
+	@Expose
 	private Integer st_buy_fee;
 	@Digits(integer = 9, fraction = 0)
+	@Expose
 	private Integer st_buy_delivery;
 	@Past
+	@Expose
 	private Date st_sell_time;
 	@Digits(integer = 4, fraction = 2)
+	@Expose
 	private Float st_sell_price;
 	@Digits(integer = 9, fraction = 0)
+	@Expose
 	private Integer st_sell_share;
 	@Digits(integer = 3, fraction = 0)
 	@Range(min = 0, max = 100)
+	@Expose
 	private Byte st_sell_discount;
 	@Digits(integer = 6, fraction = 0)
+	@Expose
 	private Integer st_sell_fee;
 	@Digits(integer = 6, fraction = 0)
+	@Expose
 	private Integer st_sell_tax;
 	@Digits(integer = 9, fraction = 0)
+	@Expose
 	private Integer st_sell_delivery;
+	@Expose
 	private Date st_update_time;
 
 	public Integer getSt_id() {

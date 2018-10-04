@@ -195,6 +195,7 @@ insert into user_path (up_path, up_name) values ('stock/inventory/add', '新增�
 insert into user_path (up_path, up_name) values ('stock/inventory/add.do', '新增股票庫存');
 insert into user_path (up_path, up_name) values ('stock/inventory/securities-list.ajax', '符合的所有股票');
 insert into user_path (up_path, up_name) values ('stock/list', '股票交易明細');
+insert into user_path (up_path, up_name) values ('stock/list.ajax', '股票交易明細');
 
 -- code_category
 insert into code_category (cc_no, cc_name) values (1, '買賣類別');

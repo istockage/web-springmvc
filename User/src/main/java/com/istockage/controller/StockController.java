@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/9/28
+ * Modified: 2018/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -304,6 +304,28 @@ public class StockController implements ControllerConstant {
 
 			return REDIRECT + STOCK_INVENTORY_VIEW;
 		}
+	}
+
+	/**
+	 * 股票交易明細 - AJAX
+	 * 
+	 * @param user MemberEntity --> SessionAttribute
+	 * @return StockEntity JSON
+	 */
+	@RequestMapping(value = "/stock/list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	public @ResponseBody String stockListAjax(@SessionAttribute(USER) MemberEntity user) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
+
+		String json = gson.toJson(stockService.selectByConditions(user, null));
+
+		logger.info("(" + className + "." + methodName + ") JSON = " + json);
+
+		return json;
 	}
 
 	/**

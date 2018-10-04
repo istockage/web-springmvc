@@ -3,13 +3,14 @@
  * File: StockServiceImpl.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/27
+ * Modified: 2018/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.istockage.model.service.impl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,21 @@ public class StockServiceImpl implements StockService {
 			SecuritiesAccountEntity st_SecuritiesAccountEntity, String up_path, int first, int max) {
 
 		return stockDao.selectByConditions(st_MemberEntity, st_SecuritiesAccountEntity, up_path, first, max);
+	}
+
+	/**
+	 * 搜尋所有股票交易明細
+	 * 
+	 * @param st_MemberEntity MemberEntity
+	 * @param st_SecuritiesAccountEntity SecuritiesAccountEntity
+	 * @return List<StockEntity>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<StockEntity> selectByConditions(MemberEntity st_MemberEntity,
+			SecuritiesAccountEntity st_SecuritiesAccountEntity) {
+
+		return stockDao.selectByConditions(st_MemberEntity, st_SecuritiesAccountEntity);
 	}
 
 	/**

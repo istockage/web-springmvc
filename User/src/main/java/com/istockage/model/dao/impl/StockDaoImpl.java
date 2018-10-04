@@ -3,7 +3,7 @@
  * File: StockDaoImpl.java
  * Author: 詹晟
  * Created: 2018/9/6
- * Modified: 2018/9/27
+ * Modified: 2018/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,6 +25,8 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -123,6 +125,30 @@ public class StockDaoImpl implements StockDao {
 		map.put("list", result);
 
 		return map;
+	}
+
+	/**
+	 * 搜尋所有股票交易明細
+	 * 
+	 * @param st_MemberEntity MemberEntity
+	 * @param st_SecuritiesAccountEntity SecuritiesAccountEntity
+	 * @return List<StockEntity>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<StockEntity> selectByConditions(MemberEntity st_MemberEntity,
+			SecuritiesAccountEntity st_SecuritiesAccountEntity) {
+
+		DetachedCriteria criteria = DetachedCriteria.forClass(StockEntity.class);
+
+		if (st_MemberEntity != null) {
+			criteria.add(Restrictions.eq("st_MemberEntity", st_MemberEntity));
+		}
+		if (st_SecuritiesAccountEntity != null) {
+			criteria.add(Restrictions.eq("st_SecuritiesAccountEntity", st_SecuritiesAccountEntity));
+		}
+
+		return (List<StockEntity>) hibernateTemplate.findByCriteria(criteria);
 	}
 
 	/**

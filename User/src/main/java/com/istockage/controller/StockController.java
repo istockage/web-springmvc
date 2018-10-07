@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/10/4
+ * Modified: 2018/10/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -321,7 +321,10 @@ public class StockController implements ControllerConstant {
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
 
-		String json = gson.toJson(stockService.selectByConditions(user, null));
+		Map<String, List<StockEntity>> map = new HashMap<String, List<StockEntity>>();
+		map.put("stocks", stockService.selectByConditions(user, null));
+
+		String json = gson.toJson(map);
 
 		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 

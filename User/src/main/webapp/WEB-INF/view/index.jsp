@@ -60,6 +60,7 @@
 										<div class="card-body">
 										
 											<div id="hello-world"></div>
+											<div id="stock-list"></div>
 											
 										</div>
 										<!-- /.card-body -->
@@ -95,5 +96,6 @@
 
 <%@include file="body.jsp"%>
 <script src="<%=request.getContextPath()%>/jsx/HelloWorld.jsx" type="text/babel"></script>
+<script src="<%=request.getContextPath()%>/jsx/StockList.jsx" type="text/babel"></script>
 </body>
 </html>

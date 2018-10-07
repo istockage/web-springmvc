@@ -1,46 +1,42 @@
+const data = [
+    {
+        id: 1,
+        name: "Simon Bailey"
+    },
+    {
+        id: 2,
+        name: "Thomas Burleson"
+    },
+    {
+        id: 3,
+        name: "Will Button"
+    }
+]
+
 class HelloWorld extends React.Component {
     render() {
-        return <h1>Hello, {this.props.text}</h1>;
-    }
-
-    constructor() {
-        super();
-        this.state = {
-            data: [{
-                id: 1,
-                name: "Simon Bailey"
-            }, {
-                id: 2,
-                name: "Thomas Burleson"
-            }, {
-                id: 3,
-                name: "Will Button"
-            }]
-        }
-    }
-    render() {
-        const PersonRow = ( props ) => {
-            return (
-                <tr>
-                    <td>{props.data.id}</td>
-                    <td>{props.data.name}</td>
-                </tr>
-            );
-        }
-        let rows = this.state.data.map( person => {
-            return <PersonRow key={person.id} data={person} />
-        } );
+        const PersonRow = ( props ) =>
+            <tr>
+                <td>{props.data.id}</td>
+                <td>{props.data.name}</td>
+            </tr>
+        let rows = data.map(( data ) =>
+            <PersonRow key={data.id} data={data} />
+        );
         return (
-            <table>
-                <tbody>{rows}</tbody>
-            </table>
+            <div>
+                <h3>Hello, {this.props.text}</h3>
+                <table>
+                    <tbody>{rows}</tbody>
+                </table>
+            </div>
         );
     }
 }
 
 window.addEventListener( "load", () => {
     ReactDOM.render(
-        <HelloWorld text="world!" />,
+        <HelloWorld text="table!!" />,
         document.getElementById( 'hello-world' )
     );
 } );

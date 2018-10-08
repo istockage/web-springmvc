@@ -9,7 +9,7 @@ class StockList extends React.Component {
     }
     componentDidMount() {
         fetch( "http://localhost:8080/User/stock/list.ajax" )
-            .then( res => res.json() )
+            .then( response => response.json() )
             .then(
             ( result ) => {
                 this.setState( {

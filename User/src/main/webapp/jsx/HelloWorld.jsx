@@ -24,6 +24,12 @@ class HelloWorld extends React.Component {
             <div>
                 <h3>Hello, {this.props.text}</h3>
                 <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {data.map(( data ) =>
                             <PersonRow key={data.id} data={data} />

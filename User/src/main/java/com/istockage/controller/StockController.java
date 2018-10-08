@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/10/7
+ * Modified: 2018/10/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -317,7 +317,7 @@ public class StockController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		GsonBuilder builder = new GsonBuilder();
+		GsonBuilder builder = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss");
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
 

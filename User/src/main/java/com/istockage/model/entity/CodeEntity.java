@@ -3,7 +3,7 @@
  * File: CodeEntity.java
  * Author: 詹晟
  * Created: 2018/9/5
- * Modified: 2018/9/24
+ * Modified: 2018/10/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,6 +15,8 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.google.gson.annotations.Expose;
 
 /**
  * code entity
@@ -32,6 +34,7 @@ public class CodeEntity {
 	private CodeCategoryEntity co_CodeCategoryEntity;
 	@Id
 	private Byte co_no;
+	@Expose
 	private String co_name;
 
 	public CodeCategoryEntity getCo_CodeCategoryEntity() {

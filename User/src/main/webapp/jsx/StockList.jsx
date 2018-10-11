@@ -1,6 +1,7 @@
+// @ts-nocheck
 class StockList extends React.Component {
-    constructor( props ) {
-        super( props )
+    constructor(props) {
+        super(props)
         this.state = {
             error: null,
             isLoaded: false,
@@ -8,30 +9,30 @@ class StockList extends React.Component {
         }
     }
     componentDidMount() {
-        fetch( "http://localhost:8080/User/stock/list.ajax" )
-            .then( response => response.json() )
+        fetch("http://localhost:8080/User/stock/list.ajax")
+            .then(response => response.json())
             .then(
-            ( result ) => {
-                this.setState( {
-                    isLoaded: true,
-                    stocks: result.stocks
-                } )
-            },
-            ( error ) => {
-                this.setState( {
-                    isLoaded: true,
-                    error
-                } )
-            }
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        stocks: result.stocks
+                    })
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    })
+                }
             )
     }
     render() {
         const { error, isLoaded, stocks } = this.state
-        if ( error ) {
+        if (error) {
             return (
                 <div>Error: {error.message}</div>
             )
-        } else if ( !isLoaded ) {
+        } else if (!isLoaded) {
             return (
                 <div>Loading...</div>
             )
@@ -67,7 +68,7 @@ class StockList extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {stocks.map(( stock, index ) =>
+                            {stocks.map((stock, index) =>
                                 <tr key={stock.st_id}>
                                     <td>{index + 1}</td>
                                     <td>{stock.st_SecuritiesEntity.se_no}</td>
@@ -103,9 +104,9 @@ class StockList extends React.Component {
     }
 }
 
-window.addEventListener( "load", () => {
+window.addEventListener("load", () => {
     ReactDOM.render(
         <StockList />,
-        document.getElementById( 'stock-list' )
+        document.getElementById('stock-list')
     )
-} )
+})

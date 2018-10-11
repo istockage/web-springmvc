@@ -1,3 +1,4 @@
+// @ts-nocheck
 const data = [
     {
         id: 1,
@@ -15,7 +16,7 @@ const data = [
 
 class HelloWorld extends React.Component {
     render() {
-        const PersonRow = ( props ) =>
+        const PersonRow = (props) =>
             <tr>
                 <td>{props.data.id}</td>
                 <td>{props.data.name}</td>
@@ -31,7 +32,7 @@ class HelloWorld extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(( data ) =>
+                        {data.map((data) =>
                             <PersonRow key={data.id} data={data} />
                         )}
                     </tbody>
@@ -41,9 +42,9 @@ class HelloWorld extends React.Component {
     }
 }
 
-window.addEventListener( "load", () => {
+window.addEventListener("load", () => {
     ReactDOM.render(
         <HelloWorld text="table!!" />,
-        document.getElementById( 'hello-world' )
+        document.getElementById('hello-world')
     )
-} )
+})

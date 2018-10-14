@@ -3,7 +3,7 @@
  * File: SecuritiesAccountController.java
  * Author: 詹晟
  * Created: 2018/8/12
- * Modified: 2018/9/27
+ * Modified: 2018/10/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -298,13 +298,15 @@ public class SecuritiesAccountController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
+		logger.info("(" + className + "." + methodName + ") start");
+
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
 
 		String json = gson.toJson(securitiesBrokerBranchService.selectBySb_sh_no(sh_no));
 
-		logger.info("(" + className + "." + methodName + ") JSON = " + json);
+		logger.info("(" + className + "." + methodName + ") end (JSON = " + json + ")");
 
 		return json;
 	}

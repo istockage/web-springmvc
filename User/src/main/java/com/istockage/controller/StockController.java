@@ -3,7 +3,7 @@
  * File: StockController.java
  * Author: 詹晟
  * Created: 2018/9/2
- * Modified: 2018/10/8
+ * Modified: 2018/10/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -317,6 +317,8 @@ public class StockController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
+		logger.info("(" + className + "." + methodName + ") start");
+
 		GsonBuilder builder = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss");
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
@@ -326,7 +328,7 @@ public class StockController implements ControllerConstant {
 
 		String json = gson.toJson(map);
 
-		logger.info("(" + className + "." + methodName + ") JSON = " + json);
+		logger.info("(" + className + "." + methodName + ") end (JSON = " + json + ")");
 
 		return json;
 	}
@@ -342,6 +344,8 @@ public class StockController implements ControllerConstant {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
+		logger.info("(" + className + "." + methodName + ") start");
+
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
@@ -351,7 +355,7 @@ public class StockController implements ControllerConstant {
 
 		String json = gson.toJson(map);
 
-		logger.info("(" + className + "." + methodName + ") JSON = " + json);
+		logger.info("(" + className + "." + methodName + ") end (JSON = " + json + ")");
 
 		return json;
 	}
